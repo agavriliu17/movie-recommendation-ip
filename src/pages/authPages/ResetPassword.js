@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Container from '@mui/material/Container';
+import Box from "@mui/material/Box";
+import TextField from '@mui/material/TextField';
 
 class ResetPassword extends React.Component {
     constructor() {
@@ -11,6 +15,7 @@ class ResetPassword extends React.Component {
      
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    
   }
      
   handleChange(event) {
@@ -68,42 +73,61 @@ class ResetPassword extends React.Component {
      
   render() {
     return (
+      <Container maxWidth="sm">
+        <Box
+          sx={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+           }}
+        >
+    <div className="ResetPassword">
+      <h1>Reset Password</h1>
       <div>
         <form onSubmit={this.handleSubmit}> 
           <div class="form-group">
-            <label for="password">Password:</label>
-            <input 
-              type="password" 
-              name="password" 
-              value={this.state.input.password}
-              onChange={this.handleChange}
-              class="form-control" 
+            <TextField
+              sx={{ marginTop: "10px" }}
+              error={this.state.errors.password}
+              id="password"
               placeholder="Enter password" 
-              id="password" />
-  
-              <div className="text-danger">{this.state.errors.password}</div>
+              name="password" 
+              onChange={this.handleChange}
+              type="password"
+              value={this.state.input.password}
+              class="form-control" 
+            />
+            <div className="text-danger">{this.state.errors.password}</div>
           </div>
   
           <div class="form-group">
-            <label for="password">Confirm Password:</label>
-            <input 
-              type="password" 
-              name="confirm_password" 
-              value={this.state.input.confirm_password}
-              onChange={this.handleChange}
-              class="form-control" 
+            <TextField
+              sx={{ marginTop: "10px" }}
+              error={this.state.errors.confirm_password}
+              id="confirm_password"
               placeholder="Enter confirm password" 
-              id="confirm_password" />
-  
-              <div className="text-danger">{this.state.errors.confirm_password}</div>
+              name="confirm_password" 
+              type="password"
+              onChange={this.handleChange}
+              value={this.state.input.confirm_password}
+              class="form-control" 
+            />
+            <div className="text-danger">{this.state.errors.confirm_password}</div>
           </div>
-              
-          <button type="submit"  class="btn btn-success">Submit</button>
+     
+          <Button
+            variant="contained"
+            sx={{ marginTop: "10px" }}
+            onClick={this.handleSubmit}>Submit</Button>
         </form>
-        <hr />
-        <div className="auth-option text-center pt-2"><Link className="text-link" to="/login" >Back to Login</Link></div>
-
       </div>
+    </div>
+    <hr />
+    <div className="auth-option text-center pt-2"><Link className="text-link" to="/login" >Back to Login</Link></div>
+    </Box>
+    </Container>
     );
   }
 }
