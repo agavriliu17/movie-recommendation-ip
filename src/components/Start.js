@@ -30,7 +30,6 @@ const Start = () => {
           padding: "30px",
           textAlign: "center",
           marginTop: "10%",
-          padding: "10px",
           textDecorationLine: "overline",
           "&:hover": {
             textDecorationLine: "overline",
