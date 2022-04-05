@@ -32,19 +32,19 @@ const ResetPassword = () => {
       let isValid = true;
       if (!input.password) {
         isValid = false;
-        setErrorPassword("Please enter your password.");
+        setErrorPassword(true);
       }
       else {
         setErrorPassword(false);
       }
       if (!input.confirmPassword) {
         isValid = false;
-        setErrorConfirmPassword("Please enter your confirm password.");
+        setErrorConfirmPassword(true);
       }
       else
         if (input.password != input.confirmPassword) {
           isValid = false;
-          setErrorConfirmPassword("Passwords don't match.");
+          setErrorConfirmPassword(true);
         }
       else {
       setErrorConfirmPassword(false);
