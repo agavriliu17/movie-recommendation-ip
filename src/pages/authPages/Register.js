@@ -18,8 +18,8 @@ const Register = () => {
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
 
-  const handleChangeInput = (eventent, key) => {
-    setInput({ ...input, [key]: eventent.target.value });
+  const handleChangeInput = (event, key) => {
+    setInput({ ...input, [key]: event.target.value });
   };
 
   const checkPasswords = (input) => {
@@ -62,9 +62,7 @@ const Register = () => {
       setErrorConfirmPassword(false);
     }
     else { setErrorConfirmPassword(true); }
-
   };
-
 
   return (
     <Paper
@@ -79,7 +77,6 @@ const Register = () => {
         flexDirection: "column",
       }}
     >
-
       <Container maxWidth="sm">
         <Card
           sx={{
@@ -99,8 +96,6 @@ const Register = () => {
               flexDirection: "column",
             }}
           >
-
-
             <Typography
               color="#fff"
               mb="25px"
@@ -135,7 +130,6 @@ const Register = () => {
               }}
             >
             <TextField
-             
               error={errorLastName}
               id="2"
               label="Last Name"
@@ -155,7 +149,6 @@ const Register = () => {
               }}
             >
             <TextField
-              
               error={errorEmail}
               id="3"
               label="Email address"
@@ -165,6 +158,7 @@ const Register = () => {
               variant="filled"
             />
             </Paper>
+
             <Paper
               sx={{
                 backgroundColor: "rgb(51 51 51)",
@@ -174,7 +168,6 @@ const Register = () => {
               }}
             >
             <TextField
-              
               error={errorPassword}
               id="4"
               label="Password"
@@ -195,7 +188,6 @@ const Register = () => {
               }}
             >
             <TextField
-              
               error={errorConfirmPassword}
               id="5"
               label="Confirm password"
@@ -221,7 +213,6 @@ const Register = () => {
             >
               Sign up
             </Button>
-
 
             <Box
               sx={{
@@ -249,6 +240,7 @@ const Register = () => {
                 </Typography>
               </Button>
             </Box>
+            
           </Box>
         </Card>
       </Container>
