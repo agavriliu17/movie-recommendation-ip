@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import validator from 'validator';
 import { useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
@@ -19,12 +20,22 @@ const ForgotPassword = () => {
   const handleSubmit=(e)=>{
     if (input.email === "") {
       setError(true);
-    } else {
+    } else 
+    if(validateEmail(e))
+    {
       alert('We\'ve sent you an confirmation email to ' + input.email);
       navigate("/reset-pass");
     }
+    else setError(true);
   }
+  const validateEmail = (e) => {
   
+    if (validator.isEmail(input.email)) {
+      return true;
+    } else {
+     return false;
+    }
+  }
   
   return (
     <Paper
@@ -62,14 +73,13 @@ const ForgotPassword = () => {
           >
             <Typography
               color="#fff"
-              mb="25px"
               variant="h4"
               fontFamily="sans-serif"
             >
               Forgot Password
               
             </Typography>
-            <Paper sx={{ backgroundColor: "rgb(51 51 51)", width: "100%",marginTop: "40px" }}>
+            <Paper sx={{ backgroundColor: "rgb(51 51 51)", width: "100%",marginTop: "60px" }}>
               
               <TextField
                 error={error}
@@ -93,10 +103,10 @@ const ForgotPassword = () => {
             value="Send"
             onClick={handleSubmit}
               sx={{
-                marginTop: "25px",
+                marginTop: "15px",
                 width: "40%",
                 textTransform: "none",
-                marginBottom: "25px",
+                marginBottom: "15px",
               }}
             >
               Send email
