@@ -12,7 +12,6 @@ const Start = () => {
       sx={{
         width: "100%",
         minHeight: "100vh",
-        background: grey[900],
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundImage: `url(${"https://cdn.wallpapersafari.com/95/98/3vRqDI.jpg"})`,
