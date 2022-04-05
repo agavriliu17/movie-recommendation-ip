@@ -43,8 +43,9 @@ const Register = () => {
     }
     else { setErrorLastName(false); }
 
-    if (input.email === "") {
+    if (input.email !== "test.mail@mail.com") {
       setErrorEmail(true);
+      alert('Invalid email address');
     }
     else { setErrorEmail(false); }
 
