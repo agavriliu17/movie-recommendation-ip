@@ -20,16 +20,8 @@ const ResetPassword = () => {
     setInput({ ...input, [key]: eventent.target.value });
   };
      
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  
+  const handleSubmit = () => {  
     if(validate()){
-        console.log(input);
-  
-        let input = {};
-        input.password= "";
-        input.confirmPassword= "";
-        setInput({input});
         alert('Password reseted');
         navigate("/home");
     }
@@ -43,7 +35,6 @@ const ResetPassword = () => {
         setErrorPassword("Please enter your password.");
       }
       else {
-        isValid = false;
         setErrorPassword(false);
       }
       if (!input.confirmPassword) {
@@ -56,7 +47,6 @@ const ResetPassword = () => {
           setErrorConfirmPassword("Passwords don't match.");
         }
       else {
-        isValid = false;
       setErrorConfirmPassword(false);
      
       }
