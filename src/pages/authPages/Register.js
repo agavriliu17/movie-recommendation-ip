@@ -94,6 +94,7 @@ const Register = () => {
               alignItems: "center",
               justifyContent: "center",
               flexDirection: "column",
+              width: "60%",
             }}
           >
             <Typography
