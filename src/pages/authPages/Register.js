@@ -4,7 +4,11 @@ import Box from "@mui/material/Box";
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import Paper from "@mui/material/Paper";
+import Card from "@mui/material/Card";
+import netflixBackground from "../../resources/images/netflix2.jpg";
+import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [input, setInput] = useState({ firstName: "", lastName: "", email: "", password: "", confirmPassword: "" });
@@ -14,7 +18,7 @@ const Register = () => {
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
 
-  const handleChangeImput = (eventent, key) => {
+  const handleChangeInput = (eventent, key) => {
     setInput({ ...input, [key]: eventent.target.value });
   };
 
@@ -24,6 +28,8 @@ const Register = () => {
     }
     return false;
   };
+
+  const navigate = useNavigate();
 
   const handleSignUp = () => {
 
@@ -61,82 +67,192 @@ const Register = () => {
 
 
   return (
-    
-    <Container maxWidth="sm">
-      
-      <Box
-        sx={{
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-        }}
-      >
+    <Paper
+      sx={{
+        width: "100vw",
+        height: "100vh",
+        backgroundImage: `url(${netflixBackground})`,
+        backgroundSize: "cover",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
+    >
 
-    <div className="SignUp">
-      <h1>Sign Up</h1>
-    </div>
-        <TextField
-          error={errorFirstName}
-          id="1"
-          label="First Name"
-          onChange={(event) => handleChangeImput(event, "firstName")}
-          value={input.firstName}
-        />
-
-        <TextField
-          sx={{ marginTop: "10px" }}
-          error={errorLastName}
-          id="2"
-          label="Last Name"
-          onChange={(event) => handleChangeImput(event, "lastName")}
-          value={input.lastName}
-        />
-
-        <TextField
-          sx={{ marginTop: "10px" }}
-          error={errorEmail}
-          id="3"
-          label="Email address"
-          onChange={(event) => handleChangeImput(event, "email")}
-          value={input.email}
-        />
-        <TextField
-          sx={{ marginTop: "10px" }}
-          error={errorPassword}
-          id="4"
-          label="Password"
-          type="password"
-          onChange={(event) => handleChangeImput(event, "password")}
-          value={input.password}
-        />
-        <TextField
-          sx={{ marginTop: "10px" }}
-          error={errorConfirmPassword}
-          id="5"
-          label="Confrim password"
-          type="password"
-          onChange={(event) => handleChangeImput(event, "confirmPassword")}
-          value={input.confirmPassword}
-        />
-
-        <Button
-          variant="contained"
-          sx={{ marginTop: "10px" }}
-          onClick={handleSignUp}
+      <Container maxWidth="sm">
+        <Card
+          sx={{
+            height: "fit-content",
+            padding: "20px",
+            backgroundColor: "rgba(0,0,0,0.75)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
-          Sign up
-        </Button>
-        <div className="Login">
-          Already a user?
-        <Link to="/login" >
-        Sign in now.
-          </Link>
-      </div>
-      </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
 
-    </Container>
+
+            <Typography
+              color="#fff"
+              mb="25px"
+              variant="h4"
+              fontFamily="sans-serif"
+              sx={{
+                display: "flex",
+                flexDirection: "left",
+              }}
+            >
+              Sign up
+            </Typography>
+
+            <Paper sx={{ backgroundColor: "rgb(51 51 51)", width: "100%" }}>
+              <TextField
+                error={errorFirstName}
+                id="1"
+                label="First Name"
+                onChange={(event) => handleChangeInput(event, "firstName")}
+                value={input.firstName}
+                sx={{ width: "100%", color: "#8c8c8c" }}
+                variant="filled"
+              />
+            </Paper>
+
+            <Paper
+              sx={{
+                backgroundColor: "rgb(51 51 51)",
+                height: "fit-content",
+                marginTop: "15px",
+                width: "100%",
+              }}
+            >
+            <TextField
+             
+              error={errorLastName}
+              id="2"
+              label="Last Name"
+              onChange={(event) => handleChangeInput(event, "lastName")}
+              value={input.lastName}
+              sx={{ width: "100%", color: "#8c8c8c" }}
+              variant="filled"
+            />
+            </Paper>
+
+            <Paper
+              sx={{
+                backgroundColor: "rgb(51 51 51)",
+                height: "fit-content",
+                marginTop: "15px",
+                width: "100%",
+              }}
+            >
+            <TextField
+              
+              error={errorEmail}
+              id="3"
+              label="Email address"
+              onChange={(event) => handleChangeInput(event, "email")}
+              value={input.email}
+              sx={{ width: "100%", color: "#8c8c8c" }}
+              variant="filled"
+            />
+            </Paper>
+            <Paper
+              sx={{
+                backgroundColor: "rgb(51 51 51)",
+                height: "fit-content",
+                marginTop: "15px",
+                width: "100%",
+              }}
+            >
+            <TextField
+              
+              error={errorPassword}
+              id="4"
+              label="Password"
+              type="password"
+              onChange={(event) => handleChangeInput(event, "password")}
+              value={input.password}
+              sx={{ width: "100%", color: "#8c8c8c" }}
+              variant="filled"
+            />
+            </Paper>
+
+            <Paper
+              sx={{
+                backgroundColor: "rgb(51 51 51)",
+                height: "fit-content",
+                marginTop: "15px",
+                width: "100%",
+              }}
+            >
+            <TextField
+              
+              error={errorConfirmPassword}
+              id="5"
+              label="Confirm password"
+              type="password"
+              onChange={(event) => handleChangeInput(event, "confirmPassword")}
+              value={input.confirmPassword}
+              sx={{ width: "100%", color: "#8c8c8c" }}
+              variant="filled"
+            />
+            </Paper>
+
+            <Button
+             variant="contained"
+             sx={{
+               marginTop: "25px",
+               background: "red",
+               color:"white",
+               padding: "10px 90px",
+               textTransform: "none",
+               marginBottom: "25px",
+             }}
+              onClick={handleSignUp}
+            >
+              Sign up
+            </Button>
+
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                marginTop: "25px",
+              }}
+            >
+              <Typography color="#b3b3b3">Already a user?</Typography>
+              <Button
+                variant="text"
+                disableFocusRipple
+                disableElevation
+                disableRipple
+                sx={{
+                  "&.MuiButtonBase-root:hover": {
+                    bgcolor: "transparent",
+                  },
+                }}
+                onClick={() => navigate("/login")}
+              >
+                <Typography sx={{ textTransform: "none", color: "#fff" }}>
+                  Sign in now.
+                </Typography>
+              </Button>
+            </Box>
+          </Box>
+        </Card>
+      </Container>
+    </Paper>
   );
 };
 
