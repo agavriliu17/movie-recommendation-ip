@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
-import Container from '@mui/material/Container';
-import Box from "@mui/material/Box";
-import TextField from '@mui/material/TextField';
 import { useNavigate } from "react-router-dom";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
+import Card from "@mui/material/Card";
+import netflixBackground from "../../resources/images/netflix2.jpg";
 
 const ResetPassword = () => {
   const [input, setInput] = useState({ password: "", confirmPassword: "" });
@@ -63,61 +66,139 @@ const ResetPassword = () => {
   }
   
   return (
-    <Container maxWidth="sm">
-      <Box
-        sx={{
+    <Paper
+      sx={{
+        width: "100vw",
         height: "100vh",
+        backgroundImage: `url(${netflixBackground})`,
+        // backgroundImage:
+        //   "url(https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png)",
+        backgroundSize: "cover",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "column",
-         }}
-      >
-  <div className="ResetPassword">
-    <h1>Reset Password</h1>
-    
-    <div>
-      <form onSubmit={handleSubmit}> 
-        <div class="form-group">
+      }}
+    >
+    <Container maxWidth="sm">
+        <Card
+          sx={{
+            height: "fit-content",
+            padding: "20px",
+            backgroundColor: "rgba(0,0,0,0.75)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              width: "80%",
+            }}
+          >
+            <Typography
+              color="#fff"
+              mb="25px"
+              variant="h4"
+              fontFamily="sans-serif"
+            >
+              Reset Password
+            </Typography>
+            <Paper sx={{ backgroundColor: "rgb(51 51 51)", width: "100%" }}>
           <TextField
-            sx={{ marginTop: "10px" }}
+            sx={{
+              width: "100%",
+              color: "rgb(140 140 140)",
+            }}
             label="Password"
             type="password"
             error={errorPassword}
             id="password"
-            placeholder="Enter password" 
             onChange={(ev) => handleChange(ev, "password")}
             value={input.password}
-          />
-          <div className="text-danger">{errorPassword}</div>
-        </div>
+            variant="filled"
 
-        <div class="form-group">
+          />
+        </Paper>
+        <Paper
+              sx={{
+                backgroundColor: "rgb(51 51 51)",
+                height: "fit-content",
+                marginTop: "15px",
+                width: "100%",
+              }}
+            >
           <TextField
-            sx={{ marginTop: "10px" }}
+            
+            id="confirm_password"
             label="Confirm Password"
             error={errorConfirmPassword}
-            id="confirm_password"
-            placeholder="Enter confirm password" 
-            name="confirm_password" 
             type="password"
+            sx={{
+              width: "100%",
+              color: "rgb(140 140 140)",
+            }}
             onChange={(ev) => handleChange(ev, "confirmPassword")}
             value={input.confirmPassword}
+            variant="filled"
+
           />
-          <div className="text-danger">{errorConfirmPassword}</div>
-        </div>
+        </Paper>
    
-        <Button
-          variant="contained"
-          sx={{ marginTop: "10px" }}
-          onClick={handleSubmit}>Submit</Button>
-      </form>
-    </div>
-  </div>
-  <hr />
-  <div className="auth-option text-center pt-2"><Link className="text-link" to="/login" >Back to Login</Link></div>
+        
+          <Button
+              variant="contained"
+              sx={{
+                marginTop: "25px",
+                width: "40%",
+                textTransform: "none",
+                marginBottom: "25px",
+              }}
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
+            <Box
+              
+              sx={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+              </Box>
+              <Button
+                variant="text"
+                disableFocusRipple
+                disableElevation
+                disableRipple
+                sx={{
+                  "&.MuiButtonBase-root:hover": {
+                    bgcolor: "transparent",
+                  },
+                }}
+                onClick={() => navigate("/login")}
+              >
+                <Typography sx={{ textTransform: "none", color: "#fff" }}>
+                  Back to login
+                </Typography>
+              </Button>
+            </Box>
   </Box>
+  </Card>
   </Container>
+  </Paper>
   );
         
 };
