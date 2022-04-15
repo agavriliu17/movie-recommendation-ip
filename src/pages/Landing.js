@@ -9,9 +9,8 @@ const Landing = () => {
   <>
     <Start />
     <Info />
-    <Mail />
-    <Questions />
-  </>);
+  </>
+  );
 }
 
 export default Landing;
