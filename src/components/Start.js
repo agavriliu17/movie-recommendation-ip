@@ -12,6 +12,14 @@ export const COLORS = {
   secondary: "#F9F871", // yellow
 };
 
+const scrollToBottom = () => {
+  window.scrollTo({
+    top: document.documentElement.scrollHeight,
+    behavior: 'smooth',
+  });
+};
+
+
 const Start = () => {
   return (
     <Paper
@@ -147,6 +155,7 @@ const Start = () => {
             sx={{
               color: COLORS.secondary,
             }}
+            onClick={scrollToBottom}
           />
         </Box>
       </Box>
