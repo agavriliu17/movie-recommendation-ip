@@ -1,17 +1,24 @@
 import React from "react";
-import Container from '@mui/material/Container';
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import TextField from '@mui/material/TextField';
-import { useState } from 'react';
+import TextField from "@mui/material/TextField";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
 import netflixBackground from "../../resources/images/netflix2.jpg";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import Fade from "@mui/material/Fade";
 
 const Register = () => {
-  const [input, setInput] = useState({ firstName: "", lastName: "", email: "", password: "", confirmPassword: "" });
+  const [input, setInput] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [errorFirstName, setErrorFirstName] = useState(false);
   const [errorLastName, setErrorLastName] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
@@ -32,37 +39,41 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleSignUp = () => {
-
     if (input.firstName === "") {
       setErrorFirstName(true);
+    } else {
+      setErrorFirstName(false);
     }
-    else { setErrorFirstName(false); }
 
     if (input.lastName === "") {
       setErrorLastName(true);
+    } else {
+      setErrorLastName(false);
     }
-    else { setErrorLastName(false); }
 
     if (input.email !== "test.mail@mail.com") {
       setErrorEmail(true);
-      alert('Invalid email address');
+    } else {
+      setErrorEmail(false);
     }
-    else { setErrorEmail(false); }
 
     if (input.password === "") {
       setErrorPassword(true);
+    } else {
+      setErrorPassword(false);
     }
-    else { setErrorPassword(false); }
 
     if (input.confirmPassword === "") {
       setErrorConfirmPassword(true);
+    } else {
+      setErrorConfirmPassword(false);
     }
-    else { setErrorConfirmPassword(false); }
 
     if (checkPasswords(input) === true) {
       setErrorConfirmPassword(false);
+    } else {
+      setErrorConfirmPassword(true);
     }
-    else { setErrorConfirmPassword(true); }
   };
 
   return (
@@ -79,172 +90,199 @@ const Register = () => {
       }}
     >
       <Container maxWidth="sm">
-        <Card
-          sx={{
-            height: "fit-content",
-            padding: "20px",
-            backgroundColor: "rgba(0,0,0,0.75)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Box
+        <Fade in timeout={750}>
+          <Card
             sx={{
+              height: "fit-content",
+              padding: "20px",
+              backgroundColor: "rgba(0,0,0,0.75)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              flexDirection: "column",
-              width: "60%",
             }}
           >
-            <Typography
-              color="#fff"
-              mb="25px"
-              variant="h4"
-              fontFamily="sans-serif"
-              sx={{
-                display: "flex",
-                flexDirection: "left",
-              }}
-            >
-              Sign up
-            </Typography>
-
-            <Paper sx={{ backgroundColor: "rgb(51 51 51)", width: "100%" }}>
-              <TextField
-                error={errorFirstName}
-                id="1"
-                label="First Name"
-                onChange={(event) => handleChangeInput(event, "firstName")}
-                value={input.firstName}
-                sx={{ width: "100%", color: "#8c8c8c" }}
-                variant="filled"
-              />
-            </Paper>
-
-            <Paper
-              sx={{
-                backgroundColor: "rgb(51 51 51)",
-                height: "fit-content",
-                marginTop: "15px",
-                width: "100%",
-              }}
-            >
-            <TextField
-              error={errorLastName}
-              id="2"
-              label="Last Name"
-              onChange={(event) => handleChangeInput(event, "lastName")}
-              value={input.lastName}
-              sx={{ width: "100%", color: "#8c8c8c" }}
-              variant="filled"
-            />
-            </Paper>
-
-            <Paper
-              sx={{
-                backgroundColor: "rgb(51 51 51)",
-                height: "fit-content",
-                marginTop: "15px",
-                width: "100%",
-              }}
-            >
-            <TextField
-              error={errorEmail}
-              id="3"
-              label="Email address"
-              onChange={(event) => handleChangeInput(event, "email")}
-              value={input.email}
-              sx={{ width: "100%", color: "#8c8c8c" }}
-              variant="filled"
-            />
-            </Paper>
-
-            <Paper
-              sx={{
-                backgroundColor: "rgb(51 51 51)",
-                height: "fit-content",
-                marginTop: "15px",
-                width: "100%",
-              }}
-            >
-            <TextField
-              error={errorPassword}
-              id="4"
-              label="Password"
-              type="password"
-              onChange={(event) => handleChangeInput(event, "password")}
-              value={input.password}
-              sx={{ width: "100%", color: "#8c8c8c" }}
-              variant="filled"
-            />
-            </Paper>
-
-            <Paper
-              sx={{
-                backgroundColor: "rgb(51 51 51)",
-                height: "fit-content",
-                marginTop: "15px",
-                width: "100%",
-              }}
-            >
-            <TextField
-              error={errorConfirmPassword}
-              id="5"
-              label="Confirm password"
-              type="password"
-              onChange={(event) => handleChangeInput(event, "confirmPassword")}
-              value={input.confirmPassword}
-              sx={{ width: "100%", color: "#8c8c8c" }}
-              variant="filled"
-            />
-            </Paper>
-
-            <Button
-             variant="contained"
-             sx={{
-               marginTop: "25px",
-               background: "red",
-               color:"white",
-               padding: "10px 90px",
-               textTransform: "none",
-               marginBottom: "25px",
-             }}
-              onClick={handleSignUp}
-            >
-              Sign up
-            </Button>
-
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "row",
                 alignItems: "center",
-                marginTop: "25px",
+                justifyContent: "center",
+                flexDirection: "column",
+                width: "60%",
               }}
             >
-              <Typography color="#b3b3b3">Already a user?</Typography>
-              <Button
-                variant="text"
-                disableFocusRipple
-                disableElevation
-                disableRipple
+              <Typography
+                color="#fff"
+                mb="25px"
+                variant="h4"
+                fontFamily="sans-serif"
                 sx={{
-                  "&.MuiButtonBase-root:hover": {
-                    bgcolor: "transparent",
-                  },
+                  display: "flex",
+                  flexDirection: "left",
                 }}
-                onClick={() => navigate("/login")}
               >
-                <Typography sx={{ textTransform: "none", color: "#fff" }}>
-                  Sign in now.
-                </Typography>
+                Sign up
+              </Typography>
+
+              <Paper sx={{ backgroundColor: "rgb(51 51 51)", width: "100%" }}>
+                <TextField
+                  error={errorFirstName}
+                  id="1"
+                  label="First Name"
+                  onChange={(event) => handleChangeInput(event, "firstName")}
+                  value={input.firstName}
+                  sx={{ width: "100%", color: "#8c8c8c" }}
+                  variant="filled"
+                  InputLabelProps={{
+                    sx: {
+                      color: "#8c8c8c",
+                    },
+                  }}
+                />
+              </Paper>
+
+              <Paper
+                sx={{
+                  backgroundColor: "rgb(51 51 51)",
+                  height: "fit-content",
+                  marginTop: "15px",
+                  width: "100%",
+                }}
+              >
+                <TextField
+                  error={errorLastName}
+                  id="2"
+                  label="Last Name"
+                  onChange={(event) => handleChangeInput(event, "lastName")}
+                  value={input.lastName}
+                  sx={{ width: "100%", color: "#8c8c8c" }}
+                  variant="filled"
+                  InputLabelProps={{
+                    sx: {
+                      color: "#8c8c8c",
+                    },
+                  }}
+                />
+              </Paper>
+
+              <Paper
+                sx={{
+                  backgroundColor: "rgb(51 51 51)",
+                  height: "fit-content",
+                  marginTop: "15px",
+                  width: "100%",
+                }}
+              >
+                <TextField
+                  error={errorEmail}
+                  id="3"
+                  label="Email address"
+                  onChange={(event) => handleChangeInput(event, "email")}
+                  value={input.email}
+                  sx={{ width: "100%", color: "#8c8c8c" }}
+                  variant="filled"
+                  InputLabelProps={{
+                    sx: {
+                      color: "#8c8c8c",
+                    },
+                  }}
+                />
+              </Paper>
+
+              <Paper
+                sx={{
+                  backgroundColor: "rgb(51 51 51)",
+                  height: "fit-content",
+                  marginTop: "15px",
+                  width: "100%",
+                }}
+              >
+                <TextField
+                  error={errorPassword}
+                  id="4"
+                  label="Password"
+                  type="password"
+                  onChange={(event) => handleChangeInput(event, "password")}
+                  value={input.password}
+                  sx={{ width: "100%", color: "#8c8c8c" }}
+                  variant="filled"
+                  InputLabelProps={{
+                    sx: {
+                      color: "#8c8c8c",
+                    },
+                  }}
+                />
+              </Paper>
+
+              <Paper
+                sx={{
+                  backgroundColor: "rgb(51 51 51)",
+                  height: "fit-content",
+                  marginTop: "15px",
+                  width: "100%",
+                }}
+              >
+                <TextField
+                  error={errorConfirmPassword}
+                  id="5"
+                  label="Confirm password"
+                  type="password"
+                  onChange={(event) =>
+                    handleChangeInput(event, "confirmPassword")
+                  }
+                  value={input.confirmPassword}
+                  sx={{ width: "100%", color: "#8c8c8c" }}
+                  variant="filled"
+                  InputLabelProps={{
+                    sx: {
+                      color: "#8c8c8c",
+                    },
+                  }}
+                />
+              </Paper>
+
+              <Button
+                variant="contained"
+                sx={{
+                  marginTop: "25px",
+                  color: "white",
+                  padding: "10px 90px",
+                  textTransform: "none",
+                  marginBottom: "25px",
+                }}
+                onClick={handleSignUp}
+              >
+                Sign up
               </Button>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginTop: "25px",
+                }}
+              >
+                <Typography color="#b3b3b3">Already a user?</Typography>
+                <Button
+                  variant="text"
+                  disableFocusRipple
+                  disableElevation
+                  disableRipple
+                  sx={{
+                    "&.MuiButtonBase-root:hover": {
+                      bgcolor: "transparent",
+                    },
+                  }}
+                  onClick={() => navigate("/login")}
+                >
+                  <Typography sx={{ textTransform: "none", color: "#fff" }}>
+                    Sign in now.
+                  </Typography>
+                </Button>
+              </Box>
             </Box>
-            
-          </Box>
-        </Card>
+          </Card>
+        </Fade>
       </Container>
     </Paper>
   );
