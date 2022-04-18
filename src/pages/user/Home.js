@@ -13,7 +13,33 @@ const Home = () => {
         display: "flex",
       }}
     >
-      Home
+       <div>
+    <Nav />
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+    <h1>TEST</h1>
+
+    {/*Banner*/}
+    {/*Sections*/}
+
+  </div>
     </Paper>
   );
 };
