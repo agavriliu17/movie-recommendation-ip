@@ -1,4 +1,5 @@
 import React from "react";
+import Nav from "./Nav";
 
 import Paper from "@mui/material/Paper";
 
