@@ -1,7 +1,10 @@
 import React from "react";
 import Nav from "./../../components/Nav";
 import Banner from "../../components/Banner";
-import List from "../HomePage/List";
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
+import Typography from "@mui/material/Typography";
+
 import Paper from "@mui/material/Paper";
 
 const Home = () => {
@@ -17,14 +20,67 @@ const Home = () => {
       }}
     >
       <Nav />
-      <Banner/>
-      <List title="Continue Watching"/>
-      <List title="For You"/>
-      <List title="Popular"/>
-      <List title="Action"/>
-      <List title="Drama"/>
-      
-      {/*Sections*/}
+      <Banner />
+
+      <Typography ml="20px" fontSize="25px" mt={5}>
+        Continue watching
+      </Typography>
+      <Box sx={{ display: "flex", flexDirection: "row", padding: "10px" }}>
+        {[...Array(21)].map((el, ind) => (
+          <Box sx={{ marginLeft: "10px", marginRight: "10px" }} key={ind}>
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Skeleton width={210} height={40} />
+          </Box>
+        ))}
+      </Box>
+
+      <Typography ml="20px" fontSize="25px" mt={5}>
+        For you
+      </Typography>
+      <Box sx={{ display: "flex", flexDirection: "row", padding: "10px" }}>
+        {[...Array(21)].map((el, ind) => (
+          <Box sx={{ marginLeft: "10px", marginRight: "10px" }} key={ind}>
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Skeleton width={210} height={40} />
+          </Box>
+        ))}
+      </Box>
+
+      <Typography ml="20px" fontSize="25px" mt={5}>
+        Just Added
+      </Typography>
+      <Box sx={{ display: "flex", flexDirection: "row", padding: "10px" }}>
+        {[...Array(21)].map((el, ind) => (
+          <Box sx={{ marginLeft: "10px", marginRight: "10px" }} key={ind}>
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Skeleton width={210} height={40} />
+          </Box>
+        ))}
+      </Box>
+
+      <Typography ml="20px" fontSize="25px" mt={5}>
+        Popular
+      </Typography>
+      <Box sx={{ display: "flex", flexDirection: "row", padding: "10px" }}>
+        {[...Array(21)].map((el, ind) => (
+          <Box sx={{ marginLeft: "10px", marginRight: "10px" }} key={ind}>
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Skeleton width={210} height={40} />
+          </Box>
+        ))}
+      </Box>
+
+      <Typography ml="20px" fontSize="25px" mt={5}>
+        Action
+      </Typography>
+      <Box sx={{ display: "flex", flexDirection: "row", padding: "10px" }}>
+        {[...Array(21)].map((el, ind) => (
+          <Box sx={{ marginLeft: "10px", marginRight: "10px" }} key={ind}>
+            <Skeleton variant="rectangular" width={210} height={118} />
+            <Skeleton width={210} height={40} />
+          </Box>
+        ))}
+      </Box>
     </Paper>
   );
 };

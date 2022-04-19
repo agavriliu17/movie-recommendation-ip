@@ -3,6 +3,7 @@ import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
 
 const columns = [
   {
@@ -35,54 +36,39 @@ const columns = [
   },
 ];
 
-const rows = [
-  {
-    id: "1",
-    movieTitle: "The Adam Project",
-    director: "Shawn Levy",
-    views: "1200",
-    genre: ["Comedy", "Adventure"],
-  },
-  {
-    id: "2",
-    movieTitle: "CURS>R",
-    director: "Toby Meakins",
-    views: "5402",
-    genre: ["Horror", "Mystery"],
-  },
-  {
-    id: "3",
-    movieTitle: "Metal Lords",
-    director: "Kim Farrant",
-    views: "7802",
-    genre: ["Drama", "Music"],
-  },
-  {
-    id: "4",
-    movieTitle: "Against the Ice",
-    director: "Peter Flinth",
-    views: "5436",
-    genre: ["Adventure", "Historical"],
-  },
-  {
-    id: "5",
-    movieTitle: "Deep Water",
-    director: "Adrian Lyne",
-    views: "1567",
-    genre: ["Drama", "Thriller", "Mystery"],
-  },
-];
-
 const MoviesTable = () => {
+  const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    (async function () {
+      try {
+        const movieData = await axios
+          .get("http://localhost:3000/rows")
+          .then((res) => res.data);
+
+        const timedData = await new Promise((resolve) => {
+          setTimeout(() => resolve(movieData), 3000);
+        });
+
+        setData(timedData);
+        setLoading(false);
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, []);
+
   return (
     <Box sx={{ width: "100%" }}>
       <Typography fontSize="20px" mb={1}>
         Top 5 movies
       </Typography>
       <DataGrid
-        rows={rows}
+        rows={data}
         columns={columns}
         checkboxSelection
+        loading={loading}
         disableSelectionOnClick
         autoHeight
         hideFooter

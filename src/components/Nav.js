@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
+import { useNavigate } from "react-router-dom";
+
 import { grey } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
 
@@ -16,7 +18,7 @@ const useStyles = makeStyles({
     width: "100%",
     height: "30px",
     zIndex: "1",
-    trasitionTimingFunction: "ease-in",
+    transitionTimingFunction: "ease-in",
     transition: "all 0.5s",
   },
   navBlack: {
@@ -32,7 +34,7 @@ const useStyles = makeStyles({
     top: "2px",
     left: "0",
     width: "80px",
-    objectfit: "contain",
+    objectFit: "contain",
     paddingLeft: "20px",
     cursor: "pointer",
   },
@@ -56,7 +58,6 @@ const useStyles = makeStyles({
     fontWeight: "100",
     margin: "2px 10px",
     textTransform: "capitalize",
-    fontFamily: "-apple-system",
     "&:hover": {
       background: "none",
       cursor: "pointer",
@@ -75,6 +76,8 @@ const useStyles = makeStyles({
 
 const Nav = () => {
   const [show, handleShow] = useState(false);
+  const navigate = useNavigate();
+
   const transitionNavBar = () => {
     if (window.scrollY > 100) {
       handleShow(true);
@@ -106,7 +109,12 @@ const Nav = () => {
             >
               Home
             </Button>
-            <Button className={classes.button}>Series</Button>
+            <Button
+              className={classes.button}
+              onClick={() => navigate("/series")}
+            >
+              Series
+            </Button>
             <Button className={classes.button}>Films</Button>
             <Button className={classes.button}>Latest</Button>
             <Button className={classes.button}>My List</Button>
