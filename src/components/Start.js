@@ -1,11 +1,12 @@
 import React from "react";
-import { colors, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 
 import bg1 from "../pictures/bg1.jpg";
 import logo from "../pictures/logo.png";
+import "../css/Start.css";
 
 export const COLORS = {
   primary: "#482884", // purple
@@ -15,10 +16,9 @@ export const COLORS = {
 const scrollToBottom = () => {
   window.scrollTo({
     top: document.documentElement.scrollHeight,
-    behavior: 'smooth',
+    behavior: "smooth",
   });
 };
-
 
 const Start = () => {
   return (
@@ -31,17 +31,16 @@ const Start = () => {
         borderRadius: "0",
       }}
     >
-      <Typography
+      <Box
+        className="title"
         sx={{
           position: "absolute",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
           zIndex: "1",
           left: "15%",
           top: "2vh",
-          fontFamily: "Trispace",
-          color: COLORS.secondary,
-          opacitiy: "1",
-          fontWeight: "normal",
-          fontSize: "28px",
         }}
       >
         <Typography
@@ -49,21 +48,28 @@ const Start = () => {
           sx={{
             fontFamily: "Trispace",
             color: COLORS.secondary,
-            opacitiy: "1",
             fontWeight: "bolder",
-            fontSize: "40px",
+            fontSize: "calc(1rem + 2vw)",
           }}
         >
-          <img src={logo} width="40px" alt="Logo" />
+          <img src={logo} width="30px" alt="Logo" />
           Movie&nbsp;
         </Typography>
-        Streaming Website
-      </Typography>
-
+        <Typography
+          sx={{
+            fontFamily: "Trispace",
+            color: COLORS.secondary,
+            fontWeight: "normal",
+            fontSize: "calc(0.2rem + 2vw)",
+          }}
+        >
+          Streaming Website
+        </Typography>
+      </Box>
       <Box
+        className="mainBox"
         sx={{
           top: "0",
-          maxWidth: "30%",
           height: "100vh",
           backgroundColor: "#48288450",
           marginLeft: "auto",
@@ -75,11 +81,12 @@ const Start = () => {
         }}
       >
         <Typography
+          className="moto"
           sx={{
             fontFamily: "Trispace",
             color: COLORS.secondary,
             fontWeight: "normal",
-            fontSize: "20px",
+            fontSize: "calc(0.1rem + 2vw)",
             margin: "40px",
           }}
         >
@@ -112,7 +119,7 @@ const Start = () => {
               borderColor: COLORS.secondary,
               fontFamily: "Trispace",
               fontWeight: "bold",
-              fontSize: "12px",
+              fontSize: "calc(0.1rem + 1vw)",
               "&:hover": {
                 backgroundColor: COLORS.secondary,
                 color: COLORS.primary,
@@ -130,7 +137,7 @@ const Start = () => {
               borderColor: COLORS.secondary,
               fontFamily: "Trispace",
               fontWeight: "bold",
-              fontSize: "12px",
+              fontSize: "calc(0.1rem + 1vw)",
               "&:hover": {
                 backgroundColor: COLORS.primary,
                 color: COLORS.secondary,
@@ -142,14 +149,14 @@ const Start = () => {
           </Button>
         </Box>
         <Box
-          sx=
-          {{
+          sx={{
             height: "200px",
             display: "flex",
             flexDirection: "row",
             alignItems: "flex-end",
             justifyContent: "center",
-          }}>
+          }}
+        >
           <KeyboardArrowDownSharpIcon
             fontSize="large"
             sx={{

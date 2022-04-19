@@ -1,8 +1,8 @@
 import React from "react";
-import Container from '@mui/material/Container';
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import TextField from '@mui/material/TextField';
-import { useState } from 'react';
+import TextField from "@mui/material/TextField";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
@@ -11,8 +11,19 @@ import logo from "../../pictures/logo.png";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 
+export const COLORS = {
+  primary: "#482884", // purple
+  secondary: "#F9F871", // yellow
+};
+
 const Register = () => {
-  const [input, setInput] = useState({ firstName: "", lastName: "", email: "", password: "", confirmPassword: "" });
+  const [input, setInput] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [errorFirstName, setErrorFirstName] = useState(false);
   const [errorLastName, setErrorLastName] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
@@ -33,37 +44,42 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleSignUp = () => {
-
     if (input.firstName === "") {
       setErrorFirstName(true);
+    } else {
+      setErrorFirstName(false);
     }
-    else { setErrorFirstName(false); }
 
     if (input.lastName === "") {
       setErrorLastName(true);
+    } else {
+      setErrorLastName(false);
     }
-    else { setErrorLastName(false); }
 
     if (input.email !== "test.mail@mail.com") {
       setErrorEmail(true);
-      alert('Invalid email address');
+      alert("Invalid email address");
+    } else {
+      setErrorEmail(false);
     }
-    else { setErrorEmail(false); }
 
     if (input.password === "") {
       setErrorPassword(true);
+    } else {
+      setErrorPassword(false);
     }
-    else { setErrorPassword(false); }
 
     if (input.confirmPassword === "") {
       setErrorConfirmPassword(true);
+    } else {
+      setErrorConfirmPassword(false);
     }
-    else { setErrorConfirmPassword(false); }
 
     if (checkPasswords(input) === true) {
       setErrorConfirmPassword(false);
+    } else {
+      setErrorConfirmPassword(true);
     }
-    else { setErrorConfirmPassword(true); }
   };
 
   return (
@@ -74,48 +90,43 @@ const Register = () => {
         backgroundImage: `url(${background})`,
         backgroundSize: "cover",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-around",
         flexDirection: "column",
+        alignItems: "flex-start",
+        borderRadius: 0,
       }}
     >
-      <Box  sx={{ 
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        ml: "4%",
-        mb: "2%",
-        maxHeight: "60px"
-      }}
+      <Box
+        className="title"
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          marginLeft: "15%",
+        }}
       >
-        <img src={logo} alt="Logo" />
-
         <Typography
-          color="#F9F871"
-          fontFamily="trispace"
+          display="inline"
           sx={{
-            fontWeight: 1000,
-            fontSize: "calc(0.7rem + 2vw)",
-            display: "flex",
-            flexDirection: "left",
+            fontFamily: "Trispace",
+            color: "#F9F871",
+            fontWeight: "bolder",
+            fontSize: "calc(1rem + 2vw)",
           }}
-          >
-            Movie 
+        >
+          <img src={logo} width="30px" alt="Logo" />
+          Movie&nbsp;
         </Typography>
-
         <Typography
-          color="#F9F871"
-          ml= "1.7%"
-          fontFamily="trispace"
           sx={{
-            fontWeight: 800,
-            fontSize: "calc(0.5rem + 2vw)",
-            display: "flex",
-            flexDirection: "left",
+            fontFamily: "Trispace",
+            color: "#F9F871",
+            fontWeight: "normal",
+            fontSize: "calc(0.2rem + 2vw)",
           }}
-          >
-            Streaming Website
+        >
+          Streaming Website
         </Typography>
-
       </Box>
 
       <Container maxWidth="sm">
@@ -123,7 +134,7 @@ const Register = () => {
           sx={{
             height: "fit-content",
             padding: "20px",
-            backgroundColor: "rgba(72,40,132,0.20)",
+            backgroundColor: "rgba(72,40,132,0.25)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -150,7 +161,7 @@ const Register = () => {
             >
               Sign Up
             </Typography>
-          
+
             <Paper sx={{ backgroundColor: "#F9F871", width: "130%" }}>
               <TextField
                 error={errorFirstName}
@@ -158,7 +169,17 @@ const Register = () => {
                 label="First Name"
                 onChange={(event) => handleChangeInput(event, "firstName")}
                 value={input.firstName}
-                sx={{ width: "100%", color: "#8c8c8c" }}
+                sx={{ 
+                  width: "100%", 
+                  color: "#8c8c8c", 
+                  input: { color: COLORS.primary },
+                  "& label": {
+                    color: COLORS.primary,
+                    "&.Mui-focused": {
+                      color: COLORS.primary,
+                    }
+                  }
+                }}
                 variant="filled"
               />
             </Paper>
@@ -171,15 +192,25 @@ const Register = () => {
                 width: "130%",
               }}
             >
-            <TextField
-              error={errorLastName}
-              id="2"
-              label="Last Name"
-              onChange={(event) => handleChangeInput(event, "lastName")}
-              value={input.lastName}
-              sx={{ width: "100%", color: "#8c8c8c" }}
-              variant="filled"
-            />
+              <TextField
+                error={errorLastName}
+                id="2"
+                label="Last Name"
+                onChange={(event) => handleChangeInput(event, "lastName")}
+                value={input.lastName}
+                sx={{ 
+                  width: "100%", 
+                  color: "#8c8c8c", 
+                  input: { color: COLORS.primary },
+                  "& label": {
+                    color: COLORS.primary,
+                    "&.Mui-focused": {
+                      color: COLORS.primary,
+                    }
+                  }
+                }}
+                variant="filled"
+              />
             </Paper>
 
             <Paper
@@ -190,15 +221,25 @@ const Register = () => {
                 width: "130%",
               }}
             >
-            <TextField
-              error={errorEmail}
-              id="3"
-              label="Email address"
-              onChange={(event) => handleChangeInput(event, "email")}
-              value={input.email}
-              sx={{ width: "100%", color: "#8c8c8c" }}
-              variant="filled"
-            />
+              <TextField
+                error={errorEmail}
+                id="3"
+                label="Email address"
+                onChange={(event) => handleChangeInput(event, "email")}
+                value={input.email}
+                sx={{ 
+                  width: "100%", 
+                  color: "#8c8c8c", 
+                  input: { color: COLORS.primary },
+                  "& label": {
+                    color: COLORS.primary,
+                    "&.Mui-focused": {
+                      color: COLORS.primary,
+                    }
+                  }
+                }}
+                variant="filled"
+              />
             </Paper>
 
             <Paper
@@ -209,16 +250,26 @@ const Register = () => {
                 width: "130%",
               }}
             >
-            <TextField
-              error={errorPassword}
-              id="4"
-              label="Password"
-              type="password"
-              onChange={(event) => handleChangeInput(event, "password")}
-              value={input.password}
-              sx={{ width: "100%", color: "#8c8c8c" }}
-              variant="filled"
-            />
+              <TextField
+                error={errorPassword}
+                id="4"
+                label="Password"
+                type="password"
+                onChange={(event) => handleChangeInput(event, "password")}
+                value={input.password}
+                sx={{ 
+                  width: "100%", 
+                  color: "#8c8c8c", 
+                  input: { color: COLORS.primary },
+                  "& label": {
+                    color: COLORS.primary,
+                    "&.Mui-focused": {
+                      color: COLORS.primary,
+                    }
+                  }
+                }}
+                variant="filled"
+              />
             </Paper>
 
             <Paper
@@ -229,33 +280,50 @@ const Register = () => {
                 width: "130%",
               }}
             >
-            <TextField
-              error={errorConfirmPassword}
-              id="5"
-              label="Confirm password"
-              type="password"
-              onChange={(event) => handleChangeInput(event, "confirmPassword")}
-              value={input.confirmPassword}
-              sx={{ width: "100%", color: "#8c8c8c" }}
-              variant="filled"
-            />
+              <TextField
+                error={errorConfirmPassword}
+                id="5"
+                label="Confirm password"
+                type="password"
+                onChange={(event) =>
+                  handleChangeInput(event, "confirmPassword")
+                }
+                value={input.confirmPassword}
+                sx={{ 
+                  width: "100%", 
+                  color: "#8c8c8c", 
+                  input: { color: COLORS.primary },
+                  "& label": {
+                    color: COLORS.primary,
+                    "&.Mui-focused": {
+                      color: COLORS.primary,
+                    }
+                  }
+                }}
+                variant="filled"
+              />
             </Paper>
 
             <Button
-             variant="contained"
-             sx={{
-               marginTop: "25px",
-               background: "#F9F871",
-               color:"#482884",
-               padding: "5px 25px",
-               textTransform: "none",
-               marginBottom: "25px",
-             }}
+              variant="outlined"
+              sx={{
+                backgroundColor: COLORS.secondary,
+                color: COLORS.primary,
+                borderColor: COLORS.secondary,
+                fontFamily: "Trispace",
+                fontWeight: "bold",
+                fontSize: "calc(0.3rem + 1vw)",
+                marginTop: "20px",
+                "&:hover": {
+                  backgroundColor: COLORS.primary,
+                  color: COLORS.secondary,
+                  borderColor: COLORS.secondary,
+                },
+              }}
               onClick={handleSignUp}
             >
-              Sign up
+              Sign Up
             </Button>
-
             <Box
               sx={{
                 display: "flex",
@@ -264,7 +332,12 @@ const Register = () => {
                 marginTop: "30px",
               }}
             >
-              <Typography color="#F9F871" sx={{ fontSize: "calc(0.6rem + 0.8vw)" }}>Already a user?</Typography>
+              <Typography
+                color="#F9F871"
+                sx={{ fontSize: "calc(0.6rem + 0.8vw)" }}
+              >
+                Already an user?
+              </Typography>
               <Button
                 variant="text"
                 disableFocusRipple
@@ -277,12 +350,17 @@ const Register = () => {
                 }}
                 onClick={() => navigate("/login")}
               >
-                <Typography sx={{ textTransform: "none", color: "#ad8ce6", fontSize: "calc(0.6rem + 0.8vw)"}}>
-                  Sign in now.
+                <Typography
+                  sx={{
+                    textTransform: "none",
+                    color: "#ad8ce6",
+                    fontSize: "calc(0.6rem + 0.8vw)",
+                  }}
+                >
+                  Log in now.
                 </Typography>
               </Button>
             </Box>
-            
           </Box>
         </Card>
       </Container>

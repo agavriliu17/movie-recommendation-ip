@@ -8,7 +8,7 @@ const Landing = () => {
   return (
   <>
     <Start />
-    <Info />
+    <Mail />
   </>
   );
 }

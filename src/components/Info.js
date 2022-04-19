@@ -9,16 +9,8 @@ import logo from "../pictures/logo.png";
 
 const Info = () => {
   return (
-    <Paper
-      sx={{
-        width: "100%",
-        height: "100vh",
-        backgroundImage: `url(${bg2})`,
-        backgroundSize: "cover",
-        borderRadius: "0",
-      }}>
-
-    </Paper>
+  <>
+  </>
   );
 };
 
