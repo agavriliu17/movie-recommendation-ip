@@ -1,7 +1,8 @@
 import React from "react";
 
-import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 const columns = [
   {
@@ -75,6 +76,9 @@ const rows = [
 const MoviesTable = () => {
   return (
     <Box sx={{ width: "100%" }}>
+      <Typography fontSize="20px" mb={1}>
+        Top 5 movies
+      </Typography>
       <DataGrid
         rows={rows}
         columns={columns}

@@ -1,5 +1,6 @@
 import React from "react";
 import Nav from "./../../components/Nav";
+import Banner from "../../components/Banner";
 
 import Paper from "@mui/material/Paper";
 
@@ -12,35 +13,32 @@ const Home = () => {
         borderRadius: "0px",
         overflowX: "hidden",
         display: "flex",
+        flexDirection: "column",
       }}
     >
-       <div>
-    <Nav />
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-
-    {/*Banner*/}
-    {/*Sections*/}
-
-  </div>
+      <Nav />
+      <Banner />
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      <h1>TEST</h1>
+      {/*Sections*/}
     </Paper>
   );
 };

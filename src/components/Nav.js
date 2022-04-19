@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import classNames from "classnames";
 import Button from "@mui/material/Button";
+import classNames from "classnames";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
@@ -18,30 +18,30 @@ const useStyles = makeStyles({
     zIndex: "1",
     trasitionTimingFunction: "ease-in",
     transition: "all 0.5s",
-},
-navBlack: {
-  backgroundColor: "#111",
-},
-navContents: {
-  display: "flex",
-  justifyContent: "space-between",
-  position: "fixed",
-},
-navLogo: {
-  position: "fixed",
-  top: "2px",
-  left: "0",
-  width: "80px",
-  objectfit: "contain",
-  paddingLeft: "20px",
-  cursor: "pointer",
-},
-navAvatar: {
-  position: "fixed",
-  right: "20px",
-  width: "30px",
-  cursor: "pointer",
-},
+  },
+  navBlack: {
+    backgroundColor: "#111",
+  },
+  navContents: {
+    display: "flex",
+    justifyContent: "space-between",
+    position: "fixed",
+  },
+  navLogo: {
+    position: "fixed",
+    top: "2px",
+    left: "0",
+    width: "80px",
+    objectfit: "contain",
+    paddingLeft: "20px",
+    cursor: "pointer",
+  },
+  navAvatar: {
+    position: "fixed",
+    right: "20px",
+    width: "30px",
+    cursor: "pointer",
+  },
   buttonGroup: {
     position: "fixed",
     paddingLeft: "130px",
@@ -57,21 +57,20 @@ navAvatar: {
     margin: "2px 10px",
     textTransform: "capitalize",
     fontFamily: "-apple-system",
-    '&:hover': {
-      background: 'none',
-      cursor: 'pointer',
-      color: '#cfcfcf',
+    "&:hover": {
+      background: "none",
+      cursor: "pointer",
+      color: "#cfcfcf",
     },
   },
   buttonActive: {
     fontWeight: "550",
-    
   },
   buttonIcon: {
     position: "fixed",
     right: "55px",
     top: "5px",
-},
+  },
 });
 
 const Nav = () => {
@@ -102,7 +101,11 @@ const Nav = () => {
 
         <Box>
           <Box className={classes.buttonGroup}>
-            <Button className={classNames(classes.button, classes.buttonActive)}>Home</Button>
+            <Button
+              className={classNames(classes.button, classes.buttonActive)}
+            >
+              Home
+            </Button>
             <Button className={classes.button}>Series</Button>
             <Button className={classes.button}>Films</Button>
             <Button className={classes.button}>Latest</Button>
