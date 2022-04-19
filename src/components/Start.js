@@ -15,7 +15,7 @@ export const COLORS = {
 
 const scrollToBottom = () => {
   window.scrollTo({
-    top: document.documentElement.scrollHeight,
+    top: document.documentElement.scrollHeight/3,
     behavior: "smooth",
   });
 };
