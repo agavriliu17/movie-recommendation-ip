@@ -114,7 +114,6 @@ const Register = () => {
             fontSize: "calc(1rem + 2vw)",
           }}
         >
-          <img src={logo} width="30px" alt="Logo" />
           Movie&nbsp;
         </Typography>
         <Typography
