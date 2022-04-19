@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Trispace:wght@300&display=swap');
+.overlay {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+  }
+  .popup {
+    margin: 70px auto;
+    padding: 0;
+    background: #10091D;
+    border-radius: 5px;
+    width: 75%;
+    height: 70rem;
+    position: relative;
+    transition: all 5s ease-in-out;
+  }
+
+  .popup h1 {
+    color: #F9F871;
+    font-family: 'Trispace', sans-serif;
+    font-weight: bolder;
+    padding-left: 1rem;
+  }
+
+  .popup h2 {
+    margin-top: 0;
+    color:#F9F871;
+    font-family: 'Trispace', sans-serif;
+    text-align: center;
+  }
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #F9F871;
+    font-family: 'Trispace', sans-serif;
+  }
+  .popup .close:hover {
+    cursor: pointer;
+    color: #000;
+  }
+  .popup .content {
+    background-color: #10091D;
+  }
+
+  @media screen and (max-width: 700px) {
+    .popup {
+      width: 70%;
+    }
+  }
+  
+  .popup .imgDiv {
+    background-image: url("../pictures/movie.png");
+    height: 30rem;
+  
+  }
+
+  .popup .content .imgDiv .secondInfo{
+    display: inline-block;
+   color: red;
+  }
+
+  button{
+    color: #482884;
+    background-color: #F9F871;
+    font-weight: bold;
+    border: none;
+    border-radius: 2px;
+    margin-right: 1rem;
+    font-size: 36px;
+    padding: 10px;
+
+  }
+
+  .text{
+color: #F9F871;
+font-family: 'Trispace', sans-serif;
+padding-right: 1rem;
+font-size: 36px;
+padding-top:10px;
+  }
+
+  .textWithRectangle{
+    color: #F9F871;
+    display: inline-block;
+    align-self: center;
+    background-color: rgba(249, 248, 113, 0.1);
+    padding: 10px 30px;
+    font-family: 'Trispace', sans-serif;
+    font-size: 24px;
+    
+  }
+
+  .position{
+    display: flex;
+    padding-top: 20rem;
+    flex-direction: row;
+    
+  }
+
+  .row{
+    display: flex;
+    padding-top: 1rem;
+    padding-left: 2rem;
+
+  }
+
+  .textAdded{
+    color: #F9F871;
+    display: inline-block;
+    background-color: rgba(249, 248, 113, 0.1);
+    padding: 10px 19px;
+    padding-top: 15px;
+     font-family: 'Trispace', sans-serif;
+    margin-left: 2rem;
+    font-size: 24px;
+  }
+
+  hr{
+    width:75%;
+    height: 2px;
+    text-align:center;
+    /* margin-left:0; */
+    margin-bottom: 2rem;
+    color:#004C2E;
+    background-color:#004C2E;
+    border: none;
+    
+  }
+
+  .popup h3{
+    color: #F9F871;
+    font-family: 'Trispace', sans-serif;
+    text-align: center;
+    padding-bottom: 1rem;
+  }
+
+  .popup .imgTUP {
+    background-image: url("../pictures/tup.png");
+   background-repeat: no-repeat;
+  }
+
+  .images{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10rem ;
+  
+  }

@@ -1,7 +1,10 @@
 import React from "react";
+import CustomPopup from "../components/CustomPopUp";
 
 const Home = () => {
-  return <>Homeeee</>;
+  return <>
+  <CustomPopup />
+  </>;
 };
 
 export default Home;
