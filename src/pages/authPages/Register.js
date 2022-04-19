@@ -342,7 +342,7 @@ const Register = () => {
             >
               <Typography
                 color="#F9F871"
-                sx={{ fontSize: "calc(0.6rem + 0.8vw)" }}
+                sx={{ fontSize: "calc(0.3rem + 0.5vw)", fontFamily: "Trispace" }}
               >
                 Already an user?
               </Typography>
@@ -362,7 +362,8 @@ const Register = () => {
                   sx={{
                     textTransform: "none",
                     color: "#ad8ce6",
-                    fontSize: "calc(0.6rem + 0.8vw)",
+                    fontSize: "calc(0.4rem + 0.5vw)",
+                    fontFamily: "Trispace"
                   }}
                 >
                   Log in now.
