@@ -87,7 +87,6 @@ const Login = () => {
             fontSize: "calc(1rem + 2vw)",
           }}
         >
-          <img src={logo} width="30px" alt="Logo" />
           Movie&nbsp;
         </Typography>
         <Typography
@@ -127,7 +126,7 @@ const Login = () => {
                 variant="h4"
                 fontFamily="Trispace"
               >
-                Sign in
+                Log in
               </Typography>
               <Paper
                 sx={{
