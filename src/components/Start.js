@@ -52,7 +52,10 @@ const Start = () => {
             fontSize: "calc(1rem + 2vw)",
           }}
         >
-          <img src={logo} width="30px" alt="Logo" />
+          {/* <img src={logo} alt="Logo" 
+          sx={{
+            width: "10px",
+            }}/> */}
           Movie&nbsp;
         </Typography>
         <Typography
