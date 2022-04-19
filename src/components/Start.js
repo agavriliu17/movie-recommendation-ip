@@ -1,86 +1,172 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
-import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
-import { Stack } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import { Button } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
+
+import bg1 from "../pictures/bg1.jpg";
+import logo from "../pictures/logo.png";
+import "../css/Start.css";
+
+export const COLORS = {
+  primary: "#482884", // purple
+  secondary: "#F9F871", // yellow
+};
+
+const scrollToBottom = () => {
+  window.scrollTo({
+    top: document.documentElement.scrollHeight,
+    behavior: "smooth",
+  });
+};
 
 const Start = () => {
   return (
-    <Box
+    <Paper
       sx={{
         width: "100%",
-        minHeight: "100vh",
-        backgroundRepeat: "no-repeat",
+        height: "100vh",
+        backgroundImage: `url(${bg1})`,
         backgroundSize: "cover",
-        backgroundImage: `url(${"https://cdn.wallpapersafari.com/95/98/3vRqDI.jpg"})`,
+        borderRadius: "0",
       }}
     >
-      <Typography sx={{ fontSize: "30px", color: "white", padding: "30px" }}>
-        <LocalMoviesIcon />
-        Movie Streaming App
-      </Typography>
-
-      <Typography
+      <Box
+        className="title"
         sx={{
-          fontSize: "30px",
-          color: "white",
-          padding: "30px",
-          textAlign: "center",
-          marginTop: "10%",
-          textDecorationLine: "overline",
-          "&:hover": {
-            textDecorationLine: "overline",
-          },
-        }}
-      >
-        The Place where you can see movies
-      </Typography>
-
-      <Stack
-        direction="row"
-        spacing={10}
-        sx={{
+          position: "absolute",
           display: "flex",
-          justifyContent: "center",
-          marginTop: "10%",
+          flexDirection: "row",
+          alignItems: "center",
+          zIndex: "1",
+          left: "15%",
+          top: "2vh",
         }}
       >
-        <Button
-          variant="contained"
+        <Typography
+          display="inline"
           sx={{
-            height: "40px",
-            color: grey[100],
-            border: "1px solid white",
-            background: "black",
-            "&:hover": {
-              color: "black",
-              borderColor: "black",
-              background: "white",
-            },
+            fontFamily: "Trispace",
+            color: COLORS.secondary,
+            fontWeight: "bolder",
+            fontSize: "calc(1rem + 2vw)",
           }}
         >
-          Log in
-        </Button>
-        <Button
-          variant="contained"
+          <img src={logo} width="30px" alt="Logo" />
+          Movie&nbsp;
+        </Typography>
+        <Typography
           sx={{
-            color: "black",
-            borderColor: "black",
-            background: "white",
-            "&:hover": {
-              height: "40px",
-              color: grey[100],
-              border: "1px solid white",
-              background: "black",
-            },
+            fontFamily: "Trispace",
+            color: COLORS.secondary,
+            fontWeight: "normal",
+            fontSize: "calc(0.2rem + 2vw)",
           }}
         >
-          Sign In
-        </Button>
-      </Stack>
-    </Box>
+          Streaming Website
+        </Typography>
+      </Box>
+      <Box
+        className="mainBox"
+        sx={{
+          top: "0",
+          height: "100vh",
+          backgroundColor: "#48288450",
+          marginLeft: "auto",
+          marginRight: "auto",
+          display: "flex",
+          justifyContent: "flex-end",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          className="moto"
+          sx={{
+            fontFamily: "Trispace",
+            color: COLORS.secondary,
+            fontWeight: "normal",
+            fontSize: "calc(0.1rem + 2vw)",
+            margin: "40px",
+          }}
+        >
+          Get ready for a good time! Watch a wide variety of movies we prepared
+          only for you!
+        </Typography>
+        <Box
+          sx={{
+            backgroundColor: "#004C2E",
+            height: "2px",
+            width: "70%",
+            marginTop: "-25px",
+          }}
+        ></Box>
+        <Box
+          sx={{
+            width: "70%",
+            marginTop: "50px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Button
+            variant="outlined"
+            sx={{
+              backgroundColor: COLORS.primary,
+              color: COLORS.secondary,
+              borderColor: COLORS.secondary,
+              fontFamily: "Trispace",
+              fontWeight: "bold",
+              fontSize: "calc(0.1rem + 1vw)",
+              "&:hover": {
+                backgroundColor: COLORS.secondary,
+                color: COLORS.primary,
+                borderColor: COLORS.secondary,
+              },
+            }}
+          >
+            Log In
+          </Button>
+          <Button
+            variant="outlined"
+            sx={{
+              backgroundColor: COLORS.secondary,
+              color: COLORS.primary,
+              borderColor: COLORS.secondary,
+              fontFamily: "Trispace",
+              fontWeight: "bold",
+              fontSize: "calc(0.1rem + 1vw)",
+              "&:hover": {
+                backgroundColor: COLORS.primary,
+                color: COLORS.secondary,
+                borderColor: COLORS.secondary,
+              },
+            }}
+          >
+            Sign Up
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            height: "200px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "flex-end",
+            justifyContent: "center",
+          }}
+        >
+          <KeyboardArrowDownSharpIcon
+            fontSize="large"
+            sx={{
+              color: COLORS.secondary,
+            }}
+            onClick={scrollToBottom}
+          />
+        </Box>
+      </Box>
+    </Paper>
   );
 };
 

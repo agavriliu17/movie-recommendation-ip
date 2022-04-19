@@ -8,10 +8,9 @@ const Landing = () => {
   return (
   <>
     <Start />
-    <Info />
     <Mail />
-    <Questions />
-  </>);
+  </>
+  );
 }
 
 export default Landing;

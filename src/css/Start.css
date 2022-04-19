@@ -1,0 +1,12 @@
+.mainBox
+{
+    width: 30%;
+}
+
+@media only screen and (max-width: 1000px) 
+{
+    .mainBox
+    {
+        width: 70%;
+    }    
+}
