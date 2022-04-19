@@ -12,10 +12,17 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+<<<<<<< HEAD
+    "react-player": "^2.10.0",
+=======
     "react-multi-carousel": "^2.8.0",
+>>>>>>> 1046de7f817597ea7db5393af8669bfd20487ffb
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "react-scroll": "^1.8.7",
+    "react-video-looper": "^1.0.16",
+    "redux": "^4.2.0",
+    "video-react": "^0.15.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
