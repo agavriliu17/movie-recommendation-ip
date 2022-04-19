@@ -86,7 +86,7 @@ const Start = () => {
             fontFamily: "Trispace",
             color: COLORS.secondary,
             fontWeight: "normal",
-            fontSize: "calc(0.1rem + 2vw)",
+            fontSize: "calc(0.4rem + 1vw)",
             margin: "40px",
           }}
         >
@@ -119,11 +119,11 @@ const Start = () => {
               borderColor: COLORS.secondary,
               fontFamily: "Trispace",
               fontWeight: "bold",
-              fontSize: "calc(0.1rem + 1vw)",
+              fontSize: "calc(0.01rem + 1vw)",
               "&:hover": {
                 backgroundColor: COLORS.secondary,
                 color: COLORS.primary,
-                borderColor: COLORS.secondary,
+                borderColor: COLORS.primary,
               },
             }}
           >
@@ -134,10 +134,10 @@ const Start = () => {
             sx={{
               backgroundColor: COLORS.secondary,
               color: COLORS.primary,
-              borderColor: COLORS.secondary,
+              borderColor: COLORS.primary,
               fontFamily: "Trispace",
               fontWeight: "bold",
-              fontSize: "calc(0.1rem + 1vw)",
+              fontSize: "calc(0.01rem + 1vw)",
               "&:hover": {
                 backgroundColor: COLORS.primary,
                 color: COLORS.secondary,

@@ -16,15 +16,6 @@
     box-shadow: 10px 10px 20px;
 }
 
-.email
-{
-    background-color: #F9F871;
-    border-color: #F9F871;
-    color: #F9F871;
-    width: 70%;
-    margin-top: 40px;
-}
-
 @media only screen and (max-width: 900px) 
 {
     .movieList img
