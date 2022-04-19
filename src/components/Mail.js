@@ -11,6 +11,11 @@ import r2 from "../pictures/recom2.jpg";
 import r3 from "../pictures/recom3.jpg";
 import "../css/Mail.css";
 
+export const COLORS = {
+  primary: "#482884", // purple
+  secondary: "#F9F871", // yellow
+};
+
 const Mail = () => {
   return (
     <Paper
@@ -44,13 +49,49 @@ const Mail = () => {
         <img src={r3} alt="recom3" />
       </Box>
 
-      <Box className="email">
+      <Paper
+        sx={{
+          backgroundColor: "#F9F871",
+          height: "fit-content",
+          marginTop: "20px",
+          width: "70%",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "flex-start"
+        }}
+      >
         <TextField
-          id="email"
-          variant="outlined"
-          label="Email"
-        ></TextField>
-      </Box>
+          label="Email address"
+          sx={{
+            width: "75%",
+            color: "#8c8c8c",
+            input: { color: COLORS.primary },
+            "& label": {
+              color: COLORS.primary,
+              "&.Mui-focused": {
+                color: COLORS.primary,
+              },
+            },
+          }}
+          variant="filled"
+        />
+        <Button variant="outlined"
+          sx={{
+            height: "calc(1.2rem + 1vw)",
+            color: COLORS.secondary,
+            backgroundColor: COLORS.primary,
+            fontSize: "calc(0.1rem + 1vw)",
+            "&:hover": {
+              backgroundColor: COLORS.secondary,
+              color: COLORS.primary,
+              borderWidth: "2px",
+              borderColor: COLORS.primary,
+            },
+          }}>
+          Get Started
+        </Button>
+      </Paper>
     </Paper>
   );
 };

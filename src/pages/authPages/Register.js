@@ -132,7 +132,7 @@ const Register = () => {
       <Container maxWidth="sm">
         <Card
           sx={{
-            height: "fit-content",
+            height: "90%",
             padding: "20px",
             backgroundColor: "rgba(72,40,132,0.25)",
             display: "flex",
