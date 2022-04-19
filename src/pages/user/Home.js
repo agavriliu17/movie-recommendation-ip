@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "./../../components/Nav";
 import Banner from "../../components/Banner";
-
+import List from "../HomePage/List";
 import Paper from "@mui/material/Paper";
 
 const Home = () => {
@@ -17,27 +17,13 @@ const Home = () => {
       }}
     >
       <Nav />
-      <Banner />
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
-      <h1>TEST</h1>
+      <Banner/>
+      <List title="Continue Watching"/>
+      <List title="For You"/>
+      <List title="Popular"/>
+      <List title="Action"/>
+      <List title="Drama"/>
+      
       {/*Sections*/}
     </Paper>
   );
