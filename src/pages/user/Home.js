@@ -1,6 +1,7 @@
 import React from "react";
 
 import Paper from "@mui/material/Paper";
+import Nav from "./Nav";
 
 const Home = () => {
   return (
@@ -13,33 +14,32 @@ const Home = () => {
         display: "flex",
       }}
     >
-       <div>
-    <Nav />
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
-    <h1>TEST</h1>
+      <div>
+        <Nav />
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
+        <h1>TEST</h1>
 
-    {/*Banner*/}
-    {/*Sections*/}
-
-  </div>
+        {/*Banner*/}
+        {/*Sections*/}
+      </div>
     </Paper>
   );
 };
