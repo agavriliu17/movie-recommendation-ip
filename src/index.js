@@ -14,7 +14,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route index element={<Login />} />
+        <Route index element={<Landing />} />
         <Route path="home" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
