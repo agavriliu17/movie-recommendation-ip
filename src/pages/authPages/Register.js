@@ -132,7 +132,7 @@ const Register = () => {
       <Container maxWidth="sm">
         <Card
           sx={{
-            height: "fit-content",
+            height: "90%",
             padding: "20px",
             backgroundColor: "rgba(72,40,132,0.25)",
             display: "flex",
@@ -169,16 +169,16 @@ const Register = () => {
                 label="First Name"
                 onChange={(event) => handleChangeInput(event, "firstName")}
                 value={input.firstName}
-                sx={{ 
-                  width: "100%", 
-                  color: "#8c8c8c", 
+                sx={{
+                  width: "100%",
+                  color: "#8c8c8c",
                   input: { color: COLORS.primary },
                   "& label": {
                     color: COLORS.primary,
                     "&.Mui-focused": {
                       color: COLORS.primary,
-                    }
-                  }
+                    },
+                  },
                 }}
                 variant="filled"
               />
@@ -198,16 +198,16 @@ const Register = () => {
                 label="Last Name"
                 onChange={(event) => handleChangeInput(event, "lastName")}
                 value={input.lastName}
-                sx={{ 
-                  width: "100%", 
-                  color: "#8c8c8c", 
+                sx={{
+                  width: "100%",
+                  color: "#8c8c8c",
                   input: { color: COLORS.primary },
                   "& label": {
                     color: COLORS.primary,
                     "&.Mui-focused": {
                       color: COLORS.primary,
-                    }
-                  }
+                    },
+                  },
                 }}
                 variant="filled"
               />
@@ -227,16 +227,16 @@ const Register = () => {
                 label="Email address"
                 onChange={(event) => handleChangeInput(event, "email")}
                 value={input.email}
-                sx={{ 
-                  width: "100%", 
-                  color: "#8c8c8c", 
+                sx={{
+                  width: "100%",
+                  color: "#8c8c8c",
                   input: { color: COLORS.primary },
                   "& label": {
                     color: COLORS.primary,
                     "&.Mui-focused": {
                       color: COLORS.primary,
-                    }
-                  }
+                    },
+                  },
                 }}
                 variant="filled"
               />
@@ -257,16 +257,16 @@ const Register = () => {
                 type="password"
                 onChange={(event) => handleChangeInput(event, "password")}
                 value={input.password}
-                sx={{ 
-                  width: "100%", 
-                  color: "#8c8c8c", 
+                sx={{
+                  width: "100%",
+                  color: "#8c8c8c",
                   input: { color: COLORS.primary },
                   "& label": {
                     color: COLORS.primary,
                     "&.Mui-focused": {
                       color: COLORS.primary,
-                    }
-                  }
+                    },
+                  },
                 }}
                 variant="filled"
               />
@@ -289,20 +289,29 @@ const Register = () => {
                   handleChangeInput(event, "confirmPassword")
                 }
                 value={input.confirmPassword}
-                sx={{ 
-                  width: "100%", 
-                  color: "#8c8c8c", 
+                sx={{
+                  width: "100%",
+                  color: "#8c8c8c",
                   input: { color: COLORS.primary },
                   "& label": {
                     color: COLORS.primary,
                     "&.Mui-focused": {
                       color: COLORS.primary,
-                    }
-                  }
+                    },
+                  },
                 }}
                 variant="filled"
               />
             </Paper>
+
+            <Box
+              sx={{
+                backgroundColor: "#004C2E",
+                height: "2px",
+                width: "100%",
+                marginTop: "25px",
+              }}
+            ></Box>
 
             <Button
               variant="outlined"

@@ -11,34 +11,8 @@
 
 .movieList img
 {
-    width: 20%;
-    height: 100%;
+    width: calc(1rem + 10vw + 15vh);
+    height: calc(1rem + 15vw + 15vh);
     box-shadow: 10px 10px 20px;
 }
 
-.email
-{
-    background-color: #F9F871;
-    border-color: #F9F871;
-    color: #F9F871;
-    width: 70%;
-    margin-top: 40px;
-}
-
-@media only screen and (max-width: 900px) 
-{
-    .movieList img
-    {
-        width: 20%;
-        height: 50%;
-    } 
-}
-
-@media only screen and (max-width: 500px) 
-{
-    .movieList img
-    {
-        width: 20%;
-        height: 40%;
-    } 
-}
