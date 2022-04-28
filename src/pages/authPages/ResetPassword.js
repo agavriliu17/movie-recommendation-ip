@@ -1,20 +1,50 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
+import React from "react";
+
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
-import Card from "@mui/material/Card";
-import netflixBackground from "../../resources/images/netflix2.jpg";
-import Fade from "@mui/material/Fade";
+import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/styles";
+
+import AuthLayout from "./AuthLayout";
+import { useNavigate } from "react-router-dom";
+
+const useStyles = makeStyles({
+  inputContainer: {
+    backgroundColor: "rgb(51 51 51)",
+    width: "100%",
+    height: "55px",
+    marginBottom: "30px",
+  },
+  inputField: { width: "100%", height: "55px" },
+  submitButton: {
+    margin: "15px 0px !important",
+    textTransform: "none !important",
+    width: "40%",
+  },
+  signInContainer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  linkButton: {
+    "&.MuiButtonBase-root:hover": {
+      bgcolor: "transparent",
+    },
+  },
+});
 
 const ResetPassword = () => {
-  const [input, setInput] = useState({ password: "", confirmPassword: "" });
-  const [errorPassword, setErrorPassword] = useState(false);
-  const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
-
+  const [input, setInput] = React.useState({
+    password: "",
+    confirmPassword: "",
+  });
+  const [error, setError] = React.useState({
+    password: "",
+    confirmPassword: "",
+  });
   const navigate = useNavigate();
 
   const handleChange = (event, key) => {
@@ -22,171 +52,94 @@ const ResetPassword = () => {
   };
 
   const handleSubmit = () => {
-    if (validate()) {
-      alert("Password reseted");
+    const passwordError =
+      input.password.length < 8
+        ? "Your password must be at at least 8 characters long "
+        : "";
+
+    const confirmPasswordError =
+      input.confirmPassword !== input.password
+        ? "The password provided does not match"
+        : "";
+
+    if (passwordError === "" && confirmPasswordError === "") {
+      alert("Password has been successfully reset");
       navigate("/login");
+    } else {
+      setError({
+        password: passwordError,
+        confirmPassword: confirmPasswordError,
+      });
     }
   };
 
-  const validate = () => {
-    let isValid = true;
-    if (!input.password) {
-      isValid = false;
-      setErrorPassword(true);
-    } else {
-      setErrorPassword(false);
-    }
-    if (!input.confirmPassword) {
-      isValid = false;
-      setErrorConfirmPassword(true);
-    } else if (input.password !== input.confirmPassword) {
-      isValid = false;
-      setErrorConfirmPassword(true);
-    } else {
-      setErrorConfirmPassword(false);
-    }
-
-    return isValid;
-  };
-
+  //TODO: We should also have an input for the email of the account
+  // send an email and then show the reset password inputs
+  const classes = useStyles();
   return (
-    <Paper
-      sx={{
-        width: "100vw",
-        height: "100vh",
-        backgroundImage: `url(${netflixBackground})`,
-        backgroundSize: "cover",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-      }}
-    >
-      <Container maxWidth="sm">
-        <Fade in timeout={750}>
-          <Card
-            sx={{
-              height: "fit-content",
-              padding: "20px",
-              backgroundColor: "rgba(0,0,0,0.75)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                width: "80%",
-              }}
-            >
-              <Typography
-                color="#fff"
-                mb="25px"
-                variant="h4"
-                fontFamily="sans-serif"
-              >
-                Reset Password
-              </Typography>
-              <Paper sx={{ backgroundColor: "rgb(51 51 51)", width: "100%" }}>
-                <TextField
-                  sx={{
-                    width: "100%",
-                    color: "rgb(140 140 140)",
-                  }}
-                  label="Password"
-                  type="password"
-                  error={errorPassword}
-                  id="password"
-                  onChange={(ev) => handleChange(ev, "password")}
-                  value={input.password}
-                  variant="filled"
-                  InputLabelProps={{
-                    sx: {
-                      color: "#8c8c8c",
-                    },
-                  }}
-                />
-              </Paper>
-              <Paper
-                sx={{
-                  backgroundColor: "rgb(51 51 51)",
-                  height: "fit-content",
-                  marginTop: "15px",
-                  width: "100%",
-                }}
-              >
-                <TextField
-                  id="confirm_password"
-                  label="Confirm Password"
-                  error={errorConfirmPassword}
-                  type="password"
-                  sx={{
-                    width: "100%",
-                    color: "rgb(140 140 140)",
-                  }}
-                  onChange={(ev) => handleChange(ev, "confirmPassword")}
-                  value={input.confirmPassword}
-                  variant="filled"
-                  InputLabelProps={{
-                    sx: {
-                      color: "#8c8c8c",
-                    },
-                  }}
-                />
-              </Paper>
+    <AuthLayout>
+      <Typography color="#fff" mb="25px" variant="h4" fontFamily="sans-serif">
+        Reset Password
+      </Typography>
+      <Paper className={classes.inputContainer}>
+        <TextField
+          className={classes.inputField}
+          label="Password"
+          type="password"
+          error={error.password === "" ? false : true}
+          helperText={error.password}
+          id="password"
+          onChange={(ev) => handleChange(ev, "password")}
+          value={input.password}
+          variant="filled"
+          InputLabelProps={{
+            sx: {
+              color: "#8c8c8c",
+            },
+          }}
+        />
+      </Paper>
 
-              <Button
-                variant="contained"
-                sx={{
-                  marginTop: "25px",
-                  width: "40%",
-                  textTransform: "none",
-                  marginBottom: "25px",
-                }}
-                onClick={handleSubmit}
-              >
-                Submit
-              </Button>
-              <Box
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                ></Box>
-                <Button
-                  variant="text"
-                  disableFocusRipple
-                  disableElevation
-                  disableRipple
-                  sx={{
-                    "&.MuiButtonBase-root:hover": {
-                      bgcolor: "transparent",
-                    },
-                  }}
-                  onClick={() => navigate("/login")}
-                >
-                  <Typography sx={{ textTransform: "none", color: "#fff" }}>
-                    Back to login
-                  </Typography>
-                </Button>
-              </Box>
-            </Box>
-          </Card>
-        </Fade>
-      </Container>
-    </Paper>
+      <Paper className={classes.inputContainer}>
+        <TextField
+          className={classes.inputField}
+          label="Confirm Password"
+          error={error.confirmPassword === "" ? false : true}
+          type="password"
+          helperText={error.confirmPassword}
+          onChange={(ev) => handleChange(ev, "confirmPassword")}
+          value={input.confirmPassword}
+          variant="filled"
+          InputLabelProps={{
+            sx: {
+              color: "#8c8c8c",
+            },
+          }}
+        />
+      </Paper>
+
+      <Button
+        variant="contained"
+        className={classes.submitButton}
+        onClick={handleSubmit}
+      >
+        Submit
+      </Button>
+      <Box className={classes.signInContainer}>
+        <Button
+          variant="text"
+          disableFocusRipple
+          disableElevation
+          disableRipple
+          className={classes.linkButton}
+          onClick={() => navigate("/login")}
+        >
+          <Typography sx={{ textTransform: "none", color: "#fff" }}>
+            Back to login
+          </Typography>
+        </Button>
+      </Box>
+    </AuthLayout>
   );
 };
 export default ResetPassword;

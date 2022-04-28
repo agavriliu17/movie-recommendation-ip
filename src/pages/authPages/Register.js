@@ -1,290 +1,221 @@
 import React from "react";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
+
+import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
-import Card from "@mui/material/Card";
-import netflixBackground from "../../resources/images/netflix2.jpg";
-import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/styles";
+
+import AuthLayout from "./AuthLayout";
 import { useNavigate } from "react-router-dom";
-import Fade from "@mui/material/Fade";
+import { validateEmail } from "../../resources/helpers/authHelper";
+
+const useStyles = makeStyles({
+  inputContainer: {
+    backgroundColor: "rgb(51 51 51)",
+    width: "100%",
+    height: "55px",
+    marginBottom: "30px",
+  },
+  inputField: { width: "100%", height: "55px" },
+  signUpButton: {
+    margin: "15px 0px !important",
+    textTransform: "none !important",
+    width: "40%",
+  },
+  signInContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: "25px",
+  },
+  linkButton: {
+    "&.MuiButtonBase-root:hover": {
+      bgcolor: "transparent",
+    },
+  },
+});
 
 const Register = () => {
-  const [input, setInput] = useState({
+  const [input, setInput] = React.useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
-  const [errorFirstName, setErrorFirstName] = useState(false);
-  const [errorLastName, setErrorLastName] = useState(false);
-  const [errorEmail, setErrorEmail] = useState(false);
-  const [errorPassword, setErrorPassword] = useState(false);
-  const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
+  const [error, setError] = React.useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const navigate = useNavigate();
 
   const handleChangeInput = (event, key) => {
     setInput({ ...input, [key]: event.target.value });
   };
 
-  const checkPasswords = (input) => {
-    if (input.password === input.confirmPassword) {
-      return true;
-    }
-    return false;
-  };
-
-  const navigate = useNavigate();
-
   const handleSignUp = () => {
-    if (input.firstName === "") {
-      setErrorFirstName(true);
-    } else {
-      setErrorFirstName(false);
-    }
+    const firstNameError =
+      input.firstName === "" ? "Please provide your first name" : "";
 
-    if (input.lastName === "") {
-      setErrorLastName(true);
-    } else {
-      setErrorLastName(false);
-    }
+    const lastNameError =
+      input.lastName === "" ? "Please provide your last name" : "";
 
-    if (input.email !== "test.mail@mail.com") {
-      setErrorEmail(true);
-    } else {
-      setErrorEmail(false);
-    }
+    const emailError =
+      input.email === "" || !validateEmail(input.email)
+        ? "Please provide an valid email"
+        : "";
 
-    if (input.password === "") {
-      setErrorPassword(true);
-    } else {
-      setErrorPassword(false);
-    }
+    const passwordError =
+      input.password.length < 8
+        ? "Your password must be at at least 8 characters long "
+        : "";
 
-    if (input.confirmPassword === "") {
-      setErrorConfirmPassword(true);
-    } else {
-      setErrorConfirmPassword(false);
-    }
+    const confirmPasswordError =
+      input.confirmPassword !== input.password
+        ? "The password provided does not match"
+        : "";
 
-    if (checkPasswords(input) === true) {
-      setErrorConfirmPassword(false);
-    } else {
-      setErrorConfirmPassword(true);
-    }
+    if (
+      firstNameError === "" &&
+      lastNameError === "" &&
+      emailError === "" &&
+      passwordError === "" &&
+      confirmPasswordError === ""
+    ) {
+      navigate("/login");
+    } else
+      setError({
+        firstName: firstNameError,
+        lastName: lastNameError,
+        email: emailError,
+        password: passwordError,
+        confirmPassword: confirmPasswordError,
+      });
   };
 
+  const classes = useStyles();
   return (
-    <Paper
-      sx={{
-        width: "100vw",
-        height: "100vh",
-        backgroundImage: `url(${netflixBackground})`,
-        backgroundSize: "cover",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-      }}
-    >
-      <Container maxWidth="sm">
-        <Fade in timeout={750}>
-          <Card
-            sx={{
-              height: "fit-content",
-              padding: "20px",
-              backgroundColor: "rgba(0,0,0,0.75)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "column",
-                width: "60%",
-              }}
-            >
-              <Typography
-                color="#fff"
-                mb="25px"
-                variant="h4"
-                fontFamily="sans-serif"
-                sx={{
-                  display: "flex",
-                  flexDirection: "left",
-                }}
-              >
-                Sign up
-              </Typography>
+    <AuthLayout>
+      <Typography color="#fff" variant="h4" fontFamily="sans-serif" mb="25px">
+        Sign up
+      </Typography>
 
-              <Paper sx={{ backgroundColor: "rgb(51 51 51)", width: "100%" }}>
-                <TextField
-                  error={errorFirstName}
-                  id="1"
-                  label="First Name"
-                  onChange={(event) => handleChangeInput(event, "firstName")}
-                  value={input.firstName}
-                  sx={{ width: "100%", color: "#8c8c8c" }}
-                  variant="filled"
-                  InputLabelProps={{
-                    sx: {
-                      color: "#8c8c8c",
-                    },
-                  }}
-                />
-              </Paper>
+      <Paper className={classes.inputContainer}>
+        <TextField
+          error={error.firstName === "" ? false : true}
+          label="First Name"
+          helperText={error.firstName}
+          onChange={(event) => handleChangeInput(event, "firstName")}
+          value={input.firstName}
+          className={classes.inputField}
+          variant="filled"
+          InputLabelProps={{
+            sx: {
+              color: "#8c8c8c",
+            },
+          }}
+        />
+      </Paper>
 
-              <Paper
-                sx={{
-                  backgroundColor: "rgb(51 51 51)",
-                  height: "fit-content",
-                  marginTop: "15px",
-                  width: "100%",
-                }}
-              >
-                <TextField
-                  error={errorLastName}
-                  id="2"
-                  label="Last Name"
-                  onChange={(event) => handleChangeInput(event, "lastName")}
-                  value={input.lastName}
-                  sx={{ width: "100%", color: "#8c8c8c" }}
-                  variant="filled"
-                  InputLabelProps={{
-                    sx: {
-                      color: "#8c8c8c",
-                    },
-                  }}
-                />
-              </Paper>
+      <Paper className={classes.inputContainer}>
+        <TextField
+          error={error.lastName === "" ? false : true}
+          label="Last Name"
+          onChange={(event) => handleChangeInput(event, "lastName")}
+          value={input.lastName}
+          helperText={error.lastName}
+          className={classes.inputField}
+          variant="filled"
+          InputLabelProps={{
+            sx: {
+              color: "#8c8c8c",
+            },
+          }}
+        />
+      </Paper>
 
-              <Paper
-                sx={{
-                  backgroundColor: "rgb(51 51 51)",
-                  height: "fit-content",
-                  marginTop: "15px",
-                  width: "100%",
-                }}
-              >
-                <TextField
-                  error={errorEmail}
-                  id="3"
-                  label="Email address"
-                  onChange={(event) => handleChangeInput(event, "email")}
-                  value={input.email}
-                  sx={{ width: "100%", color: "#8c8c8c" }}
-                  variant="filled"
-                  InputLabelProps={{
-                    sx: {
-                      color: "#8c8c8c",
-                    },
-                  }}
-                />
-              </Paper>
+      <Paper className={classes.inputContainer}>
+        <TextField
+          error={error.email === "" ? false : true}
+          label="Email address"
+          helperText={error.email}
+          onChange={(event) => handleChangeInput(event, "email")}
+          value={input.email}
+          className={classes.inputField}
+          variant="filled"
+          InputLabelProps={{
+            sx: {
+              color: "#8c8c8c",
+            },
+          }}
+        />
+      </Paper>
 
-              <Paper
-                sx={{
-                  backgroundColor: "rgb(51 51 51)",
-                  height: "fit-content",
-                  marginTop: "15px",
-                  width: "100%",
-                }}
-              >
-                <TextField
-                  error={errorPassword}
-                  id="4"
-                  label="Password"
-                  type="password"
-                  onChange={(event) => handleChangeInput(event, "password")}
-                  value={input.password}
-                  sx={{ width: "100%", color: "#8c8c8c" }}
-                  variant="filled"
-                  InputLabelProps={{
-                    sx: {
-                      color: "#8c8c8c",
-                    },
-                  }}
-                />
-              </Paper>
+      <Paper className={classes.inputContainer}>
+        <TextField
+          error={error.password === "" ? false : true}
+          label="Password"
+          type="password"
+          onChange={(event) => handleChangeInput(event, "password")}
+          value={input.password}
+          helperText={error.password}
+          className={classes.inputField}
+          variant="filled"
+          InputLabelProps={{
+            sx: {
+              color: "#8c8c8c",
+            },
+          }}
+        />
+      </Paper>
 
-              <Paper
-                sx={{
-                  backgroundColor: "rgb(51 51 51)",
-                  height: "fit-content",
-                  marginTop: "15px",
-                  width: "100%",
-                }}
-              >
-                <TextField
-                  error={errorConfirmPassword}
-                  id="5"
-                  label="Confirm password"
-                  type="password"
-                  onChange={(event) =>
-                    handleChangeInput(event, "confirmPassword")
-                  }
-                  value={input.confirmPassword}
-                  sx={{ width: "100%", color: "#8c8c8c" }}
-                  variant="filled"
-                  InputLabelProps={{
-                    sx: {
-                      color: "#8c8c8c",
-                    },
-                  }}
-                />
-              </Paper>
+      <Paper className={classes.inputContainer}>
+        <TextField
+          error={error.confirmPassword === "" ? false : true}
+          label="Confirm password"
+          type="password"
+          onChange={(event) => handleChangeInput(event, "confirmPassword")}
+          helperText={error.confirmPassword}
+          value={input.confirmPassword}
+          className={classes.inputField}
+          variant="filled"
+          InputLabelProps={{
+            sx: {
+              color: "#8c8c8c",
+            },
+          }}
+        />
+      </Paper>
 
-              <Button
-                variant="contained"
-                sx={{
-                  marginTop: "25px",
-                  color: "white",
-                  padding: "10px 90px",
-                  textTransform: "none",
-                  marginBottom: "25px",
-                }}
-                onClick={handleSignUp}
-              >
-                Sign up
-              </Button>
+      <Button
+        variant="contained"
+        className={classes.signUpButton}
+        onClick={handleSignUp}
+      >
+        Sign up
+      </Button>
 
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  marginTop: "25px",
-                }}
-              >
-                <Typography color="#b3b3b3">Already a user?</Typography>
-                <Button
-                  variant="text"
-                  disableFocusRipple
-                  disableElevation
-                  disableRipple
-                  sx={{
-                    "&.MuiButtonBase-root:hover": {
-                      bgcolor: "transparent",
-                    },
-                  }}
-                  onClick={() => navigate("/login")}
-                >
-                  <Typography sx={{ textTransform: "none", color: "#fff" }}>
-                    Sign in now.
-                  </Typography>
-                </Button>
-              </Box>
-            </Box>
-          </Card>
-        </Fade>
-      </Container>
-    </Paper>
+      <Box className={classes.signInContainer}>
+        <Typography color="#b3b3b3">Already a user?</Typography>
+        <Button
+          variant="text"
+          disableFocusRipple
+          disableElevation
+          disableRipple
+          className={classes.linkButton}
+          onClick={() => navigate("/login")}
+        >
+          <Typography sx={{ textTransform: "none", color: "#fff" }}>
+            Sign in now.
+          </Typography>
+        </Button>
+      </Box>
+    </AuthLayout>
   );
 };
 
