@@ -1,11 +1,12 @@
 import React from "react";
-import Nav from "./../../components/Nav";
-import Banner from "../../components/Banner";
-import Box from "@mui/material/Box";
-import Skeleton from "@mui/material/Skeleton";
-import Typography from "@mui/material/Typography";
 
+import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+
+import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
+import Banner from "../../components/Banner";
+import Nav from "./../../components/Nav";
 
 const Home = () => {
   return (
@@ -22,15 +23,13 @@ const Home = () => {
       <Nav />
       <Banner />
 
+      {/* TODO: Replace the components below with carousels */}
       <Typography ml="20px" fontSize="25px" mt={5}>
         Continue watching
       </Typography>
       <Box sx={{ display: "flex", flexDirection: "row", padding: "10px" }}>
         {[...Array(21)].map((el, ind) => (
-          <Box sx={{ marginLeft: "10px", marginRight: "10px" }} key={ind}>
-            <Skeleton variant="rectangular" width={210} height={118} />
-            <Skeleton width={210} height={40} />
-          </Box>
+          <LoadingMovieCard key={ind} />
         ))}
       </Box>
 
@@ -39,10 +38,7 @@ const Home = () => {
       </Typography>
       <Box sx={{ display: "flex", flexDirection: "row", padding: "10px" }}>
         {[...Array(21)].map((el, ind) => (
-          <Box sx={{ marginLeft: "10px", marginRight: "10px" }} key={ind}>
-            <Skeleton variant="rectangular" width={210} height={118} />
-            <Skeleton width={210} height={40} />
-          </Box>
+          <LoadingMovieCard key={ind} />
         ))}
       </Box>
 
@@ -51,10 +47,7 @@ const Home = () => {
       </Typography>
       <Box sx={{ display: "flex", flexDirection: "row", padding: "10px" }}>
         {[...Array(21)].map((el, ind) => (
-          <Box sx={{ marginLeft: "10px", marginRight: "10px" }} key={ind}>
-            <Skeleton variant="rectangular" width={210} height={118} />
-            <Skeleton width={210} height={40} />
-          </Box>
+          <LoadingMovieCard key={ind} />
         ))}
       </Box>
 
@@ -63,10 +56,7 @@ const Home = () => {
       </Typography>
       <Box sx={{ display: "flex", flexDirection: "row", padding: "10px" }}>
         {[...Array(21)].map((el, ind) => (
-          <Box sx={{ marginLeft: "10px", marginRight: "10px" }} key={ind}>
-            <Skeleton variant="rectangular" width={210} height={118} />
-            <Skeleton width={210} height={40} />
-          </Box>
+          <LoadingMovieCard key={ind} />
         ))}
       </Box>
 
@@ -75,10 +65,7 @@ const Home = () => {
       </Typography>
       <Box sx={{ display: "flex", flexDirection: "row", padding: "10px" }}>
         {[...Array(21)].map((el, ind) => (
-          <Box sx={{ marginLeft: "10px", marginRight: "10px" }} key={ind}>
-            <Skeleton variant="rectangular" width={210} height={118} />
-            <Skeleton width={210} height={40} />
-          </Box>
+          <LoadingMovieCard key={ind} />
         ))}
       </Box>
     </Paper>
