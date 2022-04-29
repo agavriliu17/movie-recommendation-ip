@@ -6,19 +6,42 @@ body
 
 img
 {
-    width:50%;
-    height: 100%;
-    
+    width:80%;
+    height: 250px;
+    transition: 500ms;
 
+}
+
+img:hover
+{
+    transform: scale(0.8);
+    transition-duration: 500ms;
 }
 
 .carusel
 {
     display: flex;
     background-color: #482884;
-    height:25%;
-    padding-left:5%;
+    height:250px;
+    padding-left:1%;
     padding-right: auto;
     padding-bottom: 20px;
+}
+
+.most
+{
+    display: flex;
+    height:25%;
+    padding-left:1%;
+    padding-right: auto;
+    padding-bottom: 20px;
+    background-color:"#10091D"
+}
+
+.mostViewed img
+{
+   padding-left: 1%;
+   padding-right:1%;
+   width: auto;
 }
 

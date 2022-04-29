@@ -96,13 +96,31 @@ const Register = () => {
         borderRadius: 0,
       }}
     >
-      <Box
+      
+      
+      <Container maxWidth="sm">
+        <Card
+          sx={{
+            height: "90%",
+            padding: "20px",
+            backgroundColor: "rgba(72,40,132,0.25)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop:"10%"
+           
+          }}
+        >
+          <Box
         className="title"
         sx={{
+          position: "absolute",
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          marginLeft: "15%",
+          zIndex: "1",
+          left: "5%",
+          top: "2vh",
         }}
       >
         <Typography
@@ -128,17 +146,6 @@ const Register = () => {
         </Typography>
       </Box>
 
-      <Container maxWidth="sm">
-        <Card
-          sx={{
-            height: "90%",
-            padding: "20px",
-            backgroundColor: "rgba(72,40,132,0.25)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
           <Box
             sx={{
               display: "flex",
@@ -146,6 +153,7 @@ const Register = () => {
               justifyContent: "center",
               flexDirection: "column",
               width: "60%",
+             
             }}
           >
             <Typography

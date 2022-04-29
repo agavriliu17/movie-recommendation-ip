@@ -7,7 +7,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
+import { useNavigate } from "react-router-dom";
 import ReactPlayer from "react-player";
 import sampleVideo from "../pictures/sampleVideo.mp4";
 
@@ -17,6 +17,7 @@ export const COLORS = {
 };
 
 const Questions = () => {
+  const navigate=useNavigate();
   return (
     <Paper
       sx={{
@@ -77,8 +78,9 @@ const Questions = () => {
                 color: COLORS.secondary,
                 borderColor: COLORS.secondary,
               },
-            }}
-          >
+            }} 
+            
+            onClick={() => navigate("/register")} > 
             Sign Up
           </Button>
         </Box>

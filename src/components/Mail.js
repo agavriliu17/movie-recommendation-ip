@@ -5,8 +5,7 @@ import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
-
-
+import { useNavigate } from "react-router-dom";
 import bg2 from "../pictures/bg2.jpg";
 import r1 from "../pictures/recom1.jpg";
 import r2 from "../pictures/recom2.jpg";
@@ -25,8 +24,40 @@ const scrollToBottom = () => {
   });
 };
 
+export const validateEmail = (email) => {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
+
 
 const Mail = () => {
+  const navigate=useNavigate();
+  const [input, setInput] = React.useState({ email: "", password: "" });
+  const [error, setError] = React.useState({ email: "", password: "" });
+
+  const handleSignIn = () => {
+    if (input.email === "" || !validateEmail(input.email)) {
+      setError({
+        email: "Please provide an valid email",
+        password: error.password,
+      });
+      // console.log(error);
+    } 
+    else
+    {
+      navigate("/register");
+
+    }
+   
+    
+  
+  };
+
+  
+  const handleChange = (event, key) => {
+    setInput({ ...input, [key]: event.target.value });
+  };
+
   return (
     <Paper
       sx={{
@@ -72,22 +103,27 @@ const Mail = () => {
         }}
       >
         <TextField
-          label="Email address"
+                  error={error.email === "" ? false : true}
+                  required
+                  id="outlined-required"
+                  label="Email"
+                  defaultValue="email@someone.com"
+                  helperText={error.email}
+                  onChange={(ev) => handleChange(ev, "email")}
+                  value={input.email}
+                  sx={{ width: "100%", color: "#F9F871", height: "55px" }}
+                  variant="filled"
+                  InputLabelProps={{
+                    sx: {
+                      fontFamily:"Trispace",
+                      color: "#482884",
+                    },
+                  }}
+                />
+      </Paper>
+      <Button variant="outlined"
           sx={{
-            width: "75%",
-            color: COLORS.secondary,
-            input: { color: COLORS.primary },
-            "& label": {
-              color: COLORS.primary,
-              "&.Mui-focused": {
-                color: COLORS.primary,
-              },
-            },
-          }}
-          variant="filled"
-        />
-        <Button variant="outlined"
-          sx={{
+            marginTop: "5px",
             height: "60%",
             color: COLORS.secondary,
             backgroundColor: COLORS.primary,
@@ -98,10 +134,12 @@ const Mail = () => {
               borderWidth: "2px",
               borderColor: COLORS.primary,
             },
-          }}>
+          }}
+          onClick={handleSignIn}
+          
+          >
           Get Started
         </Button>
-      </Paper>
       <Box
           sx={{
             height: "200px",

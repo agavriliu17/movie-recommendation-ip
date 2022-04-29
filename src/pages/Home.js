@@ -7,8 +7,17 @@ import r1 from "../pictures/recom1.jpg";
 import r2 from "../pictures/recom2.jpg";
 import r3 from "../pictures/recom3.jpg";
 import r4 from "../pictures/movie.png";
+import r5 from "../pictures/movie.png";
+import r6 from "../pictures/play.png";
 import { Box } from "@mui/system";
+import Paper from "@mui/material/Paper"
 import CustomPopup from "../components/CustomPopUp";
+import Avatar from '@mui/material/Avatar';
+import Image from "../components/Carousel";
+import ReactPlayer from "react-player";
+import sampleVideo from "../pictures/sampleVideo.mp4";
+import Nav from "../components/Navbar";
+import { useState } from "react";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -17,11 +26,11 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 4
+    items: 5
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2
+    items: 3
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -29,12 +38,48 @@ const responsive = {
   }
 };
 
+
+
 const Home = () => {
+  const [visibility, setVisibility] = useState(false);
+
+  const popupCloseHandler = () => {
+    setVisibility(false);
+  };
+
+
   return <>
- 
-  <Box sx={{width:"100%", backgroundImage:"../pictures/movie.png"}}>
+  
+  <Nav></Nav>
+  <button onClick={() => setVisibility(true)}>open</button>
+      <CustomPopup
+        onClose={popupCloseHandler}
+        show={visibility}
+      >
+      </CustomPopup>
+  <Paper sx={{
+    display:"flex",
+    alignItems: "center",
+    justifyContent:"center",
+    width:"100%",
+    height:"500px",
+     backgroundImage:`url(${r5})`}}>
+    <Avatar
+   
+    alt="play" src={r6}> </Avatar>
+  </Paper>
     
-  </Box>
+  <Carousel  className="most" 
+       
+        
+       responsive={responsive}>
+          <img src={r1}></img>
+          <img src={r2}></img>
+          <img src={r3}></img>
+          <img src={r1}></img>
+          <img src={r3}></img>
+         
+       </Carousel>  
 
  <Typography
         sx={{
@@ -62,7 +107,8 @@ const Home = () => {
            <img src={r2}></img>
            <img src={r3}></img>
            <img src={r1}></img>
-           <img src={r2}></img> 
+           <img src={r2}></img>
+          
         </Carousel>  
 
 
@@ -81,19 +127,21 @@ const Home = () => {
       >
         Not for the faint hearth
       </Typography>
-        <Carousel className="carusel"
+      <Carousel className="carusel"
        
         
-        responsive={responsive}>
-           <img src={r1}></img>
-           <img src={r2}></img>
-           <img src={r3}></img>
-           <img src={r1}></img>
-           <img src={r2}></img>
-           <img src={r3}></img>
-           <img src={r1}></img>
-           <img src={r2}></img> 
-        </Carousel>  
+       responsive={responsive}>
+          <img src={r1}></img>
+          <img src={r2}></img>
+          <img src={r3}></img>
+          <img src={r1}></img>
+          <img src={r2}></img>
+          <img src={r3}></img>
+          <img src={r1}></img>
+          <img src={r2}></img>
+         
+       </Carousel>  
+
   </>;
 };
 

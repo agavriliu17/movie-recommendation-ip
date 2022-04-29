@@ -2,6 +2,10 @@ import React from "react"
 import { useEffect, useState } from "react";
 import popupStyles from "../css/CustomPopUp.css";
 import PropTypes from "prop-types";
+import r1 from "../pictures/tup.png";
+import r2 from "../pictures/tdown.png";
+
+
 
 const CustomPopup = (props) => {
   const [show, setShow] = useState(false);
@@ -21,32 +25,32 @@ const CustomPopup = (props) => {
         visibility: show ? "visible" : "hidden",
         opacity: show ? "1" : "0"
       }}
-      className={popupStyles.overlay}
+      className="overlay"
     >
-      <div className={popupStyles.popup}>
-        <span className={popupStyles.close} onClick={closeHandler}>
+      <div className="popup">
+        <span className="close" onClick={closeHandler}>
           &times;
         </span>
-        <div className={popupStyles.content}>{props.children}
-              <div className={popupStyles.imgDiv}> 
-              <div className={popupStyles.position}><div className={popupStyles.textAdded}>Added 14.04.2022</div></div>
+        <div className="content">{props.children}
+              <div className="imgDiv"> 
+              <div className="position"><div className="textAdded">Added 14.04.2022</div></div>
               
 
-              <div className={popupStyles.row} >
+              <div className="row" >
               <button type="submit">Play</button>
-              <div className={popupStyles.text}>2h 14 min</div>
-              <div className={popupStyles.textWithRectangle}>HD</div>
+              <div className="text">2h 14 min</div>
+              <div className="textWithRectangle">HD</div>
               </div>
 
 
               </div>
               <h1>WONDER WOMAN</h1>
-              <h2>Characteristics. Wonder Woman is a compassionate caring, stubborn, opinionated, highly competitive, outgoing, immortal Amazon. Wonder Woman is a warrior born. She tries to avoid conflict but if pressed she will engage in battle and on occasion lose herself in the pleasure of battle.</h2>
+              <h2 >Characteristics. Wonder Woman is a compassionate caring, stubborn, opinionated, highly competitive, outgoing, immortal Amazon. Wonder Woman is a warrior born. She tries to avoid conflict but if pressed she will engage in battle and on occasion lose herself in the pleasure of battle.</h2>
               <hr />
               <h3>Did you like this movie? Please leave a rating before you go.</h3>
-              <div className={popupStyles.images}>
-                <img src="../pictures/tup.png" alt="tup" />
-                <img src="../pictures/tdown.png" alt="tdown" />
+              <div className="images">
+                <img src={r1} alt="tup" />
+                <img src={r2} alt="tdown" />
               </div> 
             
 

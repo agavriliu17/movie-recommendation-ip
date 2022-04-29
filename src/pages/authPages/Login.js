@@ -48,9 +48,7 @@ const Login = () => {
       setError({ ...error, password: "" });
       navigate("/home");
     }
-    // if (error.email === "" && error.password === "") {
-    //   navigate("/home");
-    // }
+   
   };
 
   return (
@@ -74,7 +72,7 @@ const Login = () => {
           flexDirection: "row",
           alignItems: "center",
           zIndex: "1",
-          left: "15%",
+          left: "5%",
           top: "2vh",
         }}
       >
@@ -110,6 +108,7 @@ const Login = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              marginTop: "10%"
             }}
           >
             <Box
@@ -117,7 +116,8 @@ const Login = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                width: "80%",
+                width: "80%"
+               
               }}
             >
               <Typography
@@ -206,8 +206,8 @@ const Login = () => {
                     alignItems: "center",
                   }}
                 >
-                  <CustomCheckBox />
-                  <Typography sx={ { color:"#F9F871",fontFamily:"Trispace",}}>Remember me</Typography>
+                
+                 
                 </Box>
                 <Button
                   variant="text"
@@ -221,9 +221,7 @@ const Login = () => {
                   }}
                   onClick={() => navigate("/reset-pass")}
                 >
-                  <Typography sx={{ textTransform: "none", color: "#F9F871", fontFamily:"Trispace", }}>
-                    Forgot password?
-                  </Typography>
+                 
                 </Button>
               </Box>
               <Button
@@ -253,12 +251,29 @@ const Login = () => {
               <Box
                 sx={{
                   display: "flex",
+                  width:"100%",
                   flexDirection: "row",
-                  alignItems: "center",
+                  justifyContent: "space-between",
                   marginTop: "25px",
                 }}
               >
-                <Typography sx={{color:"#F9F871" ,fontFamily:"Trispace"}}>New on this app?</Typography>
+              <Button
+                  variant="text"
+                  disableFocusRipple
+                  disableElevation
+                  disableRipple
+                  sx={{
+                    "&.MuiButtonBase-root:hover": {
+                      bgcolor: "transparent",
+                    },
+                  }}
+                  onClick={() => navigate("/register")}
+                >
+                  <Typography sx={{ textTransform: "none", color: "#F9F871",fontFamily:"Trispace" ,}}>
+                    Forgot password?
+                  </Typography>
+                </Button>
+               
                 <Button
                   variant="text"
                   disableFocusRipple

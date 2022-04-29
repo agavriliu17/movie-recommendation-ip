@@ -3,7 +3,7 @@ import { Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
-
+import { useNavigate } from "react-router-dom";
 import bg1 from "../pictures/bg1.jpg";
 import logo from "../pictures/logo.png";
 import "../css/Start.css";
@@ -13,6 +13,9 @@ export const COLORS = {
   secondary: "#F9F871", // yellow
 };
 
+
+
+
 const scrollToBottom = () => {
   window.scrollTo({
     top: document.documentElement.scrollHeight/3,
@@ -20,8 +23,13 @@ const scrollToBottom = () => {
   });
 };
 
+
+
+
 const Start = () => {
+  const navigate=useNavigate();
   return (
+    
     <Paper
       sx={{
         width: "100%",
@@ -129,6 +137,8 @@ const Start = () => {
                 borderColor: COLORS.primary,
               },
             }}
+            
+            onClick={() => navigate("/Login")}
           >
             Log In
           </Button>
@@ -147,6 +157,7 @@ const Start = () => {
                 borderColor: COLORS.secondary,
               },
             }}
+            onClick={() => navigate("/Register")}
           >
             Sign Up
           </Button>
