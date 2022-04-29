@@ -38,8 +38,6 @@ const responsive = {
   }
 };
 
-
-
 const Home = () => {
   const [visibility, setVisibility] = useState(false);
 
@@ -47,11 +45,10 @@ const Home = () => {
     setVisibility(false);
   };
 
-
   return <>
   
   <Nav></Nav>
-  <button onClick={() => setVisibility(true)}>open</button>
+ 
       <CustomPopup
         onClose={popupCloseHandler}
         show={visibility}
@@ -73,12 +70,11 @@ const Home = () => {
        
         
        responsive={responsive}>
-          <img src={r1}></img>
-          <img src={r2}></img>
-          <img src={r3}></img>
-          <img src={r1}></img>
-          <img src={r3}></img>
-         
+         <img onClick={() => setVisibility(true)} src={r1}></img>
+         <img onClick={() => setVisibility(true)} src={r2}></img>
+         <img onClick={() => setVisibility(true)} src={r3}></img>
+         <img onClick={() => setVisibility(true)} src={r1}></img>
+         <img onClick={() => setVisibility(true)} src={r2}></img>
        </Carousel>  
 
  <Typography

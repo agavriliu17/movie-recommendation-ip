@@ -19,8 +19,8 @@
     border-radius: 5px;
     width: 75%;
     height: 150rem;
-    position: relative;
-    transition: all 5s ease-in-out;
+    position: absoulte;
+    transition: all 1s ease-in-out;
    
   }
 
