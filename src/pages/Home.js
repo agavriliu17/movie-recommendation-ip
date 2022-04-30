@@ -18,6 +18,7 @@ import ReactPlayer from "react-player";
 import sampleVideo from "../pictures/sampleVideo.mp4";
 import Nav from "../components/Navbar";
 import { useState } from "react";
+import Hover from "../components/Hover";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -45,15 +46,22 @@ const Home = () => {
     setVisibility(false);
   };
 
-  return <>
   
-  <Nav></Nav>
+
+  
+return <>
+
+  <Nav
+
+  ></Nav>
  
       <CustomPopup
         onClose={popupCloseHandler}
         show={visibility}
       >
       </CustomPopup>
+
+     
   <Paper sx={{
     display:"flex",
     alignItems: "center",
@@ -65,12 +73,12 @@ const Home = () => {
    
     alt="play" src={r6}> </Avatar>
   </Paper>
-    
+  
   <Carousel  className="most" 
        
         
        responsive={responsive}>
-         <img onClick={() => setVisibility(true)} src={r1}></img>
+         <Image onClick={() => setVisibility(true) } src={r1}></Image>
          <img onClick={() => setVisibility(true)} src={r2}></img>
          <img onClick={() => setVisibility(true)} src={r3}></img>
          <img onClick={() => setVisibility(true)} src={r1}></img>
@@ -93,20 +101,19 @@ const Home = () => {
         Action non-stop:
       </Typography>
         <Carousel className="carusel"
-       
         
         responsive={responsive}>
-           <img src={r1}></img>
-           <img src={r2}></img>
-           <img src={r3}></img>
-           <img src={r1}></img>
-           <img src={r2}></img>
-           <img src={r3}></img>
-           <img src={r1}></img>
-           <img src={r2}></img>
+           
+           <Image  ></Image>
+           <Image  ></Image>
+           <Image></Image>
+           <Image  ></Image>
+           <Image  ></Image>
+           <Image></Image>
+           
           
         </Carousel>  
-
+      
 
         <Typography
         sx={{
@@ -137,7 +144,7 @@ const Home = () => {
           <img src={r2}></img>
          
        </Carousel>  
-
+      
   </>;
 };
 

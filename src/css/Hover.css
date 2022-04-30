@@ -1,0 +1,45 @@
+.main
+{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+    transition-duration: 1000ms;
+  
+
+}
+
+
+
+.title
+{
+    align-content: center;
+    justify-content: center;
+    font-family: "Trispace";
+    color: white;
+}
+
+p
+{
+    text-align: center;
+}
+
+.info
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: "Trispace";
+    color: white;
+}
+
+.photo
+{
+    width: 200px;
+}
+
+.photo:hover
+{
+   transform:scale(1); 
+}

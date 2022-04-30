@@ -4,25 +4,15 @@ body
 }
 
 
-img
-{
-    width:80%;
-    height: 250px;
-    transition: 500ms;
 
-}
 
-img:hover
-{
-    transform: scale(0.8);
-    transition-duration: 500ms;
-}
+
 
 .carusel
 {
     display: flex;
     background-color: #482884;
-    height:250px;
+    height:500px;
     padding-left:1%;
     padding-right: auto;
     padding-bottom: 20px;
