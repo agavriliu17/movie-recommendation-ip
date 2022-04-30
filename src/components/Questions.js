@@ -81,7 +81,7 @@ const Questions = () => {
             }} 
             
             onClick={() => navigate("/register")} > 
-            Sign Up
+            Sign Up Now!
           </Button>
         </Box>
         <ReactPlayer url={sampleVideo} playing muted loop height="100%" />

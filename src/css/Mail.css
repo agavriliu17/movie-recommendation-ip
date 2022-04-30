@@ -6,13 +6,15 @@
     justify-content: space-between;
     margin-top: 8vh;
     width: 90%;
-    height: 45%;
+    height: 40%;
+    background-color: #004C2E30;
+    border: 1px dashed #004C2E;
 }
 
 .movieList img
 {
-    width: calc(1rem + 10vw + 15vh);
-    height: calc(1rem + 15vw + 15vh);
+    width: calc(10vw + 15vh);
+    height: calc(15vw + 15vh);
     box-shadow: 10px 10px 20px;
 }
 
