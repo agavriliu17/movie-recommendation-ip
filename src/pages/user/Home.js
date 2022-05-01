@@ -4,9 +4,10 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 
-import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
 import Banner from "../../components/Banner";
 import Nav from "./../../components/Nav";
+import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
+import LoadingBanner from "../../components/loadingElements/LoadingBanner";
 
 import requests from "../../resources/requests";
 import axios from "axios";
@@ -22,7 +23,11 @@ const Home = () => {
           .get(requests.fetchNetflixOriginals)
           .then((res) => res.data.results);
 
-        setData(movieData);
+        const timedData = await new Promise((resolve) => {
+          setTimeout(() => resolve(movieData), 1000);
+        });
+
+        setData(timedData);
         setLoading(false);
       } catch (e) {
         console.error(e);
@@ -46,7 +51,7 @@ const Home = () => {
       }}
     >
       <Nav />
-      {!loading && <Banner movie={bannerMovie} />}
+      {loading ? <LoadingBanner /> : <Banner movie={bannerMovie} />}
 
       {/* TODO: Replace the components below with carousels */}
       <Typography ml="20px" fontSize="25px" mt={5}>
