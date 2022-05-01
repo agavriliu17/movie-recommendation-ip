@@ -8,7 +8,31 @@ import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard"
 import Banner from "../../components/Banner";
 import Nav from "./../../components/Nav";
 
+import requests from "../../resources/requests";
+import axios from "axios";
+
 const Home = () => {
+  const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    (async function () {
+      try {
+        const movieData = await axios
+          .get(requests.fetchNetflixOriginals)
+          .then((res) => res.data.results);
+
+        setData(movieData);
+        setLoading(false);
+      } catch (e) {
+        console.error(e);
+        setLoading(false);
+      }
+    })();
+  }, []);
+
+  const bannerMovie = data[Math.floor(Math.random() * data.length)];
+
   return (
     <Paper
       sx={{
@@ -18,16 +42,24 @@ const Home = () => {
         overflowX: "hidden",
         display: "flex",
         flexDirection: "column",
+        zIndex: 2,
       }}
     >
       <Nav />
-      <Banner />
+      {!loading && <Banner movie={bannerMovie} />}
 
       {/* TODO: Replace the components below with carousels */}
       <Typography ml="20px" fontSize="25px" mt={5}>
         Continue watching
       </Typography>
-      <Box sx={{ display: "flex", flexDirection: "row", padding: "10px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          padding: "10px",
+          zIndex: 2,
+        }}
+      >
         {[...Array(21)].map((el, ind) => (
           <LoadingMovieCard key={ind} />
         ))}
