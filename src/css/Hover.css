@@ -5,9 +5,9 @@
     flex-direction: column;
     margin: 0px;
     padding: 0px;
-    transition-duration: 1000ms;
-  
-
+    transition-duration: 1000ms; 
+    animation-delay: 0ms;
+    
 }
 
 

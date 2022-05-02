@@ -6,11 +6,12 @@
     top: 0;
     bottom: 0;
     left: 0;
+    height: 200rem;
     overflow-y: auto;
     right: 0;
     background: rgba(0, 0, 0, 0.7);
     transition: opacity 500ms;
-    z-index: 1;
+
   }
   .popup {
     margin: 70px auto;
@@ -18,8 +19,13 @@
     background: #10091D;
     border-radius: 5px;
     width: 75%;
-    height: 150rem;
-    position: absoulte;
+  
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    z-index: 1;
     transition: all 1s ease-in-out;
    
   }

@@ -18,7 +18,7 @@ import ReactPlayer from "react-player";
 import sampleVideo from "../pictures/sampleVideo.mp4";
 import Nav from "../components/Navbar";
 import { useState } from "react";
-import Hover from "../components/Hover";
+import { moviedata } from "../movie";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -31,7 +31,7 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 3
+    items: 2
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -55,11 +55,6 @@ return <>
 
   ></Nav>
  
-      <CustomPopup
-        onClose={popupCloseHandler}
-        show={visibility}
-      >
-      </CustomPopup>
 
      
   <Paper sx={{
@@ -68,23 +63,34 @@ return <>
     justifyContent:"center",
     width:"100%",
     height:"500px",
-     backgroundImage:`url(${r5})`}}>
-    <Avatar
+    backgroundImage:`url(${r5})`,
+    
+    }}>
+    
+    <Avatar sx={{zIndex:"0",paddingTop:"100px"}}
    
     alt="play" src={r6}> </Avatar>
   </Paper>
-  
-  <Carousel  className="most" 
+  <CustomPopup
+        onClose={popupCloseHandler}
+        show={visibility}
+      >
+      </CustomPopup>
+
+  <Carousel className="most" 
        
         
        responsive={responsive}>
-         <Image onClick={() => setVisibility(true) } src={r1}></Image>
-         <img onClick={() => setVisibility(true)} src={r2}></img>
-         <img onClick={() => setVisibility(true)} src={r3}></img>
-         <img onClick={() => setVisibility(true)} src={r1}></img>
-         <img onClick={() => setVisibility(true)} src={r2}></img>
-       </Carousel>  
-
+         {moviedata.map((data,key) =>{
+           return (
+         <Image  title={data.title} duration={data.duration} rating={data.rating}></Image>
+         
+         
+           );
+        })}
+        </Carousel>  
+        
+          {/* <img onClick={() => setVisibility(true)} src={r2}></img> */}
  <Typography
         sx={{
           fontFamily: "Trispace",
@@ -95,7 +101,8 @@ return <>
           backgroundColor: "#482884",
           paddingBottom: "20px",
           paddingLeft: "20px",
-          paddingTop: "20px"
+          paddingTop: "20px",
+          textAlign:"left"
         }}
       >
         Action non-stop:
@@ -104,12 +111,16 @@ return <>
         
         responsive={responsive}>
            
-           <Image  ></Image>
-           <Image  ></Image>
-           <Image></Image>
-           <Image  ></Image>
-           <Image  ></Image>
-           <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
            
           
         </Carousel>  
@@ -125,7 +136,8 @@ return <>
           backgroundColor: "#482884",
           paddingBottom: "20px",
           paddingLeft: "20px",
-          paddingTop: "20px"
+          paddingTop: "20px",
+          textAlign:"left"
         }}
       >
         Not for the faint hearth
@@ -134,14 +146,16 @@ return <>
        
         
        responsive={responsive}>
-          <img src={r1}></img>
-          <img src={r2}></img>
-          <img src={r3}></img>
-          <img src={r1}></img>
-          <img src={r2}></img>
-          <img src={r3}></img>
-          <img src={r1}></img>
-          <img src={r2}></img>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
+         <Image></Image>
          
        </Carousel>  
       

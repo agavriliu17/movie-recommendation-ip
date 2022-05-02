@@ -1,25 +1,33 @@
 import React from "react";
 import "../css/Carousel.css"
-import r1 from "../pictures/recom1.jpg";
+import r1 from "../pictures/recom3.jpg";
 import Hover from "./Hover";
 import { useEffect, useState } from "react";
-const Image = () => {
+import CustomPopup from "./CustomPopUp";
+const Image = ({title,duration,rating}) => {
     const [hovervisibility,sethover]=useState(false);
 
         const popupClose =() =>
         {
           sethover(false);
         };
+
+        const [visibility, setVisibility] = useState(false);
+
+        const popupCloseHandler = () => {
+          setVisibility(false);
+        };
     return (
        
       <>
-      
-         <img onMouseEnter={() => sethover(true)} onMouseLeave={() => sethover(false)} src={r1}></img>
-         <Hover
-          onMouseLeave={popupClose}
-          showhover={hovervisibility}
-        ></Hover>
+           
+         <img onClick={() => setVisibility(true)} onMouseEnter={() => sethover(true)} onMouseLeave={() => sethover(false)} src={r1}></img>
         
+         <Hover 
+          visible={hovervisibility} showhover={hovervisibility}
+          titlu={title} durata={duration} rate={rating} 
+        ></Hover>
+       
         </>
     );
   };

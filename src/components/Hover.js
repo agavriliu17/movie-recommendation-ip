@@ -5,9 +5,9 @@ import r1 from "../pictures/recom1.jpg";
 import { Box } from "@mui/system";
 import { Paper, Typography } from "@mui/material";
 import "../css/Hover.css";
-const Hover = (props) => {
+const Hover = ({titlu,durata,rate,visible},props) => {
    const [showhover, hovershow] = useState(true);
- 
+
    const closezoom = (e) => {
      hovershow(false);
      props.onMouseLeave(false);
@@ -25,23 +25,23 @@ const Hover = (props) => {
    return (
      <Box className="main"
      style={{
-      visibility: showhover ? "visible" : "hidden",
-      opacity: showhover ? "1" : "0",
-      // display: showhover ? "contents" : "none"
+      visibility: visible ? "visible" : "hidden",
+      opacity: visible ? "1" : "0", //aici
+    //  display: visible ? "block" : "contents"
     }}
     onMouseLeave={closezoom}
     onMouseEnter={openzoom}
      >
-      
-      <Paper sx={{backgroundColor:"#15171D"}} >
+    
+      <Box sx={{backgroundColor:"#15171D"}} >
          <Box className="title">
-         <p>Movie title</p>
+         <p>{titlu}</p>
          </Box>
          <Box className="info">
-            <p>Duration: 2h</p>
-            <p>Rating: 4.5</p>
+            <p>{durata}</p>
+            <p>{rate}</p>
          </Box>
-      </Paper>
+      </Box>
      </Box>
    );
  };

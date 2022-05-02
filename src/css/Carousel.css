@@ -4,11 +4,16 @@ img
     height: 300px;
     transition: 500ms;
     margin-bottom: 50px;
+    z-index: -1;
+   
 }
 
 img:hover
 {
     height: 350px;
+    
     margin-bottom: 0px;
     transition-duration: 500ms;
+
+    z-index: 10;
 }
