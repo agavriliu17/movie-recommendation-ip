@@ -23,6 +23,8 @@ const Movie = () => {
         console.error(e);
       }
     })();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log(movie);

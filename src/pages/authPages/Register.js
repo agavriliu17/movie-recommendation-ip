@@ -9,7 +9,10 @@ import { makeStyles } from "@mui/styles";
 
 import AuthLayout from "./AuthLayout";
 import { useNavigate } from "react-router-dom";
-import { validateEmail } from "../../resources/helpers/authHelper";
+import {
+  registerUser,
+  validateEmail,
+} from "../../resources/helpers/authHelper";
 
 const useStyles = makeStyles({
   inputContainer: {
@@ -58,7 +61,7 @@ const Register = () => {
     setInput({ ...input, [key]: event.target.value });
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     const firstNameError =
       input.firstName === "" ? "Please provide your first name" : "";
 
@@ -87,7 +90,12 @@ const Register = () => {
       passwordError === "" &&
       confirmPasswordError === ""
     ) {
-      navigate("/login");
+      try {
+        const response = await registerUser(input);
+        if (response) navigate("/login");
+      } catch (e) {
+        console.log(e); //TODO: Show the user the error in some way
+      }
     } else
       setError({
         firstName: firstNameError,
