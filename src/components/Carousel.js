@@ -12,20 +12,12 @@ const Image = ({title,duration,rating,image}) => {
           sethover(false);
         };
 
-        const [visibility, setVisibility] = useState(false);
-
-        const popupCloseHandler = () => {
-          setVisibility(false);
-        };
+       
     return (
        
       <>
-         <CustomPopup
-        onClose={popupCloseHandler}
-        show={visibility}
-      >
-      </CustomPopup>  
-         <img onClick={() => setVisibility(true)} onMouseEnter={() => sethover(true)} onMouseLeave={() => sethover(false)} src={image}></img>
+       
+         <img  onMouseEnter={() => sethover(true)} onMouseLeave={() => sethover(false)} src={image}></img>
         
          <Hover 
           visible={hovervisibility} showhover={hovervisibility}

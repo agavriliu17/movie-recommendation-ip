@@ -1,6 +1,6 @@
 import React from "react"
 import { useEffect, useState } from "react";
-import popupStyles from "../css/CustomPopUp.css";
+import "../css/CustomPopUp.css";
 import PropTypes from "prop-types";
 import r1 from "../pictures/tup.png";
 import r2 from "../pictures/tdown.png";

@@ -9,6 +9,7 @@ import ResetPassword from "./pages/authPages/ResetPassword";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import CustomPopup from "./components/CustomPopUp";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,7 +20,6 @@ ReactDOM.render(
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="reset-pass" element={<ResetPassword />} />
-
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

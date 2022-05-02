@@ -14,6 +14,5 @@ img:hover
     
     margin-bottom: 0px;
     transition-duration: 500ms;
-
-    z-index: 10;
+    z-index: -1;
 }

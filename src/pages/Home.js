@@ -17,6 +17,7 @@ import Image from "../components/Carousel";
 import ReactPlayer from "react-player";
 import sampleVideo from "../pictures/sampleVideo.mp4";
 import Nav from "../components/Navbar";
+import { Button } from "@mui/material";
 import { useState } from "react";
 import data from "../resources/data.json"
 const responsive = {
@@ -55,7 +56,11 @@ return <>
 
   ></Nav>
  
-
+ <CustomPopup
+        onClose={popupCloseHandler}
+        show={visibility}
+      >
+      </CustomPopup>  
      
   <Paper sx={{
     display:"flex",
@@ -79,9 +84,10 @@ return <>
        responsive={responsive}>
          {data.most.map((data,key) =>{
            return (
-         <Image title={data.title} duration={data.duration} rating={data.rating} image={data.image}></Image>
-         
-         
+             <>
+         <button onClick={() => setVisibility(true)} className="component"><Image title={data.title} duration={data.duration} rating={data.rating} image={data.image}></Image></button>
+           
+            </>
            );
         })}
         </Carousel>  
