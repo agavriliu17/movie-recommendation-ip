@@ -8,6 +8,7 @@ import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
 import CustomCheckBox from "../../components/CustomCheckbox";
 import Fade from "@mui/material/Fade";
+import {motion} from 'framer-motion';
 
 
 import logo from "../../resources/images/logo.png";
@@ -226,6 +227,17 @@ const Login = () => {
               </Box>
               <Button
                 variant="outlined"
+                component={motion.div}
+                whileHover={{
+                scale: 1.2,
+                 transition: { duration: 0.1 },
+                boxShadow: "0px 0px 10px rgb(249, 248, 113)"
+                }}
+                whileTap={{ scale: 0.9 }}
+                initial={{opacity: 0, y: '-100vw'}}
+               animate={{opacity: 1, y: 0}}
+               transition={{duration: 1.5 , type: "spring", stiffness: 60}}
+
                 sx={{
                   marginTop: "25px",
                   width: "40%",
@@ -259,6 +271,18 @@ const Login = () => {
               >
               <Button
                   variant="text"
+
+                  component={motion.div}
+                  whileHover={{
+                  scale: 1.2,
+                   transition: { duration: 0.1 },
+                  textShadow: "0px 0px 12px rgb(249, 248, 113)"
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{opacity: 0, y: '100vw'}}
+                 animate={{opacity: 1, y: 0}}
+                 transition={{duration: 1 , type: "tween"}}
+
                   disableFocusRipple
                   disableElevation
                   disableRipple
@@ -276,6 +300,17 @@ const Login = () => {
                
                 <Button
                   variant="text"
+                  component={motion.div}
+                  whileHover={{
+                  scale: 1.2,
+                   transition: { duration: 0.1 },
+                  textShadow: "0px 0px 12px rgb(249, 248, 113)"
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{opacity: 0, y: '100vw'}}
+                 animate={{opacity: 1, y: 0}}
+                 transition={{duration: 1 , type: "tween"}}
+
                   disableFocusRipple
                   disableElevation
                   disableRipple
