@@ -2,32 +2,25 @@
 .overlay {
     visibility: hidden;
     opacity: 0;
-    position: relative;
-    top: -100;
-    bottom: 0;
+    position: fixed;
+    top: 0;
     left: 0;
-    height: 200rem;
-    overflow-y: auto;
-    right: 0;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.7);
     transition: opacity 500ms;
     z-index: 20;
   }
   .popup {
-    margin: 70px auto;
+    margin: 0;
     padding: 0;
     background: #10091D;
     border-radius: 5px;
-    width: 1000px;
-  
-    position: absolute;
-   
-    bottom: 0;
-    left: -50;
-    overflow-y: auto;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    left: 0;
     z-index: 100;
     transition: all 1s ease-in-out;
-   
   }
 
   .popup h1 {
@@ -83,24 +76,23 @@
    color: red;
   }
 
-  .button{
+  button{
     color: #482884;
     background-color: #F9F871;
     font-weight: bold;
-    border: none;
-    border-radius: 2px;
+    border: 1px solid #482884;
+    border-radius: 5px;
     margin-right: 1rem;
-    font-size: 36px;
-    padding: 10px;
-
+    font-size: 20px;
+    padding: 15px;
   }
 
   .text{
-color: #F9F871;
-font-family: 'Trispace', sans-serif;
-padding-right: 1rem;
-font-size: 36px;
-padding-top:10px;
+    color: #F9F871;
+    font-family: 'Trispace', sans-serif;
+    padding-right: 1rem;
+    font-size: 36px;
+    padding-top:10px;
   }
 
   .textWithRectangle{
