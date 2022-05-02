@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import ProtectedRoute from "../src/pages/ProtectedRoute";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { themeOptions } from "./theming/theme";
 
@@ -21,13 +22,17 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
+          <Route exact path="/" element={<ProtectedRoute />}>
+            <Route path="home" element={<Home />} />
+            <Route path="watch/:movieId" element={<Movie />} />
+            <Route path="admin/home" element={<AdminHome />} />
+          </Route>
+
           <Route index element={<Landing />} />
-          <Route path="home" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="reset-pass" element={<ResetPassword />} />
-          <Route path="watch/:movieId" element={<Movie />} />
-          <Route path="admin/home" element={<AdminHome />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

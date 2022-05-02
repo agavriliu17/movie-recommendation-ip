@@ -10,7 +10,6 @@ export const validateEmail = (email) => {
 };
 
 export const registerUser = async (userInfo) => {
-  console.log(userInfo);
   console.log(`${BASE_URL}api/v1/users`);
   const res = axios.post(`${BASE_URL}api/v1/users`, {
     email: userInfo.email,

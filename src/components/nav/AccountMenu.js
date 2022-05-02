@@ -9,7 +9,18 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 
+import AppContext from "../../resources/context/AppContext";
+import { useNavigate } from "react-router-dom";
+
 const AccountMenu = ({ anchorEl, handleClose }) => {
+  const { logoutUser } = React.useContext(AppContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logoutUser();
+    navigate("/login");
+  };
+
   return (
     <Menu
       anchorEl={anchorEl}
@@ -65,7 +76,7 @@ const AccountMenu = ({ anchorEl, handleClose }) => {
         </ListItemIcon>
         Settings
       </MenuItem>
-      <MenuItem>
+      <MenuItem onClick={handleLogout}>
         <ListItemIcon>
           <Logout fontSize="small" />
         </ListItemIcon>
