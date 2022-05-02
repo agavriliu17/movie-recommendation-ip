@@ -7,8 +7,15 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 import { IMAGES_URL } from "../resources/constants";
+import { useNavigate } from "react-router-dom";
 
 const Banner = ({ movie }) => {
+  const navigate = useNavigate();
+
+  const goToMovie = () => {
+    navigate(`/watch/${movie.id}`);
+  };
+
   return (
     <Box
       sx={{
@@ -63,6 +70,7 @@ const Banner = ({ movie }) => {
                 backgroundColor: "rgba(255,255,255,0.8)",
               },
             }}
+            onClick={goToMovie}
           >
             <PlayArrowIcon sx={{ fontSize: "45px" }} />
             <Typography fontSize="25px" ml="5px">

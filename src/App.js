@@ -10,6 +10,7 @@ import ResetPassword from "./pages/authPages/ResetPassword";
 
 import Landing from "./pages/Landing";
 import Home from "./pages/user/Home";
+import Movie from "./pages/Movie";
 import NotFound from "./pages/NotFound";
 import AdminHome from "./pages/admin/AdminHome";
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="reset-pass" element={<ResetPassword />} />
+          <Route path="watch/:movieId" element={<Movie />} />
           <Route path="admin/home" element={<AdminHome />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 
 import Banner from "../../components/Banner";
-import Nav from "./../../components/Nav";
+import Nav from "../../components/nav/Nav";
 import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
 import LoadingBanner from "../../components/loadingElements/LoadingBanner";
 
