@@ -18,7 +18,7 @@ import ReactPlayer from "react-player";
 import sampleVideo from "../pictures/sampleVideo.mp4";
 import Nav from "../components/Navbar";
 import { useState } from "react";
-import { moviedata } from "../movie";
+import data from "../resources/data.json"
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -27,7 +27,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5
+    items: 4
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -46,7 +46,7 @@ const Home = () => {
     setVisibility(false);
   };
 
-  
+
 
   
 return <>
@@ -71,25 +71,21 @@ return <>
    
     alt="play" src={r6}> </Avatar>
   </Paper>
-  <CustomPopup
-        onClose={popupCloseHandler}
-        show={visibility}
-      >
-      </CustomPopup>
+ 
 
   <Carousel className="most" 
        
         
        responsive={responsive}>
-         {moviedata.map((data,key) =>{
+         {data.most.map((data,key) =>{
            return (
-         <Image  title={data.title} duration={data.duration} rating={data.rating}></Image>
+         <Image title={data.title} duration={data.duration} rating={data.rating} image={data.image}></Image>
          
          
            );
         })}
         </Carousel>  
-        
+          
           {/* <img onClick={() => setVisibility(true)} src={r2}></img> */}
  <Typography
         sx={{

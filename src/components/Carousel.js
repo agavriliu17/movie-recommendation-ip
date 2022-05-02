@@ -4,7 +4,7 @@ import r1 from "../pictures/recom3.jpg";
 import Hover from "./Hover";
 import { useEffect, useState } from "react";
 import CustomPopup from "./CustomPopUp";
-const Image = ({title,duration,rating}) => {
+const Image = ({title,duration,rating,image}) => {
     const [hovervisibility,sethover]=useState(false);
 
         const popupClose =() =>
@@ -20,12 +20,16 @@ const Image = ({title,duration,rating}) => {
     return (
        
       <>
-           
-         <img onClick={() => setVisibility(true)} onMouseEnter={() => sethover(true)} onMouseLeave={() => sethover(false)} src={r1}></img>
+         <CustomPopup
+        onClose={popupCloseHandler}
+        show={visibility}
+      >
+      </CustomPopup>  
+         <img onClick={() => setVisibility(true)} onMouseEnter={() => sethover(true)} onMouseLeave={() => sethover(false)} src={image}></img>
         
          <Hover 
           visible={hovervisibility} showhover={hovervisibility}
-          titlu={title} durata={duration} rate={rating} 
+          titlu={title} durata={duration} rate={rating}  
         ></Hover>
        
         </>
