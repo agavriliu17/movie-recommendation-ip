@@ -33,19 +33,19 @@ const CustomPopup = (props) => {
           &times;
         </span>
         <div className="content">{props.children}
-              <div className="imgDiv"> 
+              <div className="imgDiv" sx={{backgroundImage:props.image}}> 
               <div className="position"><div className="textAdded">Added 14.04.2022</div></div>
               
 
               <div className="row" >
               <button type="submit">Play</button>
-              <div className="text">2h 14 min</div>
+              <div className="text">{props.duration}</div>
               <div className="textWithRectangle">HD</div>
               </div>
 
 
               </div>
-              <h1>WONDER WOMAN</h1>
+              <h1>{props.title}</h1>
               <h2 >Characteristics. Wonder Woman is a compassionate caring, stubborn, opinionated, highly competitive, outgoing, immortal Amazon. Wonder Woman is a warrior born. She tries to avoid conflict but if pressed she will engage in battle and on occasion lose herself in the pleasure of battle.</h2>
               <hr />
               <h3>Did you like this movie? Please leave a rating before you go.</h3>

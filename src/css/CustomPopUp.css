@@ -2,8 +2,8 @@
 .overlay {
     visibility: hidden;
     opacity: 0;
-    position: fixed;
-    top: 0;
+    
+    top: -100;
     left: 0;
     height: 100vh;
     background: rgba(0, 0, 0, 0.7);
@@ -13,6 +13,7 @@
   .popup {
     margin: 0;
     padding: 0;
+    top: -100;
     background: #10091D;
     border-radius: 5px;
     height: 100vh;
@@ -28,7 +29,7 @@
     font-family: 'Trispace', sans-serif;
     font-weight: bolder;
     padding-left: 1rem;
-    
+  
   }
 
  
@@ -66,7 +67,7 @@
   }
   
   .popup .imgDiv {
-    background-image: url("../pictures/movie.png");
+    
     height: 30rem;
     
   }
