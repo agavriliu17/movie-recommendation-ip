@@ -9,7 +9,7 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 
 const Comments = ({ currentUserId }) => {
     const [backendComments, setBackendCommets] = useState([]);
-
+    
 
     console.log("backendComments", backendComments);
 
@@ -22,6 +22,7 @@ const Comments = ({ currentUserId }) => {
         <Paper>
             Comments
             {backendComments.map((comment) => (
+               
                 <Container
                     sx={{
                         display: "flex",
@@ -56,8 +57,6 @@ const Comments = ({ currentUserId }) => {
 
 
                         {comment.likes}
-
-
 
                     </Box>
 
