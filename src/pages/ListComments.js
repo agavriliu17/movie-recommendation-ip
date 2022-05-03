@@ -20,7 +20,7 @@ const Comments = ({ currentUserId }) => {
     }, []);
     return (
         <Paper>
-            Comments
+          
             {backendComments.map((comment) => (
                
                 <Container

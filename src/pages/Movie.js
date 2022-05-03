@@ -12,6 +12,7 @@ import Nav from "../components/nav/Nav";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
+import ListComments from "./ListComments"
 
 
 const Movie = () => {
@@ -159,6 +160,20 @@ const Movie = () => {
             ))}
           </Box>
         </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+    
+          }}
+        >
+        <Typography ml="20px" fontSize="25px" mt={5} textAlign="left">
+            Comments
+          </Typography>
+           <ListComments/>
+          </Box>
       </Container>
     </Paper>
   );
