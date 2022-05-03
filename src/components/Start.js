@@ -33,6 +33,15 @@ const Start = () => {
         backgroundSize: "cover",
         borderRadius: "0",
       }}
+      component={motion.div}
+      whileHover={{
+        transition: { duration: 0.1 },
+       
+      }}
+      initial={{ opacity: 0, y: "-10vw" }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.1, type: "spring", stiffness:110 }}
+    
     >
       <Box
         className="title"
