@@ -62,6 +62,15 @@ const Login = () => {
         justifyContent: "center",
         flexDirection: "column",
       }}
+
+      component={motion.div}
+      whileHover={{
+        transition: { duration: 1 },
+       
+      }}
+      initial={{ opacity: 0, y: "-10vw" }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, type: "spring", stiffness:110 }}
     >
       <Box
         className="title"
@@ -78,7 +87,7 @@ const Login = () => {
         <motion.div
           initial={{ x: "-100vw" }}
           animate={{ x: 0 }}
-          transition={{ delay: 0, type: "tween" }}
+          transition={{ delay: 0, type: "spring" }}
         >
           <Typography
             sx={{
@@ -125,7 +134,7 @@ const Login = () => {
                 }}
                 initial={{ opacity: 0, y: "-10vw" }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, type: "tween" }}
+                transition={{ duration: 1, type: "spring" }}
               >
                 Log in
               </Typography>

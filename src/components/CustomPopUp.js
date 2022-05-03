@@ -33,7 +33,7 @@ const CustomPopup = (props) => {
           &times;
         </span>
         <div className="content">{props.children}
-              <div className="imgDiv" sx={{backgroundImage:props.image}}> 
+              <div className="imgDiv" sx={{backgroundImage:r1}}> 
               <div className="position"><div className="textAdded">Added 14.04.2022</div></div>
               
 

@@ -69,7 +69,7 @@
   .popup .imgDiv {
     
     height: 30rem;
-    
+    background-image: "../pictures/play.png";
   }
 
   .popup .content .imgDiv .secondInfo{

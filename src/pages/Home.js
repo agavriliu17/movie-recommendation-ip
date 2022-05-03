@@ -19,7 +19,7 @@ import sampleVideo from "../pictures/sampleVideo.mp4";
 import Nav from "../components/Navbar";
 import { Button } from "@mui/material";
 import { useState } from "react";
-
+import Banner from "../components/Banner";
 import requests from "../resources/requests";
 import axios from "axios";
 
@@ -49,7 +49,7 @@ const Home = () => {
   const popupCloseHandler = () => {
     setVisibility(false);
   };
-
+  const [data, setData] = React.useState([]);
   const [topRatedData, setDataTop] = React.useState([]);
   const [horrorData,setDataHorror]=React.useState([]);
   const [actionData,setDataAction]=React.useState([]);
@@ -58,6 +58,16 @@ const Home = () => {
   React.useEffect(() => {
     (async function () {
       try {
+
+        const movieData = await axios
+        .get(requests.fetchNetflixOriginals)
+        .then((res) => res.data.results);
+
+      const timedData = await new Promise((resolve) => {
+        setTimeout(() => resolve(movieData), 1000);
+      });
+
+
         const topMovieData = await axios
           .get(requests.fetchTopRated)
           .then((res) => res.data.results);
@@ -90,7 +100,8 @@ const Home = () => {
         const documentariesTimedData = await new Promise((resolve) => {
           setTimeout(() => resolve(documentariesMovieData), 1000);
         });
-
+        
+        setData(timedData);
         setDataTop(toptimedData);
         setDataHorror(horrorTimedData);
         setDataAction(actionTimedData);
@@ -105,7 +116,7 @@ const Home = () => {
     })();
   }, []);
 
- 
+  const bannerMovie = data[Math.floor(Math.random() * data.length)];
   const topRated = topRatedData.slice(0, 10);
   const horrormovies= horrorData.slice(0,10);
   const actionmovies=actionData.slice(0,10);
@@ -118,8 +129,7 @@ const Home = () => {
   console.log(title);
   return (
     <>
-      <Nav></Nav>
-
+      {/* <Nav></Nav> */}
       <CustomPopup
         onClose={popupCloseHandler}
         show={visibility}
@@ -127,8 +137,10 @@ const Home = () => {
         info
         added
       ></CustomPopup>
+      <Banner movie={bannerMovie} />
+     
 
-      <Paper
+      {/* <Paper
         sx={{
           display: "flex",
           alignItems: "center",
@@ -141,7 +153,7 @@ const Home = () => {
         <Avatar sx={{ zIndex: "0", paddingTop: "100px" }} alt="play" src={r6}/>
          
         
-      </Paper>
+      </Paper> */}
 
       {!loading && (
         <Carousel className="most" responsive={responsive}>
