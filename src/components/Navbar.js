@@ -1,215 +1,162 @@
-import React, { useEffect, useState } from "react";
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
+import React from "react";
+import Button from "@mui/material/Button";
+import classNames from "classnames";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import Avatar from "@mui/material/Avatar";
+import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import { useNavigate } from "react-router-dom";
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
+import AccountMenu from "../components/AccountMenu";
+import { grey } from "@mui/material/colors";
+import { makeStyles } from "@mui/styles";
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
+const useStyles = makeStyles({
+  nav: {
+    position: "fixed",
+    top: 0,
+    right: 0,
+    padding: "10px",
+    width: "100%",
+    height: "30px",
+    zIndex: 1100,
+    transitionTimingFunction: "ease-in",
+    transition: "all 0.5s",
+    backgroundImage:
+      "linear-gradient(to bottom,rgba(0,0,0,.6) 10%,rgba(0,0,0,0))",
+  },
+  navBlack: {
+    backgroundColor: "#111",
+  },
+  navContents: {
+    display: "flex",
+    justifyContent: "space-between",
+    position: "fixed",
+  },
+  navLogo: {
+    position: "fixed",
+    top: "2px",
+    left: "0",
+    width: "80px",
+    objectFit: "contain",
+    paddingLeft: "20px",
+    cursor: "pointer",
+  },
+  navAvatar: {
+    position: "fixed",
+    right: "15px",
+    cursor: "pointer",
+  },
+  buttonGroup: {
+    position: "fixed",
+    paddingLeft: "130px",
+  },
+  button: {
+    background: "none",
+    color: "#fff",
+    border: "none",
+    outline: "none",
+    padding: "0px",
+    fontSize: "16px",
+    fontWeight: "100",
+    margin: "2px 10px",
+    textTransform: "capitalize",
+    "&:hover": {
+      background: "none",
+      cursor: "pointer",
+      color: "#cfcfcf",
     },
   },
-}));
+  buttonActive: {
+    fontWeight: "550",
+  },
+  buttonIcon: {
+    position: "fixed",
+    right: "55px",
+    top: "5px",
+  },
+});
 
-const Nav=() => {
-    const [show, handleShow] = useState(false);
-    const navigate = useNavigate();
-    const transitionNavBar = () => {
-      if (window.scrollY > 100) {
-        handleShow(true);
-      } else {
-        handleShow(false);
-      }
-    };
-  
-    useEffect(() => {
-      window.addEventListener("scroll", transitionNavBar);
-      return () => window.removeEventListener("scroll", transitionNavBar);
-    }, []);
-  
-    
-
-
+const Nav = () => {
+  const [show, handleShow] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const navigate = useNavigate();
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  React.useEffect(() => {
+    window.addEventListener("scroll", transitionNavBar);
+    return () => window.removeEventListener("scroll", transitionNavBar);
+  }, []);
 
-  const handleProfileMenuOpen = (event) => {
+  const transitionNavBar = () => {
+    if (window.scrollY > 100) {
+      handleShow(true);
+    } else {
+      handleShow(false);
+    }
+  };
+
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
+  const handleClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+  const classes = useStyles();
 
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-    
-      
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
-
+  //TODO: Fix scrollbar bug
   return (
-    <Box sx={{ flexGrow: 1}}>
-      <AppBar position="static" className="show" sx={{ backgroundColor:"#10091D", position:"fixed",zIndex:"1",transitionTimingFunction: "ease-in",
-    transition: "all 0.5s",}}>
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-           <Box sx={{ flexGrow: 2 }} />
-          <Search>
-            <SearchIconWrapper>
+    <Box className={classNames(classes.nav, show && classes.navBlack)}>
+      <Box className={classes.navContents}>
+        <img
+          className={classes.navLogo}
+          src="https://www.psdstamps.com/wp-content/uploads/2020/01/movies-stamp-png.png"
+          alt=""
+        />
+
+        <Box>
+          <Box className={classes.buttonGroup}>
+            <Button
+              className={classNames(classes.button, classes.buttonActive)}
+            >
+              Home
+            </Button>
+            <Button
+              className={classes.button}
+              onClick={() => navigate("/series")}
+            >
+              Series
+            </Button>
+            <Button className={classes.button}>Films</Button>
+            <Button className={classes.button}>Latest</Button>
+            <Button className={classes.button}>My List</Button>
+          </Box>
+          <Box className={classes.buttonIcon}>
+            <IconButton sx={{ color: grey[50] }}>
               <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-          
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
             </IconButton>
-    
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
+            <IconButton sx={{ color: grey[50] }}>
+              <NotificationsRoundedIcon />
             </IconButton>
           </Box>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+        </Box>
+
+        <IconButton
+          onClick={handleClick}
+          size="small"
+          aria-controls={Boolean(anchorEl) ? "account-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={Boolean(anchorEl) ? "true" : undefined}
+          className={classes.navAvatar}
+        >
+          <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+        </IconButton>
+
+        <AccountMenu anchorEl={anchorEl} handleClose={handleClose} />
+      </Box>
     </Box>
   );
-}
-
+};
 export default Nav;
