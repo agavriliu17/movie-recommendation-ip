@@ -101,6 +101,7 @@ const Register = () => {
       
       <Container maxWidth="sm">
         <Card
+
           sx={{
             height: "90%",
             padding: "20px",
@@ -109,8 +110,9 @@ const Register = () => {
             alignItems: "center",
             justifyContent: "center",
             marginTop:"10%"
-           
           }}
+
+
         >
           <Box
         className="title"
@@ -162,6 +164,16 @@ const Register = () => {
               mb="25px"
               variant="h4"
               fontFamily="trispace"
+
+              component={motion.div}
+              whileHover={{
+              transition: { duration: 0.1 },
+              textShadow: "0px 0px 12px rgb(249, 248, 113)"
+              }}
+              initial={{opacity: 0, y: '-10vw'}}
+              animate={{opacity: 1, y: 0}}
+              transition={{duration: 1 , type: "tween"}}
+
               sx={{
                 display: "flex",
                 flexDirection: "left",
@@ -170,7 +182,19 @@ const Register = () => {
               Sign Up
             </Typography>
 
-            <Paper sx={{ backgroundColor: "#F9F871", width: "130%" }}>
+            <Paper 
+
+              component={motion.div}
+              whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.1 },
+              }}
+              initial={{opacity: 0, y: '5vw'}}
+              animate={{opacity: 1, y: 0}}
+              transition={{duration: 0.8 , type: "tween"}}
+
+              sx={{ backgroundColor: "#F9F871", width: "130%" }}
+            >
               <TextField
                 error={errorFirstName}
                 id="1"
@@ -193,6 +217,16 @@ const Register = () => {
             </Paper>
 
             <Paper
+
+              component={motion.div}
+              whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.1 },
+              }}
+              initial={{opacity: 0, y: '5vw'}}
+              animate={{opacity: 1, y: 0}}
+              transition={{duration: 0.8 , type: "tween"}}
+
               sx={{
                 backgroundColor: "#F9F871",
                 height: "fit-content",
@@ -222,6 +256,16 @@ const Register = () => {
             </Paper>
 
             <Paper
+
+              component={motion.div}
+              whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.1 },
+              }}
+              initial={{opacity: 0, y: '5vw'}}
+              animate={{opacity: 1, y: 0}}
+              transition={{duration: 0.8 , type: "tween"}}
+    
               sx={{
                 backgroundColor: "#F9F871",
                 height: "fit-content",
@@ -251,6 +295,16 @@ const Register = () => {
             </Paper>
 
             <Paper
+
+              component={motion.div}
+              whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.1 },
+              }}
+              initial={{opacity: 0, y: '5vw'}}
+              animate={{opacity: 1, y: 0}}
+              transition={{duration: 0.8 , type: "tween"}}
+
               sx={{
                 backgroundColor: "#F9F871",
                 height: "fit-content",
@@ -281,6 +335,16 @@ const Register = () => {
             </Paper>
 
             <Paper
+
+              component={motion.div}
+              whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.1 },
+              }}
+              initial={{opacity: 0, y: '5vw'}}
+              animate={{opacity: 1, y: 0}}
+              transition={{duration: 0.8 , type: "tween"}}
+
               sx={{
                 backgroundColor: "#F9F871",
                 height: "fit-content",
@@ -313,6 +377,16 @@ const Register = () => {
             </Paper>
 
             <Box
+
+              component={motion.div}
+              whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.1 },
+              }}
+              initial={{opacity: 0, scale: 0.3}}
+              animate={{opacity: 1, scale: 1}}
+              transition={{duration: 0.9, delay: 1.3, type: "tween"}}
+
               sx={{
                 backgroundColor: "#004C2E",
                 height: "2px",

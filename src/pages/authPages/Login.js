@@ -126,6 +126,15 @@ const Login = () => {
                 mb="25px"
                 variant="h4"
                 fontFamily="Trispace"
+
+                component={motion.div}
+                whileHover={{
+                transition: { duration: 0.1 },
+                textShadow: "0px 0px 12px rgb(249, 248, 113)"
+                }}
+                initial={{opacity: 0, y: '-10vw'}}
+                animate={{opacity: 1, y: 0}}
+                transition={{duration: 1 , type: "tween"}}
               >
                 Log in
               </Typography>
@@ -137,6 +146,15 @@ const Login = () => {
                   marginBottom: "15px",
                   opacity: "65%",
                 }}
+
+                component={motion.div}
+                whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.1 },
+                }}
+                initial={{opacity: 0, y: '5vw'}}
+                animate={{opacity: 1, y: 0}}
+                transition={{duration: 0.8 , type: "tween"}}
               >
                 <TextField
                   error={error.email === "" ? false : true}
@@ -167,6 +185,15 @@ const Login = () => {
                   opacity: "65%",
 
                 }}
+
+                component={motion.div}
+                whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.1 },
+                }}
+                initial={{opacity: 0, y: '5vw'}}
+                animate={{opacity: 1, y: 0}}
+                transition={{duration: 0.8 , type: "tween"}}
               >
                 <TextField
                   error={error.password === "" ? false : true}
@@ -225,6 +252,7 @@ const Login = () => {
                  
                 </Button>
               </Box>
+
               <Button
                 variant="outlined"
                 component={motion.div}
