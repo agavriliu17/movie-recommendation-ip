@@ -46,39 +46,22 @@ const Start = () => {
           top: "2vh",
         }}
       >
-        <Typography
-          display="inline"
-          sx={{
-            fontFamily: "Trispace",
-            color: COLORS.secondary,
-            fontWeight: "bolder",
-            fontSize: "calc(1rem + 2vw)",
-            marginTop: "10px",
-          }}
+        <motion.div
+          initial={{ x: "-100vw" }}
+          animate={{ x: 0 }}
+          transition={{ delay: 1.5, type: "tween" }}
         >
-          M
-        </Typography>
-        <Typography
-          display="inline"
-          sx={{
-            fontFamily: "Trispace",
-            color: COLORS.secondary,
-            fontWeight: "bolder",
-            fontSize: "calc(1rem + 2vw)",
-          }}
-        >
-          ovie&nbsp;
-        </Typography>
-        <Typography
-          sx={{
-            fontFamily: "Trispace",
-            color: COLORS.secondary,
-            fontWeight: "normal",
-            fontSize: "calc(0.2rem + 2vw)",
-          }}
-        >
-          Streaming Website
-        </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Trispace",
+              color: COLORS.secondary,
+              fontWeight: "normal",
+              fontSize: "calc(0.2rem + 2vw)",
+            }}
+          >
+            Movie Streaming Website
+          </Typography>
+        </motion.div>
       </Box>
       <motion.div
         initial={{ y: "-100vh" }}

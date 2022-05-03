@@ -10,7 +10,7 @@ import background from "../../pictures/bg2.jpg";
 import logo from "../../pictures/logo.png";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import {motion} from 'framer-motion';
+import { motion } from "framer-motion";
 
 export const COLORS = {
   primary: "#482884", // purple
@@ -97,11 +97,8 @@ const Register = () => {
         borderRadius: 0,
       }}
     >
-      
-      
       <Container maxWidth="sm">
         <Card
-
           sx={{
             height: "90%",
             padding: "20px",
@@ -109,45 +106,38 @@ const Register = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            marginTop:"10%"
+            marginTop: "10%",
           }}
-
-
         >
           <Box
-        className="title"
-        sx={{
-          position: "absolute",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          zIndex: "1",
-          left: "5%",
-          top: "2vh",
-        }}
-      >
-        <Typography
-          display="inline"
-          sx={{
-            fontFamily: "Trispace",
-            color: "#F9F871",
-            fontWeight: "bolder",
-            fontSize: "calc(1rem + 2vw)",
-          }}
-        >
-          Movie&nbsp;
-        </Typography>
-        <Typography
-          sx={{
-            fontFamily: "Trispace",
-            color: "#F9F871",
-            fontWeight: "normal",
-            fontSize: "calc(0.2rem + 2vw)",
-          }}
-        >
-          Streaming Website
-        </Typography>
-      </Box>
+            className="title"
+            sx={{
+              position: "absolute",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              zIndex: "1",
+              left: "5%",
+              top: "2vh",
+            }}
+          >
+            <motion.div
+              initial={{ x: "-100vw" }}
+              animate={{ x: 0 }}
+              transition={{ delay: 0, type: "tween" }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Trispace",
+                  color: "#F9F871",
+                  fontWeight: "normal",
+                  fontSize: "calc(0.2rem + 2vw)",
+                }}
+              >
+                Movie Streaming Website
+              </Typography>
+            </motion.div>
+          </Box>
 
           <Box
             sx={{
@@ -156,7 +146,6 @@ const Register = () => {
               justifyContent: "center",
               flexDirection: "column",
               width: "60%",
-             
             }}
           >
             <Typography
@@ -164,16 +153,14 @@ const Register = () => {
               mb="25px"
               variant="h4"
               fontFamily="trispace"
-
               component={motion.div}
               whileHover={{
-              transition: { duration: 0.1 },
-              textShadow: "0px 0px 12px rgb(249, 248, 113)"
+                transition: { duration: 0.1 },
+                textShadow: "0px 0px 12px rgb(249, 248, 113)",
               }}
-              initial={{opacity: 0, y: '-10vw'}}
-              animate={{opacity: 1, y: 0}}
-              transition={{duration: 1 , type: "tween"}}
-
+              initial={{ opacity: 0, y: "-10vw" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, type: "tween" }}
               sx={{
                 display: "flex",
                 flexDirection: "left",
@@ -182,17 +169,15 @@ const Register = () => {
               Sign Up
             </Typography>
 
-            <Paper 
-
+            <Paper
               component={motion.div}
               whileHover={{
-              scale: 1.1,
-              transition: { duration: 0.1 },
+                scale: 1.1,
+                transition: { duration: 0.1 },
               }}
-              initial={{opacity: 0, y: '5vw'}}
-              animate={{opacity: 1, y: 0}}
-              transition={{duration: 0.8 , type: "tween"}}
-
+              initial={{ opacity: 0, y: "5vw" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, type: "tween" }}
               sx={{ backgroundColor: "#F9F871", width: "130%" }}
             >
               <TextField
@@ -206,9 +191,9 @@ const Register = () => {
                   color: "#8c8c8c",
                   input: { color: COLORS.primary },
                   "& label": {
-                    color: COLORS.primary,
+                    color: "#482884",
                     "&.Mui-focused": {
-                      color: COLORS.primary,
+                      color: "#482884",
                     },
                   },
                 }}
@@ -217,16 +202,14 @@ const Register = () => {
             </Paper>
 
             <Paper
-
               component={motion.div}
               whileHover={{
-              scale: 1.1,
-              transition: { duration: 0.1 },
+                scale: 1.1,
+                transition: { duration: 0.1 },
               }}
-              initial={{opacity: 0, y: '5vw'}}
-              animate={{opacity: 1, y: 0}}
-              transition={{duration: 0.8 , type: "tween"}}
-
+              initial={{ opacity: 0, y: "5vw" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, type: "tween" }}
               sx={{
                 backgroundColor: "#F9F871",
                 height: "fit-content",
@@ -256,16 +239,14 @@ const Register = () => {
             </Paper>
 
             <Paper
-
               component={motion.div}
               whileHover={{
-              scale: 1.1,
-              transition: { duration: 0.1 },
+                scale: 1.1,
+                transition: { duration: 0.1 },
               }}
-              initial={{opacity: 0, y: '5vw'}}
-              animate={{opacity: 1, y: 0}}
-              transition={{duration: 0.8 , type: "tween"}}
-    
+              initial={{ opacity: 0, y: "5vw" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, type: "tween" }}
               sx={{
                 backgroundColor: "#F9F871",
                 height: "fit-content",
@@ -295,16 +276,14 @@ const Register = () => {
             </Paper>
 
             <Paper
-
               component={motion.div}
               whileHover={{
-              scale: 1.1,
-              transition: { duration: 0.1 },
+                scale: 1.1,
+                transition: { duration: 0.1 },
               }}
-              initial={{opacity: 0, y: '5vw'}}
-              animate={{opacity: 1, y: 0}}
-              transition={{duration: 0.8 , type: "tween"}}
-
+              initial={{ opacity: 0, y: "5vw" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, type: "tween" }}
               sx={{
                 backgroundColor: "#F9F871",
                 height: "fit-content",
@@ -335,16 +314,14 @@ const Register = () => {
             </Paper>
 
             <Paper
-
               component={motion.div}
               whileHover={{
-              scale: 1.1,
-              transition: { duration: 0.1 },
+                scale: 1.1,
+                transition: { duration: 0.1 },
               }}
-              initial={{opacity: 0, y: '5vw'}}
-              animate={{opacity: 1, y: 0}}
-              transition={{duration: 0.8 , type: "tween"}}
-
+              initial={{ opacity: 0, y: "5vw" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, type: "tween" }}
               sx={{
                 backgroundColor: "#F9F871",
                 height: "fit-content",
@@ -377,16 +354,14 @@ const Register = () => {
             </Paper>
 
             <Box
-
               component={motion.div}
               whileHover={{
-              scale: 1.1,
-              transition: { duration: 0.1 },
+                scale: 1.1,
+                transition: { duration: 0.1 },
               }}
-              initial={{opacity: 0, scale: 0.3}}
-              animate={{opacity: 1, scale: 1}}
-              transition={{duration: 0.9, delay: 1.3, type: "tween"}}
-
+              initial={{ opacity: 0, scale: 0.3 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, delay: 1.3, type: "tween" }}
               sx={{
                 backgroundColor: "#004C2E",
                 height: "2px",
@@ -397,18 +372,16 @@ const Register = () => {
 
             <Button
               variant="outlined"
-
               component={motion.div}
               whileHover={{
-              scale: 1.2,
-               transition: { duration: 0.1 },
-              boxShadow: "0px 0px 10px rgb(249, 248, 113)"
+                scale: 1.2,
+                transition: { duration: 0.1 },
+                boxShadow: "0px 0px 10px rgb(249, 248, 113)",
               }}
               whileTap={{ scale: 0.9 }}
-              initial={{opacity: 0, y: '-100vw'}}
-             animate={{opacity: 1, y: 0}}
-             transition={{duration: 1.5 , type: "spring", stiffness: 60}}
-
+              initial={{ opacity: 0, y: "-100vw" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.5, type: "spring", stiffness: 60 }}
               sx={{
                 backgroundColor: COLORS.secondary,
                 color: COLORS.primary,
@@ -436,27 +409,30 @@ const Register = () => {
               }}
             >
               <Typography
-              component={motion.div}
-              initial={{opacity: 0, y: '100vw'}}
-             animate={{opacity: 1, y: 0}}
-             transition={{duration: 1 , type: "tween"}}
+                component={motion.div}
+                initial={{ opacity: 0, y: "100vw" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, type: "tween" }}
                 color="#F9F871"
-                sx={{ fontSize: "calc(0.3rem + 0.5vw)", fontFamily: "Trispace" }}
+                sx={{
+                  fontSize: "calc(0.3rem + 0.5vw)",
+                  fontFamily: "Trispace",
+                }}
               >
                 Already an user?
               </Typography>
               <Button
                 variant="text"
                 component={motion.div}
-                 whileHover={{
-                 scale: 1.1,
+                whileHover={{
+                  scale: 1.1,
                   transition: { duration: 0.1 },
-                 textShadow: "0px 0px 12px rgb(249, 248, 113)"
-                 }}
-                 whileTap={{ scale: 0.9 }}
-                 initial={{opacity: 0, y: '100vw'}}
-                animate={{opacity: 1, y: 0}}
-                transition={{duration: 1 , type: "tween"}}
+                  textShadow: "0px 0px 12px rgb(249, 248, 113)",
+                }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ opacity: 0, y: "100vw" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, type: "tween" }}
                 disableFocusRipple
                 disableElevation
                 disableRipple
@@ -472,7 +448,7 @@ const Register = () => {
                     textTransform: "none",
                     color: "#ad8ce6",
                     fontSize: "calc(0.4rem + 0.5vw)",
-                    fontFamily: "Trispace"
+                    fontFamily: "Trispace",
                   }}
                 >
                   Log in now.

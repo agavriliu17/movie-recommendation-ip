@@ -8,13 +8,12 @@ import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
 import CustomCheckBox from "../../components/CustomCheckbox";
 import Fade from "@mui/material/Fade";
-import {motion} from 'framer-motion';
-
+import { motion } from "framer-motion";
 
 import logo from "../../resources/images/logo.png";
 
 import { useNavigate } from "react-router-dom";
-import neteflixBackground2 from "../../resources/images/bg2.jpg"
+import neteflixBackground2 from "../../resources/images/bg2.jpg";
 
 export const validateEmail = (email) => {
   const re = /\S+@\S+\.\S+/;
@@ -49,7 +48,6 @@ const Login = () => {
       setError({ ...error, password: "" });
       navigate("/home");
     }
-   
   };
 
   return (
@@ -65,7 +63,7 @@ const Login = () => {
         flexDirection: "column",
       }}
     >
-        <Box
+      <Box
         className="title"
         sx={{
           position: "absolute",
@@ -77,27 +75,22 @@ const Login = () => {
           top: "2vh",
         }}
       >
-        <Typography
-          display="inline"
-          sx={{
-            fontFamily: "Trispace",
-            color: "#F9F871",
-            fontWeight: "bolder",
-            fontSize: "calc(1rem + 2vw)",
-          }}
+        <motion.div
+          initial={{ x: "-100vw" }}
+          animate={{ x: 0 }}
+          transition={{ delay: 0, type: "tween" }}
         >
-          Movie&nbsp;
-        </Typography>
-        <Typography
-          sx={{
-            fontFamily: "Trispace",
-            color: "#F9F871",
-            fontWeight: "normal",
-            fontSize: "calc(0.2rem + 2vw)",
-          }}
-        >
-          Streaming Website
-        </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Trispace",
+              color: "#F9F871",
+              fontWeight: "normal",
+              fontSize: "calc(0.2rem + 2vw)",
+            }}
+          >
+            Movie Streaming Website
+          </Typography>
+        </motion.div>
       </Box>
       <Container maxWidth="sm">
         <Fade in timeout={750}>
@@ -109,7 +102,7 @@ const Login = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              marginTop: "10%"
+              marginTop: "10%",
             }}
           >
             <Box
@@ -117,8 +110,7 @@ const Login = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                width: "80%"
-               
+                width: "80%",
               }}
             >
               <Typography
@@ -126,15 +118,14 @@ const Login = () => {
                 mb="25px"
                 variant="h4"
                 fontFamily="Trispace"
-
                 component={motion.div}
                 whileHover={{
-                transition: { duration: 0.1 },
-                textShadow: "0px 0px 12px rgb(249, 248, 113)"
+                  transition: { duration: 0.1 },
+                  textShadow: "0px 0px 12px rgb(249, 248, 113)",
                 }}
-                initial={{opacity: 0, y: '-10vw'}}
-                animate={{opacity: 1, y: 0}}
-                transition={{duration: 1 , type: "tween"}}
+                initial={{ opacity: 0, y: "-10vw" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, type: "tween" }}
               >
                 Log in
               </Typography>
@@ -146,15 +137,14 @@ const Login = () => {
                   marginBottom: "15px",
                   opacity: "65%",
                 }}
-
                 component={motion.div}
                 whileHover={{
-                scale: 1.1,
-                transition: { duration: 0.1 },
+                  scale: 1.1,
+                  transition: { duration: 0.1 },
                 }}
-                initial={{opacity: 0, y: '5vw'}}
-                animate={{opacity: 1, y: 0}}
-                transition={{duration: 0.8 , type: "tween"}}
+                initial={{ opacity: 0, y: "5vw" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, type: "tween" }}
               >
                 <TextField
                   error={error.email === "" ? false : true}
@@ -165,11 +155,21 @@ const Login = () => {
                   helperText={error.email}
                   onChange={(ev) => handleChange(ev, "email")}
                   value={input.email}
-                  sx={{ width: "100%", color: "#F9F871", height: "55px" }}
+                  sx={{
+                    width: "100%",
+                    color: "#F9F871",
+                    height: "55px",
+                    "& label": {
+                      color: "#482884",
+                      "&.Mui-focused": {
+                        color: "#482884",
+                      },
+                    },
+                  }}
                   variant="filled"
                   InputLabelProps={{
                     sx: {
-                      fontFamily:"Trispace",
+                      fontFamily: "Trispace",
                       color: "#482884",
                     },
                   }}
@@ -183,17 +183,15 @@ const Login = () => {
                   width: "100%",
                   marginBottom: "30px",
                   opacity: "65%",
-
                 }}
-
                 component={motion.div}
                 whileHover={{
-                scale: 1.1,
-                transition: { duration: 0.1 },
+                  scale: 1.1,
+                  transition: { duration: 0.1 },
                 }}
-                initial={{opacity: 0, y: '5vw'}}
-                animate={{opacity: 1, y: 0}}
-                transition={{duration: 0.8 , type: "tween"}}
+                initial={{ opacity: 0, y: "5vw" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, type: "tween" }}
               >
                 <TextField
                   error={error.password === "" ? false : true}
@@ -205,7 +203,12 @@ const Login = () => {
                     width: "100%",
                     color: "rgb(140 140 140)",
                     height: "55px",
-
+                    "& label": {
+                      color: "#482884",
+                      "&.Mui-focused": {
+                        color: "#482884",
+                      },
+                    },
                   }}
                   helperText={error.password}
                   onChange={(ev) => handleChange(ev, "password")}
@@ -213,7 +216,7 @@ const Login = () => {
                   variant="filled"
                   InputLabelProps={{
                     sx: {
-                      fontFamily:"Trispace",
+                      fontFamily: "Trispace",
                       color: "#482884",
                     },
                   }}
@@ -233,10 +236,7 @@ const Login = () => {
                     flexDirection: "row",
                     alignItems: "center",
                   }}
-                >
-                
-                 
-                </Box>
+                ></Box>
                 <Button
                   variant="text"
                   disableFocusRipple
@@ -248,97 +248,62 @@ const Login = () => {
                     },
                   }}
                   onClick={() => navigate("/reset-pass")}
-                >
-                 
-                </Button>
+                ></Button>
               </Box>
 
               <Button
                 variant="outlined"
                 component={motion.div}
                 whileHover={{
-                scale: 1.2,
-                 transition: { duration: 0.1 },
-                boxShadow: "0px 0px 10px rgb(249, 248, 113)"
+                  scale: 1.2,
+                  transition: { duration: 0.1 },
+                  boxShadow: "0px 0px 10px rgb(249, 248, 113)",
                 }}
                 whileTap={{ scale: 0.9 }}
-                initial={{opacity: 0, y: '-100vw'}}
-               animate={{opacity: 1, y: 0}}
-               transition={{duration: 1.5 , type: "spring", stiffness: 60}}
-
+                initial={{ opacity: 0, y: "-100vw" }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.5, type: "spring", stiffness: 60 }}
                 sx={{
                   marginTop: "25px",
                   width: "40%",
-                 // textTransform: "none",
+                  // textTransform: "none",
                   marginBottom: "25px",
-                  color:"#F9F871",
-                  backgroundColor:"#482884",
+                  color: "#F9F871",
+                  backgroundColor: "#482884",
                   fontFamily: "Trispace",
-                  fontWeight:"600",
-                  borderColor:"#F9F871",
+                  fontWeight: "600",
+                  borderColor: "#F9F871",
                   "&:hover": {
-                    backgroundColor:"#F9F871",
-                    color:"#482884",
-                    borderColor:"#482884",
-                    
+                    backgroundColor: "#F9F871",
+                    color: "#482884",
+                    borderColor: "#482884",
                   },
-
                 }}
                 onClick={handleSignIn}
               >
-                Sign in
+                Log in
               </Button>
               <Box
                 sx={{
                   display: "flex",
-                  width:"100%",
+                  width: "100%",
                   flexDirection: "row",
                   justifyContent: "space-between",
                   marginTop: "25px",
                 }}
               >
-              <Button
-                  variant="text"
-
-                  component={motion.div}
-                  whileHover={{
-                  scale: 1.2,
-                   transition: { duration: 0.1 },
-                  textShadow: "0px 0px 12px rgb(249, 248, 113)"
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                  initial={{opacity: 0, y: '100vw'}}
-                 animate={{opacity: 1, y: 0}}
-                 transition={{duration: 1 , type: "tween"}}
-
-                  disableFocusRipple
-                  disableElevation
-                  disableRipple
-                  sx={{
-                    "&.MuiButtonBase-root:hover": {
-                      bgcolor: "transparent",
-                    },
-                  }}
-                  onClick={() => navigate("/register")}
-                >
-                  <Typography sx={{ textTransform: "none", color: "#F9F871",fontFamily:"Trispace" ,}}>
-                    Forgot password?
-                  </Typography>
-                </Button>
-               
                 <Button
                   variant="text"
                   component={motion.div}
                   whileHover={{
-                  scale: 1.2,
-                   transition: { duration: 0.1 },
-                  textShadow: "0px 0px 12px rgb(249, 248, 113)"
+                    scale: 1.2,
+                    transition: { duration: 0.1 },
+                    textShadow: "0px 0px 12px rgb(249, 248, 113)",
                   }}
                   whileTap={{ scale: 0.9 }}
-                  initial={{opacity: 0, y: '100vw'}}
-                 animate={{opacity: 1, y: 0}}
-                 transition={{duration: 1 , type: "tween"}}
-
+                  initial={{ opacity: 0, y: "100vw" }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, type: "tween" }}
                   disableFocusRipple
                   disableElevation
                   disableRipple
@@ -349,7 +314,46 @@ const Login = () => {
                   }}
                   onClick={() => navigate("/register")}
                 >
-                  <Typography sx={{ textTransform: "none", color: "#F9F871",fontFamily:"Trispace" ,}}>
+                  <Typography
+                    sx={{
+                      textTransform: "none",
+                      color: "#F9F871",
+                      fontFamily: "Trispace",
+                    }}
+                  >
+                    Forgot password?
+                  </Typography>
+                </Button>
+
+                <Button
+                  variant="text"
+                  component={motion.div}
+                  whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 0.1 },
+                    textShadow: "0px 0px 12px rgb(249, 248, 113)",
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, y: "100vw" }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, type: "tween" }}
+                  disableFocusRipple
+                  disableElevation
+                  disableRipple
+                  sx={{
+                    "&.MuiButtonBase-root:hover": {
+                      bgcolor: "transparent",
+                    },
+                  }}
+                  onClick={() => navigate("/register")}
+                >
+                  <Typography
+                    sx={{
+                      textTransform: "none",
+                      color: "#F9F871",
+                      fontFamily: "Trispace",
+                    }}
+                  >
                     Sign up now.
                   </Typography>
                 </Button>
