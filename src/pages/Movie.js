@@ -54,8 +54,7 @@ const Movie = () => {
         sx={{ display: "flex", flexDirection: "row", padding: "100px" }}
         >
         <ReactPlayer
-        width={"1600px"}
-        height={"800px"}
+        
         controls
         url="https://www.youtube.com/watch?v=TO-_3tck2tg&ab_channel=ImagineDragonsVEVO" 
         onReady={()=>console.log('onReady callback')}
