@@ -6,8 +6,7 @@ import { useParams } from "react-router-dom";
 
 import requests from "../resources/requests";
 import axios from "axios";
-import ReactPlayer from 'react-player';
-
+import ReactPlayer from "react-player";
 
 import Nav from "../components/nav/Nav";
 import Box from "@mui/material/Box";
@@ -46,38 +45,51 @@ const Movie = () => {
       }}
     >
       <Nav />
-      <Container 
+      <Container
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
-        {/* //TODO: */}
-        <Box
-        sx={{ display: "flex", flexDirection: "row", padding: "100px" }}
-        >
-        <ReactPlayer
-        
-        controls
-        url="https://www.youtube.com/watch?v=TO-_3tck2tg&ab_channel=ImagineDragonsVEVO" 
-        onReady={()=>console.log('onReady callback')}
-        onStart={()=>console.log('onStart callback')}
-        onPause={()=>console.log('onPause callback')}
-        onEnded={()=>console.log('onEnded callback')}
-        />
+        <Box sx={{ height: "20vh" }} />
+        <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
+          <ReactPlayer
+            controls
+            url="https://www.youtube.com/watch?v=TO-_3tck2tg&ab_channel=ImagineDragonsVEVO"
+            onReady={() => console.log("onReady callback")}
+            onStart={() => console.log("onStart callback")}
+            onPause={() => console.log("onPause callback")}
+            onEnded={() => console.log("onEnded callback")}
+            width="100%"
+          />
         </Box>
-      
-    
-     <Typography ml="20px" fontSize="25px" mt={5}>
-        For you
-      </Typography>
-      <Box sx={{ display: "flex", flexDirection: "row", padding: "10px" }}>
-        {[...Array(21)].map((el, ind) => (
-          <Box sx={{ marginLeft: "10px", marginRight: "10px" }} key={ind}>
-            <Skeleton variant="rectangular" width={210} height={118} />
-            <Skeleton width={210} height={40} />
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+          }}
+        >
+          <Typography ml="20px" fontSize="25px" mt={5} textAlign="left">
+            Recommended
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              padding: "10px",
+              flexWrap: "wrap",
+              width: "100%",
+              justifyContent: "center",
+            }}
+          >
+            {[...Array(5)].map((el, ind) => (
+              <Box sx={{ marginLeft: "10px", marginRight: "10px" }} key={ind}>
+                <Skeleton variant="rectangular" width={210} height={118} />
+                <Skeleton width={210} height={40} />
+              </Box>
+            ))}
           </Box>
-        ))}
-      </Box>
+        </Box>
       </Container>
-      
     </Paper>
   );
 };
