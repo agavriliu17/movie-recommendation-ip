@@ -50,21 +50,53 @@ const Home = () => {
     setVisibility(false);
   };
 
-  const [data, setData] = React.useState([]);
+  const [topRatedData, setDataTop] = React.useState([]);
+  const [horrorData,setDataHorror]=React.useState([]);
+  const [actionData,setDataAction]=React.useState([]);
+  const [documentariesData,setDatadocumentaries]=React.useState([]);
   const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
     (async function () {
       try {
-        const movieData = await axios
+        const topMovieData = await axios
+          .get(requests.fetchTopRated)
+          .then((res) => res.data.results);
+
+        const toptimedData = await new Promise((resolve) => {
+          setTimeout(() => resolve(topMovieData), 1000);
+        });
+
+
+        const horrorMovieData = await axios
           .get(requests.fetchHorrorMovies)
           .then((res) => res.data.results);
 
-        const timedData = await new Promise((resolve) => {
-          setTimeout(() => resolve(movieData), 1000);
+        const horrorTimedData = await new Promise((resolve) => {
+          setTimeout(() => resolve(horrorMovieData), 1000);
         });
 
-        setData(timedData);
+        const actionMovieData = await axios
+          .get(requests.fetchActionMovies)
+          .then((res) => res.data.results);
+
+        const actionTimedData = await new Promise((resolve) => {
+          setTimeout(() => resolve(actionMovieData), 1000);
+        });
+
+        const documentariesMovieData = await axios
+          .get(requests.fetchDocumentaries)
+          .then((res) => res.data.results);
+
+        const documentariesTimedData = await new Promise((resolve) => {
+          setTimeout(() => resolve(documentariesMovieData), 1000);
+        });
+
+        setDataTop(toptimedData);
+        setDataHorror(horrorTimedData);
+        setDataAction(actionTimedData);
+        setDatadocumentaries(documentariesTimedData);
         setLoading(false);
+        
       } catch (e) {
         console.error(e);
 
@@ -73,10 +105,17 @@ const Home = () => {
     })();
   }, []);
 
-  const topRated = data.slice(0, 10);
+ 
+  const topRated = topRatedData.slice(0, 10);
+  const horrormovies= horrorData.slice(0,10);
+  const actionmovies=actionData.slice(0,10);
+  const documentariesmovies=documentariesData.slice(0,10);
 
-  
-  console.log(loading);
+
+  var [title,setTitle]=useState();
+  var [info,setInfo]=useState();
+  var [added,setAdded]=useState();
+  console.log(title);
   return (
     <>
       <Nav></Nav>
@@ -84,7 +123,9 @@ const Home = () => {
       <CustomPopup
         onClose={popupCloseHandler}
         show={visibility}
-        
+        title
+        info
+        added
       ></CustomPopup>
 
       <Paper
@@ -110,6 +151,9 @@ const Home = () => {
                 <button
                   onClick={() => {
                     setVisibility(true);
+                    setTitle(datas.title);
+                    setInfo(datas.info);
+                    setAdded=(datas.release_date);
                   }}
                   className="component"
                 >
@@ -120,8 +164,8 @@ const Home = () => {
           })}
         </Carousel>
       )}
-      {/* <img onClick={() => setVisibility(true)} src={r2}></img> */}
-      {/* <Typography
+     
+       <Typography
         sx={{
           fontFamily: "Trispace",
           color: "#F9F871",
@@ -135,28 +179,29 @@ const Home = () => {
           textAlign:"left"
         }}
       >
-        Action non-stop:
+        For the brave:
       </Typography>
-        <Carousel className="carusel"
-        
-        responsive={responsive}>
-           
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-           
-          
-        </Carousel>  
-      
+         {!loading && (
+        <Carousel className="carusel" responsive={responsive}>
+          {horrormovies.map((datas, key) => {
+            return (
+              <>
+                <button
+                  onClick={() => {
+                    setVisibility(true);
+                  }}
+                  className="component"
+                >
+                  <Image movie={datas}></Image>
+                </button>
+              </>
+            );
+          })}
+        </Carousel>
+      )}
 
-        <Typography
+
+<Typography
         sx={{
           fontFamily: "Trispace",
           color: "#F9F871",
@@ -170,24 +215,63 @@ const Home = () => {
           textAlign:"left"
         }}
       >
-        Not for the faint hearth
+        Action non stop:
       </Typography>
-      <Carousel className="carusel"
+         {!loading && (
+        <Carousel className="carusel" responsive={responsive}>
+          {actionmovies.map((datas, key) => {
+            return (
+              <>
+                <button
+                  onClick={() => {
+                    setVisibility(true);
+                  }}
+                  className="component"
+                >
+                  <Image movie={datas}></Image>
+                </button>
+              </>
+            );
+          })}
+        </Carousel>
+      )}
+
+
+<Typography
+        sx={{
+          fontFamily: "Trispace",
+          color: "#F9F871",
+          fontWeight: "bolder",
+          fontSize: "20px",
+          marginTop: "8vh",
+          backgroundColor: "#482884",
+          paddingBottom: "20px",
+          paddingLeft: "20px",
+          paddingTop: "20px",
+          textAlign:"left"
+        }}
+      >
+        Documentaries:
+      </Typography>
+         {!loading && (
+        <Carousel className="carusel" responsive={responsive}>
+          {documentariesmovies.map((datas, key) => {
+            return (
+              <>
+                <button
+                  onClick={() => {
+                    setVisibility(true);
+                  }}
+                  className="component"
+                >
+                  <Image movie={datas}></Image>
+                </button>
+              </>
+            );
+          })}
+        </Carousel>
+      )}
        
-        
-       responsive={responsive}>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         <Image></Image>
-         
-       </Carousel>   */}
     </>
   );
 };
