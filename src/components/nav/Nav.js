@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AccountMenu from "./AccountMenu";
 import { useNavigate } from "react-router-dom";
 
-const pages = { home: "Home", myList: "My list" };
+const pages = { home: "Home", my_list: "My list" };
 
 const transparentNavStyle = {
   backgroundColor: "transparent",

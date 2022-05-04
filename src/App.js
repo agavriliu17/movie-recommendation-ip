@@ -9,9 +9,10 @@ import Login from "./pages/authPages/Login";
 import Register from "./pages/authPages/Register";
 import ResetPassword from "./pages/authPages/ResetPassword";
 
+import MyList from "./pages/user/MyList";
 import Landing from "./pages/Landing";
 import Home from "./pages/user/Home";
-import Movie from "./pages/Movie";
+import Movie from "./pages/user/Movie";
 import NotFound from "./pages/NotFound";
 import AdminHome from "./pages/admin/AdminHome";
 
@@ -30,6 +31,7 @@ const App = () => {
 
           <Route index element={<Landing />} />
           <Route path="login" element={<Login />} />
+          <Route path="my_list" element={<MyList />} />
           <Route path="register" element={<Register />} />
           <Route path="reset-pass" element={<ResetPassword />} />
 
