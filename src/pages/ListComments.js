@@ -5,66 +5,68 @@ import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
 import { comments as getCommets } from "../resources/comments";
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 
 const Comments = ({ currentUserId }) => {
-    const [backendComments, setBackendCommets] = useState([]);
-    
+  const [backendComments, setBackendCommets] = useState([]);
 
-    console.log("backendComments", backendComments);
+  useEffect(() => {
+    getCommets().then((data) => {
+      setBackendCommets(data);
+    });
+  }, []);
+  return (
+    <Paper>
+      <Container
+        sx={{
+          display: "flex",
+          marginTop: "28px",
+          flexDirection: "column",
+        }}
+      >
+        {backendComments.map((comment, index) => (
+          <Box key={`${comment.id}-${index}`} sx={{ marginBottom: "25px" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "baseline",
+              }}
+            >
+              <Typography
+                sx={{
+                  marginRight: "8px",
+                  fontSize: "20px",
+                }}
+              >
+                {comment.user}
+              </Typography>
+              <Typography color="#b1b1b1">{comment.date}</Typography>
+            </Box>
 
-    useEffect(() => {
-        getCommets().then((data) => {
-            setBackendCommets(data);
-        });
-    }, []);
-    return (
-        <Paper>
-          
-            {backendComments.map((comment) => (
-               
-                <Container
-                    sx={{
-                        display: "flex",
-                        marginTop: "28px",
-                    }}>
-                    <Box>
+            <Typography>{comment.message}</Typography>
 
-                        <Box>{comment.date}</Box>
-                        <Box
-                            sx={{
-                                marginRight: "8px",
-                                fontSize: "20px",
-                            }}>
-                            {comment.user}
-                        </Box>
-
-                        <Box
-                            sx={{
-
-                            }}>{comment.message}</Box>
-
-
-                        <IconButton>
-                            <ThumbUpAltIcon
-                           
-
-                            onClick={() => {
-                                comment.likes+=1;
-                            }} />
-                            </IconButton>
-
-
-
-                        {comment.likes}
-
-                    </Box>
-
-                </Container>
-            ))}
-        </Paper>
-
-    );
-}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <IconButton
+                onClick={() => {
+                  comment.likes += 1;
+                }}
+              >
+                <ThumbUpAltIcon />
+              </IconButton>
+              <Typography>{comment.likes}</Typography>
+            </Box>
+          </Box>
+        ))}
+      </Container>
+    </Paper>
+  );
+};
 
 export default Comments;

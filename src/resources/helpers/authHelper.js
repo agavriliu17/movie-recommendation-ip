@@ -10,13 +10,12 @@ export const validateEmail = (email) => {
 };
 
 export const registerUser = async (userInfo) => {
-  console.log(`${BASE_URL}api/v1/users`);
   const res = axios.post(`${BASE_URL}api/v1/users`, {
     email: userInfo.email,
     firstname: userInfo.firstName,
     lastname: userInfo.lastName,
     password: userInfo.password,
-    username: "test",
+    username: "newUserTest",
   });
 
   if (res.status === 200) {

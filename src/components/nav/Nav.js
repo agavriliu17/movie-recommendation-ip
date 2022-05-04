@@ -1,86 +1,44 @@
 import React from "react";
-import Button from "@mui/material/Button";
-import classNames from "classnames";
+import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
 import Avatar from "@mui/material/Avatar";
-import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AccountMenu from "./AccountMenu";
 import { useNavigate } from "react-router-dom";
 
-import AccountMenu from "./AccountMenu";
-import { grey } from "@mui/material/colors";
-import { makeStyles } from "@mui/styles";
+const pages = { home: "Home", myList: "My list" };
 
-const useStyles = makeStyles({
-  nav: {
-    position: "fixed",
-    top: 0,
-    right: 0,
-    padding: "10px",
-    width: "100%",
-    height: "30px",
-    zIndex: 1100,
-    transitionTimingFunction: "ease-in",
-    transition: "all 0.5s",
-    backgroundImage:
-      "linear-gradient(to bottom,rgba(0,0,0,.6) 10%,rgba(0,0,0,0))",
-  },
-  navBlack: {
-    backgroundColor: "#111",
-  },
-  navContents: {
-    display: "flex",
-    justifyContent: "space-between",
-    position: "fixed",
-  },
-  navLogo: {
-    position: "fixed",
-    top: "2px",
-    left: "0",
-    width: "80px",
-    objectFit: "contain",
-    paddingLeft: "20px",
-    cursor: "pointer",
-  },
-  navAvatar: {
-    position: "fixed",
-    right: "15px",
-    cursor: "pointer",
-  },
-  buttonGroup: {
-    position: "fixed",
-    paddingLeft: "130px",
-  },
-  button: {
-    background: "none",
-    color: "#fff",
-    border: "none",
-    outline: "none",
-    padding: "0px",
-    fontSize: "16px",
-    fontWeight: "100",
-    margin: "2px 10px",
-    textTransform: "capitalize",
-    "&:hover": {
-      background: "none",
-      cursor: "pointer",
-      color: "#cfcfcf",
-    },
-  },
-  buttonActive: {
-    fontWeight: "550",
-  },
-  buttonIcon: {
-    position: "fixed",
-    right: "55px",
-    top: "5px",
-  },
-});
+const transparentNavStyle = {
+  backgroundColor: "transparent",
+  backgroundImage:
+    "linear-gradient(to bottom,rgba(0,0,0,.6) 10%,rgba(0,0,0,0))",
+  zIndex: 1100,
+  boxShadow: "none",
+  transitionTimingFunction: "ease !important",
+  transition: "0.5s",
+  transitionDelay: "0s",
+  ".MuiAppBar-root": { backgroundColor: "#000000" },
+};
+
+const blackNavStyle = {
+  transitionTimingFunction: "ease !important",
+  transitionProperty: "background-color !important",
+  transition: "0.5s",
+  backgroundColor: "#000000",
+  transitionDelay: "0s",
+};
 
 const Nav = () => {
   const [show, handleShow] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -96,67 +54,119 @@ const Nav = () => {
     }
   };
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
   };
 
-  const classes = useStyles();
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
-  //TODO: Fix scrollbar bug
+  const goToMovie = (pageRoute) => {
+    navigate(`/${pageRoute}`);
+  };
+
   return (
-    <Box className={classNames(classes.nav, show && classes.navBlack)}>
-      <Box className={classes.navContents}>
-        <img
-          className={classes.navLogo}
-          src="https://www.psdstamps.com/wp-content/uploads/2020/01/movies-stamp-png.png"
-          alt=""
-        />
+    <AppBar sx={show ? blackNavStyle : transparentNavStyle}>
+      <Toolbar disableGutters>
+        <Typography
+          variant="h6"
+          noWrap
+          component="div"
+          sx={{ mr: 2, display: { xs: "none", md: "flex" }, ml: "20px" }}
+        >
+          LOGO
+        </Typography>
 
-        <Box>
-          <Box className={classes.buttonGroup}>
+        <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleOpenNavMenu}
+            color="inherit"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorElNav}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            open={Boolean(anchorElNav)}
+            onClose={handleCloseNavMenu}
+            sx={{
+              display: { xs: "block", md: "none" },
+            }}
+          >
+            {Object.keys(pages).map((page) => (
+              <MenuItem
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ textTransform: "none" }}
+              >
+                <Typography textAlign="center">{pages[page]}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
+        </Box>
+        <Typography
+          variant="h6"
+          noWrap
+          component="div"
+          sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+        >
+          LOGO
+        </Typography>
+        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          {Object.keys(pages).map((page) => (
             <Button
-              className={classNames(classes.button, classes.buttonActive)}
+              key={page}
+              onClick={() => goToMovie(page)}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                textTransform: "none",
+              }}
             >
-              Home
+              {window.location.pathname === `/${page}` ? (
+                <Typography fontWeight={700}>{pages[page]}</Typography>
+              ) : (
+                pages[page]
+              )}
             </Button>
-            <Button
-              className={classes.button}
-              onClick={() => navigate("/series")}
-            >
-              Series
-            </Button>
-            <Button className={classes.button}>Films</Button>
-            <Button className={classes.button}>Latest</Button>
-            <Button className={classes.button}>My List</Button>
-          </Box>
-          <Box className={classes.buttonIcon}>
-            <IconButton sx={{ color: grey[50] }}>
-              <SearchIcon />
-            </IconButton>
-            <IconButton sx={{ color: grey[50] }}>
-              <NotificationsRoundedIcon />
-            </IconButton>
-          </Box>
+          ))}
         </Box>
 
-        <IconButton
-          onClick={handleClick}
-          size="small"
-          aria-controls={Boolean(anchorEl) ? "account-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={Boolean(anchorEl) ? "true" : undefined}
-          className={classes.navAvatar}
-        >
-          <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-        </IconButton>
-
-        <AccountMenu anchorEl={anchorEl} handleClose={handleClose} />
-      </Box>
-    </Box>
+        <Box sx={{ flexGrow: 0, mr: "20px" }}>
+          <Tooltip title="Open settings">
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            </IconButton>
+          </Tooltip>
+          <AccountMenu
+            anchorEl={anchorElUser}
+            handleClose={handleCloseUserMenu}
+          />
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 export default Nav;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
@@ -8,15 +8,15 @@ import requests from "../resources/requests";
 import axios from "axios";
 import ReactPlayer from "react-player";
 
+import Divider from "@mui/material/Divider";
 import Nav from "../components/nav/Nav";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
-import ListComments from "./ListComments"
-
+import ListComments from "./ListComments";
+import StarIcon from "@mui/icons-material/Star";
 
 const Movie = () => {
- 
   const { movieId } = useParams();
   const [movie, setMovie] = React.useState({});
 
@@ -51,10 +51,12 @@ const Movie = () => {
       <Container
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
-        <Typography ml="20px" fontSize="50px" mt={10} textAlign="left">
-          {movie.title}
-        </Typography>
-        <Box sx={{ height: "20vh", mt: -15 }} />
+        <Box sx={{ height: "10vh" }} />
+        <Box sx={{ width: "100%" }}>
+          <Typography mb="20px" textAlign="left" variant="h2">
+            {movie.title}
+          </Typography>
+        </Box>
         <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
           <ReactPlayer
             controls
@@ -67,89 +69,126 @@ const Movie = () => {
             width="100%"
           />
         </Box>
-        <Box>
-
-        </Box>
-        <Box
-         sx={{ display: "flex", flexDirection: "row", width: "100%" }}
-        >
-        
-        <Typography ml="20px" fontSize="20px" mt={5} textAlign="left">
+        <Box></Box>
+        <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
+          <Typography ml="20px" fontSize="20px" mt={5} textAlign="left">
             {movie.overview}
           </Typography>
           <Box
-            sx={{ display: "flex", flexDirection: "column", width: "100%", padding: "20px" }}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              width: "100%",
+              padding: "20px",
+            }}
           >
-            <Box
-              sx={{ display: "flex", flexDirection: "row", width: "100%" }}
-            >
-              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left" color="gray">
-                Original Title:
-              </Typography>
-              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
-                {movie.original_title}
-              </Typography>
-            </Box>
-            <Box
-              sx={{ display: "flex", flexDirection: "row", width: "100%" }}
-            >
-              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left" color="gray">
-                Original Language:
-              </Typography>
-              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
-                {movie.original_language}
-              </Typography>
-            </Box>
-            <Box
-              sx={{ display: "flex", flexDirection: "row", width: "100%" }}
-            >
-              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left" color="gray">
+            <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
+              <Typography
+                ml="20px"
+                fontSize="15px"
+                mt={1}
+                textAlign="left"
+                color="gray"
+              >
                 Release date:
               </Typography>
               <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
                 {movie.release_date}
               </Typography>
             </Box>
-            <Box
-              sx={{ display: "flex", flexDirection: "row", width: "100%" }}
-            >
-              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left" color="gray">
+            <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
+              <Typography
+                ml="20px"
+                fontSize="15px"
+                mt={1}
+                textAlign="left"
+                color="gray"
+              >
                 Runtime:
               </Typography>
               <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
-                {movie.runtime} minutes
+                {`${movie.runtime} min`}
               </Typography>
             </Box>
-            <Box
-              sx={{ display: "flex", flexDirection: "row", width: "100%" }}
-            >
-              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left" color="gray">
+            <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
+              <Typography
+                ml="20px"
+                fontSize="15px"
+                mt={1}
+                textAlign="left"
+                color="gray"
+              >
                 Cast:
               </Typography>
               <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
-                {movie.cast}
+                Ryan Reynolds, Mark Ruffalo, Jennifer Garner, more
               </Typography>
             </Box>
-            <Box
-              sx={{ display: "flex", flexDirection: "row", width: "100%" }}
-            >
-              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left" color="gray">
+            <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
+              <Typography
+                ml="20px"
+                fontSize="15px"
+                mt={1}
+                textAlign="left"
+                color="gray"
+              >
                 Genres:
               </Typography>
-              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
-                {movie.gen}
+              {movie.genres && (
+                <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
+                  {movie.genres.map((genre, ind) => {
+                    if (ind === movie.genres.length - 2) {
+                      return (
+                        <Fragment key={genre.id}>{` ${genre.name}`}</Fragment>
+                      );
+                    }
+                    return movie.genres.length === ind + 1 ? (
+                      <Fragment key={genre.id}>{` & ${genre.name}`}</Fragment>
+                    ) : (
+                      <Fragment key={genre.id}>{`${genre.name}, `}</Fragment>
+                    );
+                  })}
+                </Typography>
+              )}
+            </Box>
+          </Box>
+        </Box>
+        <Box sx={{ width: "100%" }}>
+          <Divider sx={{ marginBottom: "15px" }} />
+          <Box
+            sx={{ display: "flex", flexDirection: "row", marginLeft: "15px" }}
+          >
+            <StarIcon sx={{ fontSize: "70px", color: "#f5c518" }} />
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <Box sx={{ display: "flex", flexDirection: "row" }}>
+                <Typography ml="15px" fontSize="30px" textAlign="left">
+                  {movie.vote_average}
+                </Typography>
+                <Typography
+                  fontSize="25px"
+                  textAlign="left"
+                  color="#b1b1b1"
+                  ml="2px"
+                >
+                  {"/10"}
+                </Typography>
+              </Box>
+              <Typography
+                ml="15px"
+                fontSize="15px"
+                textAlign="left"
+                color="#b1b1b1"
+              >
+                {`${movie.vote_count} votes`}
               </Typography>
             </Box>
-          
-        </Box>
-          
+          </Box>
         </Box>
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             width: "100%",
-    
           }}
         >
           <Typography ml="20px" fontSize="25px" mt={5} textAlign="left">
@@ -179,14 +218,13 @@ const Movie = () => {
             display: "flex",
             flexDirection: "column",
             width: "100%",
-    
           }}
         >
-        <Typography ml="20px" fontSize="25px" mt={5} textAlign="left">
+          <Typography ml="20px" fontSize="25px" mt={5} textAlign="left">
             Comments
           </Typography>
-           <ListComments/>
-          </Box>
+          <ListComments />
+        </Box>
       </Container>
     </Paper>
   );

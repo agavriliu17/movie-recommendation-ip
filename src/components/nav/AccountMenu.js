@@ -5,7 +5,6 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
-import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 
@@ -31,7 +30,6 @@ const AccountMenu = ({ anchorEl, handleClose }) => {
       PaperProps={{
         elevation: 0,
         sx: {
-          //   overflow: "visible",
           filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
           mt: 1.5,
           "& .MuiAvatar-root": {
@@ -58,18 +56,9 @@ const AccountMenu = ({ anchorEl, handleClose }) => {
       anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
     >
       <MenuItem>
-        <Avatar /> Profile
-      </MenuItem>
-      <MenuItem>
         <Avatar /> My account
       </MenuItem>
       <Divider />
-      <MenuItem>
-        <ListItemIcon>
-          <PersonAdd fontSize="small" />
-        </ListItemIcon>
-        Add another account
-      </MenuItem>
       <MenuItem>
         <ListItemIcon>
           <Settings fontSize="small" />
