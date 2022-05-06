@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import ListComments from "../../components/ListComments";
-import StarIcon from "@mui/icons-material/Star";
+import RatingDisplay from "../../components/RatingDisplay";
 
 import requests from "../../resources/requests";
 import { useParams } from "react-router-dom";
@@ -35,9 +35,8 @@ const Movie = () => {
 
   return (
     <PageLayout>
-      <Box sx={{ height: "10vh" }} />
       <Box sx={{ width: "100%" }}>
-        <Typography mb="20px" textAlign="left" variant="h2">
+        <Typography mb="20px" mt="10vh" textAlign="left" variant="h2">
           {movie.title}
         </Typography>
       </Box>
@@ -56,7 +55,6 @@ const Movie = () => {
           height="100%"
         />
       </Box>
-      <Box></Box>
       <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
         <Typography ml="20px" fontSize="20px" mt={5} textAlign="left">
           {movie.overview}
@@ -142,32 +140,10 @@ const Movie = () => {
       </Box>
       <Box sx={{ width: "100%" }}>
         <Divider sx={{ marginBottom: "15px" }} />
-        <Box sx={{ display: "flex", flexDirection: "row", marginLeft: "15px" }}>
-          <StarIcon sx={{ fontSize: "70px", color: "#f5c518" }} />
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <Typography ml="15px" fontSize="30px" textAlign="left">
-                {movie.vote_average}
-              </Typography>
-              <Typography
-                fontSize="25px"
-                textAlign="left"
-                color="#b1b1b1"
-                ml="2px"
-              >
-                {"/10"}
-              </Typography>
-            </Box>
-            <Typography
-              ml="15px"
-              fontSize="15px"
-              textAlign="left"
-              color="#b1b1b1"
-            >
-              {`${movie.vote_count} votes`}
-            </Typography>
-          </Box>
-        </Box>
+        <RatingDisplay
+          voteAverage={movie?.vote_average}
+          voteCount={movie?.vote_count}
+        />
       </Box>
       <Box
         sx={{
