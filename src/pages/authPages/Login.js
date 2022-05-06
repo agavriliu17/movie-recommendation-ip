@@ -10,6 +10,7 @@ import { makeStyles } from "@mui/styles";
 import CustomCheckBox from "../../components/CustomCheckbox";
 import AuthLayout from "./AuthLayout";
 
+import AppContext from "../../resources/context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { validateEmail } from "../../resources/helpers/authHelper";
 
@@ -49,6 +50,7 @@ const useStyles = makeStyles({
 const Login = () => {
   const [input, setInput] = React.useState({ email: "", password: "" });
   const [error, setError] = React.useState({ email: "", password: "" });
+  const { authenticateUser } = React.useContext(AppContext);
 
   const navigate = useNavigate();
 
@@ -68,6 +70,7 @@ const Login = () => {
         : "";
 
     if (emailError === "" && passwordError === "") {
+      authenticateUser();
       navigate("/home");
     } else setError({ email: emailError, password: passwordError });
   };
