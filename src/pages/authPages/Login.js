@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
+import { useTheme } from "@mui/system";
 
 import CustomCheckBox from "../../components/CustomCheckbox";
 import AuthLayout from "./AuthLayout";
@@ -16,7 +17,6 @@ import { validateEmail } from "../../resources/helpers/authHelper";
 
 const useStyles = makeStyles({
   inputContainer: {
-    backgroundColor: "rgb(51 51 51)",
     width: "100%",
     height: "55px",
     marginBottom: "30px",
@@ -48,6 +48,9 @@ const useStyles = makeStyles({
 });
 
 const Login = () => {
+
+  const theme = useTheme();
+
   const [input, setInput] = React.useState({ email: "", password: "" });
   const [error, setError] = React.useState({ email: "", password: "" });
   const { authenticateUser } = React.useContext(AppContext);
@@ -78,7 +81,7 @@ const Login = () => {
   const classes = useStyles();
   return (
     <AuthLayout>
-      <Typography color="#fff" mb="25px" variant="h4" fontFamily="sans-serif">
+      <Typography color={theme.palette.text.secondary} mb="25px" variant="h4">
         Sign in
       </Typography>
       <Paper className={classes.inputContainer}>
@@ -94,7 +97,7 @@ const Login = () => {
           variant="filled"
           InputLabelProps={{
             sx: {
-              color: "#8c8c8c",
+              color: theme.palette.text.primary,
             },
           }}
         />
@@ -112,7 +115,7 @@ const Login = () => {
           variant="filled"
           InputLabelProps={{
             sx: {
-              color: "#8c8c8c",
+              color: theme.palette.text.primary,
             },
           }}
         />
@@ -120,7 +123,7 @@ const Login = () => {
       <Box className={classes.forgotSection}>
         <Box className={classes.rememberMe}>
           <CustomCheckBox />
-          <Typography color="#b3b3b3">Remember me</Typography>
+          <Typography color={theme.palette.text.secondary}>Remember me</Typography>
         </Box>
         <Button
           variant="text"
@@ -130,7 +133,7 @@ const Login = () => {
           className={classes.linkButton}
           onClick={() => navigate("/reset-pass")}
         >
-          <Typography sx={{ textTransform: "none", color: "#b3b3b3" }}>
+          <Typography sx={{ textTransform: "none", color: theme.palette.text.secondary }}>
             Forgot password?
           </Typography>
         </Button>
@@ -143,7 +146,7 @@ const Login = () => {
         Sign in
       </Button>
       <Box className={classes.signUpContainer}>
-        <Typography color="#b3b3b3">New on this app?</Typography>
+        <Typography color={theme.palette.text.secondary}>New on this app?</Typography>
         <Button
           variant="text"
           disableFocusRipple
@@ -152,7 +155,7 @@ const Login = () => {
           className={classes.linkButton}
           onClick={() => navigate("/register")}
         >
-          <Typography sx={{ textTransform: "none", color: "#fff" }}>
+          <Typography sx={{ textTransform: "none", color: theme.palette.text.disabled }}>
             Sign up now.
           </Typography>
         </Button>

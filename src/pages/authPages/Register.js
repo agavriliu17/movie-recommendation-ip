@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
+import { useTheme } from "@mui/system";
 
 import AuthLayout from "./AuthLayout";
 import { useNavigate } from "react-router-dom";
@@ -14,9 +15,9 @@ import {
   validateEmail,
 } from "../../resources/helpers/authHelper";
 
+
 const useStyles = makeStyles({
   inputContainer: {
-    backgroundColor: "rgb(51 51 51)",
     width: "100%",
     height: "55px",
     marginBottom: "30px",
@@ -41,6 +42,9 @@ const useStyles = makeStyles({
 });
 
 const Register = () => {
+
+  const theme = useTheme();
+
   const [input, setInput] = React.useState({
     firstName: "",
     lastName: "",
@@ -59,6 +63,7 @@ const Register = () => {
 
   const handleChangeInput = (event, key) => {
     setInput({ ...input, [key]: event.target.value });
+    
   };
 
   const handleSignUp = async () => {
@@ -109,7 +114,7 @@ const Register = () => {
   const classes = useStyles();
   return (
     <AuthLayout>
-      <Typography color="#fff" variant="h4" fontFamily="sans-serif" mb="25px">
+      <Typography color={theme.palette.text.secondary} variant="h4" mb="25px">
         Sign up
       </Typography>
 
@@ -124,7 +129,7 @@ const Register = () => {
           variant="filled"
           InputLabelProps={{
             sx: {
-              color: "#8c8c8c",
+              color: theme.palette.text.primary
             },
           }}
         />
@@ -141,7 +146,7 @@ const Register = () => {
           variant="filled"
           InputLabelProps={{
             sx: {
-              color: "#8c8c8c",
+              color: theme.palette.text.primary,
             },
           }}
         />
@@ -158,7 +163,7 @@ const Register = () => {
           variant="filled"
           InputLabelProps={{
             sx: {
-              color: "#8c8c8c",
+              color: theme.palette.text.primary,
             },
           }}
         />
@@ -176,7 +181,7 @@ const Register = () => {
           variant="filled"
           InputLabelProps={{
             sx: {
-              color: "#8c8c8c",
+              color: theme.palette.text.primary,
             },
           }}
         />
@@ -194,7 +199,7 @@ const Register = () => {
           variant="filled"
           InputLabelProps={{
             sx: {
-              color: "#8c8c8c",
+              color: theme.palette.text.primary,
             },
           }}
         />
@@ -209,7 +214,7 @@ const Register = () => {
       </Button>
 
       <Box className={classes.signInContainer}>
-        <Typography color="#b3b3b3">Already a user?</Typography>
+        <Typography color={theme.palette.text.secondary}>Already a user?</Typography>
         <Button
           variant="text"
           disableFocusRipple
@@ -218,7 +223,7 @@ const Register = () => {
           className={classes.linkButton}
           onClick={() => navigate("/login")}
         >
-          <Typography sx={{ textTransform: "none", color: "#fff" }}>
+          <Typography sx={{ textTransform: "none", color: theme.palette.text.disabled }}>
             Sign in now.
           </Typography>
         </Button>

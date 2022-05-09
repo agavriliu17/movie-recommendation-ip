@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   mainCard: {
     height: "fit-content",
     padding: "20px",
-    backgroundColor: "rgba(0,0,0,0.75) !important",
+    backgroundColor: "#48288475 !important",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
