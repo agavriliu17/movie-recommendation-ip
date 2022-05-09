@@ -45,6 +45,7 @@ const Register = () => {
     firstName: "",
     lastName: "",
     email: "",
+    username: "",
     password: "",
     confirmPassword: "",
   });
@@ -52,6 +53,7 @@ const Register = () => {
     firstName: "",
     lastName: "",
     email: "",
+    username: "",
     password: "",
     confirmPassword: "",
   });
@@ -73,6 +75,9 @@ const Register = () => {
         ? "Please provide an valid email"
         : "";
 
+    const usernameError =
+      input.username < 4 ? "Please provide a valid username" : "";
+
     const passwordError =
       input.password.length < 8
         ? "Your password must be at at least 8 characters long "
@@ -87,6 +92,7 @@ const Register = () => {
       firstNameError === "" &&
       lastNameError === "" &&
       emailError === "" &&
+      usernameError === "" &&
       passwordError === "" &&
       confirmPasswordError === ""
     ) {
@@ -101,6 +107,7 @@ const Register = () => {
         firstName: firstNameError,
         lastName: lastNameError,
         email: emailError,
+        username: usernameError,
         password: passwordError,
         confirmPassword: confirmPasswordError,
       });
@@ -154,6 +161,23 @@ const Register = () => {
           helperText={error.email}
           onChange={(event) => handleChangeInput(event, "email")}
           value={input.email}
+          className={classes.inputField}
+          variant="filled"
+          InputLabelProps={{
+            sx: {
+              color: "#8c8c8c",
+            },
+          }}
+        />
+      </Paper>
+
+      <Paper className={classes.inputContainer}>
+        <TextField
+          error={error.username === "" ? false : true}
+          label="Username"
+          helperText={error.username}
+          onChange={(event) => handleChangeInput(event, "username")}
+          value={input.username}
           className={classes.inputField}
           variant="filled"
           InputLabelProps={{
