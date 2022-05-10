@@ -8,8 +8,12 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 import { IMAGES_URL } from "../resources/constants";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@mui/material";
 
 const Banner = ({ movie }) => {
+
+  const theme = useTheme();
+
   const navigate = useNavigate();
 
   const goToMovie = () => {
@@ -54,8 +58,8 @@ const Banner = ({ movie }) => {
         }}
       >
         <Box sx={{ display: "flex", flexDirection: "column", width: "50%" }}>
-          <Typography variant="h2">{movie.title}</Typography>
-          <Typography variant="h6" mt={5}>
+          <Typography variant="h3" color={theme.palette.text.secondary}>{movie.title}</Typography>
+          <Typography variant="h6" mt={5} color="#10091D" backgroundColor={theme.palette.text.disabled} paddingLeft="10px">
             {movie.overview}
           </Typography>
         </Box>
@@ -64,16 +68,12 @@ const Banner = ({ movie }) => {
             variant="contained"
             sx={{
               textTransform: "none",
-              backgroundColor: "#fff",
               padding: "5px 25px",
-              "&:hover": {
-                backgroundColor: "rgba(255,255,255,0.8)",
-              },
             }}
             onClick={goToMovie}
           >
-            <PlayArrowIcon sx={{ fontSize: "45px" }} />
-            <Typography fontSize="25px" ml="5px">
+            <PlayArrowIcon sx={{ fontSize: "25px" }} />
+            <Typography fontSize="20px" ml="5px">
               Play
             </Typography>
           </Button>
@@ -84,14 +84,13 @@ const Banner = ({ movie }) => {
               marginLeft: "15px",
               backgroundColor: "rgba(158,158,158,0.6)",
               padding: "5px 25px",
-              color: "#fff",
               "&:hover": {
                 backgroundColor: "rgba(158,158,158,0.4)",
               },
             }}
           >
-            <InfoOutlinedIcon sx={{ fontSize: "35px" }} />
-            <Typography fontSize="25px" ml="5px">
+            <InfoOutlinedIcon sx={{ fontSize: "25px" }} />
+            <Typography fontSize="20px" ml="5px">
               Learn more
             </Typography>
           </Button>

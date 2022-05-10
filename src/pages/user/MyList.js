@@ -8,7 +8,12 @@ import MovieListItem from "../../components/MovieListItem";
 import requests from "../../resources/requests";
 import axios from "axios";
 
+import { useTheme } from "@mui/material";
+
 const MyList = () => {
+
+  const theme = useTheme();
+
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
