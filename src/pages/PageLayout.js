@@ -13,6 +13,7 @@ const PageLayout = ({ children }) => {
         borderRadius: "0px",
         overflowX: "hidden",
         display: "flex",
+        backgroundColor: "#10091D"
       }}
     >
       <Nav />

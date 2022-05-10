@@ -8,7 +8,7 @@ import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard"
 import LoadingBanner from "../../components/loadingElements/LoadingBanner";
 import requests from "../../resources/requests";
 import axios from "axios";
- import Carousel from "react-multi-carousel";
+import Carousel from "react-multi-carousel";
 import Image from "../../components/carousel/Carousel";
 import { useState } from "react";
 import { makeStyles } from "@mui/styles";
@@ -35,48 +35,43 @@ const responsive = {
 
 const useStyles = makeStyles({
   carousel: {
-  height:"500px",
-  paddingLeft:"50px",
-  paddingRight: "auto",
-  paddingBottom: "20px",
-  zIndex: 0,
-},
-most:
-{
-  display: "flex",
-  height: "25%",
-  paddingLeft:"1%",
-  paddingLeft:"50px",
-  paddingRight: "auto",
-  paddingBottom: "20px",
-  zIndex: "0"
-},
+    height: "500px",
+    paddingLeft: "50px",
+    paddingRight: "auto",
+    zIndex: 0,
+  },
+  most: {
+    display: "flex",
+    height: "25%",
+    paddingLeft: "50px",
+    paddingRight: "auto",
+    paddingBottom: "20px",
+    zIndex: "0",
+    marginTop: "100px"
+  },
 
-component:
-{
-  background: "none",
-  border: "none",
-  padding: "0",
-  font: "inherit",
-  cursor: "pointer",
-  outline: "inherit"
-},
+  component: {
+    background: "none",
+    border: "none",
+    padding: "0",
+    font: "inherit",
+    cursor: "pointer",
+    outline: "inherit",
+  },
 
-text:
-{
-  fontWeight: "bolder",
-  fontSize: "20px",
-  marginTop: "8vh",
-  paddingBottom: "20px",
-  paddingLeft: "20px",
-  paddingTop: "20px",
-  textAlign:"left"
-},
-body:
-{
-  backgroundColor: "#15171D"
-},
-  
+  text: {
+    fontWeight: "bolder",
+    fontSize: "20px",
+    paddingBottom: "20px",
+    paddingLeft: "50px",
+    paddingTop: "20px",
+    textAlign: "left",
+    color: "#F9F871"
+  },
+  body: 
+  {
+    backgroundColor: "#10091D"
+  }
 });
 
 const Home = () => {
@@ -87,22 +82,20 @@ const Home = () => {
   };
   const [data, setData] = React.useState([]);
   const [topRatedData, setDataTop] = React.useState([]);
-  const [horrorData,setDataHorror]=React.useState([]);
-  const [actionData,setDataAction]=React.useState([]);
-  const [documentariesData,setDatadocumentaries]=React.useState([]);
+  const [horrorData, setDataHorror] = React.useState([]);
+  const [actionData, setDataAction] = React.useState([]);
+  const [documentariesData, setDatadocumentaries] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
     (async function () {
       try {
-
         const movieData = await axios
-        .get(requests.fetchNetflixOriginals)
-        .then((res) => res.data.results);
+          .get(requests.fetchNetflixOriginals)
+          .then((res) => res.data.results);
 
-      const timedData = await new Promise((resolve) => {
-        setTimeout(() => resolve(movieData), 1000);
-      });
-
+        const timedData = await new Promise((resolve) => {
+          setTimeout(() => resolve(movieData), 1000);
+        });
 
         const topMovieData = await axios
           .get(requests.fetchTopRated)
@@ -111,7 +104,6 @@ const Home = () => {
         const toptimedData = await new Promise((resolve) => {
           setTimeout(() => resolve(topMovieData), 1000);
         });
-
 
         const horrorMovieData = await axios
           .get(requests.fetchHorrorMovies)
@@ -136,14 +128,13 @@ const Home = () => {
         const documentariesTimedData = await new Promise((resolve) => {
           setTimeout(() => resolve(documentariesMovieData), 1000);
         });
-        
+
         setData(timedData);
         setDataTop(toptimedData);
         setDataHorror(horrorTimedData);
         setDataAction(actionTimedData);
         setDatadocumentaries(documentariesTimedData);
         setLoading(false);
-        
       } catch (e) {
         console.error(e);
 
@@ -154,29 +145,23 @@ const Home = () => {
 
   const bannerMovie = data[Math.floor(Math.random() * data.length)];
   const topRated = topRatedData.slice(0, 10);
-  const horrormovies= horrorData.slice(0,10);
-  const actionmovies=actionData.slice(0,10);
-  const documentariesmovies=documentariesData.slice(0,10);
+  const horrormovies = horrorData.slice(0, 10);
+  const actionmovies = actionData.slice(0, 10);
+  const documentariesmovies = documentariesData.slice(0, 10);
 
-
-  var [title,setTitle]=useState();
-  var [info,setInfo]=useState();
-  var [added,setAdded]=useState();
+  var [title, setTitle] = useState();
+  var [info, setInfo] = useState();
+  var [added, setAdded] = useState();
   console.log(title);
 
-
- 
   const classes = useStyles();
   return (
     <Box className={classes.body}>
       <Nav />
-
-     
-       
-       
       {loading ? <LoadingBanner /> : <Banner movie={bannerMovie} />}
-        
-        {loading ? <LoadingMovieCard/> :
+      {loading ? (
+        <LoadingMovieCard />
+      ) : (
         <Carousel className={classes.most} responsive={responsive}>
           {topRated.map((datas, key) => {
             return (
@@ -186,7 +171,7 @@ const Home = () => {
                     setVisibility(true);
                     setTitle(datas.title);
                     setInfo(datas.info);
-                    setAdded=(datas.release_date);
+                    setAdded = datas.release_date;
                   }}
                   className={classes.component}
                 >
@@ -196,15 +181,13 @@ const Home = () => {
             );
           })}
         </Carousel>
-      }
+      )}
 
-
-    <Typography
-        className={classes.text}
-      >
-        For the brave:
-      </Typography>
-       {loading ? <LoadingMovieCard/> : <Carousel className={classes.carousel} responsive={responsive}>
+      <Typography className={classes.text}>For the brave:</Typography>
+      {loading ? (
+        <LoadingMovieCard />
+      ) : (
+        <Carousel className={classes.carousel} responsive={responsive}>
           {horrormovies.map((datas, key) => {
             return (
               <>
@@ -220,15 +203,13 @@ const Home = () => {
             );
           })}
         </Carousel>
-      }       
-    
+      )}
 
-    <Typography
-         className={classes.text}
-      >
-        Action non stop:
-      </Typography>
-      {loading ? <LoadingMovieCard/> : <Carousel className={classes.carousel} responsive={responsive}>
+      <Typography className={classes.text}>Action non stop:</Typography>
+      {loading ? (
+        <LoadingMovieCard />
+      ) : (
+        <Carousel className={classes.carousel} responsive={responsive}>
           {actionmovies.map((datas, key) => {
             return (
               <>
@@ -244,15 +225,13 @@ const Home = () => {
             );
           })}
         </Carousel>
-      }
+      )}
 
-
-<Typography
-        className={classes.text}
-      >
-        Documentaries:
-      </Typography>
-      {loading ? <LoadingMovieCard/> : <Carousel className={classes.carousel} responsive={responsive}>
+      <Typography className={classes.text}>Documentaries:</Typography>
+      {loading ? (
+        <LoadingMovieCard />
+      ) : (
+        <Carousel className={classes.carousel} responsive={responsive}>
           {documentariesmovies.map((datas, key) => {
             return (
               <>
@@ -268,7 +247,7 @@ const Home = () => {
             );
           })}
         </Carousel>
-      }
+      )}
     </Box>
   );
 };
