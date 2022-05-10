@@ -132,22 +132,39 @@ const Mail = () => {
         justifyContent: "flex-start",
       }}
     >
-      <Box sx={{ width: "100%", height: "500px", marginTop: "150px"}}>
-        {loading ? (
-          <LoadingMovieCard />
-        ) : (
-          <Carousel className={classes.most} responsive={responsive}>
-            {topRated.map((datas, key) => {
-              return (
-                <>
-                  <button onClick={() => {}} className={classes.component}>
-                    <Image movie={datas}></Image>
-                  </button>
-                </>
-              );
-            })}
-          </Carousel>
-        )}
+      <Typography
+        sx={{
+          fontFamily: "Trispace",
+          color: "#F9F871",
+          fontWeight: "bolder",
+          fontSize: "20px",
+          marginTop: "8vh",
+        }}
+      >
+        All the movies you love! And more.
+      </Typography>
+
+     
+     
+        <Box sx={{width:"100%",height:"500px"}}>
+        {loading ? <LoadingMovieCard/> :
+        <Carousel className={classes.most} responsive={responsive}>
+          {topRated.map((datas, key) => {
+            return (
+              <>
+                <button
+                  onClick={() => {
+                    navigate("/register");
+                  }}
+                  className={classes.component}
+                >
+                  <Image movie={datas}></Image>
+                </button>
+              </>
+            );
+          })}
+        </Carousel>
+      }
       </Box>
 
       <Paper

@@ -159,10 +159,8 @@ const Home = () => {
     <Box className={classes.body}>
       <Nav />
       {loading ? <LoadingBanner /> : <Banner movie={bannerMovie} />}
-      {loading ? (
-        <LoadingMovieCard />
-      ) : (
-        <Carousel className={classes.most} responsive={responsive}>
+     
+        {loading? (<LoadingMovieCard/>):(<Carousel className={classes.most} responsive={responsive}>
           {topRated.map((datas, key) => {
             return (
               <>
@@ -181,7 +179,7 @@ const Home = () => {
             );
           })}
         </Carousel>
-      )}
+        )}
 
       <Typography className={classes.text}>For the brave:</Typography>
       {loading ? (
