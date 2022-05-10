@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import MovieListItem from "../../components/MovieListItem";
 import requests from "../../resources/requests";
 import axios from "axios";
-
+import { Skeleton } from "@mui/material";
 import { useTheme } from "@mui/material";
 
 
@@ -50,7 +50,10 @@ const MyList = () => {
           ))}
         </Box>
       ) : (
-        <></>
+        <Skeleton variant="rectangular" 
+        sx={{width:"100%",height:"100%"}}
+        
+        />
       )}
     </PageLayout>
   );

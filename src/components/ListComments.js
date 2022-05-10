@@ -16,7 +16,7 @@ const Comments = ({ currentUserId }) => {
     });
   }, []);
   return (
-    <Paper>
+    <Box>
       <Container
         sx={{
           display: "flex",
@@ -65,7 +65,7 @@ const Comments = ({ currentUserId }) => {
           </Box>
         ))}
       </Container>
-    </Paper>
+    </Box>
   );
 };
 
