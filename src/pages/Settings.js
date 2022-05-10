@@ -7,7 +7,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-
+import Divider from "@mui/material/Divider";
+import Stack from '@mui/material/Stack';
+import Avatar from "@mui/material/Avatar";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -143,6 +145,12 @@ const Settings = () => {
       <TabPanel value={value} index={0}>
       <Card sx={{ minWidth: '275' }}>
       <CardContent>
+      <Stack direction="row" spacing={2}>
+      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+      <Button variant="outlined">Upload</Button>
+      <Button variant="outlined">Remove</Button>
+      </Stack>
+
         <Box
           component="form"
           sx={{
@@ -158,12 +166,17 @@ const Settings = () => {
             onChange={handleChangeAccount}
           />
           <TextField id="outlined-uncontrolled" label="Full name" />
+          <Divider />
+          <TextField id="outlined-uncontrolled" label="Email address" />
+          <TextField id="outlined-uncontrolled" label="Phone number" />
+          <Divider />
         </Box>
       </CardContent>
       <CardActions>
-        <Button size="small">Save changes</Button>
+      <Button variant="contained">Save changes</Button>
       </CardActions>
-    </Card>      </TabPanel>
+    </Card>    
+    </TabPanel>
       <TabPanel value={value} index={1}>
       <Typography ml="20px" fontSize="25px">
       Display Language
