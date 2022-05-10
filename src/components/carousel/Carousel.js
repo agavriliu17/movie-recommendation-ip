@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     transition: "500ms",
     marginBottom: "25px",
     zIndex: "-1",
-    &
+   
   },
 });
 const Image = ({ movie }) => {
