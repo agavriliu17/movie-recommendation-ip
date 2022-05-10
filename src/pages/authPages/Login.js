@@ -14,7 +14,7 @@ import AuthLayout from "./AuthLayout";
 import AppContext from "../../resources/context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { validateEmail } from "../../resources/helpers/authHelper";
-
+import { motion } from "framer-motion";
 const useStyles = makeStyles({
   inputContainer: {
     width: "100%",
@@ -81,7 +81,17 @@ const Login = () => {
   const classes = useStyles();
   return (
     <AuthLayout>
-      <Typography color={theme.palette.text.primary} mb="25px" variant="h4">
+      <Typography color={theme.palette.text.primary} mb="25px" variant="h4"
+      component={motion.div}
+      whileHover={{
+        scale: 1.1,
+        transition: { duration: 0.1 },
+      }}
+      initial={{ opacity: 0, y: "5vw" }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, type: "tween" }}
+      
+      >
         Sign in
       </Typography>
       <Paper className={classes.inputContainer}>
