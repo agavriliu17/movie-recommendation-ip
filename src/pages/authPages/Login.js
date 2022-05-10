@@ -81,7 +81,7 @@ const Login = () => {
   const classes = useStyles();
   return (
     <AuthLayout>
-      <Typography color={theme.palette.text.secondary} mb="25px" variant="h4">
+      <Typography color={theme.palette.text.primary} mb="25px" variant="h4">
         Sign in
       </Typography>
       <Paper className={classes.inputContainer}>
@@ -123,7 +123,7 @@ const Login = () => {
       <Box className={classes.forgotSection}>
         <Box className={classes.rememberMe}>
           <CustomCheckBox />
-          <Typography color={theme.palette.text.secondary}>Remember me</Typography>
+          <Typography color={theme.palette.text.primary}>Remember me</Typography>
         </Box>
         <Button
           variant="text"
@@ -133,7 +133,7 @@ const Login = () => {
           className={classes.linkButton}
           onClick={() => navigate("/reset-pass")}
         >
-          <Typography sx={{ textTransform: "none", color: theme.palette.text.secondary }}>
+          <Typography sx={{ textTransform: "none", color: theme.palette.text.primary }}>
             Forgot password?
           </Typography>
         </Button>
@@ -146,7 +146,7 @@ const Login = () => {
         Sign in
       </Button>
       <Box className={classes.signUpContainer}>
-        <Typography color={theme.palette.text.secondary}>New on this app?</Typography>
+        <Typography color={theme.palette.text.primary}>New on this app?</Typography>
         <Button
           variant="text"
           disableFocusRipple

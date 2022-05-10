@@ -1,7 +1,6 @@
 import React from "react";
 import "react-multi-carousel/lib/styles.css";
 import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Banner from "../../components/Banner";
 import Nav from "../../components/nav/Nav";
@@ -36,11 +35,8 @@ const responsive = {
 
 const useStyles = makeStyles({
   carousel: {
-  
-  backgroundColor: "#482884",
   height:"500px",
   paddingLeft:"50px",
-  paddingRight: "50px",
   paddingRight: "auto",
   paddingBottom: "20px",
   zIndex: 0,
@@ -53,38 +49,32 @@ most:
   paddingLeft:"50px",
   paddingRight: "auto",
   paddingBottom: "20px",
-  // backgroundColor:"#10091D",
   zIndex: "0"
 },
 
 component:
 {
   background: "none",
-color: "inherit",
-border: "none",
-padding: "0",
-font: "inherit",
-cursor: "pointer",
-outline: "inherit"
-  
+  border: "none",
+  padding: "0",
+  font: "inherit",
+  cursor: "pointer",
+  outline: "inherit"
 },
 
 text:
 {
-fontFamily: "Trispace",
-color: "#F9F871",
-fontWeight: "bolder",
-fontSize: "20px",
-marginTop: "8vh",
-backgroundColor: "#482884",
-paddingBottom: "20px",
-paddingLeft: "20px",
-paddingTop: "20px",
-textAlign:"left"
+  fontWeight: "bolder",
+  fontSize: "20px",
+  marginTop: "8vh",
+  paddingBottom: "20px",
+  paddingLeft: "20px",
+  paddingTop: "20px",
+  textAlign:"left"
 },
 body:
 {
-backgroundColor: "#15171D"
+  backgroundColor: "#15171D"
 },
   
 });

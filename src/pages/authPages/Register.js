@@ -114,7 +114,7 @@ const Register = () => {
   const classes = useStyles();
   return (
     <AuthLayout>
-      <Typography color={theme.palette.text.secondary} variant="h4" mb="25px">
+      <Typography color={theme.palette.text.primary} variant="h4" mb="25px">
         Sign up
       </Typography>
 
@@ -214,7 +214,7 @@ const Register = () => {
       </Button>
 
       <Box className={classes.signInContainer}>
-        <Typography color={theme.palette.text.secondary}>Already a user?</Typography>
+        <Typography color={theme.palette.text.primary}>Already a user?</Typography>
         <Button
           variant="text"
           disableFocusRipple

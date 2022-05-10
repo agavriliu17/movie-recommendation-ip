@@ -13,12 +13,12 @@ export const themeOptions = {
       main: "#482884"
     },
     background: {
-      paper: "#F9F871",
-      default: "#F9F871"
+      paper: "#482884",
+      default: "#482884"
     },
     text: {
-      primary: "#482884",
-      secondary: "#F9F871"
+      primary: "#F9F871",
+      secondary: "#482884"
     }
   },
   typography: {
