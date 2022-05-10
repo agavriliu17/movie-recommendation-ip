@@ -61,7 +61,6 @@ const useStyles = makeStyles({
     paddingRight: "auto",
     paddingBottom: "20px",
     zIndex: "0",
-    transform: "skewY(5deg)"
   },
   component: {
     background: "none",
