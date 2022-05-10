@@ -49,7 +49,7 @@ const Start = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
-        maskImage: "linear-gradient(to right bottom, black, transparent)",
+        maskImage: "radial-gradient(circle at 90%, black 90%, transparent)",
         zIndex: "-1"
       }}
     >
@@ -71,8 +71,9 @@ const Start = () => {
             fontSize: "10px",
             marginTop: "50px",
           }}
+          onClick={scrollToBottom}
         >
-          About
+          FAQ
         </Typography>
         <Typography
           variant="h6"
@@ -82,8 +83,9 @@ const Start = () => {
             fontSize: "10px",
             marginTop: "50px",
           }}
+          onClick={scrollToBottom}
         >
-          Contact
+          Mail
         </Typography>
       </Box>
 
