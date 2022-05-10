@@ -20,6 +20,8 @@ const AccountMenu = ({ anchorEl, handleClose }) => {
     navigate("/login");
   };
 
+  const goToSettings = () => navigate("/settings");
+
   return (
     <Menu
       anchorEl={anchorEl}
@@ -59,7 +61,7 @@ const AccountMenu = ({ anchorEl, handleClose }) => {
         <Avatar /> My account
       </MenuItem>
       <Divider />
-      <MenuItem>
+      <MenuItem onClick={goToSettings}>
         <ListItemIcon>
           <Settings fontSize="small" />
         </ListItemIcon>

@@ -15,6 +15,7 @@ import Home from "./pages/user/Home";
 import Movie from "./pages/user/Movie";
 import NotFound from "./pages/NotFound";
 import AdminHome from "./pages/admin/AdminHome";
+import Settings from "./pages/Settings";
 
 const App = () => {
   const theme = createTheme(themeOptions);
@@ -27,6 +28,7 @@ const App = () => {
             <Route path="home" element={<Home />} />
             <Route path="watch/:movieId" element={<Movie />} />
             <Route path="admin/home" element={<AdminHome />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
 
           <Route index element={<Landing />} />
