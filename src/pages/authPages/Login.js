@@ -10,7 +10,7 @@ import { makeStyles } from "@mui/styles";
 import CustomCheckBox from "../../components/CustomCheckbox";
 import AuthLayout from "./AuthLayout";
 
-import AppContext from "../../resources/context/AppContext";
+import UserContext from "../../resources/context/UserContext";
 import { loginUser } from "../../resources/helpers/authHelper";
 import { useNavigate } from "react-router-dom";
 
@@ -50,9 +50,13 @@ const useStyles = makeStyles({
 const Login = () => {
   const [input, setInput] = React.useState({ username: "", password: "" });
   const [error, setError] = React.useState({ username: "", password: "" });
-  const { authenticateUser } = React.useContext(AppContext);
+  const { authenticateUser, isAuthenticated } = React.useContext(UserContext);
 
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (isAuthenticated) navigate("/home");
+  }, [isAuthenticated, navigate]);
 
   const handleChange = (event, key) => {
     setInput({ ...input, [key]: event.target.value });
@@ -70,8 +74,7 @@ const Login = () => {
     if (usernameError === "" && passwordError === "") {
       try {
         const response = await loginUser(input);
-        authenticateUser();
-        if (response) navigate("/home");
+        if (response) authenticateUser();
       } catch (e) {
         console.log(e); //TODO: Show the user the error in some way
       }
