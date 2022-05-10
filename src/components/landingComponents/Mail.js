@@ -101,9 +101,6 @@ const Mail = () => {
   React.useEffect(() => {
     (async function () {
       try {
-
-      
-
         const topMovieData = await axios
           .get(requests.fetchTopRated)
           .then((res) => res.data.results);
@@ -162,7 +159,7 @@ const Mail = () => {
               <>
                 <button
                   onClick={() => {
-                  
+                    navigate("/register");
                   }}
                   className={classes.component}
                 >

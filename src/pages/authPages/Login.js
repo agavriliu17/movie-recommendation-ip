@@ -82,14 +82,7 @@ const Login = () => {
   return (
     <AuthLayout>
       <Typography color={theme.palette.text.primary} mb="25px" variant="h4"
-      component={motion.div}
-      whileHover={{
-        scale: 1.1,
-        transition: { duration: 0.1 },
-      }}
-      initial={{ opacity: 0, y: "5vw" }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, type: "tween" }}
+     
       
       >
         Sign in

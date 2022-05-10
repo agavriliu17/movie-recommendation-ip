@@ -10,10 +10,11 @@ import axios from "axios";
 
 import { useTheme } from "@mui/material";
 
+
 const MyList = () => {
 
   const theme = useTheme();
-
+  
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
@@ -45,7 +46,7 @@ const MyList = () => {
       {!loading ? (
         <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
           {data.map((movie, index) => (
-            <MovieListItem key={`${movie.title}-${index}`} movie={movie} />
+            <MovieListItem key={`${movie.title}-${index}`} movie={movie}   />
           ))}
         </Box>
       ) : (
