@@ -15,7 +15,6 @@ import LoadingBanner from "../../components/loadingElements/LoadingBanner";
 import requests from "../../resources/requests";
 import axios from "axios";
 
-
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -53,27 +52,25 @@ export const validateEmail = (email) => {
   return re.test(email);
 };
 
-
 const useStyles = makeStyles({
- most:
-{
-  display: "flex",
-  height: "fit-content",
-  paddingLeft:"1%",
-  paddingLeft:"50px",
-  paddingRight: "auto",
-  paddingBottom: "20px",
-  zIndex: "0"
-},
-component:
-{
-  background: "none",
-  border: "none",
-  padding: "0",
-  font: "inherit",
-  cursor: "pointer",
-  outline: "inherit"
-},
+  most: {
+    display: "flex",
+    height: "fit-content",
+    paddingLeft: "1%",
+    paddingLeft: "50px",
+    paddingRight: "auto",
+    paddingBottom: "20px",
+    zIndex: "0",
+    transform: "skewY(5deg)"
+  },
+  component: {
+    background: "none",
+    border: "none",
+    padding: "0",
+    font: "inherit",
+    cursor: "pointer",
+    outline: "inherit",
+  },
 });
 
 const Mail = () => {
@@ -110,7 +107,6 @@ const Mail = () => {
         });
         setDataTop(toptimedData);
         setLoading(false);
-        
       } catch (e) {
         console.error(e);
 
@@ -120,7 +116,6 @@ const Mail = () => {
   }, []);
 
   const topRated = topRatedData.slice(0, 10);
-
 
   const classes = useStyles();
   return (
@@ -171,7 +166,7 @@ const Mail = () => {
         </Carousel>
       }
       </Box>
-      
+
       <Paper
         sx={{
           backgroundColor: "#F9F871",

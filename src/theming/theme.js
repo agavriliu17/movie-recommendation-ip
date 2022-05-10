@@ -3,6 +3,7 @@ export const themeOptions = {
     mode: "dark",
     primary: {
       main: "#482884",
+      light: "#48288470",
       contrastText: "#F9F871"
     },
     secondary: {
