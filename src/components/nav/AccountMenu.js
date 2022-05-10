@@ -8,17 +8,19 @@ import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 
-import AppContext from "../../resources/context/AppContext";
+import UserContext from "../../resources/context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 const AccountMenu = ({ anchorEl, handleClose }) => {
-  const { logoutUser } = React.useContext(AppContext);
+  const { logoutUser } = React.useContext(UserContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logoutUser();
     navigate("/login");
   };
+
+  const goToSettings = () => navigate("/settings");
 
   return (
     <Menu
@@ -59,7 +61,7 @@ const AccountMenu = ({ anchorEl, handleClose }) => {
         <Avatar /> My account
       </MenuItem>
       <Divider />
-      <MenuItem>
+      <MenuItem onClick={goToSettings}>
         <ListItemIcon>
           <Settings fontSize="small" />
         </ListItemIcon>

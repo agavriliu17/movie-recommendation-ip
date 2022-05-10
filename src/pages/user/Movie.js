@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import ListComments from "../../components/ListComments";
 import RatingDisplay from "../../components/RatingDisplay";
 import { IMAGES_URL } from "../../resources/constants";
+import CommentInput from "../../components/CommentInput";
+
 import requests from "../../resources/requests";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
@@ -17,28 +19,25 @@ import Image from "../../components/carousel/Carousel";
 import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
 import { makeStyles } from "@mui/styles";
 
-
 const useStyles = makeStyles({
-  most:
- {
-   display: "flex",
-   height: "fit-content",
-   paddingLeft:"1%",
-   paddingLeft:"50px",
-   paddingRight: "auto",
-   paddingBottom: "20px",
-   zIndex: "0"
- },
- component:
- {
-   background: "none",
-   border: "none",
-   padding: "0",
-   font: "inherit",
-   cursor: "pointer",
-   outline: "inherit"
- },
- });
+  most: {
+    display: "flex",
+    height: "fit-content",
+    paddingLeft: "1%",
+    paddingLeft: "50px",
+    paddingRight: "auto",
+    paddingBottom: "20px",
+    zIndex: "0",
+  },
+  component: {
+    background: "none",
+    border: "none",
+    padding: "0",
+    font: "inherit",
+    cursor: "pointer",
+    outline: "inherit",
+  },
+});
 
 const responsive = {
   superLargeDesktop: {
@@ -60,7 +59,6 @@ const responsive = {
   },
 };
 
-
 const Movie = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = React.useState({});
@@ -74,16 +72,15 @@ const Movie = () => {
           .then((res) => res.data);
         setMovie(movieData);
 
-
         const topMovieData = await axios
-        .get(requests.fetchTopRated)
-        .then((res) => res.data.results);
+          .get(requests.fetchTopRated)
+          .then((res) => res.data.results);
 
-      const toptimedData = await new Promise((resolve) => {
-        setTimeout(() => resolve(topMovieData), 1000);
-      });
-      setDataTop(toptimedData);
-      setLoading(false);
+        const toptimedData = await new Promise((resolve) => {
+          setTimeout(() => resolve(topMovieData), 1000);
+        });
+        setDataTop(toptimedData);
+        setLoading(false);
       } catch (e) {
         console.error(e);
       }
@@ -96,7 +93,7 @@ const Movie = () => {
 
   const classes = useStyles();
   return (
-    <PageLayout sx={{display:"flex", flexDirection:"column"}}>
+    <PageLayout sx={{ display: "flex", flexDirection: "column" }}>
       <Box sx={{ width: "100%" }}>
         <Typography mb="20px" mt="10vh" textAlign="center" variant="h2">
           {movie.title}
@@ -107,7 +104,7 @@ const Movie = () => {
           display: "flex",
           flexDirection: "row",
           width: "100%",
-          height:"50%",
+          height: "50%",
           aspectRatio: "16/9",
         }}
       >
@@ -118,15 +115,13 @@ const Movie = () => {
           height="100%"
         /> */}
         <img
-        src={`${IMAGES_URL}${movie?.poster_path || movie?.backdrop_path}`}
-        alt="movie_poster"
-        width="100%"
-        height="100%"
-     
-      />
+          src={`${IMAGES_URL}${movie?.poster_path || movie?.backdrop_path}`}
+          alt="movie_poster"
+          width="100%"
+          height="100%"
+        />
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
-       
         <Box
           sx={{
             display: "flex",
@@ -163,7 +158,7 @@ const Movie = () => {
               {`${movie.runtime} min`}
             </Typography>
           </Box>
-         
+
           <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
             <Typography
               ml="20px"
@@ -190,21 +185,20 @@ const Movie = () => {
                 })}
               </Typography>
             )}
-            
           </Box>
           <Box sx={{ width: "100%" }}>
-        <Divider sx={{ marginBottom: "15px" }} />
-        <RatingDisplay
-          voteAverage={movie?.vote_average}
-          voteCount={movie?.vote_count}
-        />
-      </Box>
+            <Divider sx={{ marginBottom: "15px" }} />
+            <RatingDisplay
+              voteAverage={movie?.vote_average}
+              voteCount={movie?.vote_count}
+            />
+          </Box>
         </Box>
         <Typography ml="20px" fontSize="20px" mt={5} textAlign="center">
           {movie.overview}
         </Typography>
       </Box>
-      
+
       <Box
         sx={{
           display: "flex",
@@ -224,29 +218,24 @@ const Movie = () => {
             width: "100%",
             justifyContent: "center",
           }}
-        >
-          
-        </Box>
+        ></Box>
       </Box>
-      <Box sx={{width:"100%",height:"500px"}}>
-        {loading ? <LoadingMovieCard/> :
-        <Carousel className={classes.most} responsive={responsive}>
-          {topRated.map((datas, key) => {
-            return (
-              <>
-                <button
-                  onClick={() => {
-                  
-                  }}
-                  className={classes.component}
-                >
-                  <Image movie={datas}></Image>
-                </button>
-              </>
-            );
-          })}
-        </Carousel>
-      }
+      <Box sx={{ width: "100%", height: "500px" }}>
+        {loading ? (
+          <LoadingMovieCard />
+        ) : (
+          <Carousel className={classes.most} responsive={responsive}>
+            {topRated.map((datas, key) => {
+              return (
+                <>
+                  <button onClick={() => {}} className={classes.component}>
+                    <Image movie={datas}></Image>
+                  </button>
+                </>
+              );
+            })}
+          </Carousel>
+        )}
       </Box>
       <Box
         sx={{
@@ -258,6 +247,7 @@ const Movie = () => {
         <Typography ml="20px" fontSize="25px" mt={5} textAlign="left">
           Comments
         </Typography>
+        <CommentInput />
         <ListComments />
       </Box>
     </PageLayout>

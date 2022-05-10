@@ -1,31 +1,42 @@
-import { IconButton, Typography } from "@mui/material";
-import Box from "@mui/material/Box";
 import React from "react";
-import Container from "@mui/material/Container";
-import Paper from "@mui/material/Paper";
-import { useState, useEffect } from "react";
-import { comments as getCommets } from "../resources/comments";
+
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import { comments } from "../resources/comments";
 
-const Comments = ({ currentUserId }) => {
-  const [backendComments, setBackendCommets] = useState([]);
+const Comments = () => {
+  const [backendComments, setBackendComments] = React.useState([]);
 
-  useEffect(() => {
-    getCommets().then((data) => {
-      setBackendCommets(data);
+  React.useEffect(() => {
+    comments().then((data) => {
+      setBackendComments(data);
     });
   }, []);
+
   return (
-    <Box>
-      <Container
-        sx={{
-          display: "flex",
-          marginTop: "28px",
-          flexDirection: "column",
-        }}
-      >
-        {backendComments.map((comment, index) => (
-          <Box key={`${comment.id}-${index}`} sx={{ marginBottom: "25px" }}>
+    <Box
+      sx={{
+        display: "flex",
+        marginTop: "28px",
+        flexDirection: "column",
+      }}
+    >
+      {backendComments.map((comment, index) => (
+        <Box
+          key={`${comment.id}-${index}`}
+          sx={{
+            marginBottom: "25px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "flex-start",
+          }}
+        >
+          <Avatar sx={{ marginRight: "15px" }}>T</Avatar>
+          <Box>
             <Box
               sx={{
                 display: "flex",
@@ -53,18 +64,14 @@ const Comments = ({ currentUserId }) => {
                 alignItems: "center",
               }}
             >
-              <IconButton
-                onClick={() => {
-                  comment.likes += 1;
-                }}
-              >
+              <IconButton>
                 <ThumbUpAltIcon />
               </IconButton>
               <Typography>{comment.likes}</Typography>
             </Box>
           </Box>
-        ))}
-      </Container>
+        </Box>
+      ))}
     </Box>
   );
 };

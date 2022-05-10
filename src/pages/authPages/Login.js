@@ -11,10 +11,9 @@ import { useTheme } from "@mui/system";
 import CustomCheckBox from "../../components/CustomCheckbox";
 import AuthLayout from "./AuthLayout";
 
-import AppContext from "../../resources/context/AppContext";
+import UserContext from "../../resources/context/UserContext";
+import { loginUser } from "../../resources/helpers/authHelper";
 import { useNavigate } from "react-router-dom";
-import { validateEmail } from "../../resources/helpers/authHelper";
-import { motion } from "framer-motion";
 const useStyles = makeStyles({
   inputContainer: {
     width: "100%",
@@ -48,54 +47,55 @@ const useStyles = makeStyles({
 });
 
 const Login = () => {
+  const [input, setInput] = React.useState({ username: "", password: "" });
+  const [error, setError] = React.useState({ username: "", password: "" });
+  const { authenticateUser, isAuthenticated } = React.useContext(UserContext);
 
   const theme = useTheme();
 
-  const [input, setInput] = React.useState({ email: "", password: "" });
-  const [error, setError] = React.useState({ email: "", password: "" });
-  const { authenticateUser } = React.useContext(AppContext);
-
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (isAuthenticated) navigate("/home");
+  }, [isAuthenticated, navigate]);
 
   const handleChange = (event, key) => {
     setInput({ ...input, [key]: event.target.value });
   };
 
-  const handleSignIn = () => {
-    const emailError =
-      input.email === "" || !validateEmail(input.email)
-        ? "Please provide an valid email"
-        : "";
+  const handleSignIn = async () => {
+    const usernameError =
+      input.username === "" ? "Please provide an valid username" : "";
 
     const passwordError =
       input.password.length < 8
         ? "Your password must be at at least 8 characters long "
         : "";
 
-    if (emailError === "" && passwordError === "") {
-      authenticateUser();
-      navigate("/home");
-    } else setError({ email: emailError, password: passwordError });
+    if (usernameError === "" && passwordError === "") {
+      try {
+        const response = await loginUser(input);
+        if (response) authenticateUser();
+      } catch (e) {
+        console.log(e); //TODO: Show the user the error in some way
+      }
+    } else setError({ username: usernameError, password: passwordError });
   };
 
   const classes = useStyles();
   return (
     <AuthLayout>
-      <Typography color={theme.palette.text.primary} mb="25px" variant="h4"
-     
-      
-      >
+      <Typography color={theme.palette.text.primary} mb="25px" variant="h4">
         Sign in
       </Typography>
       <Paper className={classes.inputContainer}>
         <TextField
-          error={error.email === "" ? false : true}
+          error={error.username === "" ? false : true}
           required
-          label="Email"
-          defaultValue="email@someone.com"
-          helperText={error.email}
-          onChange={(ev) => handleChange(ev, "email")}
-          value={input.email}
+          label="Username"
+          helperText={error.username}
+          onChange={(ev) => handleChange(ev, "username")}
+          value={input.username}
           className={classes.inputField}
           variant="filled"
           InputLabelProps={{
@@ -126,7 +126,9 @@ const Login = () => {
       <Box className={classes.forgotSection}>
         <Box className={classes.rememberMe}>
           <CustomCheckBox />
-          <Typography color={theme.palette.text.primary}>Remember me</Typography>
+          <Typography color={theme.palette.text.primary}>
+            Remember me
+          </Typography>
         </Box>
         <Button
           variant="text"
@@ -136,7 +138,9 @@ const Login = () => {
           className={classes.linkButton}
           onClick={() => navigate("/reset-pass")}
         >
-          <Typography sx={{ textTransform: "none", color: theme.palette.text.primary }}>
+          <Typography
+            sx={{ textTransform: "none", color: theme.palette.text.primary }}
+          >
             Forgot password?
           </Typography>
         </Button>
@@ -149,7 +153,9 @@ const Login = () => {
         Sign in
       </Button>
       <Box className={classes.signUpContainer}>
-        <Typography color={theme.palette.text.primary}>New on this app?</Typography>
+        <Typography color={theme.palette.text.primary}>
+          New on this app?
+        </Typography>
         <Button
           variant="text"
           disableFocusRipple
@@ -158,7 +164,9 @@ const Login = () => {
           className={classes.linkButton}
           onClick={() => navigate("/register")}
         >
-          <Typography sx={{ textTransform: "none", color: theme.palette.text.disabled }}>
+          <Typography
+            sx={{ textTransform: "none", color: theme.palette.text.disabled }}
+          >
             Sign up now.
           </Typography>
         </Button>
