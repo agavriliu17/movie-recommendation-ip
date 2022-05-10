@@ -4,16 +4,11 @@ import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import { useNavigate } from "react-router-dom";
-import bg1 from "../../resources/images/netflix2.jpg";
+import bg1 from "../../resources/images/netflix1.jpg";
 import { motion } from "framer-motion";
-
-
+import { useTheme } from "@mui/system";
 import { InfoOutlined } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
-export const COLORS = {
-  primary: "#482884", // purple
-  secondary: "#F9F871", // yellow
-};
 
 const scrollToBottom = () => {
   window.scrollTo({
@@ -23,50 +18,23 @@ const scrollToBottom = () => {
 };
 
 const useStyles = makeStyles({
-  ball:
-  {
-    display: "block",
-    height: "20px",
-    width: "20px",
-    borderRadius: "50%",
-    backgroundColor: "#F9F871"
-  },
-  title:
-  {
-    position: "absolute",
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    zIndex: "1",
-    left: "15%",
-    top: "2vh",
-  },
-  mainBox:
-  {
+  mainBox: {
     width: "30%",
     top: "0",
-    height: "95vh",
+    height: "90%",
     borderBottomLeftRadius: "50px",
-    backgroundColor: "#48288450",
     marginLeft: "auto",
     marginRight: "auto",
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
+    border: "1px solid white",
   },
-  moto:
-  {
-    fontFamily: "Trispace",
-    color: COLORS.secondary,
-    fontWeight: "normal",
-    fontSize: "50px",
-    margin: "40px",
-  }
 });
 
-
 const Start = () => {
+  const theme = useTheme();
   const navigate = useNavigate();
   const classes = useStyles();
   return (
@@ -76,162 +44,138 @@ const Start = () => {
         height: "100vh",
         backgroundImage: `url(${bg1})`,
         backgroundSize: "cover",
+        // background: "linear-gradient(-45deg, black, #10091D)",
         borderRadius: "0",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        maskImage: "linear-gradient(to right bottom, black, transparent)",
+        zIndex: "-1"
       }}
-      component={motion.div}
-      whileHover={{
-        transition: { duration: 0.1 },
-       
-      }}
-      initial={{ opacity: 0, y: "-10vw" }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.1, type: "spring", stiffness:110 }}
-    
     >
       <Box
-        className={classes.title}
-        
+        sx={{
+          width: "0%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          justifyContent: "center",
+        }}
       >
-        <motion.div
-          initial={{ x: "-100vw" }}
-          animate={{ x: 0 }}
-          transition={{ delay: 1.5, type: "tween" }}
+        <Typography
+          variant="h6"
+          sx={{
+            transformOrigin: "top left",
+            transform: "rotate(-90deg)",
+            fontSize: "10px",
+            marginTop: "50px",
+          }}
         >
+          About
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            transformOrigin: "top left",
+            transform: "rotate(-90deg)",
+            fontSize: "10px",
+            marginTop: "50px",
+          }}
+        >
+          Contact
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          // border: "1px solid white",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-around",
+        }}
+      >
+        <Box>
           <Typography
+            variant="h6"
             sx={{
-              fontFamily: "Trispace",
-              color: COLORS.secondary,
-              fontWeight: "normal",
-              fontSize: "calc(0.2rem + 2vw)",
+              transform: "skewX(-20deg)",
+              fontSize: "5vw",
             }}
           >
-            Movie Streaming Website
+            Movie
           </Typography>
-        </motion.div>
-      </Box>
-      <motion.div
-        initial={{ y: "-100vh" }}
-        animate={{ y: 0 }}
-        transition={{ delay: 1, type: "tween" }}
-      >
-        <Box
-          className={classes.mainBox}
-          
-        >
-          <motion.div
-            className={classes.ball}
-            animate={{ 
-              x: [-20, 20],
-              y: [0, 30], 
-              transition: {
-                x: {
-                  yoyo: Infinity,
-                  duration: 3
-                },
-                y: {
-                  yoyo: Infinity,
-                  duration: 1.5,
-                  ease: "easeOut"
-                }
-              }
-            }}
-            transition={{ delay: 1.5, type: "spring" }}
-          ></motion.div>
           <Typography
-            className={classes.moto}
-           
+            variant="h6"
+            sx={{
+              transform: "skewX(20deg)",
+              fontSize: "5vw",
+            }}
+          >
+            Streaming Website
+          </Typography>
+        </Box>
+        <Box sx={{
+          width: "30%",
+          borderLeft: "3px solid",
+          padding: "10px",
+          borderColor: theme.palette.primary.main
+        }}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontSize: "20px",
+            }}
           >
             Get ready for a good time! Watch a wide variety of movies we
             prepared only for you!
           </Typography>
-          <Box
+        </Box>
+        <Box
+          sx={{
+            width: "60%",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            marginTop: "20px"
+          }}
+        >
+          <Button
+            variant="outlined"
             sx={{
-              backgroundColor: "#004C2E",
-              height: "2px",
-              width: "70%",
-              marginTop: "-25px",
+              borderRadius: "50px",
+              color: theme.palette.text.primary,
+              borderColor: theme.palette.text.primary,
             }}
-          ></Box>
-          <Box
-            sx={{
-              width: "70%",
-              marginTop: "50px",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
+            onClick={() => navigate("/Register")}
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5, type: "spring" }}
-            >
-              <Button
-                variant="outlined"
-                sx={{
-                  backgroundColor: COLORS.primary,
-                  color: COLORS.secondary,
-                  borderColor: COLORS.secondary,
-                  fontFamily: "Trispace",
-                  fontWeight: "bold",
-                  fontSize: "calc(0.01rem + 1vw)",
-                  "&:hover": {
-                    backgroundColor: COLORS.secondary,
-                    color: COLORS.primary,
-                    borderColor: COLORS.primary,
-                  },
-                }}
-                onClick={() => navigate("/Login")}
-              >
-                Log In
-              </Button>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5, type: "spring" }}
-            >
-              <Button
-                variant="outlined"
-                sx={{
-                  backgroundColor: COLORS.secondary,
-                  color: COLORS.primary,
-                  borderColor: COLORS.primary,
-                  fontFamily: "Trispace",
-                  fontWeight: "bold",
-                  fontSize: "calc(0.01rem + 1vw)",
-                  "&:hover": {
-                    backgroundColor: COLORS.primary,
-                    color: COLORS.secondary,
-                    borderColor: COLORS.secondary,
-                  },
-                }}
-                onClick={() => navigate("/Register")}
-              >
-                Sign Up
-              </Button>
-            </motion.div>
-          </Box>
-          <Box
+            Sign Up
+          </Button>
+          <Button
+            variant="outlined"
             sx={{
-              height: "200px",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "flex-end",
-              justifyContent: "center",
+              borderRadius: "50px",
+              color: theme.palette.text.primary,
+              borderColor: theme.palette.text.primary,
             }}
+            onClick={() => navigate("/Login")}
           >
-            <KeyboardArrowDownSharpIcon
+            Sign In
+          </Button>
+        </Box>
+        <KeyboardArrowDownSharpIcon
               fontSize="large"
               sx={{
-                color: COLORS.secondary,
+                color: theme.palette.secondary.main,
+                marginTop: "20px"
               }}
               onClick={scrollToBottom}
-            />
-          </Box>
-        </Box>
-      </motion.div>
+        />
+      </Box>
     </Paper>
   );
 };

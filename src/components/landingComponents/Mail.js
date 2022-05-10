@@ -15,7 +15,6 @@ import LoadingBanner from "../../components/loadingElements/LoadingBanner";
 import requests from "../../resources/requests";
 import axios from "axios";
 
-
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -53,27 +52,25 @@ export const validateEmail = (email) => {
   return re.test(email);
 };
 
-
 const useStyles = makeStyles({
- most:
-{
-  display: "flex",
-  height: "fit-content",
-  paddingLeft:"1%",
-  paddingLeft:"50px",
-  paddingRight: "auto",
-  paddingBottom: "20px",
-  zIndex: "0"
-},
-component:
-{
-  background: "none",
-  border: "none",
-  padding: "0",
-  font: "inherit",
-  cursor: "pointer",
-  outline: "inherit"
-},
+  most: {
+    display: "flex",
+    height: "fit-content",
+    paddingLeft: "1%",
+    paddingLeft: "50px",
+    paddingRight: "auto",
+    paddingBottom: "20px",
+    zIndex: "0",
+    transform: "skewY(5deg)"
+  },
+  component: {
+    background: "none",
+    border: "none",
+    padding: "0",
+    font: "inherit",
+    cursor: "pointer",
+    outline: "inherit",
+  },
 });
 
 const Mail = () => {
@@ -101,9 +98,6 @@ const Mail = () => {
   React.useEffect(() => {
     (async function () {
       try {
-
-      
-
         const topMovieData = await axios
           .get(requests.fetchTopRated)
           .then((res) => res.data.results);
@@ -113,7 +107,6 @@ const Mail = () => {
         });
         setDataTop(toptimedData);
         setLoading(false);
-        
       } catch (e) {
         console.error(e);
 
@@ -123,7 +116,6 @@ const Mail = () => {
   }, []);
 
   const topRated = topRatedData.slice(0, 10);
-
 
   const classes = useStyles();
   return (
@@ -140,41 +132,24 @@ const Mail = () => {
         justifyContent: "flex-start",
       }}
     >
-      <Typography
-        sx={{
-          fontFamily: "Trispace",
-          color: "#F9F871",
-          fontWeight: "bolder",
-          fontSize: "20px",
-          marginTop: "8vh",
-        }}
-      >
-        All the movies you love! And more.
-      </Typography>
-
-     
-     
-        <Box sx={{width:"100%",height:"500px"}}>
-        {loading ? <LoadingMovieCard/> :
-        <Carousel className={classes.most} responsive={responsive}>
-          {topRated.map((datas, key) => {
-            return (
-              <>
-                <button
-                  onClick={() => {
-                  
-                  }}
-                  className={classes.component}
-                >
-                  <Image movie={datas}></Image>
-                </button>
-              </>
-            );
-          })}
-        </Carousel>
-      }
+      <Box sx={{ width: "100%", height: "500px", marginTop: "150px"}}>
+        {loading ? (
+          <LoadingMovieCard />
+        ) : (
+          <Carousel className={classes.most} responsive={responsive}>
+            {topRated.map((datas, key) => {
+              return (
+                <>
+                  <button onClick={() => {}} className={classes.component}>
+                    <Image movie={datas}></Image>
+                  </button>
+                </>
+              );
+            })}
+          </Carousel>
+        )}
       </Box>
-      
+
       <Paper
         sx={{
           backgroundColor: "#F9F871",
