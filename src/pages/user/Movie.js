@@ -7,6 +7,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import ListComments from "../../components/ListComments";
 import RatingDisplay from "../../components/RatingDisplay";
+import CommentInput from "../../components/CommentInput";
 
 import requests from "../../resources/requests";
 import { useParams } from "react-router-dom";
@@ -184,6 +185,7 @@ const Movie = () => {
         <Typography ml="20px" fontSize="25px" mt={5} textAlign="left">
           Comments
         </Typography>
+        <CommentInput />
         <ListComments />
       </Box>
     </PageLayout>
