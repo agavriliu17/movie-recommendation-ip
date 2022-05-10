@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     transition: "500ms",
     marginBottom: "25px",
     zIndex: "-1",
+    &
   },
 });
 const Image = ({ movie }) => {
@@ -43,7 +44,8 @@ const Image = ({ movie }) => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        onClick={goToMovie}
+        onClick={() => { goToMovie(); window.location.reload(false);}}
+      
       ></Box>
 
       <Hover
