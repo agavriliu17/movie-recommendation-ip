@@ -155,32 +155,40 @@ const Settings = () => {
       <Tab label="Privacy & Terms" {...a11yProps(5)} />
     </Tabs>
     <TabPanel value={value} index={0} >
-    <Card sx={{ width: '100%', minWidth:'530px' }}>
+    <Card sx={{ width: '100%', minWidth:'560px'}}>
     <CardContent>
     <Box
         component="form"
         sx={{
-          '& > :not(style)': { m: 1 }
+          '& > :not(style)': { m: 1 }, 
+          display: "flex",
+          flexDirection: "column",
+          paddingLeft: "10px"
         }}
         noValidate
         autoComplete="off"
       >
-    <Typography ml="10px" mb="20px" fontSize="25px"  align ="left">
+     <Typography ml="10px" mb="20px" fontSize="25px"  align ="left">
     Account
     </Typography> 
     <Divider />
-    <Stack paddingTop="10px" direction="row" alignItems="center" spacing={2} > 
-    <Box>
-    {selectedImage && (
+    <Typography ml="20px" mt="10px" fontSize="15px" color="#fbfcca">
+      Avatar
+      </Typography>
+    <Stack  direction="row" alignItems="center" spacing={3} > 
+      {selectedImage && (
         <Avatar sx={{mb:"20px", mt:"20px", width:"50px", height:"50px"}} alt="not fount"  src={URL.createObjectURL(selectedImage)} />
       )}
-    <Button sx={{mr:"20px"}} variant="contained" onClick={()=>setSelectedImage(null)}>Remove</Button>
+      {!selectedImage && (
+        <Avatar sx={{mb:"20px", mt:"20px", width:"50px", height:"50px"}} alt="Remy Sharp"  src="/static/images/avatar/1.jpg" />
+      )}
+    
 
     <Button
   variant="contained"
   component="label"
 >
-Upload File
+Upload
 <input
         type="file"
         name="myImage"
@@ -191,35 +199,93 @@ Upload File
         }}
       />
 </Button>
-      
-     
-     
-  
-    </Box>
+<Button  variant="contained" onClick={()=>setSelectedImage(null)}>
+      Remove
+      <input
+        type="file"
+        name="myImage"
+        hidden
+        onChange={(event) => {
+          console.log(event.target.files[0]);
+          setSelectedImage(event.target.files[0]);
+        }}
+      />
+    </Button>
   </Stack>
+  <Divider />
+  <Box
+      sx={{
+        '& > :not(style)': { mr: 1}, 
+        display: "flex",
+        flexDirection: "row",
+        
+      }}>
+        
+  <Typography width="50%" mt="10px" fontSize="15px" color="#fbfcca" align="left">
+      Display name
+      </Typography>
+      <Typography width="50%" mt="10px" fontSize="15px" color="#fbfcca" align="left">
+      Full name
+      </Typography>
+      </Box>
+  <Box
+      sx={{
+        '& > :not(style)': { mr: 1}, 
+        display: "flex",
+        flexDirection: "row",
+        
+      }}>
         <TextField
           id="outlined-name"
           label="Display name"
+          color="secondary"
           value={name}
           onChange={handleChangeAccount}
           InputLabelProps={{
             sx: {
               color: "#8c8c8c",
             },
-          }} 
+          }}
+          
         />
         <TextField 
         id="outlined-uncontrolled" 
         label="Full name" 
+        color="secondary"
         InputLabelProps={{
           sx: {
             color: "#8c8c8c",
           },
         }} />
+        </Box>
         <Divider />
+        <Box
+      sx={{
+        '& > :not(style)': { mr: 1}, 
+        display: "flex",
+        flexDirection: "row",
+        
+      }}>
+        
+  <Typography width="50%" mt="10px" fontSize="15px" color="#fbfcca" align="left">
+      Email address
+      </Typography>
+      <Typography width="50%" mt="10px" fontSize="15px" color="#fbfcca" align="left">
+      Phone number
+      </Typography>
+      </Box>
+        <Box
+      sx={{
+        '& > :not(style)': { mr: 1}, 
+        display: "flex",
+        flexDirection: "row",
+        
+      }}>
         <TextField  
         id="outlined-uncontrolled" 
-        label="Email address" 
+        label="Email address"
+        color="secondary" 
+        type="email"
         InputLabelProps={{
           sx: {
             color: "#8c8c8c",
@@ -227,12 +293,15 @@ Upload File
         }} />
         <TextField  
         id="outlined-uncontrolled" 
-        label="Phone number" 
+        label="Phone number"
+        color="secondary"
+        type="phone"
         InputLabelProps={{
           sx: {
             color: "#8c8c8c",
           },
         }} />
+        </Box>
         <Divider />
       <CardActions>
        <Button size="small" variant="contained">Save changes</Button>
@@ -242,7 +311,7 @@ Upload File
   </Card>   
   </TabPanel>
     <TabPanel value={value} index={1}>
-    <Card sx={{ width: '100%', minWidth:'530px'}}>
+    <Card sx={{ width: '100%', minWidth:'560px'}}>
     <CardContent>
     <Box
       sx={{
@@ -251,15 +320,16 @@ Upload File
         flexDirection: "column",
         paddingLeft: "10px"
       }}>
+        
     <Typography ml="10px" mb="20px" fontSize="25px"  align ="left">
             Display Language
       </Typography> 
       <Divider />
 
-      <Typography ml="20px" mt="10px" fontSize="15px">
+      <Typography ml="20px" mt="10px" fontSize="15px" color="#fbfcca">
       Choose which language you want to use in the app.
       </Typography>
-        <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+        <FormControl sx={{ m: 3,  color:"#e3dede" }} component="fieldset" variant="standard">
          <FormGroup>
         <FormControlLabel
           control={
@@ -284,14 +354,14 @@ Upload File
       
       <Divider />
       <CardActions >
-      <Button size="small" variant="contained" >Save changes</Button>
+      <Button size="small" variant="contained">Save changes</Button>
     </CardActions>
     </Box>
       </CardContent>
       </Card>
     </TabPanel>
     <TabPanel value={value} index={2}>
-    <Card sx={{ width: '100%', minWidth:'530px',  flexDirection: "column"}}>
+    <Card sx={{ width: '100%', minWidth:'560px',  flexDirection: "column"}}>
     <CardContent>
     <Box
       sx={{
@@ -305,8 +375,10 @@ Upload File
     Change password
       </Typography> 
       <Divider />
+      
         <TextField
            label="Current Password"
+           color="secondary"
            type="password"
            InputLabelProps={{
              sx: {
@@ -315,7 +387,8 @@ Upload File
            }}
         />
         <TextField
-           label="New Password"
+           label="Enter Your New Password"
+           color="secondary"
            type="password"
            id="password"
            error={error.password === "" ? false : true}
@@ -329,7 +402,8 @@ Upload File
            }}
         />
         <TextField 
-        label="Confirm Password"
+        label="Repeat New Password"
+        color="secondary"
         error={error.confirmPassword === "" ? false : true}
         type="password"
         helperText={error.confirmPassword}
