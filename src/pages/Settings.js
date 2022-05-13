@@ -13,23 +13,15 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
-import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
 import React, { useState } from "react";
-
-
-
-import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
-import { ForkRight } from "@mui/icons-material";
 
 
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
