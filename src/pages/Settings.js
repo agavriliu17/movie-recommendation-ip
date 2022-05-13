@@ -19,7 +19,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { styled } from '@mui/material/styles';
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 
 function TabPanel(props) {
@@ -75,7 +74,6 @@ const Settings = () => {
     password: "",
     confirmPassword: "",
   });
-  const navigate = useNavigate();
 
   const handleChangePass = (event, key) => {
     setInput({ ...input, [key]: event.target.value });
@@ -94,7 +92,7 @@ const Settings = () => {
 
     if (passwordError === "" && confirmPasswordError === "") {
       alert("Password has been successfully reset");
-      navigate("/login");
+      
     } else {
       setError({
         password: passwordError,
@@ -107,7 +105,9 @@ const Settings = () => {
   };
   const handleChangeForm = (event) => {
     setState({
-      ...state,
+      same: false,
+      en: false,
+      ro: false,
       [event.target.name]: event.target.checked,
     });
   };
