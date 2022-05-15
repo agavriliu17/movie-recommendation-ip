@@ -13,8 +13,7 @@ const LoadingMovieCard = () => {
 
   return (
     <Box className={classes.mainCard}>
-      <Skeleton variant="rectangular" width={210} height={118} />
-      <Skeleton width={210} height={40} />
+      <Skeleton variant="rectangular" width={250} height={300} />
     </Box>
   );
 };

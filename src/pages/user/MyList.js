@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 import MovieListItem from "../../components/MovieListItem";
+import LoadingMyList from "../../components/loadingElements/LoadingMyList";
 import requests from "../../resources/requests";
 import axios from "axios";
 
@@ -44,7 +45,7 @@ const MyList = () => {
           ))}
         </Box>
       ) : (
-        <></>
+        <LoadingMyList />
       )}
     </PageLayout>
   );
