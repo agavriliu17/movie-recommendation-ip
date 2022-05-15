@@ -1,6 +1,5 @@
 
-test('test',() =>{
+test('login',() =>{
     expect(true).toBe(true);
 
 })
-
