@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import Hover from "../carousel/Hover";
-import { useEffect, useState } from "react";
 import { IMAGES_URL } from "../../resources/constants";
 import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -14,20 +13,14 @@ const useStyles = makeStyles({
     transition: "500ms",
     marginBottom: "25px",
     zIndex: "-1",
-   
   },
 });
 const Image = ({ movie }) => {
+  const [hovervisibility, sethover] = useState(false);
   const navigate = useNavigate();
 
   const goToMovie = () => {
     navigate(`/watch/${movie.id}`);
-  };
-
-  const [hovervisibility, sethover] = useState(false);
-
-  const popupClose = () => {
-    sethover(false);
   };
 
   const classes = useStyles();
@@ -39,13 +32,15 @@ const Image = ({ movie }) => {
         onMouseLeave={() => sethover(false)}
         sx={{
           backgroundImage: `url(${IMAGES_URL}${
-            movie?.backdrop_path || movie?.poster_path
+            movie?.poster_path || movie?.backdrop_path
           })`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        onClick={() => { goToMovie(); window.location.reload(false);}}
-      
+        onClick={() => {
+          goToMovie();
+          window.location.reload(false);
+        }}
       ></Box>
 
       <Hover

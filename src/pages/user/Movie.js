@@ -65,6 +65,7 @@ const Movie = () => {
   const [topRatedData, setDataTop] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
+    // window.scrollTo(0);
     (async function () {
       try {
         const movieData = await axios
@@ -108,18 +109,18 @@ const Movie = () => {
           aspectRatio: "16/9",
         }}
       >
-        {/* <ReactPlayer
+        <ReactPlayer
           controls
           url="https://www.youtube.com/watch?v=IE8HIsIrq4o&ab_channel=Netflix"
           width="100%"
           height="100%"
-        /> */}
-        <img
+        />
+        {/* <img
           src={`${IMAGES_URL}${movie?.poster_path || movie?.backdrop_path}`}
           alt="movie_poster"
           width="100%"
           height="100%"
-        />
+        /> */}
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
         <Box
@@ -222,7 +223,17 @@ const Movie = () => {
       </Box>
       <Box sx={{ width: "100%", height: "500px" }}>
         {loading ? (
-          <LoadingMovieCard />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            {[...Array(4)].map((el, ind) => (
+              <LoadingMovieCard />
+            ))}
+          </Box>
         ) : (
           <Carousel className={classes.most} responsive={responsive}>
             {topRated.map((datas, key) => {

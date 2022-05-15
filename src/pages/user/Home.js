@@ -47,7 +47,7 @@ const useStyles = makeStyles({
     paddingRight: "auto",
     paddingBottom: "20px",
     zIndex: "0",
-    marginTop: "100px"
+    marginTop: "100px",
   },
 
   component: {
@@ -66,26 +66,22 @@ const useStyles = makeStyles({
     paddingLeft: "50px",
     paddingTop: "20px",
     textAlign: "left",
-    color: "#F9F871"
+    color: "#F9F871",
   },
-  body: 
-  {
-    backgroundColor: "#10091D"
-  }
+  body: {
+    backgroundColor: "#10091D",
+  },
 });
 
 const Home = () => {
   const [visibility, setVisibility] = useState(false);
-
-  const popupCloseHandler = () => {
-    setVisibility(false);
-  };
   const [data, setData] = React.useState([]);
   const [topRatedData, setDataTop] = React.useState([]);
   const [horrorData, setDataHorror] = React.useState([]);
   const [actionData, setDataAction] = React.useState([]);
   const [documentariesData, setDatadocumentaries] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+
   React.useEffect(() => {
     (async function () {
       try {
@@ -149,41 +145,58 @@ const Home = () => {
   const actionmovies = actionData.slice(0, 10);
   const documentariesmovies = documentariesData.slice(0, 10);
 
-  var [title, setTitle] = useState();
-  var [info, setInfo] = useState();
-  var [added, setAdded] = useState();
-  console.log(title);
-
   const classes = useStyles();
   return (
     <Box className={classes.body}>
       <Nav />
       {loading ? <LoadingBanner /> : <Banner movie={bannerMovie} />}
-     
-        {loading? (<LoadingMovieCard/>):(<Carousel className={classes.most} responsive={responsive}>
-          {topRated.map((datas, key) => {
+
+      {loading ? (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            width: "100%",
+            marginTop: "25px",
+          }}
+        >
+          {[...Array(4)].map((el, ind) => (
+            <LoadingMovieCard />
+          ))}
+        </Box>
+      ) : (
+        <Carousel className={classes.most} responsive={responsive}>
+          {topRated.map((data, key) => {
             return (
-              <>
-                <button
-                  onClick={() => {
-                    setVisibility(true);
-                    setTitle(datas.title);
-                    setInfo(datas.info);
-                    setAdded = datas.release_date;
-                  }}
-                  className={classes.component}
-                >
-                  <Image movie={datas}></Image>
-                </button>
-              </>
+              <button
+                onClick={() => {
+                  setVisibility(true);
+                }}
+                className={classes.component}
+                key={key}
+              >
+                <Image movie={data}></Image>
+              </button>
             );
           })}
         </Carousel>
-        )}
+      )}
 
       <Typography className={classes.text}>For the brave:</Typography>
       {loading ? (
-        <LoadingMovieCard />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+            justifyContent: "space-evenly",
+          }}
+        >
+          {[...Array(4)].map((el, ind) => (
+            <LoadingMovieCard />
+          ))}
+        </Box>
       ) : (
         <Carousel className={classes.carousel} responsive={responsive}>
           {horrormovies.map((datas, key) => {
@@ -205,7 +218,18 @@ const Home = () => {
 
       <Typography className={classes.text}>Action non stop:</Typography>
       {loading ? (
-        <LoadingMovieCard />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+            justifyContent: "space-evenly",
+          }}
+        >
+          {[...Array(4)].map((el, ind) => (
+            <LoadingMovieCard />
+          ))}
+        </Box>
       ) : (
         <Carousel className={classes.carousel} responsive={responsive}>
           {actionmovies.map((datas, key) => {
@@ -227,7 +251,18 @@ const Home = () => {
 
       <Typography className={classes.text}>Documentaries:</Typography>
       {loading ? (
-        <LoadingMovieCard />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            width: "100%",
+          }}
+        >
+          {[...Array(4)].map((el, ind) => (
+            <LoadingMovieCard />
+          ))}
+        </Box>
       ) : (
         <Carousel className={classes.carousel} responsive={responsive}>
           {documentariesmovies.map((datas, key) => {

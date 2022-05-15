@@ -5,16 +5,11 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 import MovieListItem from "../../components/MovieListItem";
+import LoadingMyList from "../../components/loadingElements/LoadingMyList";
 import requests from "../../resources/requests";
 import axios from "axios";
-import { Skeleton } from "@mui/material";
-import { useTheme } from "@mui/material";
-
 
 const MyList = () => {
-
-  const theme = useTheme();
-  
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
@@ -46,14 +41,11 @@ const MyList = () => {
       {!loading ? (
         <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
           {data.map((movie, index) => (
-            <MovieListItem key={`${movie.title}-${index}`} movie={movie}   />
+            <MovieListItem key={`${movie.title}-${index}`} movie={movie} />
           ))}
         </Box>
       ) : (
-        <Skeleton variant="rectangular" 
-        sx={{width:"100%",height:"100%"}}
-        
-        />
+        <LoadingMyList />
       )}
     </PageLayout>
   );
