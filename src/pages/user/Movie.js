@@ -3,61 +3,17 @@ import React, { Fragment } from "react";
 import PageLayout from "../PageLayout";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
-import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import ListComments from "../../components/ListComments";
 import RatingDisplay from "../../components/RatingDisplay";
-import { IMAGES_URL } from "../../resources/constants";
 import CommentInput from "../../components/CommentInput";
+import MoviesCarousel from "../../components/carousel/MoviesCarousel";
 
 import requests from "../../resources/requests";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import axios from "axios";
-import Carousel from "react-multi-carousel";
-import Image from "../../components/carousel/Carousel";
 import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles({
-  most: {
-    display: "flex",
-    height: "fit-content",
-    paddingLeft: "1%",
-    paddingLeft: "50px",
-    paddingRight: "auto",
-    paddingBottom: "20px",
-    zIndex: "0",
-  },
-  component: {
-    background: "none",
-    border: "none",
-    padding: "0",
-    font: "inherit",
-    cursor: "pointer",
-    outline: "inherit",
-  },
-});
-
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 4,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
 
 const Movie = () => {
   const { movieId } = useParams();
@@ -92,9 +48,8 @@ const Movie = () => {
 
   const topRated = topRatedData.slice(0, 10);
 
-  const classes = useStyles();
   return (
-    <PageLayout sx={{ display: "flex", flexDirection: "column" }}>
+    <PageLayout>
       <Box sx={{ width: "100%" }}>
         <Typography mb="20px" mt="10vh" textAlign="center" variant="h2">
           {movie.title}
@@ -235,17 +190,8 @@ const Movie = () => {
             ))}
           </Box>
         ) : (
-          <Carousel className={classes.most} responsive={responsive}>
-            {topRated.map((datas, key) => {
-              return (
-                <>
-                  <button onClick={() => {}} className={classes.component}>
-                    <Image movie={datas}></Image>
-                  </button>
-                </>
-              );
-            })}
-          </Carousel>
+          // TODO: Fix layout
+          <MoviesCarousel movieList={topRated} genreTitle="Recommended" />
         )}
       </Box>
       <Box

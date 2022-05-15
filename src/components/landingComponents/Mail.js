@@ -6,34 +6,8 @@ import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import { useNavigate } from "react-router-dom";
-import { makeStyles } from "@mui/styles";
-import { useState } from "react";
-import Carousel from "react-multi-carousel";
-import Image from "../../components/carousel/Carousel";
-import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
-import LoadingBanner from "../../components/loadingElements/LoadingBanner";
 import requests from "../../resources/requests";
 import axios from "axios";
-
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 4,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
 
 export const COLORS = {
   primary: "#482884", // purple
@@ -52,30 +26,12 @@ export const validateEmail = (email) => {
   return re.test(email);
 };
 
-const useStyles = makeStyles({
-  most: {
-    display: "flex",
-    height: "fit-content",
-    paddingLeft: "1%",
-    paddingLeft: "50px",
-    paddingRight: "auto",
-    paddingBottom: "20px",
-    zIndex: "0",
-  },
-  component: {
-    background: "none",
-    border: "none",
-    padding: "0",
-    font: "inherit",
-    cursor: "pointer",
-    outline: "inherit",
-  },
-});
-
 const Mail = () => {
   const navigate = useNavigate();
   const [input, setInput] = React.useState({ email: "", password: "" });
   const [error, setError] = React.useState({ email: "", password: "" });
+  const [topRatedData, setDataTop] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
   const handleSignIn = () => {
     if (input.email === "" || !validateEmail(input.email)) {
@@ -92,8 +48,7 @@ const Mail = () => {
   const handleChange = (event, key) => {
     setInput({ ...input, [key]: event.target.value });
   };
-  const [topRatedData, setDataTop] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
+
   React.useEffect(() => {
     (async function () {
       try {
@@ -114,9 +69,6 @@ const Mail = () => {
     })();
   }, []);
 
-  const topRated = topRatedData.slice(0, 10);
-
-  const classes = useStyles();
   return (
     <Paper
       sx={{
@@ -142,29 +94,6 @@ const Mail = () => {
       >
         All the movies you love! And more.
       </Typography>
-
-     
-     
-        <Box sx={{width:"100%",height:"500px"}}>
-        {loading ? <LoadingMovieCard/> :
-        <Carousel className={classes.most} responsive={responsive}>
-          {topRated.map((datas, key) => {
-            return (
-              <>
-                <button
-                  onClick={() => {
-                    navigate("/register");
-                  }}
-                  className={classes.component}
-                >
-                  <Image movie={datas}></Image>
-                </button>
-              </>
-            );
-          })}
-        </Carousel>
-      }
-      </Box>
 
       <Paper
         sx={{

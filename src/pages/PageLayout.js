@@ -4,7 +4,10 @@ import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import Nav from "../components/nav/Nav";
 
+import backgroundImage from "../resources/images/default_1920x1080.png";
+
 const PageLayout = ({ children }) => {
+  console.log("here");
   return (
     <Paper
       sx={{
@@ -13,12 +16,18 @@ const PageLayout = ({ children }) => {
         borderRadius: "0px",
         overflowX: "hidden",
         display: "flex",
-        backgroundColor: "#10091D"
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
       }}
     >
       <Nav />
       <Container
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
       >
         {children}
       </Container>

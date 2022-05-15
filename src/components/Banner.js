@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material";
 
 const Banner = ({ movie }) => {
-
   const theme = useTheme();
 
   const navigate = useNavigate();
@@ -58,8 +57,16 @@ const Banner = ({ movie }) => {
         }}
       >
         <Box sx={{ display: "flex", flexDirection: "column", width: "50%" }}>
-          <Typography variant="h3" color={theme.palette.text.secondary}>{movie.title}</Typography>
-          <Typography variant="h6" mt={5} color="#10091D" backgroundColor={theme.palette.text.disabled} paddingLeft="10px">
+          <Typography variant="h3" color="#F9F871">
+            {movie.title}
+          </Typography>
+          <Typography
+            variant="h6"
+            mt={5}
+            color="#10091D"
+            backgroundColor={theme.palette.text.disabled}
+            paddingLeft="10px"
+          >
             {movie.overview}
           </Typography>
         </Box>
