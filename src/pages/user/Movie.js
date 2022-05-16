@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import PageLayout from "../PageLayout";
 import Divider from "@mui/material/Divider";
@@ -17,6 +17,7 @@ import ReactPlayer from "react-player";
 import { IMAGES_URL } from "../../resources/constants";
 import axios from "axios";
 import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
+import RateButton from "../../components/ratings/RateButton";
 
 const Movie = () => {
   const { movieId } = useParams();
@@ -130,11 +131,20 @@ const Movie = () => {
         </Box>
       </Box>
 
-      <Box sx={{ width: "100%", marginTop: "25px" }}>
+      <Box
+        sx={{
+          width: "100%",
+          marginTop: "25px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <RatingDisplay
           voteAverage={movie?.vote_average}
           voteCount={movie?.vote_count}
         />
+        <RateButton title={movie?.title} />
       </Box>
 
       {/* Hardcoded id for test purposes only */}

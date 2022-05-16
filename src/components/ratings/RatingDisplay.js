@@ -6,7 +6,7 @@ import StarIcon from "@mui/icons-material/Star";
 
 const RatingDisplay = ({ voteAverage, voteCount }) => {
   return (
-    <>
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Typography
         ml="15px"
         fontSize="15px"
@@ -42,7 +42,7 @@ const RatingDisplay = ({ voteAverage, voteCount }) => {
           </Typography>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 
