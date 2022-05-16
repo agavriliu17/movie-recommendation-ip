@@ -52,7 +52,7 @@ const MoviesCarousel = ({ movieList, genreTitle }) => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", width: "90%" }}>
-      <Typography color="#F9F871" ml="30px" variant="h3">
+      <Typography color="#F9F871" variant="h3">
         {genreTitle}
       </Typography>
       <Carousel

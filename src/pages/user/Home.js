@@ -130,7 +130,7 @@ const Home = () => {
           }}
         >
           {[...Array(4)].map((el, ind) => (
-            <LoadingMovieCard />
+            <LoadingMovieCard key={`${ind}-top-rated`} />
           ))}
         </Box>
       ) : (
@@ -147,7 +147,7 @@ const Home = () => {
           }}
         >
           {[...Array(4)].map((el, ind) => (
-            <LoadingMovieCard />
+            <LoadingMovieCard key={`${ind}-horror`} />
           ))}
         </Box>
       ) : (
@@ -164,7 +164,7 @@ const Home = () => {
           }}
         >
           {[...Array(4)].map((el, ind) => (
-            <LoadingMovieCard />
+            <LoadingMovieCard key={`${ind}-action`} />
           ))}
         </Box>
       ) : (
@@ -181,7 +181,7 @@ const Home = () => {
           }}
         >
           {[...Array(4)].map((el, ind) => (
-            <LoadingMovieCard />
+            <LoadingMovieCard key={`${ind}-docs`} />
           ))}
         </Box>
       ) : (

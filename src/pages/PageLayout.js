@@ -7,7 +7,6 @@ import Nav from "../components/nav/Nav";
 import backgroundImage from "../resources/images/default_1920x1080.png";
 
 const PageLayout = ({ children }) => {
-  console.log("here");
   return (
     <Paper
       sx={{
