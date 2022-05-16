@@ -148,7 +148,7 @@ const Movie = () => {
       </Box>
 
       {/* Hardcoded id for test purposes only */}
-      {movieId === 238 && (
+      {movieId === "238" && (
         <Box
           sx={{
             display: "flex",
@@ -187,12 +187,15 @@ const Movie = () => {
             }}
           >
             {[...Array(4)].map((el, ind) => (
-              <LoadingMovieCard />
+              <LoadingMovieCard key={ind} />
             ))}
           </Box>
         ) : (
-          // TODO: Fix layout
-          <MoviesCarousel movieList={topRated} genreTitle="Recommended" />
+          <MoviesCarousel
+            movieList={topRated}
+            genreTitle="Recommended"
+            contained
+          />
         )}
       </Box>
 

@@ -57,47 +57,27 @@ const Home = () => {
           .get(requests.fetchNetflixOriginals)
           .then((res) => res.data.results);
 
-        const timedData = await new Promise((resolve) => {
-          setTimeout(() => resolve(movieData), 1000);
-        });
-
         const topMovieData = await axios
           .get(requests.fetchTopRated)
           .then((res) => res.data.results);
-
-        const toptimedData = await new Promise((resolve) => {
-          setTimeout(() => resolve(topMovieData), 1000);
-        });
 
         const horrorMovieData = await axios
           .get(requests.fetchHorrorMovies)
           .then((res) => res.data.results);
 
-        const horrorTimedData = await new Promise((resolve) => {
-          setTimeout(() => resolve(horrorMovieData), 1000);
-        });
-
         const actionMovieData = await axios
           .get(requests.fetchActionMovies)
           .then((res) => res.data.results);
-
-        const actionTimedData = await new Promise((resolve) => {
-          setTimeout(() => resolve(actionMovieData), 1000);
-        });
 
         const documentariesMovieData = await axios
           .get(requests.fetchDocumentaries)
           .then((res) => res.data.results);
 
-        const documentariesTimedData = await new Promise((resolve) => {
-          setTimeout(() => resolve(documentariesMovieData), 1000);
-        });
-
-        setData(timedData);
-        setDataTop(toptimedData);
-        setDataHorror(horrorTimedData);
-        setDataAction(actionTimedData);
-        setDatadocumentaries(documentariesTimedData);
+        setData(movieData);
+        setDataTop(topMovieData);
+        setDataHorror(horrorMovieData);
+        setDataAction(actionMovieData);
+        setDatadocumentaries(documentariesMovieData);
         setLoading(false);
       } catch (e) {
         console.error(e);

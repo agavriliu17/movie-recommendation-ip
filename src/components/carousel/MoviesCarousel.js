@@ -38,6 +38,37 @@ const carouselConfig = {
   },
 };
 
+const containedConfig = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 3000 },
+    items: 8,
+  },
+  desktop_XL: {
+    breakpoint: { max: 3000, min: 2500 },
+    items: 5,
+  },
+  desktop_ML: {
+    breakpoint: { max: 2500, min: 2000 },
+    items: 4,
+  },
+  desktop: {
+    breakpoint: { max: 2000, min: 1600 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1600, min: 1200 },
+    items: 2,
+  },
+  tablet_SM: {
+    breakpoint: { max: 1200, min: 800 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 2,
+  },
+};
+
 const useStyles = makeStyles({
   carouselContainer: {
     padding: "0px 20px 10px 40px",
@@ -47,7 +78,7 @@ const useStyles = makeStyles({
   },
 });
 
-const MoviesCarousel = ({ movieList, genreTitle }) => {
+const MoviesCarousel = ({ movieList, genreTitle, contained }) => {
   const classes = useStyles();
 
   return (
@@ -56,7 +87,7 @@ const MoviesCarousel = ({ movieList, genreTitle }) => {
         {genreTitle}
       </Typography>
       <Carousel
-        responsive={carouselConfig}
+        responsive={contained ? containedConfig : carouselConfig}
         className={classes.carouselContainer}
         infinite={true}
         autoPlay={false}
