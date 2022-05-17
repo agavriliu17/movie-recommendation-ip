@@ -1,43 +1,42 @@
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import PageLayout from "./PageLayout";
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Divider from "@mui/material/Divider";
-import Stack from '@mui/material/Stack';
-import Avatar from "@mui/material/Avatar";
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import { styled } from '@mui/material/styles';
-import React, { useState } from "react";
+import React from "react";
 
+import Typography from "@mui/material/Typography";
+import PageLayout from "./PageLayout";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
+import Avatar from "@mui/material/Avatar";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import GoogleIcon from "@mui/icons-material/Google";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+
+import { useNavigate } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <div
+    <Box
       role="tabpanel"
       hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
       {...other}
+      sx={{ width: "100%" }}
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
-    </div>
+    </Box>
   );
 }
 
@@ -47,25 +46,13 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-function a11yProps(index) {
-  return {
-    id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
-  };
-};
-
-
-  
 const Settings = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-  
   const [value, setValue] = React.useState(0);
   const [state, setState] = React.useState({
     same: true,
     en: false,
     ro: false,
   });
-  const [name, setName] = React.useState();
   const [input, setInput] = React.useState({
     password: "",
     confirmPassword: "",
@@ -74,6 +61,7 @@ const Settings = () => {
     password: "",
     confirmPassword: "",
   });
+  const navigate = useNavigate();
 
   const handleChangePass = (event, key) => {
     setInput({ ...input, [key]: event.target.value });
@@ -92,7 +80,7 @@ const Settings = () => {
 
     if (passwordError === "" && confirmPasswordError === "") {
       alert("Password has been successfully reset");
-      
+      navigate("/login");
     } else {
       setError({
         password: passwordError,
@@ -100,480 +88,430 @@ const Settings = () => {
       });
     }
   };
-  const handleChangeAccount = (event) => {
-    setName(event.target.value);
-  };
+
   const handleChangeForm = (event) => {
     setState({
-      same: false,
-      en: false,
-      ro: false,
+      ...state,
       [event.target.name]: event.target.checked,
     });
   };
 
   const { same, en, ro } = state;
 
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const Input = styled('input')({
-    display: 'none',
-  });
 
-  return <PageLayout >
-  <Paper sx={{width: '100%', height: '100%',position: 'absolute',top: 0, left: 0 }}>
-    <Typography ml="20px" fontSize="25px" mt={10}>
-        Settings
-      </Typography>
-      <Box
-    sx={{display: 'flex', height: '100%'}}
-   
-  >
-      <Tabs
-      textColor="white"
-      orientation="vertical"
-      variant="scrollable"
-      value={value}
-      onChange={handleChange}
-      sx={{ borderRight: 1, borderColor: 'divider', color: "#bfbbbb"}}
-    >
-      <Tab  label="Account" {...a11yProps(0)} />
-      <Tab label="Display Language" {...a11yProps(1)} />
-      <Tab label="Password" {...a11yProps(2)} />
-      <Tab label="Subscription" {...a11yProps(3)} />
-      <Tab label="Help" {...a11yProps(4)} />
-      <Tab label="Privacy & Terms" {...a11yProps(5)} />
-    </Tabs>
-    <TabPanel value={value} index={0} >
-    <Card sx={{ width: '100%', minWidth:'560px'}}>
-    <CardContent>
-    <Box
-        component="form"
-        sx={{
-          '& > :not(style)': { m: 1 }, 
-          display: "flex",
-          flexDirection: "column",
-          paddingLeft: "10px"
-        }}
-        noValidate
-        autoComplete="off"
-      >
-     <Typography ml="10px" mb="20px" fontSize="25px"  align ="left">
-    Account
-    </Typography> 
-    <Divider />
-    <Typography ml="20px" mt="10px" fontSize="15px" color="#fbfcca">
-      Avatar
-      </Typography>
-    <Stack  direction="row" alignItems="center" spacing={3} > 
-      {selectedImage && (
-        <Avatar sx={{mb:"20px", mt:"20px", width:"50px", height:"50px"}} alt="not fount"  src={URL.createObjectURL(selectedImage)} />
-      )}
-      {!selectedImage && (
-        <Avatar sx={{mb:"20px", mt:"20px", width:"50px", height:"50px"}} alt="Remy Sharp"  src="/static/images/avatar/1.jpg" />
-      )}
-    
-
-    <Button
-  variant="contained"
-  component="label"
->
-Upload
-<input
-        type="file"
-        name="myImage"
-        hidden
-        onChange={(event) => {
-          console.log(event.target.files[0]);
-          setSelectedImage(event.target.files[0]);
-        }}
-      />
-</Button>
-<Button  variant="contained" onClick={()=>setSelectedImage(null)}>
-      Remove
-      <input
-        type="file"
-        name="myImage"
-        hidden
-        onChange={(event) => {
-          console.log(event.target.files[0]);
-          setSelectedImage(event.target.files[0]);
-        }}
-      />
-    </Button>
-  </Stack>
-  <Divider />
-  <Box
-      sx={{
-        '& > :not(style)': { mr: 1}, 
-        display: "flex",
-        flexDirection: "row",
-        
-      }}>
-        
-  <Typography width="50%" mt="10px" fontSize="15px" color="#fbfcca" align="left">
-      Display name
-      </Typography>
-      <Typography width="50%" mt="10px" fontSize="15px" color="#fbfcca" align="left">
-      Full name
-      </Typography>
-      </Box>
-  <Box
-      sx={{
-        '& > :not(style)': { mr: 1}, 
-        display: "flex",
-        flexDirection: "row",
-        
-      }}>
-        <TextField
-          id="outlined-name"
-          label="Display name"
-          color="secondary"
-          value={name}
-          onChange={handleChangeAccount}
-          InputLabelProps={{
-            sx: {
-              color: "#8c8c8c",
-            },
-          }}
-          
-        />
-        <TextField 
-        id="outlined-uncontrolled" 
-        label="Full name" 
-        color="secondary"
-        InputLabelProps={{
-          sx: {
-            color: "#8c8c8c",
-          },
-        }} />
-        </Box>
-        <Divider />
-        <Box
-      sx={{
-        '& > :not(style)': { mr: 1}, 
-        display: "flex",
-        flexDirection: "row",
-        
-      }}>
-        
-  <Typography width="50%" mt="10px" fontSize="15px" color="#fbfcca" align="left">
-      Email address
-      </Typography>
-      <Typography width="50%" mt="10px" fontSize="15px" color="#fbfcca" align="left">
-      Phone number
-      </Typography>
-      </Box>
-        <Box
-      sx={{
-        '& > :not(style)': { mr: 1}, 
-        display: "flex",
-        flexDirection: "row",
-        
-      }}>
-        <TextField  
-        id="outlined-uncontrolled" 
-        label="Email address"
-        color="secondary" 
-        type="email"
-        InputLabelProps={{
-          sx: {
-            color: "#8c8c8c",
-          },
-        }} />
-        <TextField  
-        id="outlined-uncontrolled" 
-        label="Phone number"
-        color="secondary"
-        type="phone"
-        InputLabelProps={{
-          sx: {
-            color: "#8c8c8c",
-          },
-        }} />
-        </Box>
-        <Divider />
-      <CardActions>
-       <Button size="small" variant="contained">Save changes</Button>
-    </CardActions>
-    </Box>
-    </CardContent>
-  </Card>   
-  </TabPanel>
-    <TabPanel value={value} index={1}>
-    <Card sx={{ width: '100%', minWidth:'560px'}}>
-    <CardContent>
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 }, 
-        display: "flex",
-        flexDirection: "column",
-        paddingLeft: "10px"
-      }}>
-        
-    <Typography ml="10px" mb="20px" fontSize="25px"  align ="left">
-            Display Language
-      </Typography> 
-      <Divider />
-
-      <Typography ml="20px" mt="10px" fontSize="15px" color="#fbfcca">
-      Choose which language you want to use in the app.
-      </Typography>
-        <FormControl sx={{ m: 3,  color:"#e3dede" }} component="fieldset" variant="standard">
-         <FormGroup>
-        <FormControlLabel
-          control={
-            <Checkbox checked={same} onChange={handleChangeForm} name="same" />
-          }
-          label="Same as device language"
-        />
-      <FormControlLabel
-          control={
-            <Checkbox checked={en} onChange={handleChangeForm} name="en" />
-          }
-          label="English (US)"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox checked={ro} onChange={handleChangeForm} name="ro" />
-          }
-          label="Romana"
-        />
-      </FormGroup>
-    </FormControl>
-      
-      <Divider />
-      <CardActions >
-      <Button size="small" variant="contained">Save changes</Button>
-    </CardActions>
-    </Box>
-      </CardContent>
-      </Card>
-    </TabPanel>
-    <TabPanel value={value} index={2}>
-    <Card sx={{ width: '100%', minWidth:'560px',  flexDirection: "column"}}>
-    <CardContent>
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 }, 
-        display: "flex",
-        flexDirection: "column",
-        paddingLeft: "10px"
-      }}>
-     
-      <Typography ml="20px" fontSize="25px">
-    Change password
-      </Typography> 
-      <Divider />
-      
-        <TextField
-           label="Current Password"
-           color="secondary"
-           type="password"
-           InputLabelProps={{
-             sx: {
-               color: "#8c8c8c",
-             },
-           }}
-        />
-        <TextField
-           label="Enter Your New Password"
-           color="secondary"
-           type="password"
-           id="password"
-           error={error.password === "" ? false : true}
-           helperText={error.password}
-           onChange={(ev) => handleChangePass(ev, "password")}
-           value={input.password}
-           InputLabelProps={{
-             sx: {
-               color: "#8c8c8c",
-             },
-           }}
-        />
-        <TextField 
-        label="Repeat New Password"
-        color="secondary"
-        error={error.confirmPassword === "" ? false : true}
-        type="password"
-        helperText={error.confirmPassword}
-        onChange={(ev) => handleChangePass(ev, "confirmPassword")}
-        value={input.confirmPassword}
-        InputLabelProps={{
-          sx: {
-            color: "#8c8c8c",
-          },
-        }} />
-      
-    <Divider />
-    <CardActions>
-      <Button size="small"
-      onClick={handleSubmitPass} variant="contained">Save changes</Button>
-    </CardActions>
-    </Box>
-    </CardContent>
-  </Card>
-    </TabPanel>
-    <TabPanel value={value} index={3}>
-    <Card sx={{ width: '100%', minWidth:'560px'}}>
-    <CardContent>
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 }, 
-        display: "flex",
-        flexDirection: "column",
-        paddingLeft: "10px"
-      }}>
-    <Typography ml="20px" fontSize="25px">
-        Subscription information
-      </Typography>
-      <Divider />
-        <Typography width="50%" mt="10px" fontSize="15px" color="#fbfcca" align="left">
-        Card information
+  return (
+    <PageLayout>
+      <Box sx={{ width: "100%" }}>
+        <Typography align="left" variant="h4" sx={{ margin: "5vh 0px" }}>
+          Settings
         </Typography>
-        
       </Box>
-      <Box
-        sx={{
-          '& > :not(style)': { mr: 1},
-          display: "flex",
-          flexDirection: 'row',
-        }}>
-          <TextField
-           id="outlined-name"
-           label="Card owner"
-           color="secondary"
-           type="card"
-           InputLabelProps={{
-             sx: {
-               color: "#8c8c8c",
-             },
-           }} /> 
-           <TextField
-           id="outlined-uncontrolled"
-           label="Card number"
-           color="secondary"
-           type="card"
-           InputLabelProps={{
-            sx: {
-              color: "#8c8c8c",
-            },
-          }} />
-           </Box>
-           <Box
-        sx={{
-          '& > :not(style)': { mr: 1},
-          display: "flex",
-          flexDirection:"row",
-          mt: "10px"
-        }}>
-           <TextField
-           id="outlined-uncontrolled"
-           label="Mouth/Year"
-           color="secondary"
-           type="card"
-           InputLabelProps={{
-            sx: {
-              color: "#8c8c8c",
-            },
-          }} />
-          <TextField
-           id="outlined-uncontrolled"
-           label="cvv"
-           color="secondary"
-           type="card"
-           InputLabelProps={{
-            sx: {
-              color: "#8c8c8c",
-            },
-          }} />
-        </Box>
-        <CardActions
-        sx={{display:"flex",flexDirection:"row-reverse"}}>
-       <Button size="small" variant="contained">Save changes</Button>
-    </CardActions>
-           <Divider /> 
+      <Box sx={{ display: "flex", height: "100%", width: "100%" }}>
+        <Tabs
+          orientation="vertical"
+          variant="scrollable"
+          value={value}
+          onChange={handleChange}
+          sx={{ borderRight: 1, borderColor: "divider" }}
+        >
+          <Tab
+            label="Account"
+            id={0}
+            sx={{
+              color: "#fff",
+              textTransform: "none",
+              "&.Mui-selected": { color: "#F9F871" },
+            }}
+          />
+          <Tab
+            label="Display Language"
+            id={1}
+            sx={{
+              color: "#fff",
+              textTransform: "none",
+              "&.Mui-selected": { color: "#F9F871" },
+            }}
+          />
+          <Tab
+            label="Password"
+            id={2}
+            sx={{
+              color: "#fff",
+              textTransform: "none",
+              "&.Mui-selected": { color: "#F9F871" },
+            }}
+          />
+          <Tab
+            label="Subscription"
+            id={3}
+            sx={{
+              color: "#fff",
+              textTransform: "none",
+              "&.Mui-selected": { color: "#F9F871" },
+            }}
+          />
+        </Tabs>
 
-    <Typography width="90%" mt="20px" fontSize="15px" color="#fbfcca" align="left">
-      Your next billing will be on 15 June, 2022.
-      </Typography> 
-      </CardContent>
-      </Card>  
-    </TabPanel>
+        <TabPanel value={value} index={0}>
+          <Card
+            sx={{
+              minWidth: "275",
+              width: "100%",
+              bgcolor: "#1f1f1f",
+              padding: "2rem",
+            }}
+          >
+            <Typography align="left" variant="h4" mb="2rem">
+              Account
+            </Typography>
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{ marginLeft: "10px", marginBottom: "25px" }}
+            >
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              <Button variant="outlined" sx={{ textTransform: "none" }}>
+                Upload
+              </Button>
+              <Button
+                variant="outlined"
+                sx={{ textTransform: "none" }}
+                disabled
+              >
+                Remove
+              </Button>
+            </Stack>
 
-    <TabPanel value={value} index={4}>
-    <Card sx={{ width: '100%', minWidth:'560px'}}>
-    <CardContent>
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 }, 
-        display: "flex",
-        flexDirection: "column",
-        paddingLeft: "10px"
-      }}>
-   
-    <Typography ml="20px" fontSize="25px">
-        Hello! If you're having any problems with our application here are some common questions:
-      </Typography>
-      <Divider />
-      
-      <Typography width="50%" mt="20px" fontSize="15px" color="#fbfcca" align="left">
-        How is the billing made?
-      </Typography>
-      <Typography width="90%" mt="5px" fontSize="15px" color="#fbfcca" align="left">
-        Your credit card is monthly charged with the due payment.
-      </Typography>
-      <Typography width="90%" mt="30px" fontSize="15px" color="#fbfcca" align="left">
-        What happens if I don't have enough money on my credit card?
-      </Typography>
-      <Typography width="90%" mt="5px" fontSize="15px" color="#fbfcca" align="left">
-        Once you have enough money the payment will be done automatically.
-      </Typography>
-      <Typography width="90%" mt="30px" fontSize="15px" color="#fbfcca" align="left">
-        Can I change my profile picture or my username?
-      </Typography>
-      <Typography width="90%" mt="5px" fontSize="15px" color="#fbfcca" align="left">
-        Yes, you just have to go your account settings and change everything from there.
-      </Typography>
-      <Typography width="90%" mt="30px" fontSize="15px" color="#fbfcca" align="left">
-      </Typography> 
+            <Box
+              component="form"
+              noValidate
+              autoComplete="off"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "100%",
+                }}
+              >
+                <TextField
+                  label="Username"
+                  variant="filled"
+                  InputLabelProps={{
+                    sx: {
+                      color: "#8c8c8c",
+                    },
+                  }}
+                  sx={{ margin: "10px", width: "100%" }}
+                />
+                <TextField
+                  label="Full Name"
+                  variant="filled"
+                  InputLabelProps={{
+                    sx: {
+                      color: "#8c8c8c",
+                    },
+                  }}
+                  sx={{ margin: "10px", width: "100%" }}
+                />
+              </Box>
+              <Divider sx={{ margin: "20px 10px" }} />
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "100%",
+                }}
+              >
+                <TextField
+                  label="Email Address"
+                  variant="filled"
+                  InputLabelProps={{
+                    sx: {
+                      color: "#8c8c8c",
+                    },
+                  }}
+                  sx={{ margin: "10px", width: "100%" }}
+                />
+                <TextField
+                  label="Phone number"
+                  variant="filled"
+                  InputLabelProps={{
+                    sx: {
+                      color: "#8c8c8c",
+                    },
+                  }}
+                  sx={{ margin: "10px", width: "100%" }}
+                />
+              </Box>
+              <Divider sx={{ margin: "20px 10px" }} />
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginLeft: "10px",
+                }}
+              >
+                <Typography
+                  align="left"
+                  variant="h6"
+                  color="#fff"
+                  fontWeight="600"
+                >
+                  Linked Accounts
+                </Typography>
+                <Typography
+                  align="left"
+                  fontSize="15px"
+                  color="#fff"
+                  fontWeight="400"
+                >
+                  We use this to let you sign in and populate your profile
+                  information
+                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    marginTop: "15px",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <GoogleIcon />
+                    <Typography
+                      align="left"
+                      fontSize="15px"
+                      color="#fff"
+                      fontWeight="400"
+                      ml="10px"
+                    >
+                      Sign in with Google
+                    </Typography>
+                  </Box>
+                  <Button
+                    variant="outlined"
+                    sx={{ textTransform: "none", marginRight: "10px" }}
+                  >
+                    Connect
+                  </Button>
+                </Box>
+                <Divider sx={{ margin: "20px 10px" }} />
 
+                <Typography
+                  align="left"
+                  variant="h6"
+                  color="#fff"
+                  fontWeight="600"
+                >
+                  Delete Account
+                </Typography>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    marginTop: "15px",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography
+                    align="left"
+                    fontSize="15px"
+                    color="#fff"
+                    fontWeight="400"
+                  >
+                    By deleting your account you will lose all your data
+                  </Typography>
+                  <Button
+                    variant="outlined"
+                    sx={{ textTransform: "none", marginRight: "10px" }}
+                    color="error"
+                  >
+                    Delete
+                  </Button>
+                </Box>
+                <Divider sx={{ margin: "20px 10px" }} />
+              </Box>
+            </Box>
+            <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button variant="contained">Save changes</Button>
+            </CardActions>
+          </Card>
+        </TabPanel>
+
+        <TabPanel value={value} index={1}>
+          <Card
+            sx={{
+              minWidth: "275",
+              width: "100%",
+              bgcolor: "#1f1f1f",
+              padding: "2rem",
+            }}
+          >
+            <Typography align="left" variant="h4" mb="2rem">
+              Display Language
+            </Typography>
+            <Typography ml="20px" mt="10px" fontSize="15px" color="#fff">
+              Choose which language you want to use in the app.
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "20px",
+              }}
+            >
+              <FormControl
+                sx={{ m: 3 }}
+                component="fieldset"
+                variant="standard"
+              >
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={same}
+                        onChange={handleChangeForm}
+                        name="same"
+                        sx={{ color: "#fff" }}
+                      />
+                    }
+                    label="Same as device language"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={en}
+                        onChange={handleChangeForm}
+                        name="en"
+                        sx={{ color: "#fff" }}
+                      />
+                    }
+                    label="English (US)"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={ro}
+                        onChange={handleChangeForm}
+                        name="ro"
+                        sx={{ color: "#fff" }}
+                      />
+                    }
+                    label="Romana"
+                  />
+                </FormGroup>
+              </FormControl>
+            </Box>
+            <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button variant="contained">Save changes</Button>
+            </CardActions>
+          </Card>
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <Card
+            sx={{
+              minWidth: "275",
+              width: "100%",
+              bgcolor: "#1f1f1f",
+              padding: "2rem",
+            }}
+          >
+            <Typography align="left" variant="h4" mb="2rem">
+              Password
+            </Typography>
+            <Box
+              sx={{ display: "flex", flexDirection: "column" }}
+              autoComplete="off"
+            >
+              <TextField
+                label="Current Password"
+                type="password"
+                variant="filled"
+                InputLabelProps={{
+                  sx: {
+                    color: "#8c8c8c",
+                  },
+                }}
+                sx={{ margin: "10px 0px" }}
+              />
+              <TextField
+                label="New Password"
+                type="password"
+                error={error.password === "" ? false : true}
+                helperText={error.password}
+                id="password"
+                onChange={(ev) => handleChangePass(ev, "password")}
+                value={input.password}
+                variant="filled"
+                InputLabelProps={{
+                  sx: {
+                    color: "#8c8c8c",
+                  },
+                }}
+                sx={{ margin: "10px 0px" }}
+              />
+              <TextField
+                label="Confirm Password"
+                error={error.confirmPassword === "" ? false : true}
+                type="password"
+                helperText={error.confirmPassword}
+                onChange={(ev) => handleChangePass(ev, "confirmPassword")}
+                value={input.confirmPassword}
+                variant="filled"
+                InputLabelProps={{
+                  sx: {
+                    color: "#8c8c8c",
+                  },
+                }}
+                sx={{ margin: "10px 0px" }}
+              />
+            </Box>
+            <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button variant="contained" onClick={handleSubmitPass}>
+                Save changes
+              </Button>
+            </CardActions>
+          </Card>
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <Card
+            sx={{
+              minWidth: "275",
+              width: "100%",
+              bgcolor: "#1f1f1f",
+              padding: "2rem",
+            }}
+          >
+            <Typography align="left" variant="h4" mb="5rem">
+              Subscription
+            </Typography>
+            <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button variant="contained" onClick={handleSubmitPass}>
+                Save changes
+              </Button>
+            </CardActions>
+          </Card>
+        </TabPanel>
       </Box>
-      </CardContent>
-      </Card>
-
-    </TabPanel>
-    <TabPanel value={value} index={5}>
-    <Card sx={{ width: '100%', minWidth:'560px'}}>
-    <CardContent>
-      <Box
-      sx={{
-        '& > :not(style)': { m: 1 }, 
-        display: "flex",
-        flexDirection: "column",
-        paddingLeft: "10px"
-      }}>
-    
-    <Typography ml="20px" fontSize="25px">
-       Privacy & Terms
-      </Typography>
-      <Divider />
-      <Typography width="100%" mt="20px" fontSize="15px" color="#fbfcca" align="left">
-        All your data is protected and it is not used in any external way. 
-      </Typography>
-      <Typography width="100%" mt="20px" fontSize="15px" color="#fbfcca" align="left">
-      Accepting the terms and conditions means that your card will be charged monthly to continue your subscription. You will have to manually cancel the subscription.
-      </Typography> 
-      </Box>
-      </CardContent>
-      </Card>
-    </TabPanel>
-
-    </Box>
-  </Paper>
-</PageLayout>
-}
+    </PageLayout>
+  );
+};
 
 export default Settings;

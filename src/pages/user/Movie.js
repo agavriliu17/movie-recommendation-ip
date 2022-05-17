@@ -1,71 +1,33 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import PageLayout from "../PageLayout";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
-import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import ListComments from "../../components/ListComments";
-import RatingDisplay from "../../components/RatingDisplay";
-import { IMAGES_URL } from "../../resources/constants";
+import RatingDisplay from "../../components/ratings/RatingDisplay";
 import CommentInput from "../../components/CommentInput";
+import Chip from "@mui/material/Chip";
+
+import MoviesCarousel from "../../components/carousel/MoviesCarousel";
 
 import requests from "../../resources/requests";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
+import { IMAGES_URL } from "../../resources/constants";
 import axios from "axios";
-import Carousel from "react-multi-carousel";
-import Image from "../../components/carousel/Carousel";
 import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles({
-  most: {
-    display: "flex",
-    height: "fit-content",
-    paddingLeft: "1%",
-    paddingLeft: "50px",
-    paddingRight: "auto",
-    paddingBottom: "20px",
-    zIndex: "0",
-  },
-  component: {
-    background: "none",
-    border: "none",
-    padding: "0",
-    font: "inherit",
-    cursor: "pointer",
-    outline: "inherit",
-  },
-});
-
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 4,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
+import RateButton from "../../components/ratings/RateButton";
 
 const Movie = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = React.useState({});
   const [topRatedData, setDataTop] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+
   React.useEffect(() => {
-    // window.scrollTo(0);
+    window.scrollTo(0, 0);
+
     (async function () {
       try {
         const movieData = await axios
@@ -77,10 +39,7 @@ const Movie = () => {
           .get(requests.fetchTopRated)
           .then((res) => res.data.results);
 
-        const toptimedData = await new Promise((resolve) => {
-          setTimeout(() => resolve(topMovieData), 1000);
-        });
-        setDataTop(toptimedData);
+        setDataTop(topMovieData);
         setLoading(false);
       } catch (e) {
         console.error(e);
@@ -88,140 +47,136 @@ const Movie = () => {
     })();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [movieId]);
 
   const topRated = topRatedData.slice(0, 10);
 
-  const classes = useStyles();
   return (
-    <PageLayout sx={{ display: "flex", flexDirection: "column" }}>
-      <Box sx={{ width: "100%" }}>
-        <Typography mb="20px" mt="10vh" textAlign="center" variant="h2">
-          {movie.title}
-        </Typography>
-      </Box>
+    <PageLayout>
       <Box
         sx={{
           display: "flex",
           flexDirection: "row",
           width: "100%",
-          height: "50%",
-          aspectRatio: "16/9",
+          marginTop: "10vh",
         }}
       >
-        <ReactPlayer
-          controls
-          url="https://www.youtube.com/watch?v=IE8HIsIrq4o&ab_channel=Netflix"
-          width="100%"
-          height="100%"
-        />
-        {/* <img
+        <img
           src={`${IMAGES_URL}${movie?.poster_path || movie?.backdrop_path}`}
-          alt="movie_poster"
-          width="100%"
-          height="100%"
-        /> */}
-      </Box>
-      <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            width: "100%",
-            padding: "20px",
+          alt={movie.title}
+          style={{
+            display: "block",
+            maxWidth: "400px",
+            maxHeight: "600px",
+            width: "auto",
+            height: "auto",
+            borderRadius: "15px",
           }}
+        />
+        <Box
+          sx={{ display: "flex", flexDirection: "column", marginLeft: "20px" }}
         >
-          <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
-            <Typography
-              ml="20px"
-              fontSize="15px"
-              mt={1}
-              textAlign="left"
-              color="gray"
+          <Typography mb="20px" textAlign="left" variant="h3" fontWeight="600">
+            {movie.title}
+          </Typography>
+          {movie?.genres && (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                marginBottom: "20px",
+              }}
             >
+              {movie.genres.map((genre, index) => (
+                <Chip
+                  label={genre.name}
+                  // variant="outlined"
+                  key={`${genre.id}-${index}`}
+                  sx={{ margin: "0px 5px" }}
+                  clickable
+                />
+              ))}
+            </Box>
+          )}
+          <Typography fontSize="20px" mt={5} textAlign="left" color="#fff">
+            {movie.overview}
+          </Typography>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              width: "100%",
+              marginTop: "10px",
+            }}
+          >
+            <Typography fontSize="15px" mt={1} textAlign="left" color="gray">
               Release date:
             </Typography>
             <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
               {movie.release_date}
             </Typography>
           </Box>
+
           <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
-            <Typography
-              ml="20px"
-              fontSize="15px"
-              mt={1}
-              textAlign="left"
-              color="gray"
-            >
+            <Typography fontSize="15px" mt={1} textAlign="left" color="gray">
               Runtime:
             </Typography>
             <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
               {`${movie.runtime} min`}
             </Typography>
           </Box>
-
-          <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
-            <Typography
-              ml="20px"
-              fontSize="15px"
-              mt={1}
-              textAlign="left"
-              color="gray"
-            >
-              Genres:
-            </Typography>
-            {movie.genres && (
-              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
-                {movie.genres.map((genre, ind) => {
-                  if (ind === movie.genres.length - 2) {
-                    return (
-                      <Fragment key={genre.id}>{` ${genre.name}`}</Fragment>
-                    );
-                  }
-                  return movie.genres.length === ind + 1 ? (
-                    <Fragment key={genre.id}>{` & ${genre.name}`}</Fragment>
-                  ) : (
-                    <Fragment key={genre.id}>{`${genre.name}, `}</Fragment>
-                  );
-                })}
-              </Typography>
-            )}
-          </Box>
-          <Box sx={{ width: "100%" }}>
-            <Divider sx={{ marginBottom: "15px" }} />
-            <RatingDisplay
-              voteAverage={movie?.vote_average}
-              voteCount={movie?.vote_count}
-            />
-          </Box>
         </Box>
-        <Typography ml="20px" fontSize="20px" mt={5} textAlign="center">
-          {movie.overview}
-        </Typography>
       </Box>
 
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
           width: "100%",
+          marginTop: "25px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        <Typography ml="20px" fontSize="25px" mt={5} textAlign="left">
-          Recommended
-        </Typography>
+        <RatingDisplay
+          voteAverage={movie?.vote_average}
+          voteCount={movie?.vote_count}
+        />
+        <RateButton title={movie?.title} />
+      </Box>
+
+      {/* Hardcoded id for test purposes only */}
+      {movieId === "238" && (
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
-            padding: "10px",
-            flexWrap: "wrap",
+            flexDirection: "column",
+            marginTop: "25px",
             width: "100%",
-            justifyContent: "center",
+            height: "50%",
+            aspectRatio: "16/9",
           }}
-        ></Box>
-      </Box>
-      <Box sx={{ width: "100%", height: "500px" }}>
+        >
+          <Typography
+            mb="20px"
+            mt="20px"
+            textAlign="left"
+            variant="h3"
+            fontWeight="600"
+          >
+            Trailer
+          </Typography>
+          <ReactPlayer
+            controls
+            url="https://www.youtube.com/watch?v=UaVTIH8mujA"
+            width="100%"
+            height="100%"
+          />
+        </Box>
+      )}
+
+      <Box sx={{ width: "100%", height: "500px", marginTop: "30px" }}>
         {loading ? (
           <Box
             sx={{
@@ -231,23 +186,20 @@ const Movie = () => {
             }}
           >
             {[...Array(4)].map((el, ind) => (
-              <LoadingMovieCard />
+              <LoadingMovieCard key={ind} />
             ))}
           </Box>
         ) : (
-          <Carousel className={classes.most} responsive={responsive}>
-            {topRated.map((datas, key) => {
-              return (
-                <>
-                  <button onClick={() => {}} className={classes.component}>
-                    <Image movie={datas}></Image>
-                  </button>
-                </>
-              );
-            })}
-          </Carousel>
+          <MoviesCarousel
+            movieList={topRated}
+            genreTitle="Recommended"
+            contained
+          />
         )}
       </Box>
+
+      <Divider sx={{ marginTop: "5vh", width: "100%" }} />
+
       <Box
         sx={{
           display: "flex",

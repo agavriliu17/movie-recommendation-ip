@@ -3,10 +3,11 @@ import Start from "../components/landingComponents/Start";
 import Mail from "../components/landingComponents/Mail";
 import Questions from "../components/landingComponents/Questions";
 import { Paper } from "@mui/material";
-
+import LandingNavbar from "../components/landingComponents/landingNavbar";
 const Landing = () => {
   return (
   <Paper>
+    <LandingNavbar/>
     <Start />
     <Mail />
     <Questions />

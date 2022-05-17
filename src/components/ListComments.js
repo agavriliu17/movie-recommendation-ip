@@ -55,7 +55,7 @@ const Comments = () => {
               <Typography color="#b1b1b1">{comment.date}</Typography>
             </Box>
 
-            <Typography>{comment.message}</Typography>
+            <Typography color="#fff">{comment.message}</Typography>
 
             <Box
               sx={{

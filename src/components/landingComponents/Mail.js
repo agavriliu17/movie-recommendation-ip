@@ -2,39 +2,12 @@ import React from "react";
 import { Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
-import { Button } from "@mui/material";
-import TextField from "@mui/material/TextField";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
-import { useNavigate } from "react-router-dom";
-import { makeStyles } from "@mui/styles";
-import { useState } from "react";
-import Carousel from "react-multi-carousel";
-import Image from "../../components/carousel/Carousel";
-import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
-import LoadingBanner from "../../components/loadingElements/LoadingBanner";
 import requests from "../../resources/requests";
 import axios from "axios";
-
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 4,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
-
+import MoviesCarousel from "../../components/carousel/MoviesCarousel";
+import backgroundImage from "../../resources/images/default_1920x1080.png";
+import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
 export const COLORS = {
   primary: "#482884", // purple
   secondary: "#F9F871", // yellow
@@ -52,46 +25,7 @@ export const validateEmail = (email) => {
   return re.test(email);
 };
 
-const useStyles = makeStyles({
-  most: {
-    display: "flex",
-    height: "fit-content",
-    paddingLeft: "1%",
-    paddingLeft: "50px",
-    paddingRight: "auto",
-    paddingBottom: "20px",
-    zIndex: "0",
-  },
-  component: {
-    background: "none",
-    border: "none",
-    padding: "0",
-    font: "inherit",
-    cursor: "pointer",
-    outline: "inherit",
-  },
-});
-
 const Mail = () => {
-  const navigate = useNavigate();
-  const [input, setInput] = React.useState({ email: "", password: "" });
-  const [error, setError] = React.useState({ email: "", password: "" });
-
-  const handleSignIn = () => {
-    if (input.email === "" || !validateEmail(input.email)) {
-      setError({
-        email: "Please provide an valid email",
-        password: error.password,
-      });
-      // console.log(error);
-    } else {
-      navigate("/register");
-    }
-  };
-
-  const handleChange = (event, key) => {
-    setInput({ ...input, [key]: event.target.value });
-  };
   const [topRatedData, setDataTop] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
@@ -104,7 +38,9 @@ const Mail = () => {
         const toptimedData = await new Promise((resolve) => {
           setTimeout(() => resolve(topMovieData), 1000);
         });
+
         setDataTop(toptimedData);
+
         setLoading(false);
       } catch (e) {
         console.error(e);
@@ -116,13 +52,12 @@ const Mail = () => {
 
   const topRated = topRatedData.slice(0, 10);
 
-  const classes = useStyles();
   return (
     <Paper
       sx={{
         width: "100%",
-        height: "100vh",
-        backgroundColor: "#10091D",
+        height: "auto",
+        backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
         borderRadius: "0",
         display: "flex",
@@ -143,82 +78,26 @@ const Mail = () => {
         All the movies you love! And more.
       </Typography>
 
-     
-     
-        <Box sx={{width:"100%",height:"500px"}}>
-        {loading ? <LoadingMovieCard/> :
-        <Carousel className={classes.most} responsive={responsive}>
-          {topRated.map((datas, key) => {
-            return (
-              <>
-                <button
-                  onClick={() => {
-                    navigate("/register");
-                  }}
-                  className={classes.component}
-                >
-                  <Image movie={datas}></Image>
-                </button>
-              </>
-            );
-          })}
-        </Carousel>
-      }
-      </Box>
-
-      <Paper
-        sx={{
-          backgroundColor: "#F9F871",
-          height: "fit-content",
-          width: "50%",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "flex-start",
-        }}
-      >
-        <TextField
-          error={error.email === "" ? false : true}
-          required
-          id="outlined-required"
-          label="Email"
-          defaultValue="email@someone.com"
-          helperText={error.email}
-          onChange={(ev) => handleChange(ev, "email")}
-          value={input.email}
-          sx={{ width: "100%", color: "#F9F871", height: "55px" }}
-          variant="filled"
-          InputLabelProps={{
-            sx: {
-              fontFamily: "Trispace",
-              color: "#482884",
-            },
+      {loading ? (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            width: "100%",
+            marginTop: "25px",
           }}
-        />
-      </Paper>
-      <Button
-        variant="outlined"
-        sx={{
-          marginTop: "25px",
-          height: "5%",
-          color: COLORS.secondary,
-          backgroundColor: COLORS.primary,
-          borderColor: COLORS.secondary,
-          fontSize: "calc(5px + .3vw)",
-          "&:hover": {
-            backgroundColor: COLORS.secondary,
-            color: COLORS.primary,
-            borderWidth: "2px",
-            borderColor: COLORS.primary,
-          },
-        }}
-        onClick={handleSignIn}
-      >
-        Get Started
-      </Button>
+        >
+          {[...Array(4)].map((el, ind) => (
+            <LoadingMovieCard key={`${ind}-top-rated`} />
+          ))}
+        </Box>
+      ) : (
+        <MoviesCarousel movieList={topRated} />
+      )}
+
       <Box
         sx={{
-          height: "200px",
           display: "flex",
           flexDirection: "row",
           alignItems: "flex-end",
@@ -229,6 +108,7 @@ const Mail = () => {
           fontSize="large"
           sx={{
             color: COLORS.secondary,
+            paddingTop: "-100px",
           }}
           onClick={scrollToBottom}
         />
