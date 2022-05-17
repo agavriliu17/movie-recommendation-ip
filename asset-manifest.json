@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/IP-Movie-streaming-website/static/css/main.abd364fa.css",
-    "main.js": "/IP-Movie-streaming-website/static/js/main.8a91a3f7.js",
+    "main.js": "/IP-Movie-streaming-website/static/js/main.45b2e78e.js",
     "static/media/netflix2.jpg": "/IP-Movie-streaming-website/static/media/netflix2.91c3fd8bd38d25916db8.jpg",
     "static/media/default_1920x1080.png": "/IP-Movie-streaming-website/static/media/default_1920x1080.96cdbdee3d14f9824063.png",
     "static/media/revicons.eot": "/IP-Movie-streaming-website/static/media/revicons.a77de540a38981833f9e.eot",
@@ -9,10 +9,10 @@
     "static/media/revicons.woff": "/IP-Movie-streaming-website/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/IP-Movie-streaming-website/index.html",
     "main.abd364fa.css.map": "/IP-Movie-streaming-website/static/css/main.abd364fa.css.map",
-    "main.8a91a3f7.js.map": "/IP-Movie-streaming-website/static/js/main.8a91a3f7.js.map"
+    "main.45b2e78e.js.map": "/IP-Movie-streaming-website/static/js/main.45b2e78e.js.map"
   },
   "entrypoints": [
     "static/css/main.abd364fa.css",
-    "static/js/main.8a91a3f7.js"
+    "static/js/main.45b2e78e.js"
   ]
 }
