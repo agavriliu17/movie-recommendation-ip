@@ -72,7 +72,7 @@ const LandingNavbar = () => {
               backgroundColor: theme.palette.primary.light,
               borderRadius: "30px",
             }}
-            onClick={() => navigate("/register")}
+            onClick={() => navigate("/IP-Movie-streaming-website/register")}
           >
             Register
           </Button>
@@ -83,7 +83,7 @@ const LandingNavbar = () => {
               backgroundColor: theme.palette.primary.light,
               borderRadius: "30px",
             }}
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/IP-Movie-streaming-website/login")}
           >
             Login
           </Button>

@@ -70,7 +70,7 @@ const Nav = () => {
   };
 
   const goToMovie = (pageRoute) => {
-    navigate(`/${pageRoute}`);
+    navigate(`/IP-Movie-streaming-website/${pageRoute}`);
   };
 
   return (

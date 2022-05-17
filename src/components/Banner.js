@@ -16,7 +16,7 @@ const Banner = ({ movie }) => {
   const navigate = useNavigate();
 
   const goToMovie = () => {
-    navigate(`/watch/${movie.id}`);
+    navigate(`/IP-Movie-streaming-website/watch/${movie.id}`);
   };
 
   return (

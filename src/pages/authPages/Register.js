@@ -15,7 +15,6 @@ import {
   validateEmail,
 } from "../../resources/helpers/authHelper";
 
-
 const useStyles = makeStyles({
   inputContainer: {
     width: "100%",
@@ -42,7 +41,6 @@ const useStyles = makeStyles({
 });
 
 const Register = () => {
-
   const theme = useTheme();
 
   const [input, setInput] = React.useState({
@@ -65,7 +63,6 @@ const Register = () => {
 
   const handleChangeInput = (event, key) => {
     setInput({ ...input, [key]: event.target.value });
-    
   };
 
   const handleSignUp = async () => {
@@ -103,7 +100,7 @@ const Register = () => {
     ) {
       try {
         const response = await registerUser(input);
-        if (response) navigate("/login");
+        if (response) navigate("/IP-Movie-streaming-website/login");
       } catch (e) {
         console.log(e); //TODO: Show the user the error in some way
       }
@@ -136,7 +133,7 @@ const Register = () => {
           variant="filled"
           InputLabelProps={{
             sx: {
-              color: theme.palette.text.primary
+              color: theme.palette.text.primary,
             },
           }}
         />
@@ -238,16 +235,20 @@ const Register = () => {
       </Button>
 
       <Box className={classes.signInContainer}>
-        <Typography color={theme.palette.text.primary}>Already a user?</Typography>
+        <Typography color={theme.palette.text.primary}>
+          Already a user?
+        </Typography>
         <Button
           variant="text"
           disableFocusRipple
           disableElevation
           disableRipple
           className={classes.linkButton}
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/IP-Movie-streaming-website/login")}
         >
-          <Typography sx={{ textTransform: "none", color: theme.palette.text.disabled }}>
+          <Typography
+            sx={{ textTransform: "none", color: theme.palette.text.disabled }}
+          >
             Sign in now.
           </Typography>
         </Button>

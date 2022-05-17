@@ -17,10 +17,10 @@ const AccountMenu = ({ anchorEl, handleClose }) => {
 
   const handleLogout = () => {
     logoutUser();
-    navigate("/login");
+    navigate("/IP-Movie-streaming-website/login");
   };
 
-  const goToSettings = () => navigate("/settings");
+  const goToSettings = () => navigate("/IP-Movie-streaming-website/settings");
 
   return (
     <Menu

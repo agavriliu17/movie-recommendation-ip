@@ -64,7 +64,7 @@ const ResetPassword = () => {
 
     if (passwordError === "" && confirmPasswordError === "") {
       alert("Password has been successfully reset");
-      navigate("/login");
+      navigate("/IP-Movie-streaming-website/login");
     } else {
       setError({
         password: passwordError,
@@ -132,7 +132,7 @@ const ResetPassword = () => {
           disableElevation
           disableRipple
           className={classes.linkButton}
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/IP-Movie-streaming-website/login")}
         >
           <Typography sx={{ textTransform: "none", color: "#fff" }}>
             Back to login

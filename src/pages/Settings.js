@@ -80,7 +80,7 @@ const Settings = () => {
 
     if (passwordError === "" && confirmPasswordError === "") {
       alert("Password has been successfully reset");
-      navigate("/login");
+      navigate("/IP-Movie-streaming-website/login");
     } else {
       setError({
         password: passwordError,

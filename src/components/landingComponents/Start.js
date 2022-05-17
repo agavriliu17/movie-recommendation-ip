@@ -98,7 +98,7 @@ const Start = () => {
               marginRight: "3%",
               marginTop: "5%",
             }}
-            onClick={() => navigate("/Login")}
+            onClick={() => navigate("/IP-Movie-streaming-website/Login")}
           >
             Login
           </Button>
@@ -115,7 +115,7 @@ const Start = () => {
               marginRight: "3%",
               marginTop: "5%",
             }}
-            onClick={() => navigate("/Register")}
+            onClick={() => navigate("/IP-Movie-streaming-website/Register")}
           >
             Register
           </Button>

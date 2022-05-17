@@ -56,7 +56,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (isAuthenticated) navigate("/home");
+    if (isAuthenticated) navigate("/IP-Movie-streaming-website/home");
   }, [isAuthenticated, navigate]);
 
   const handleChange = (event, key) => {
@@ -136,7 +136,7 @@ const Login = () => {
           disableElevation
           disableRipple
           className={classes.linkButton}
-          onClick={() => navigate("/reset-pass")}
+          onClick={() => navigate("/IP-Movie-streaming-website/reset-pass")}
         >
           <Typography
             sx={{ textTransform: "none", color: theme.palette.text.primary }}
@@ -162,7 +162,7 @@ const Login = () => {
           disableElevation
           disableRipple
           className={classes.linkButton}
-          onClick={() => navigate("/register")}
+          onClick={() => navigate("/IP-Movie-streaming-website/register")}
         >
           <Typography
             sx={{ textTransform: "none", color: theme.palette.text.disabled }}
