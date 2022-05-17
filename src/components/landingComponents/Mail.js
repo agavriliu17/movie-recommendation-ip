@@ -3,8 +3,6 @@ import { Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import { motion } from "framer-motion";
-import { Button } from "@mui/material";
-import TextField from "@mui/material/TextField";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import requests from "../../resources/requests";
 import axios from "axios";
@@ -70,18 +68,18 @@ const Mail = () => {
       }}
     >
       <Typography
-         component={motion.div}
-         initial={{
-           scale: 0.95
-         }}
-         animate={{
-           scale: 1.05
-         }}
-         transition={{
-           delay: 3,
-           duration: 2,
-           yoyo: Infinity
-         }}
+        component={motion.div}
+        initial={{
+          scale: 0.95,
+        }}
+        animate={{
+          scale: 1.05,
+        }}
+        transition={{
+          delay: 3,
+          duration: 2,
+          yoyo: Infinity,
+        }}
         sx={{
           fontFamily: "Trispace",
           color: "#F9F871",

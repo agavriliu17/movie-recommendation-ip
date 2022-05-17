@@ -7,31 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/system";
 import backgroundImage from "../../resources/images/default_1920x1080.png";
 import { motion } from "framer-motion";
-import { makeStyles } from "@mui/styles";
+
 const scrollToBottom = () => {
   window.scrollTo({
     top: (document.documentElement.scrollHeight + 10) / 3,
     behavior: "smooth",
   });
 };
-
-const useStyles = makeStyles({
-  mainBox: {
-    width: "30%",
-    top: "0",
-    height: "90%",
-    borderBottomLeftRadius: "50px",
-    marginLeft: "auto",
-    marginRight: "auto",
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    alignItems: "center",
-    border: "1px solid white",
-  },
-});
-
-
 
 const Start = () => {
   const theme = useTheme();
@@ -74,56 +56,61 @@ const Start = () => {
         }}
       >
         <Box
-        component={motion.div}
-        initial={{
-          x: "-200vh",
-        }}
-        animate={{
-          x: 0,
-        }}
-        transition={{
-          delay: 3,
-          duration: 1,
-        }}
-        sx={{
-          display:"flex",
-          justifyContent:"center",
-          flexDirection:"column",
-          alignItems:"center"
-        }}
-        
+          component={motion.div}
+          initial={{
+            x: "-200vh",
+          }}
+          animate={{
+            x: 0,
+          }}
+          transition={{
+            delay: 3,
+            duration: 1,
+          }}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
           <Typography
             component={motion.div}
             initial={{
-              scale: 1.1
+              scale: 1.1,
             }}
             animate={{
-              scale: 0.9
+              scale: 0.9,
             }}
             transition={{
               delay: 2,
               duration: 2,
-              yoyo: Infinity
+              yoyo: Infinity,
             }}
-            sx={{fontSize:{xs:"30px",sm:"30px",md:"60px",lg:"60px"},marginTop:"10%"}}
-          > 
+            sx={{
+              fontSize: { xs: "30px", sm: "30px", md: "60px", lg: "60px" },
+              marginTop: "10%",
+            }}
+          >
             Movie Streaming Website
           </Typography>
-          <Typography 
-          component={motion.div}
-          initial={{
-            scale: 0.9
-          }}
-          animate={{
-            scale: 1.1
-          }}
-          transition={{
-            delay: 3,
-            duration: 2,
-            yoyo: Infinity
-          }}
-          sx={{marginTop:"5%"}}>An interesting project about movies </Typography>
+          <Typography
+            component={motion.div}
+            initial={{
+              scale: 0.9,
+            }}
+            animate={{
+              scale: 1.1,
+            }}
+            transition={{
+              delay: 3,
+              duration: 2,
+              yoyo: Infinity,
+            }}
+            sx={{ marginTop: "5%" }}
+          >
+            An interesting project about movies{" "}
+          </Typography>
         </Box>
 
         <Box
@@ -136,14 +123,14 @@ const Start = () => {
             marginTop: "20px",
           }}
         >
-          <Button 
+          <Button
             component={motion.div}
             initial={{
-              scale: 0
+              scale: 0,
             }}
             animate={{
               visibility: "visible",
-              scale: 1
+              scale: 1,
             }}
             transition={{
               delay: 2,
@@ -156,13 +143,13 @@ const Start = () => {
               borderColor: theme.palette.primary.main,
               backgroundColor: theme.palette.primary.main,
               height: "50px",
-              width:"300px",
-              marginLeft:"3%",
-              marginRight:"3%",
-              marginTop:"5%",
-              '&:hover':{
-                transform: "skew(20deg)"
-              }
+              width: "300px",
+              marginLeft: "3%",
+              marginRight: "3%",
+              marginTop: "5%",
+              "&:hover": {
+                transform: "skew(20deg)",
+              },
             }}
             onClick={() => navigate("/Login")}
           >
@@ -171,11 +158,11 @@ const Start = () => {
           <Button
             component={motion.div}
             initial={{
-              scale: 0
+              scale: 0,
             }}
             animate={{
               visibility: "visible",
-              scale: 1
+              scale: 1,
             }}
             transition={{
               delay: 2,
@@ -199,31 +186,31 @@ const Start = () => {
           </Button>
         </Box>
         <Box
-        sx={{
-          "&:hover": {
-            transform: "rotate(45deg)"
-          }
-        }}
-        component={motion.div}
-        initial={{
-          rotate: 360
-        }}
-        animate={{
-          rotate: 0
-        }}
-        transition={{
-          duration: 1,
-          yoyo: 3.5
-        }}>
-        <KeyboardArrowDownSharpIcon
-             
-              fontSize="large"
-              sx={{
-                color: theme.palette.secondary.main,
-                marginTop: "20px"
-              }}
-              onClick={scrollToBottom}
-        />
+          sx={{
+            "&:hover": {
+              transform: "rotate(45deg)",
+            },
+          }}
+          component={motion.div}
+          initial={{
+            rotate: 360,
+          }}
+          animate={{
+            rotate: 0,
+          }}
+          transition={{
+            duration: 1,
+            yoyo: 3.5,
+          }}
+        >
+          <KeyboardArrowDownSharpIcon
+            fontSize="large"
+            sx={{
+              color: theme.palette.secondary.main,
+              marginTop: "20px",
+            }}
+            onClick={scrollToBottom}
+          />
         </Box>
       </Box>
     </Paper>
