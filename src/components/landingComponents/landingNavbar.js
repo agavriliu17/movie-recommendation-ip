@@ -7,11 +7,8 @@ import Typography from "@mui/material/Typography";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/system";
-const pages = { home: "Home", my_list: "My list" };
 
 const transparentNavStyle = {
   backgroundColor: "transparent",
@@ -50,11 +47,6 @@ const LandingNavbar = () => {
     }
   };
 
- 
-
-
-  
-
   return (
     <AppBar sx={show ? blackNavStyle : transparentNavStyle}
     component={motion.div}
@@ -77,17 +69,42 @@ const LandingNavbar = () => {
           Movie Streaming Website
         </Typography>
 
-        
-        
-        <Box sx={{ flexGrow: 2.3, display: { xs: "none",md: "flex", lg:"flex",xl:"flex"  } }}>
-         
-        </Box>
+        <Box
+          sx={{
+            flexGrow: 2.3,
+            display: { xs: "none", md: "flex", lg: "flex", xl: "flex" },
+          }}
+        ></Box>
 
-        <Box sx={{ flexGrow:0.3, mr: "2" , display:{xs:"none",md: "flex", lg:"flex",xl:"flex"}}}>
-        <Button sx={{marginRight:"5%",color:theme.palette.primary.contrastText, backgroundColor:theme.palette.primary.light,borderRadius:"30px"}}  onClick={() => navigate("/register")}>Register</Button>
-        <Button sx={{marginLeft:"5%",color:theme.palette.primary.contrastText, backgroundColor:theme.palette.primary.light,borderRadius:"30px"}}  onClick={() => navigate("/login")}>Login</Button>
-        
-         
+        <Box
+          sx={{
+            flexGrow: 0.3,
+            mr: "2",
+            display: { xs: "none", md: "flex", lg: "flex", xl: "flex" },
+          }}
+        >
+          <Button
+            sx={{
+              marginRight: "5%",
+              color: theme.palette.primary.contrastText,
+              backgroundColor: theme.palette.primary.light,
+              borderRadius: "30px",
+            }}
+            onClick={() => navigate("/register")}
+          >
+            Register
+          </Button>
+          <Button
+            sx={{
+              marginLeft: "5%",
+              color: theme.palette.primary.contrastText,
+              backgroundColor: theme.palette.primary.light,
+              borderRadius: "30px",
+            }}
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </Button>
         </Box>
       </Toolbar>
     </AppBar>

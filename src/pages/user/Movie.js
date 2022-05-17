@@ -24,8 +24,10 @@ const Movie = () => {
   const [movie, setMovie] = React.useState({});
   const [topRatedData, setDataTop] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+
   React.useEffect(() => {
-    // window.scrollTo(0);
+    window.scrollTo(0, 0);
+
     (async function () {
       try {
         const movieData = await axios
@@ -37,10 +39,7 @@ const Movie = () => {
           .get(requests.fetchTopRated)
           .then((res) => res.data.results);
 
-        const toptimedData = await new Promise((resolve) => {
-          setTimeout(() => resolve(topMovieData), 1000);
-        });
-        setDataTop(toptimedData);
+        setDataTop(topMovieData);
         setLoading(false);
       } catch (e) {
         console.error(e);
@@ -48,7 +47,7 @@ const Movie = () => {
     })();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [movieId]);
 
   const topRated = topRatedData.slice(0, 10);
 

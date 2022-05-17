@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
-import { useNavigate } from "react-router-dom";
 import requests from "../../resources/requests";
 import axios from "axios";
 import MoviesCarousel from "../../components/carousel/MoviesCarousel";
@@ -35,22 +34,16 @@ const Mail = () => {
   React.useEffect(() => {
     (async function () {
       try {
-       
-
         const topMovieData = await axios
           .get(requests.fetchTopRated)
           .then((res) => res.data.results);
 
-       
-          const toptimedData = await new Promise((resolve) => {
-            setTimeout(() => resolve(topMovieData), 1000);
-          });
+        const toptimedData = await new Promise((resolve) => {
+          setTimeout(() => resolve(topMovieData), 1000);
+        });
 
-      
-
-      
         setDataTop(toptimedData);
-        
+
         setLoading(false);
       } catch (e) {
         console.error(e);
@@ -60,10 +53,7 @@ const Mail = () => {
     })();
   }, []);
 
- 
   const topRated = topRatedData.slice(0, 10);
- 
-
 
   return (
     <Paper
@@ -120,7 +110,7 @@ const Mail = () => {
       ) : (
         <MoviesCarousel movieList={topRated} />
       )}
-     
+
       <Box
         sx={{
           display: "flex",
@@ -133,7 +123,7 @@ const Mail = () => {
           fontSize="large"
           sx={{
             color: COLORS.secondary,
-            paddingTop:"-100px"
+            paddingTop: "-100px",
           }}
           onClick={scrollToBottom}
         />
