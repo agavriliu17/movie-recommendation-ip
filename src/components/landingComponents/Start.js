@@ -4,54 +4,32 @@ import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import { useNavigate } from "react-router-dom";
-import bg1 from "../../resources/images/netflix1.jpg";
-import { motion } from "framer-motion";
 import { useTheme } from "@mui/system";
-import { InfoOutlined } from "@mui/icons-material";
-import { makeStyles } from "@mui/styles";
 import backgroundImage from "../../resources/images/default_1920x1080.png";
+
 const scrollToBottom = () => {
   window.scrollTo({
-    top: (document.documentElement.scrollHeight+10)/3,
+    top: (document.documentElement.scrollHeight + 10) / 3,
     behavior: "smooth",
   });
 };
 
-const useStyles = makeStyles({
-  mainBox: {
-    width: "30%",
-    top: "0",
-    height: "90%",
-    borderBottomLeftRadius: "50px",
-    marginLeft: "auto",
-    marginRight: "auto",
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    alignItems: "center",
-    border: "1px solid white",
-  },
-});
-
 const Start = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const classes = useStyles();
   return (
-    
     <Paper
-   
       sx={{
         width: "100%",
-        height: {xs:"150vh", sm:"150vh", md:"150vh", lg:"100vh"},
+        height: { xs: "150vh", sm: "150vh", md: "150vh", lg: "100vh" },
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
         borderRadius: "0",
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
-       
-        zIndex: "-1"
+
+        zIndex: "-1",
       }}
     >
       <Box
@@ -63,10 +41,7 @@ const Start = () => {
           alignItems: "flex-start",
           justifyContent: "center",
         }}
-      >
-        
-       
-      </Box>
+      ></Box>
 
       <Box
         sx={{
@@ -80,32 +55,34 @@ const Start = () => {
         }}
       >
         <Box
-        sx={{
-          display:"flex",
-          justifyContent:"center",
-          flexDirection:"column",
-          alignItems:"center"
-        }}
-        
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-         
           <Typography
-           
-            sx={{fontSize:{xs:"30px",sm:"30px",md:"60px",lg:"60px"},marginTop:"10%"}}
-          > 
+            sx={{
+              fontSize: { xs: "30px", sm: "30px", md: "60px", lg: "60px" },
+              marginTop: "10%",
+            }}
+          >
             Movie Streaming Website
           </Typography>
-          <Typography sx={{marginTop:"5%"}}>An interesting project about movies </Typography>
+          <Typography sx={{ marginTop: "5%" }}>
+            An interesting project about movies{" "}
+          </Typography>
         </Box>
-        
+
         <Box
           sx={{
             width: "60%",
             display: "flex",
-            flexDirection: {md:"row", xs:"column", sm:"column"},
+            flexDirection: { md: "row", xs: "column", sm: "column" },
             alignItems: "center",
             justifyContent: "space-evenly",
-            marginTop: "20px"
+            marginTop: "20px",
           }}
         >
           <Button
@@ -114,12 +91,12 @@ const Start = () => {
               borderRadius: "30px",
               color: theme.palette.text.primary,
               borderColor: theme.palette.primary.main,
-              backgroundColor:theme.palette.primary.main,
+              backgroundColor: theme.palette.primary.main,
               height: "50px",
-              width:"300px",
-              marginLeft:"3%",
-              marginRight:"3%",
-              marginTop:"5%"
+              width: "300px",
+              marginLeft: "3%",
+              marginRight: "3%",
+              marginTop: "5%",
             }}
             onClick={() => navigate("/Login")}
           >
@@ -131,12 +108,12 @@ const Start = () => {
               borderRadius: "30px",
               color: theme.palette.text.primary,
               borderColor: theme.palette.primary.main,
-              backgroundColor:theme.palette.primary.main,
+              backgroundColor: theme.palette.primary.main,
               height: "50px",
-              width:"300px",
-              marginLeft:"3%",
-              marginRight:"3%",
-              marginTop:"5%"
+              width: "300px",
+              marginLeft: "3%",
+              marginRight: "3%",
+              marginTop: "5%",
             }}
             onClick={() => navigate("/Register")}
           >
@@ -144,12 +121,12 @@ const Start = () => {
           </Button>
         </Box>
         <KeyboardArrowDownSharpIcon
-              fontSize="large"
-              sx={{
-                color: theme.palette.secondary.main,
-                marginTop: "20px"
-              }}
-              onClick={scrollToBottom}
+          fontSize="large"
+          sx={{
+            color: theme.palette.secondary.main,
+            marginTop: "20px",
+          }}
+          onClick={scrollToBottom}
         />
       </Box>
     </Paper>

@@ -53,7 +53,6 @@ const Settings = () => {
     en: false,
     ro: false,
   });
-  const [name, setName] = React.useState();
   const [input, setInput] = React.useState({
     password: "",
     confirmPassword: "",
@@ -89,9 +88,7 @@ const Settings = () => {
       });
     }
   };
-  const handleChangeAccount = (event) => {
-    setName(event.target.value);
-  };
+
   const handleChangeForm = (event) => {
     setState({
       ...state,
@@ -213,7 +210,6 @@ const Settings = () => {
                       color: "#8c8c8c",
                     },
                   }}
-                  onChange={handleChangeAccount}
                   sx={{ margin: "10px", width: "100%" }}
                 />
                 <TextField
