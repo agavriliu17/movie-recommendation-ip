@@ -9,10 +9,10 @@ import { motion } from "framer-motion";
 import { useTheme } from "@mui/system";
 import { InfoOutlined } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
-
+import backgroundImage from "../../resources/images/default_1920x1080.png";
 const scrollToBottom = () => {
   window.scrollTo({
-    top: document.documentElement.scrollHeight / 3,
+    top: (document.documentElement.scrollHeight+10)/3,
     behavior: "smooth",
   });
 };
@@ -38,18 +38,19 @@ const Start = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   return (
+    
     <Paper
+   
       sx={{
         width: "100%",
-        height: "100vh",
-        backgroundImage: `url(${bg1})`,
+        height: {xs:"150vh", sm:"150vh", md:"150vh", lg:"100vh"},
+        backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
-        // background: "linear-gradient(-45deg, black, #10091D)",
         borderRadius: "0",
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
-        maskImage: "radial-gradient(circle at 90%, black 90%, transparent)",
+       
         zIndex: "-1"
       }}
     >
@@ -63,30 +64,8 @@ const Start = () => {
           justifyContent: "center",
         }}
       >
-        <Typography
-          variant="h6"
-          sx={{
-            transformOrigin: "top left",
-            transform: "rotate(-90deg)",
-            fontSize: "10px",
-            marginTop: "50px",
-          }}
-          onClick={scrollToBottom}
-        >
-          FAQ
-        </Typography>
-        <Typography
-          variant="h6"
-          sx={{
-            transformOrigin: "top left",
-            transform: "rotate(-90deg)",
-            fontSize: "10px",
-            marginTop: "50px",
-          }}
-          onClick={scrollToBottom}
-        >
-          Mail
-        </Typography>
+        
+       
       </Box>
 
       <Box
@@ -100,47 +79,30 @@ const Start = () => {
           justifyContent: "space-around",
         }}
       >
-        <Box>
+        <Box
+        sx={{
+          display:"flex",
+          justifyContent:"center",
+          flexDirection:"column",
+          alignItems:"center"
+        }}
+        
+        >
+         
           <Typography
-            variant="h6"
-            sx={{
-              transform: "skewX(-20deg)",
-              fontSize: "5vw",
-            }}
-          >
-            Movie
+           
+            sx={{fontSize:{xs:"30px",sm:"30px",md:"60px",lg:"60px"},marginTop:"10%"}}
+          > 
+            Movie Streaming Website
           </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              transform: "skewX(20deg)",
-              fontSize: "5vw",
-            }}
-          >
-            Streaming Website
-          </Typography>
+          <Typography sx={{marginTop:"5%"}}>An interesting project about movies </Typography>
         </Box>
-        <Box sx={{
-          width: "30%",
-          borderLeft: "3px solid",
-          padding: "10px",
-          borderColor: theme.palette.primary.main
-        }}>
-          <Typography
-            variant="h6"
-            sx={{
-              fontSize: "20px",
-            }}
-          >
-            Get ready for a good time! Watch a wide variety of movies we
-            prepared only for you!
-          </Typography>
-        </Box>
+        
         <Box
           sx={{
             width: "60%",
             display: "flex",
-            flexDirection: "row",
+            flexDirection: {md:"row", xs:"column", sm:"column"},
             alignItems: "center",
             justifyContent: "space-evenly",
             marginTop: "20px"
@@ -149,24 +111,36 @@ const Start = () => {
           <Button
             variant="outlined"
             sx={{
-              borderRadius: "50px",
+              borderRadius: "30px",
               color: theme.palette.text.primary,
-              borderColor: theme.palette.text.primary,
+              borderColor: theme.palette.primary.main,
+              backgroundColor:theme.palette.primary.main,
+              height: "50px",
+              width:"300px",
+              marginLeft:"3%",
+              marginRight:"3%",
+              marginTop:"5%"
             }}
-            onClick={() => navigate("/Register")}
+            onClick={() => navigate("/Login")}
           >
-            Sign Up
+            Login
           </Button>
           <Button
             variant="outlined"
             sx={{
-              borderRadius: "50px",
+              borderRadius: "30px",
               color: theme.palette.text.primary,
-              borderColor: theme.palette.text.primary,
+              borderColor: theme.palette.primary.main,
+              backgroundColor:theme.palette.primary.main,
+              height: "50px",
+              width:"300px",
+              marginLeft:"3%",
+              marginRight:"3%",
+              marginTop:"5%"
             }}
-            onClick={() => navigate("/Login")}
+            onClick={() => navigate("/Register")}
           >
-            Sign In
+            Register
           </Button>
         </Box>
         <KeyboardArrowDownSharpIcon
