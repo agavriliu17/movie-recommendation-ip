@@ -2,7 +2,9 @@ import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
+import { motion } from "framer-motion";
 import Typography from "@mui/material/Typography";
+
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/system";
@@ -45,7 +47,19 @@ const LandingNavbar = () => {
   };
 
   return (
-    <AppBar sx={show ? blackNavStyle : transparentNavStyle}>
+    <AppBar
+      sx={show ? blackNavStyle : transparentNavStyle}
+      component={motion.div}
+      initial={{
+        y: "1000vh",
+      }}
+      animate={{
+        y: 0,
+      }}
+      transition={{
+        duration: 1.42,
+      }}
+    >
       <Toolbar disableGutters sx={{ justifyContent: { xs: "center" } }}>
         <Typography variant="h6" component="div" sx={{ marginLeft: "3%" }}>
           Movie Streaming Website
