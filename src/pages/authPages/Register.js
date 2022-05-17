@@ -128,6 +128,7 @@ const Register = () => {
       <Paper className={classes.inputContainer}>
         <TextField
           data-testid="First Name"
+          inputProps={{ "data-testid": "First Name input" }}
           error={error.firstName === "" ? false : true}
           label="First Name"
           helperText={error.firstName}
@@ -141,6 +142,7 @@ const Register = () => {
       <Paper className={classes.inputContainer}>
         <TextField
           data-testid="Last Name"
+          inputProps={{ "data-testid": "Last Name input" }}
           error={error.lastName === "" ? false : true}
           label="Last Name"
           onChange={(event) => handleChangeInput(event, "lastName")}
@@ -154,6 +156,7 @@ const Register = () => {
       <Paper className={classes.inputContainer}>
         <TextField
           data-testid="Email"
+          inputProps={{ "data-testid": "Email input" }}
           error={error.email === "" ? false : true}
           label="Email address"
           helperText={error.email}
@@ -166,7 +169,8 @@ const Register = () => {
 
       <Paper className={classes.inputContainer}>
         <TextField
-         data-testid="Username"
+          data-testid="Username"
+          inputProps={{ "data-testid": "Username input" }}
           error={error.username === "" ? false : true}
           label="Username"
           helperText={error.username}
@@ -180,6 +184,7 @@ const Register = () => {
       <Paper className={classes.inputContainer}>
         <TextField
           data-testid="Password"
+          inputProps={{ "data-testid": "Password input" }}
           error={error.password === "" ? false : true}
           label="Password"
           type="password"
@@ -194,6 +199,7 @@ const Register = () => {
       <Paper className={classes.inputContainer}>
         <TextField
           data-testid="Confirm password"
+          inputProps={{ "data-testid": "Confirm password input" }}
           error={error.confirmPassword === "" ? false : true}
           label="Confirm password"
           type="password"
