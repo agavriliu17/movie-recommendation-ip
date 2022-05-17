@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
+
 import { useTheme } from "@mui/system";
 
 import CustomCheckBox from "../../components/CustomCheckbox";
@@ -84,7 +85,8 @@ const Login = () => {
 
   const classes = useStyles();
   return (
-    <AuthLayout>
+    <AuthLayout
+    >
       <Typography color={theme.palette.text.primary} mb="25px" variant="h4">
         Sign in
       </Typography>

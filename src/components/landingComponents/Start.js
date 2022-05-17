@@ -10,6 +10,7 @@ import { useTheme } from "@mui/system";
 import { InfoOutlined } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
 import backgroundImage from "../../resources/images/default_1920x1080.png";
+
 const scrollToBottom = () => {
   window.scrollTo({
     top: (document.documentElement.scrollHeight+10)/3,
@@ -32,6 +33,8 @@ const useStyles = makeStyles({
     border: "1px solid white",
   },
 });
+
+
 
 const Start = () => {
   const theme = useTheme();
@@ -80,6 +83,17 @@ const Start = () => {
         }}
       >
         <Box
+        component={motion.div}
+        initial={{
+          x: "-200vh",
+        }}
+        animate={{
+          x: 0,
+        }}
+        transition={{
+          delay: 3,
+          duration: 1,
+        }}
         sx={{
           display:"flex",
           justifyContent:"center",
@@ -90,12 +104,36 @@ const Start = () => {
         >
          
           <Typography
-           
+            component={motion.div}
+            initial={{
+              scale: 1.1
+            }}
+            animate={{
+              scale: 0.9
+            }}
+            transition={{
+              delay: 2,
+              duration: 2,
+              yoyo: Infinity
+            }}
             sx={{fontSize:{xs:"30px",sm:"30px",md:"60px",lg:"60px"},marginTop:"10%"}}
           > 
             Movie Streaming Website
           </Typography>
-          <Typography sx={{marginTop:"5%"}}>An interesting project about movies </Typography>
+          <Typography 
+          component={motion.div}
+          initial={{
+            scale: 0.9
+          }}
+          animate={{
+            scale: 1.1
+          }}
+          transition={{
+            delay: 3,
+            duration: 2,
+            yoyo: Infinity
+          }}
+          sx={{marginTop:"5%"}}>An interesting project about movies </Typography>
         </Box>
         
         <Box
@@ -108,7 +146,19 @@ const Start = () => {
             marginTop: "20px"
           }}
         >
-          <Button
+          <Button 
+            component={motion.div}
+            initial={{
+              scale: 0
+            }}
+            animate={{
+              visibility: "visible",
+              scale: 1
+            }}
+            transition={{
+              delay: 2,
+              duration: 1,
+            }}
             variant="outlined"
             sx={{
               borderRadius: "30px",
@@ -119,13 +169,28 @@ const Start = () => {
               width:"300px",
               marginLeft:"3%",
               marginRight:"3%",
-              marginTop:"5%"
+              marginTop:"5%",
+              '&:hover':{
+                transform: "skew(20deg)"
+              }
             }}
             onClick={() => navigate("/Login")}
           >
             Login
           </Button>
           <Button
+            component={motion.div}
+            initial={{
+              scale: 0
+            }}
+            animate={{
+              visibility: "visible",
+              scale: 1
+            }}
+            transition={{
+              delay: 2,
+              duration: 1,
+            }}
             variant="outlined"
             sx={{
               borderRadius: "30px",
@@ -143,7 +208,25 @@ const Start = () => {
             Register
           </Button>
         </Box>
+        <Box
+        sx={{
+          "&:hover": {
+            transform: "rotate(45deg)"
+          }
+        }}
+        component={motion.div}
+        initial={{
+          rotate: 360
+        }}
+        animate={{
+          rotate: 0
+        }}
+        transition={{
+          duration: 1,
+          yoyo: 3.5
+        }}>
         <KeyboardArrowDownSharpIcon
+             
               fontSize="large"
               sx={{
                 color: theme.palette.secondary.main,
@@ -151,6 +234,7 @@ const Start = () => {
               }}
               onClick={scrollToBottom}
         />
+        </Box>
       </Box>
     </Paper>
   );
