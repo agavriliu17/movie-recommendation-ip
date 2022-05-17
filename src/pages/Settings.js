@@ -417,13 +417,118 @@ Upload
   </Card>
     </TabPanel>
     <TabPanel value={value} index={3}>
-      Item Four
+    <Box
+      sx={{
+        '& > :not(style)': { m: 1 }, 
+        display: "flex",
+        flexDirection: "column",
+        paddingLeft: "10px"
+      }}>
+    <Typography ml="20px" fontSize="25px">
+        Subscription information
+      </Typography>
+      <Divider />
+        <Typography width="50%" mt="10px" fontSize="15px" color="#fbfcca" align="left">
+        Card information
+        </Typography>
+        
+      </Box>
+      <Box
+        sx={{
+          '& > :not(style)': { mr: 1},
+          display: "flex",
+          flexDirection: 'row',
+        }}>
+          <TextField
+           id="outlined-name"
+           label="Card owner"
+           color="secondary"
+           value={name}
+           onChange={handleChangeAccount}
+           InputLabelProps={{
+             sx: {
+               color: "#8c8c8c",
+             },
+           }} /> 
+           <TextField
+           id="outlined-uncontrolled"
+           label="Card number"
+           color="secondary"
+           type="card"
+           InputLabelProps={{
+            sx: {
+              color: "#8c8c8c",
+            },
+          }} />
+           </Box>
+           <Divider /> 
+           <Box
+          sx={{
+            '& > :not(style)': { mr: 1},
+          display: "flex",
+          flexDirection: 'row',
+          }}></Box>
+          
+  < Typography>
+  </Typography>  
+    <Typography width="90%" mt="20px" fontSize="15px" color="#fbfcca" align="left">
+      Your next billing will be on 15 June, 2022.
+      </Typography>   
     </TabPanel>
     <TabPanel value={value} index={4}>
-      Item Five
+    <Box
+      sx={{
+        '& > :not(style)': { m: 1 }, 
+        display: "flex",
+        flexDirection: "column",
+        paddingLeft: "10px"
+      }}>
+    </Box>
+    <Typography ml="20px" fontSize="25px">
+        Hello! If you're having any problems with our application here are some common questions:
+      </Typography>
+      <Divider />
+      <Typography width="50%" mt="20px" fontSize="15px" color="#fbfcca" align="left">
+        How is the billing made?
+      </Typography>
+      <Typography width="90%" mt="5px" fontSize="15px" color="#fbfcca" align="left">
+        Your credit card is monthly charged with the due payment.
+      </Typography>
+      <Typography width="90%" mt="30px" fontSize="15px" color="#fbfcca" align="left">
+        What happens if I don't have enough money on my credit card?
+      </Typography>
+      <Typography width="90%" mt="5px" fontSize="15px" color="#fbfcca" align="left">
+        Once you have enough money the payment will be done automatically.
+      </Typography>
+      <Typography width="90%" mt="30px" fontSize="15px" color="#fbfcca" align="left">
+        Can I change my profile picture or my username?
+      </Typography>
+      <Typography width="90%" mt="5px" fontSize="15px" color="#fbfcca" align="left">
+        Yes, you just have to go your account settings and change everything from there.
+      </Typography>
+      <Typography width="90%" mt="30px" fontSize="15px" color="#fbfcca" align="left">
+
+      </Typography>
     </TabPanel>
     <TabPanel value={value} index={5}>
-      Item Six
+      <Box
+      sx={{
+        '& > :not(style)': { m: 1 }, 
+        display: "flex",
+        flexDirection: "column",
+        paddingLeft: "10px"
+      }}>
+    </Box>
+    <Typography ml="20px" fontSize="25px">
+       Privacy & Terms
+      </Typography>
+      <Divider />
+      <Typography width="100%" mt="20px" fontSize="15px" color="#fbfcca" align="left">
+        All your data is protected and it is not used in any external way. 
+      </Typography>
+      <Typography width="100%" mt="20px" fontSize="15px" color="#fbfcca" align="left">
+      Accepting the terms and conditions means that your card will be charged monthly to continue your subscription. You will have to manually cancel the subscription.
+      </Typography>
     </TabPanel>
     </Box>
   </Paper>
