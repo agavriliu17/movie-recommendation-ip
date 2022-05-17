@@ -85,11 +85,12 @@ const Login = () => {
   const classes = useStyles();
   return (
     <AuthLayout>
-      <Typography color={theme.palette.text.primary} mb="25px" variant="h4">
+      <Typography color={theme.palette.text} mb="25px" variant="h4" data-testid="Sign in Title">
         Sign in
       </Typography>
       <Paper className={classes.inputContainer}>
         <TextField
+          data-testid="Username"
           error={error.username === "" ? false : true}
           required
           label="Username"
@@ -100,13 +101,14 @@ const Login = () => {
           variant="filled"
           InputLabelProps={{
             sx: {
-              color: theme.palette.text.primary,
+              color: theme.palette.text,
             },
           }}
         />
       </Paper>
       <Paper className={classes.inputContainer}>
         <TextField
+          data-testid="Password"
           error={error.password === "" ? false : true}
           label="Password *"
           type="password"
@@ -118,7 +120,7 @@ const Login = () => {
           variant="filled"
           InputLabelProps={{
             sx: {
-              color: theme.palette.text.primary,
+              color: theme.palette.text,
             },
           }}
         />
@@ -126,7 +128,7 @@ const Login = () => {
       <Box className={classes.forgotSection}>
         <Box className={classes.rememberMe}>
           <CustomCheckBox />
-          <Typography color={theme.palette.text.primary}>
+          <Typography color={theme.palette.text}>
             Remember me
           </Typography>
         </Box>
@@ -139,13 +141,14 @@ const Login = () => {
           onClick={() => navigate("/reset-pass")}
         >
           <Typography
-            sx={{ textTransform: "none", color: theme.palette.text.primary }}
+            sx={{ textTransform: "none", color: theme.palette.text }}
           >
             Forgot password?
           </Typography>
         </Button>
       </Box>
       <Button
+        data-testid="Submit"
         variant="contained"
         className={classes.signInButton}
         onClick={handleSignIn}
@@ -153,7 +156,7 @@ const Login = () => {
         Sign in
       </Button>
       <Box className={classes.signUpContainer}>
-        <Typography color={theme.palette.text.primary}>
+        <Typography color={theme.palette.text}>
           New on this app?
         </Typography>
         <Button
@@ -165,7 +168,7 @@ const Login = () => {
           onClick={() => navigate("/register")}
         >
           <Typography
-            sx={{ textTransform: "none", color: theme.palette.text.disabled }}
+            sx={{ textTransform: "none", color: theme.palette.text }}
           >
             Sign up now.
           </Typography>

@@ -121,12 +121,13 @@ const Register = () => {
   const classes = useStyles();
   return (
     <AuthLayout>
-      <Typography color={theme.palette.text.primary} variant="h4" mb="25px">
+      <Typography variant="h4" mb="25px" data-testid="Sign Up Title">
         Sign up
       </Typography>
 
       <Paper className={classes.inputContainer}>
         <TextField
+          data-testid="First Name"
           error={error.firstName === "" ? false : true}
           label="First Name"
           helperText={error.firstName}
@@ -134,16 +135,12 @@ const Register = () => {
           value={input.firstName}
           className={classes.inputField}
           variant="filled"
-          InputLabelProps={{
-            sx: {
-              color: theme.palette.text.primary
-            },
-          }}
         />
       </Paper>
 
       <Paper className={classes.inputContainer}>
         <TextField
+          data-testid="Last Name"
           error={error.lastName === "" ? false : true}
           label="Last Name"
           onChange={(event) => handleChangeInput(event, "lastName")}
@@ -151,16 +148,12 @@ const Register = () => {
           helperText={error.lastName}
           className={classes.inputField}
           variant="filled"
-          InputLabelProps={{
-            sx: {
-              color: theme.palette.text.primary,
-            },
-          }}
         />
       </Paper>
 
       <Paper className={classes.inputContainer}>
         <TextField
+          data-testid="Email"
           error={error.email === "" ? false : true}
           label="Email address"
           helperText={error.email}
@@ -168,16 +161,12 @@ const Register = () => {
           value={input.email}
           className={classes.inputField}
           variant="filled"
-          InputLabelProps={{
-            sx: {
-              color: theme.palette.text.primary,
-            },
-          }}
         />
       </Paper>
 
       <Paper className={classes.inputContainer}>
         <TextField
+         data-testid="Username"
           error={error.username === "" ? false : true}
           label="Username"
           helperText={error.username}
@@ -185,16 +174,12 @@ const Register = () => {
           value={input.username}
           className={classes.inputField}
           variant="filled"
-          InputLabelProps={{
-            sx: {
-              color: "#8c8c8c",
-            },
-          }}
         />
       </Paper>
 
       <Paper className={classes.inputContainer}>
         <TextField
+          data-testid="Password"
           error={error.password === "" ? false : true}
           label="Password"
           type="password"
@@ -203,16 +188,12 @@ const Register = () => {
           helperText={error.password}
           className={classes.inputField}
           variant="filled"
-          InputLabelProps={{
-            sx: {
-              color: theme.palette.text.primary,
-            },
-          }}
         />
       </Paper>
 
       <Paper className={classes.inputContainer}>
         <TextField
+          data-testid="Confirm password"
           error={error.confirmPassword === "" ? false : true}
           label="Confirm password"
           type="password"
@@ -221,15 +202,11 @@ const Register = () => {
           value={input.confirmPassword}
           className={classes.inputField}
           variant="filled"
-          InputLabelProps={{
-            sx: {
-              color: theme.palette.text.primary,
-            },
-          }}
         />
       </Paper>
 
       <Button
+        data-testid="Submit"
         variant="contained"
         className={classes.signUpButton}
         onClick={handleSignUp}
@@ -238,7 +215,7 @@ const Register = () => {
       </Button>
 
       <Box className={classes.signInContainer}>
-        <Typography color={theme.palette.text.primary}>Already a user?</Typography>
+        <Typography>Already a user?</Typography>
         <Button
           variant="text"
           disableFocusRipple
@@ -247,7 +224,7 @@ const Register = () => {
           className={classes.linkButton}
           onClick={() => navigate("/login")}
         >
-          <Typography sx={{ textTransform: "none", color: theme.palette.text.disabled }}>
+          <Typography sx={{ textTransform: "none" }}>
             Sign in now.
           </Typography>
         </Button>

@@ -39,7 +39,7 @@ const AuthLayout = ({ children }) => {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.backdrop}>
+    <Paper className={classes.backdrop} data-testid="Auth Layout">
       <Container maxWidth="sm">
         <Fade in timeout={750}>
           <Card className={classes.mainCard}>
