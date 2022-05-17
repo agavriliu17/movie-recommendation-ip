@@ -417,6 +417,8 @@ Upload
   </Card>
     </TabPanel>
     <TabPanel value={value} index={3}>
+    <Card sx={{ width: '100%', minWidth:'560px'}}>
+    <CardContent>
     <Box
       sx={{
         '& > :not(style)': { m: 1 }, 
@@ -443,8 +445,7 @@ Upload
            id="outlined-name"
            label="Card owner"
            color="secondary"
-           value={name}
-           onChange={handleChangeAccount}
+           type="card"
            InputLabelProps={{
              sx: {
                color: "#8c8c8c",
@@ -461,21 +462,50 @@ Upload
             },
           }} />
            </Box>
-           <Divider /> 
            <Box
-          sx={{
-            '& > :not(style)': { mr: 1},
+        sx={{
+          '& > :not(style)': { mr: 1},
           display: "flex",
-          flexDirection: 'row',
-          }}></Box>
-          
-  < Typography>
-  </Typography>  
+          flexDirection:"row",
+          mt: "10px"
+        }}>
+           <TextField
+           id="outlined-uncontrolled"
+           label="Mouth/Year"
+           color="secondary"
+           type="card"
+           InputLabelProps={{
+            sx: {
+              color: "#8c8c8c",
+            },
+          }} />
+          <TextField
+           id="outlined-uncontrolled"
+           label="cvv"
+           color="secondary"
+           type="card"
+           InputLabelProps={{
+            sx: {
+              color: "#8c8c8c",
+            },
+          }} />
+        </Box>
+        <CardActions
+        sx={{display:"flex",flexDirection:"row-reverse"}}>
+       <Button size="small" variant="contained">Save changes</Button>
+    </CardActions>
+           <Divider /> 
+
     <Typography width="90%" mt="20px" fontSize="15px" color="#fbfcca" align="left">
       Your next billing will be on 15 June, 2022.
-      </Typography>   
+      </Typography> 
+      </CardContent>
+      </Card>  
     </TabPanel>
+
     <TabPanel value={value} index={4}>
+    <Card sx={{ width: '100%', minWidth:'560px'}}>
+    <CardContent>
     <Box
       sx={{
         '& > :not(style)': { m: 1 }, 
@@ -483,11 +513,12 @@ Upload
         flexDirection: "column",
         paddingLeft: "10px"
       }}>
-    </Box>
+   
     <Typography ml="20px" fontSize="25px">
         Hello! If you're having any problems with our application here are some common questions:
       </Typography>
       <Divider />
+      
       <Typography width="50%" mt="20px" fontSize="15px" color="#fbfcca" align="left">
         How is the billing made?
       </Typography>
@@ -507,10 +538,16 @@ Upload
         Yes, you just have to go your account settings and change everything from there.
       </Typography>
       <Typography width="90%" mt="30px" fontSize="15px" color="#fbfcca" align="left">
+      </Typography> 
 
-      </Typography>
+      </Box>
+      </CardContent>
+      </Card>
+
     </TabPanel>
     <TabPanel value={value} index={5}>
+    <Card sx={{ width: '100%', minWidth:'560px'}}>
+    <CardContent>
       <Box
       sx={{
         '& > :not(style)': { m: 1 }, 
@@ -518,7 +555,7 @@ Upload
         flexDirection: "column",
         paddingLeft: "10px"
       }}>
-    </Box>
+    
     <Typography ml="20px" fontSize="25px">
        Privacy & Terms
       </Typography>
@@ -528,8 +565,12 @@ Upload
       </Typography>
       <Typography width="100%" mt="20px" fontSize="15px" color="#fbfcca" align="left">
       Accepting the terms and conditions means that your card will be charged monthly to continue your subscription. You will have to manually cancel the subscription.
-      </Typography>
+      </Typography> 
+      </Box>
+      </CardContent>
+      </Card>
     </TabPanel>
+
     </Box>
   </Paper>
 </PageLayout>
