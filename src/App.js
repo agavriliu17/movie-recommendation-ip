@@ -44,7 +44,7 @@ const App = () => {
             />
           </Route>
 
-          <Route index element={<Landing />} />
+          <Route path="/IP-Movie-streaming-website/landing" element={<Landing />} />
           <Route path="/IP-Movie-streaming-website/login" element={<Login />} />
           <Route
             path="/IP-Movie-streaming-website/my_list"

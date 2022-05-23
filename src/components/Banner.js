@@ -22,9 +22,10 @@ const Banner = ({ movie }) => {
   return (
     <Box
       sx={{
-        height: "65vh",
+        marginTop:"200px",
+        height: "auto",
         display: "flex",
-        justifyContent: "flex-end",
+        justifyContent:"flex-end",
         flexDirection: "column",
         width: "100%",
       }}
@@ -56,7 +57,7 @@ const Banner = ({ movie }) => {
           zIndex: "2",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", width: "50%" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", width:{ xs:"80%",sm:"80%", md:"50%",lg:"50%"} }}>
           <Typography variant="h3" color="#F9F871">
             {movie.title}
           </Typography>
@@ -66,6 +67,7 @@ const Banner = ({ movie }) => {
             color="#10091D"
             backgroundColor={theme.palette.text.disabled}
             paddingLeft="10px"
+            
           >
             {movie.overview}
           </Typography>
