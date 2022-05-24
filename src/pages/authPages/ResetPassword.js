@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
-
+import { useParams } from "react-router-dom";
 import AuthLayout from "./AuthLayout";
 import { useNavigate } from "react-router-dom";
 import {
@@ -43,8 +43,12 @@ const ResetPassword = () => {
   const [input, setInput] = React.useState({
     password: "",
     confirmPassword: "",
-    token:"",
+  
   });
+
+  const {token}=useParams();
+  console.log(token);
+
   const [error, setError] = React.useState({
     password: "",
     confirmPassword: "",
@@ -131,7 +135,7 @@ const ResetPassword = () => {
         />
       </Paper>
       
-      <Paper className={classes.inputContainer}>
+      {/* <Paper className={classes.inputContainer}>
         <TextField
           className={classes.inputField}
           label="token"
@@ -148,7 +152,7 @@ const ResetPassword = () => {
             },
           }}
         />
-      </Paper>
+      </Paper> */}
 
 
       <Button

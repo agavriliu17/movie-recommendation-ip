@@ -64,9 +64,11 @@ export const sendRequestReset=async(info) =>
     newPassword:info.password,
     resetToken:info.token,
   });
+  console.log(info.token);
   if (res.status === 200) {
     return true;
   } else return res.status;
+  
 }
 
 
