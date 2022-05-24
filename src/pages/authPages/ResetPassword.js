@@ -9,6 +9,9 @@ import { makeStyles } from "@mui/styles";
 
 import AuthLayout from "./AuthLayout";
 import { useNavigate } from "react-router-dom";
+import {
+  sendRequestReset
+} from "../../resources/helpers/authHelper";
 
 const useStyles = makeStyles({
   inputContainer: {
@@ -40,6 +43,7 @@ const ResetPassword = () => {
   const [input, setInput] = React.useState({
     password: "",
     confirmPassword: "",
+    token:"",
   });
   const [error, setError] = React.useState({
     password: "",
@@ -51,7 +55,7 @@ const ResetPassword = () => {
     setInput({ ...input, [key]: event.target.value });
   };
 
-  const handleSubmit = () => {
+  const handleResetPassword =async () => {
     const passwordError =
       input.password.length < 8
         ? "Your password must be at at least 8 characters long "
@@ -64,13 +68,22 @@ const ResetPassword = () => {
 
     if (passwordError === "" && confirmPasswordError === "") {
       alert("Password has been successfully reset");
-      navigate("/IP-Movie-streaming-website/login");
+      
     } else {
       setError({
         password: passwordError,
         confirmPassword: confirmPasswordError,
       });
     }
+
+    try{
+      const response=await sendRequestReset(input);
+      if (response) navigate("/IP-Movie-streaming-website/login")
+  }
+  catch(e)
+  {
+      console.log(e);
+  }
   };
 
   //TODO: We should also have an input for the email of the account
@@ -117,28 +130,36 @@ const ResetPassword = () => {
           }}
         />
       </Paper>
+      
+      <Paper className={classes.inputContainer}>
+        <TextField
+          className={classes.inputField}
+          label="token"
+          type="password"
+          error={error.password === "" ? false : true}
+          helperText={error.password}
+          id="token"
+          onChange={(ev) => handleChange(ev, "token")}
+          value={input.token}
+          variant="filled"
+          InputLabelProps={{
+            sx: {
+              color: "#8c8c8c",
+            },
+          }}
+        />
+      </Paper>
+
 
       <Button
         variant="contained"
         className={classes.submitButton}
-        onClick={handleSubmit}
+        onClick={handleResetPassword}
       >
         Submit
       </Button>
-      <Box className={classes.signInContainer}>
-        <Button
-          variant="text"
-          disableFocusRipple
-          disableElevation
-          disableRipple
-          className={classes.linkButton}
-          onClick={() => navigate("/IP-Movie-streaming-website/login")}
-        >
-          <Typography sx={{ textTransform: "none", color: "#fff" }}>
-            Back to login
-          </Typography>
-        </Button>
-      </Box>
+      
+      
     </AuthLayout>
   );
 };

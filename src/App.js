@@ -16,7 +16,7 @@ import Movie from "./pages/user/Movie";
 import NotFound from "./pages/NotFound";
 import AdminHome from "./pages/admin/AdminHome";
 import Settings from "./pages/Settings";
-
+import ResetMail from "./pages/authPages/resetMail";
 const App = () => {
   const theme = createTheme(themeOptions);
 
@@ -37,6 +37,10 @@ const App = () => {
             <Route
               path="/IP-Movie-streaming-website/admin/home"
               element={<AdminHome />}
+            />
+            <Route
+              path="/IP-Movie-streaming-website/resetMail"
+              element={<ResetMail/>}
             />
             <Route
               path="/IP-Movie-streaming-website/settings"

@@ -45,3 +45,28 @@ export const registerUser = async (userInfo) => {
     return true;
   } else throw new Error("Something went wrong, please try again!");
 };
+
+export const sendMail=async(mailInfo) =>
+{
+  const res = await axios.post(`${BASE_URL}/reset-password/${mailInfo.email.replace("@","%40")}`, {
+    email: mailInfo.email,
+  });
+
+  if (res.status === 200) {
+    return true;
+  } else return res.status;
+};
+
+export const sendRequestReset=async(info) =>
+{
+  const res = await axios.post(`${BASE_URL}/reset-password`, {
+    confirmPassword: info.confirmPassword,
+    newPassword:info.password,
+    resetToken:info.token,
+  });
+  if (res.status === 200) {
+    return true;
+  } else return res.status;
+}
+
+
