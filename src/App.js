@@ -16,19 +16,21 @@ import Movie from "./pages/user/Movie";
 import NotFound from "./pages/NotFound";
 import AdminHome from "./pages/admin/AdminHome";
 import Settings from "./pages/Settings";
-
+import ResetMail from "./pages/authPages/resetMail";
 const App = () => {
   const theme = createTheme(themeOptions);
 
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+
         <Routes>
           <Route
             exact
             path="/IP-Movie-streaming-website/"
             element={<ProtectedRoute />}
           >
+
             <Route path="/IP-Movie-streaming-website/home" element={<Home />} />
             <Route
               path="/IP-Movie-streaming-website/watch/:movieId"
@@ -38,6 +40,7 @@ const App = () => {
               path="/IP-Movie-streaming-website/admin/home"
               element={<AdminHome />}
             />
+            
             <Route
               path="/IP-Movie-streaming-website/settings"
               element={<Settings />}
@@ -58,7 +61,10 @@ const App = () => {
             path="/IP-Movie-streaming-website/reset-pass"
             element={<ResetPassword />}
           />
-
+          <Route
+              path="/IP-Movie-streaming-website/resetMail"
+              element={<ResetMail/>}
+            />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
