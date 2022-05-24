@@ -1,12 +1,13 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { Paper } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import backgroundImage from "../../resources/images/default_1920x1080.png";
+
 export const COLORS = {
   primary: "#482884", // purple
   secondary: "#F9F871", // yellow

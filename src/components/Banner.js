@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import AddMovieButton from "./AddMovieButton";
 
 import { IMAGES_URL } from "../resources/constants";
 import { useNavigate } from "react-router-dom";
@@ -22,10 +23,9 @@ const Banner = ({ movie }) => {
   return (
     <Box
       sx={{
-        marginTop:"200px",
-        height: "auto",
+        height: "65vh",
         display: "flex",
-        justifyContent:"flex-end",
+        justifyContent: "flex-end",
         flexDirection: "column",
         width: "100%",
       }}
@@ -33,7 +33,7 @@ const Banner = ({ movie }) => {
       <Box
         sx={{
           backgroundImage: `url(${IMAGES_URL}${
-            movie?.backdrop_path || movie?.poster_path
+            movie?.backdropPath || movie?.posterPath
           })`,
           position: "absolute",
           backgroundSize: "cover",
@@ -57,9 +57,15 @@ const Banner = ({ movie }) => {
           zIndex: "2",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", width:{ xs:"80%",sm:"80%", md:"50%",lg:"50%"} }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: { xs: "80%", sm: "80%", md: "50%", lg: "50%" },
+          }}
+        >
           <Typography variant="h3" color="#F9F871">
-            {movie.title}
+            {movie.name}
           </Typography>
           <Typography
             variant="h6"
@@ -67,9 +73,8 @@ const Banner = ({ movie }) => {
             color="#10091D"
             backgroundColor={theme.palette.text.disabled}
             paddingLeft="10px"
-            
           >
-            {movie.overview}
+            {movie.description}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", flexDirection: "row", marginTop: "20px" }}>
@@ -86,7 +91,7 @@ const Banner = ({ movie }) => {
               Play
             </Typography>
           </Button>
-          <Button
+          {/* <Button
             variant="contained"
             sx={{
               textTransform: "none",
@@ -102,7 +107,8 @@ const Banner = ({ movie }) => {
             <Typography fontSize="20px" ml="5px">
               Learn more
             </Typography>
-          </Button>
+          </Button> */}
+          <AddMovieButton />
         </Box>
       </Box>
     </Box>

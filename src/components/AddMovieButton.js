@@ -6,19 +6,19 @@ import AddIcon from "@mui/icons-material/Add";
 import CheckIcon from "@mui/icons-material/Check";
 
 const AddMovieButton = () => {
-  const [inWatchlist, setInWatchList] = React.useState(true);
+  const [inWatchlist, setInWatchList] = React.useState(false);
 
   const handleWatchlist = () => setInWatchList(!inWatchlist);
 
   return (
     <Button
       sx={{
-        height: "fit-content",
         textTransform: "none",
-        backgroundColor: "#313131",
-        color: "#fff",
+        marginLeft: "15px",
+        backgroundColor: "rgba(158,158,158,0.6)",
+        padding: "5px 25px",
         "&:hover": {
-          backgroundColor: "#404040",
+          backgroundColor: "rgba(158,158,158,0.4)",
         },
       }}
       variant="contained"

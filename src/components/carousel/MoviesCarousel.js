@@ -10,43 +10,32 @@ import MovieCard from "./MovieCard";
 const carouselConfig = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
-    items: 10,
+    items: 8,
   },
   desktop_XL: {
     breakpoint: { max: 3000, min: 2500 },
-    items: 9,
+    items: 7,
   },
   desktop_ML: {
     breakpoint: { max: 2500, min: 2000 },
-    items: 8,
+    items: 6,
   },
   desktop: {
     breakpoint: { max: 2000, min: 1600 },
-    items: 7,
-  },
-  tablet: {
-    breakpoint: { max: 1600, min: 1400 },
-    items: 6,
-  },
-  tablet_SM: {
-    breakpoint: { max: 1400, min: 1300 },
     items: 5,
   },
-  mobile: {
-    breakpoint: { max: 1300, min: 1000 },
+  tablet: {
+    breakpoint: { max: 1600, min: 1200 },
     items: 4,
   },
-  smallMobile:
-  {
-    breakpoint: { max: 1000, min: 500 },
+  tablet_SM: {
+    breakpoint: { max: 1200, min: 800 },
     items: 3,
-  }
-  ,
-  extraSmallMobile:
-  {
-    breakpoint: { max: 500, min: 0 },
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
     items: 2,
-  }
+  },
 };
 
 const containedConfig = {
@@ -67,21 +56,22 @@ const containedConfig = {
     items: 3,
   },
   tablet: {
-    breakpoint: { max: 1600, min: 1400 },
-    items: 6,
+    breakpoint: { max: 1600, min: 1200 },
+    items: 2,
   },
   tablet_SM: {
-    breakpoint: { max: 1400, min: 1000 },
-    items: 5,
+    breakpoint: { max: 1200, min: 800 },
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 4,
+    items: 2,
   },
 };
 
 const useStyles = makeStyles({
   carouselContainer: {
+    padding: "0px 20px 10px 40px",
     height: "500px",
     zIndex: 0,
     width: "100%",
@@ -92,7 +82,7 @@ const MoviesCarousel = ({ movieList, genreTitle, contained }) => {
   const classes = useStyles();
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", width: "95%" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", width: "90%" }}>
       <Typography color="#F9F871" variant="h3">
         {genreTitle}
       </Typography>

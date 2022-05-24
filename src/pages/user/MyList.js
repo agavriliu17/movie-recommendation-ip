@@ -6,8 +6,7 @@ import Box from "@mui/material/Box";
 
 import MovieListItem from "../../components/MovieListItem";
 import LoadingMyList from "../../components/loadingElements/LoadingMyList";
-import requests from "../../resources/requests";
-import axios from "axios";
+import { getMyList } from "../../resources/helpers/movieApiHelper";
 
 const MyList = () => {
   const [data, setData] = React.useState([]);
@@ -16,15 +15,9 @@ const MyList = () => {
   React.useEffect(() => {
     (async function () {
       try {
-        const movieData = await axios
-          .get(requests.fetchNetflixOriginals)
-          .then((res) => res.data.results);
+        const movieData = await getMyList(3);
+        setData(movieData);
 
-        const timedData = await new Promise((resolve) => {
-          setTimeout(() => resolve(movieData), 1000);
-        });
-
-        setData(timedData);
         setLoading(false);
       } catch (e) {
         console.error(e);
@@ -40,7 +33,7 @@ const MyList = () => {
       </Typography>
       {!loading ? (
         <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
-          {data.map((movie, index) => (
+          {data[0].movies.map((movie, index) => (
             <MovieListItem key={`${movie.title}-${index}`} movie={movie} />
           ))}
         </Box>

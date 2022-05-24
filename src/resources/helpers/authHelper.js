@@ -5,8 +5,14 @@ import { BASE_URL } from "../constants";
 
 //Here we'll store our helper functions for auth pages
 export const validateEmail = (email) => {
-  const re = /\S+@\S+\.\S+/;
+  const re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/i;
   return re.test(email);
+};
+
+export const validatePassword = (password) => {
+  const re =
+    /(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–/|{}\\:;'\-%`€"_.,?*~$^+=<>\]\[]).{6,}$/;
+  return re.test(password);
 };
 
 export const loginUser = async (userInfo) => {
@@ -29,7 +35,9 @@ export const loginUser = async (userInfo) => {
 
   if (res.status === 200) {
     return token;
-  } else throw new Error("Something went wrong, please try again!");
+  } else {
+    throw new Error(`${res.body}`);
+  }
 };
 
 export const registerUser = async (userInfo) => {
@@ -43,7 +51,9 @@ export const registerUser = async (userInfo) => {
 
   if (res.status === 200) {
     return true;
-  } else throw new Error("Something went wrong, please try again!");
+  } else {
+    throw new Error("Something went wong");
+  }
 };
 
 export const sendMail=async(mailInfo) =>

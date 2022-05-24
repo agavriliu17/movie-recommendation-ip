@@ -6,8 +6,8 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
-
 import { useTheme } from "@mui/system";
+import { useSnackbar } from "notistack";
 
 import CustomCheckBox from "../../components/CustomCheckbox";
 import AuthLayout from "./AuthLayout";
@@ -15,6 +15,7 @@ import AuthLayout from "./AuthLayout";
 import UserContext from "../../resources/context/UserContext";
 import { loginUser } from "../../resources/helpers/authHelper";
 import { useNavigate } from "react-router-dom";
+
 const useStyles = makeStyles({
   inputContainer: {
     width: "100%",
@@ -50,6 +51,8 @@ const useStyles = makeStyles({
 const Login = () => {
   const [input, setInput] = React.useState({ username: "", password: "" });
   const [error, setError] = React.useState({ username: "", password: "" });
+  const [loading, setLoading] = React.useState(false);
+  const { enqueueSnackbar } = useSnackbar();
   const { authenticateUser, isAuthenticated } = React.useContext(UserContext);
 
   const theme = useTheme();
@@ -78,7 +81,7 @@ const Login = () => {
         const token = await loginUser(input);
         if (token) authenticateUser(token);
       } catch (e) {
-        console.log(e); //TODO: Show the user the error in some way
+        enqueueSnackbar(e.message, { variant: "error" });
       }
     } else setError({ username: usernameError, password: passwordError });
   };

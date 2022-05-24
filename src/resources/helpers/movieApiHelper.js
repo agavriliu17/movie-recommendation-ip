@@ -57,16 +57,55 @@ export const getMoviesByName = async (name) => {
   return movieData;
 };
 
-export const getMyList = async () => {
+export const getMyList = async (userId) => {
   const authToken = sessionStorage.getItem("isAuthenticated");
 
   const movieData = await axios
-    .get(`${BASE_URL}/movielists`, {
+    .get(`${BASE_URL}/movielists/user?user_id=${userId}`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    })
+    .then((res) => res.data);
+  console.log(movieData);
+
+  return movieData;
+};
+
+export const getPredictions = async () => {
+  const authToken = sessionStorage.getItem("isAuthenticated");
+
+  const movieData = await axios
+    .get(`${BASE_URL}/ratings/1`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
       },
     })
     .then((res) => res.data);
 
-  return movieData;
+  console.log(movieData);
+  if (movieData.length >= 3) {
+    const moviePrediction = await axios({
+      method: "post",
+      url: `${BASE_URL}/movies/predictions/10`,
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        "Content-Type": "application/json",
+      },
+      data: movieData,
+    }).then((res) => res.data);
+
+    console.log(moviePrediction);
+    return moviePrediction;
+  } else {
+    const genericPrediction = await axios
+      .get(`${BASE_URL}/ratings/all`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      })
+      .then((res) => res.data);
+
+    console.log(genericPrediction, "generic");
+  }
 };

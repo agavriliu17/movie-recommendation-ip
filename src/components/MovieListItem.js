@@ -23,15 +23,15 @@ const MovieListItem = ({ movie }) => {
       onClick={goToMovie}
     >
       <img
-        src={`${IMAGES_URL}${movie?.poster_path || movie?.backdrop_path}`}
+        src={`${IMAGES_URL}${movie?.posterPath || movie?.backdropPath}`}
         alt="movie_poster"
         height="250px"
         style={{ objectFit: "scale-down", borderRadius: "15px" }}
       />
       <Box sx={{ marginLeft: "15px", maxWidth: "75%" }}>
-        <Typography variant="h4">{movie.title}</Typography>
+        <Typography variant="h4">{movie.name}</Typography>
         <Typography fontSize="18px" mt={3}>
-          {movie.overview}
+          {movie.description}
         </Typography>
       </Box>
     </Box>

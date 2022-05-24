@@ -5,8 +5,6 @@ import Banner from "../../components/Banner";
 import Nav from "../../components/nav/Nav";
 import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
 import LoadingBanner from "../../components/loadingElements/LoadingBanner";
-import requests from "../../resources/requests";
-import axios from "axios";
 import MoviesCarousel from "../../components/carousel/MoviesCarousel";
 import { makeStyles } from "@mui/styles";
 
@@ -56,16 +54,14 @@ const Home = () => {
   React.useEffect(() => {
     (async function () {
       try {
-        const movieData = await axios
-          .get(requests.fetchNetflixOriginals)
-          .then((res) => res.data.results);
+        const movieData = await apiHelper.getPredictions();
         setData(movieData);
 
         const topMovieData = await apiHelper.getTopRated();
         setDataTop(topMovieData);
 
         const horrorMovieData = await apiHelper.getMoviesByGenre(
-          MOVIE_GENRES.horror
+          MOVIE_GENRES.crime
         );
         setDataHorror(horrorMovieData);
 
@@ -75,9 +71,8 @@ const Home = () => {
         setDataAction(actionMovieData);
 
         const documentariesMovieData = await apiHelper.getMoviesByGenre(
-          MOVIE_GENRES.crime
+          MOVIE_GENRES.documentary
         );
-        console.log(documentariesMovieData);
         setDataDocumentaries(documentariesMovieData);
 
         setLoading(false);
@@ -91,9 +86,9 @@ const Home = () => {
 
   const bannerMovie = data[Math.floor(Math.random() * data.length)];
   const topRated = topRatedData.slice(0, 10);
-  const horrormovies = horrorData.slice(0, 10);
-  const actionmovies = actionData.slice(0, 10);
-  const documentariesmovies = documentariesData.slice(0, 10);
+  const horrorMovies = horrorData.slice(0, 10);
+  const actionMovies = actionData.slice(0, 10);
+  const documentariesMovies = documentariesData.slice(0, 10);
 
   const classes = useStyles();
   return (
@@ -133,7 +128,7 @@ const Home = () => {
           ))}
         </Box>
       ) : (
-        <MoviesCarousel movieList={horrormovies} genreTitle="Horror" />
+        <MoviesCarousel movieList={horrorMovies} genreTitle="Horror" />
       )}
 
       {loading ? (
@@ -150,7 +145,7 @@ const Home = () => {
           ))}
         </Box>
       ) : (
-        <MoviesCarousel movieList={actionmovies} genreTitle="Action" />
+        <MoviesCarousel movieList={actionMovies} genreTitle="Action" />
       )}
 
       {loading ? (
@@ -168,7 +163,7 @@ const Home = () => {
         </Box>
       ) : (
         <MoviesCarousel
-          movieList={documentariesmovies}
+          movieList={documentariesMovies}
           genreTitle="Documentaries"
         />
       )}

@@ -7,12 +7,14 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { useTheme } from "@mui/system";
+import { useSnackbar } from "notistack";
 
 import AuthLayout from "./AuthLayout";
 import { useNavigate } from "react-router-dom";
 import {
   registerUser,
   validateEmail,
+  validatePassword,
 } from "../../resources/helpers/authHelper";
 
 const useStyles = makeStyles({
@@ -42,6 +44,7 @@ const useStyles = makeStyles({
 
 const Register = () => {
   const theme = useTheme();
+  const { enqueueSnackbar } = useSnackbar();
 
   const [input, setInput] = React.useState({
     firstName: "",
@@ -83,6 +86,8 @@ const Register = () => {
     const passwordError =
       input.password.length < 8
         ? "Your password must be at at least 8 characters long "
+        : !validatePassword(input.password)
+        ? "The password should contain at least 1 special character"
         : "";
 
     const confirmPasswordError =
@@ -99,10 +104,19 @@ const Register = () => {
       confirmPasswordError === ""
     ) {
       try {
+        setError({
+          firstName: firstNameError,
+          lastName: lastNameError,
+          email: emailError,
+          username: usernameError,
+          password: passwordError,
+          confirmPassword: confirmPasswordError,
+        });
         const response = await registerUser(input);
         if (response) navigate("/IP-Movie-streaming-website/login");
       } catch (e) {
-        console.log(e); //TODO: Show the user the error in some way
+        console.log(e);
+        enqueueSnackbar(e.message, { variant: "error" });
       }
     } else
       setError({

@@ -1,8 +1,11 @@
 import React from "react";
-import { Paper, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import { Button } from "@mui/material";
+
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
+
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/system";
 import backgroundImage from "../../resources/images/default_1920x1080.png";
@@ -29,7 +32,6 @@ const Start = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
-
         zIndex: "-1",
       }}
     >
@@ -48,7 +50,6 @@ const Start = () => {
         sx={{
           width: "100%",
           height: "100%",
-          // border: "1px solid white",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

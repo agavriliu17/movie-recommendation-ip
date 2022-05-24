@@ -71,75 +71,81 @@ const Movie = () => {
             borderRadius: "15px",
           }}
         />
-        <Box
-          sx={{ display: "flex", flexDirection: "column", marginLeft: "20px" }}
-        >
+        {!loading && (
           <Box
             sx={{
               display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
+              flexDirection: "column",
+              marginLeft: "20px",
             }}
           >
-            <Typography
-              mb="20px"
-              textAlign="left"
-              variant="h3"
-              fontWeight="600"
-            >
-              {movie.name}
-            </Typography>
-            <AddMovieButton />
-          </Box>
-          {movie?.type && (
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "row",
-                flexWrap: "wrap",
-                marginBottom: "20px",
+                justifyContent: "space-between",
+                alignItems: "baseline",
               }}
             >
-              {movie.type.map((genre, index) => (
-                <Chip
-                  label={genre.name}
-                  key={`${genre.id}-${index}`}
-                  sx={{ margin: "0px 5px" }}
-                  clickable
-                />
-              ))}
+              <Typography
+                mb="20px"
+                textAlign="left"
+                variant="h3"
+                fontWeight="600"
+              >
+                {movie.name}
+              </Typography>
+              <AddMovieButton />
             </Box>
-          )}
-          <Typography fontSize="20px" mt={5} textAlign="left" color="#fff">
-            {movie.description}
-          </Typography>
+            {movie?.type && (
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  marginBottom: "20px",
+                }}
+              >
+                {movie.type.map((genre, index) => (
+                  <Chip
+                    label={genre.name}
+                    key={`${genre.id}-${index}`}
+                    sx={{ margin: "0px 5px" }}
+                    clickable
+                  />
+                ))}
+              </Box>
+            )}
+            <Typography fontSize="20px" mt={5} textAlign="left" color="#fff">
+              {movie.description}
+            </Typography>
 
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              width: "100%",
-              marginTop: "10px",
-            }}
-          >
-            <Typography fontSize="15px" mt={1} textAlign="left" color="gray">
-              Release date:
-            </Typography>
-            <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
-              {movie.releaseDate}
-            </Typography>
-          </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                width: "100%",
+                marginTop: "10px",
+              }}
+            >
+              <Typography fontSize="15px" mt={1} textAlign="left" color="gray">
+                Release date:
+              </Typography>
+              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
+                {movie.releaseDate.slice(0, 10)}
+              </Typography>
+            </Box>
 
-          <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
-            <Typography fontSize="15px" mt={1} textAlign="left" color="gray">
-              Runtime:
-            </Typography>
-            <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
-              {`${movie.duration} min`}
-            </Typography>
+            <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
+              <Typography fontSize="15px" mt={1} textAlign="left" color="gray">
+                Runtime:
+              </Typography>
+              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
+                {`${movie.duration} min`}
+              </Typography>
+            </Box>
           </Box>
-        </Box>
+        )}
       </Box>
 
       <Box

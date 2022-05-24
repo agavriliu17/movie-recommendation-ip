@@ -1,14 +1,17 @@
 import React from "react";
-import { Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/system";
-import { motion } from "framer-motion";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import requests from "../../resources/requests";
-import axios from "axios";
 import MoviesCarousel from "../../components/carousel/MoviesCarousel";
 import backgroundImage from "../../resources/images/default_1920x1080.png";
 import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
+
+import axios from "axios";
+import { motion } from "framer-motion";
+
 export const COLORS = {
   primary: "#482884", // purple
   secondary: "#F9F871", // yellow

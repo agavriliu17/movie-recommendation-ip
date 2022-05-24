@@ -21,7 +21,7 @@ const MovieCard = ({ movie }) => {
       onClick={goToMovie}
       component={motion.div}
       whileHover={{
-        scale: 1.3,
+        scale: 1.2,
         transition: { duration: 0.3 },
       }}
       onMouseEnter={handleMouseEnter}
@@ -32,14 +32,15 @@ const MovieCard = ({ movie }) => {
         alt={movie.title}
         style={{
           display: "block",
-          maxWidth: "80%",
-          maxHeight: "auto",
+          maxWidth: "300px",
+          maxHeight: "400px",
           width: "auto",
           height: "auto",
           boxShadow: hover
-            ? "rgba(0, 0, 0, 0.56) 0px 22px 70px 4px"
+            ? "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px"
             : "none",
         }}
+        loading="lazy"
       />
     </Box>
   );
