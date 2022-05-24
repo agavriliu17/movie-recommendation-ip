@@ -7,14 +7,14 @@ export const UserContextProvider = ({ children }) => {
     sessionStorage.getItem("isAuthenticated")
   );
 
-  const authenticateUser = () => {
-    setIsAuthenticated(true);
-    sessionStorage.setItem("isAuthenticated", true);
+  const authenticateUser = (token) => {
+    setIsAuthenticated(token);
+    sessionStorage.setItem("isAuthenticated", token);
   };
 
   const logoutUser = () => {
-    setIsAuthenticated(false);
-    sessionStorage.setItem("isAuthenticated", false);
+    setIsAuthenticated("");
+    sessionStorage.setItem("isAuthenticated", "");
   };
 
   return (

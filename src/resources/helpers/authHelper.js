@@ -1,7 +1,7 @@
 import axios from "axios";
 import qs from "qs";
 
-const BASE_URL = "https://movie-recommendation-ip.herokuapp.com/";
+import { BASE_URL } from "../constants";
 
 //Here we'll store our helper functions for auth pages
 export const validateEmail = (email) => {
@@ -12,7 +12,7 @@ export const validateEmail = (email) => {
 export const loginUser = async (userInfo) => {
   const res = await axios({
     method: "post",
-    url: `${BASE_URL}api/v1/login`,
+    url: `${BASE_URL}/login`,
     data: qs.stringify({
       username: userInfo.username,
       password: userInfo.password,
@@ -22,13 +22,18 @@ export const loginUser = async (userInfo) => {
     },
   });
 
+  const token = res.headers.authorization.substring(
+    7,
+    res.headers.authorization.length
+  );
+
   if (res.status === 200) {
-    return true;
+    return token;
   } else throw new Error("Something went wrong, please try again!");
 };
 
 export const registerUser = async (userInfo) => {
-  const res = await axios.post(`${BASE_URL}api/v1/users`, {
+  const res = await axios.post(`${BASE_URL}/users`, {
     email: userInfo.email,
     firstname: userInfo.firstName,
     lastname: userInfo.lastName,

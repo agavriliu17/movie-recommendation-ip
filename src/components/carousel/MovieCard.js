@@ -28,7 +28,7 @@ const MovieCard = ({ movie }) => {
       onMouseLeave={handleMouseLeave}
     >
       <img
-        src={`${IMAGES_URL}${movie?.poster_path || movie?.backdrop_path}`}
+        src={`${IMAGES_URL}${movie?.posterPath || movie?.backdropPath}`}
         alt={movie.title}
         style={{
           display: "block",
@@ -40,7 +40,6 @@ const MovieCard = ({ movie }) => {
             ? "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px"
             : "none",
         }}
-        loading="lazy"
       />
     </Box>
   );

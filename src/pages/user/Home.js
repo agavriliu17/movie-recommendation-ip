@@ -10,6 +10,9 @@ import axios from "axios";
 import MoviesCarousel from "../../components/carousel/MoviesCarousel";
 import { makeStyles } from "@mui/styles";
 
+import { MOVIE_GENRES } from "../../resources/constants";
+import * as apiHelper from "../../resources/helpers/movieApiHelper";
+
 import backgroundImage from "../../resources/images/default_1920x1080.png";
 
 const useStyles = makeStyles({
@@ -47,7 +50,7 @@ const Home = () => {
   const [topRatedData, setDataTop] = React.useState([]);
   const [horrorData, setDataHorror] = React.useState([]);
   const [actionData, setDataAction] = React.useState([]);
-  const [documentariesData, setDatadocumentaries] = React.useState([]);
+  const [documentariesData, setDataDocumentaries] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -56,28 +59,27 @@ const Home = () => {
         const movieData = await axios
           .get(requests.fetchNetflixOriginals)
           .then((res) => res.data.results);
-
-        const topMovieData = await axios
-          .get(requests.fetchTopRated)
-          .then((res) => res.data.results);
-
-        const horrorMovieData = await axios
-          .get(requests.fetchHorrorMovies)
-          .then((res) => res.data.results);
-
-        const actionMovieData = await axios
-          .get(requests.fetchActionMovies)
-          .then((res) => res.data.results);
-
-        const documentariesMovieData = await axios
-          .get(requests.fetchDocumentaries)
-          .then((res) => res.data.results);
-
         setData(movieData);
+
+        const topMovieData = await apiHelper.getTopRated();
         setDataTop(topMovieData);
+
+        const horrorMovieData = await apiHelper.getMoviesByGenre(
+          MOVIE_GENRES.horror
+        );
         setDataHorror(horrorMovieData);
+
+        const actionMovieData = await apiHelper.getMoviesByGenre(
+          MOVIE_GENRES.action
+        );
         setDataAction(actionMovieData);
-        setDatadocumentaries(documentariesMovieData);
+
+        const documentariesMovieData = await apiHelper.getMoviesByGenre(
+          MOVIE_GENRES.crime
+        );
+        console.log(documentariesMovieData);
+        setDataDocumentaries(documentariesMovieData);
+
         setLoading(false);
       } catch (e) {
         console.error(e);

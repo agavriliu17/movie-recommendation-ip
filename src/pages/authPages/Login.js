@@ -75,8 +75,8 @@ const Login = () => {
 
     if (usernameError === "" && passwordError === "") {
       try {
-        const response = await loginUser(input);
-        if (response) authenticateUser();
+        const token = await loginUser(input);
+        if (token) authenticateUser(token);
       } catch (e) {
         console.log(e); //TODO: Show the user the error in some way
       }
@@ -85,8 +85,7 @@ const Login = () => {
 
   const classes = useStyles();
   return (
-    <AuthLayout
-    >
+    <AuthLayout>
       <Typography color={theme.palette.text.primary} mb="25px" variant="h4">
         Sign in
       </Typography>

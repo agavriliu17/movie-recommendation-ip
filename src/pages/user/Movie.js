@@ -11,13 +11,15 @@ import Chip from "@mui/material/Chip";
 
 import MoviesCarousel from "../../components/carousel/MoviesCarousel";
 
-import requests from "../../resources/requests";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { IMAGES_URL } from "../../resources/constants";
-import axios from "axios";
 import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
 import RateButton from "../../components/ratings/RateButton";
+import { getMoviesById } from "../../resources/helpers/movieApiHelper";
+
+import { getTopRated } from "../../resources/helpers/movieApiHelper";
+import AddMovieButton from "../../components/AddMovieButton";
 
 const Movie = () => {
   const { movieId } = useParams();
@@ -30,16 +32,12 @@ const Movie = () => {
 
     (async function () {
       try {
-        const movieData = await axios
-          .get(requests.fetchMovie(movieId))
-          .then((res) => res.data);
+        const movieData = await getMoviesById(movieId);
         setMovie(movieData);
 
-        const topMovieData = await axios
-          .get(requests.fetchTopRated)
-          .then((res) => res.data.results);
-
+        const topMovieData = await getTopRated();
         setDataTop(topMovieData);
+
         setLoading(false);
       } catch (e) {
         console.error(e);
@@ -62,8 +60,8 @@ const Movie = () => {
         }}
       >
         <img
-          src={`${IMAGES_URL}${movie?.poster_path || movie?.backdrop_path}`}
-          alt={movie.title}
+          src={`${IMAGES_URL}${movie?.posterPath || movie?.backdropPath}`}
+          alt={movie.name}
           style={{
             display: "block",
             maxWidth: "400px",
@@ -76,10 +74,25 @@ const Movie = () => {
         <Box
           sx={{ display: "flex", flexDirection: "column", marginLeft: "20px" }}
         >
-          <Typography mb="20px" textAlign="left" variant="h3" fontWeight="600">
-            {movie.title}
-          </Typography>
-          {movie?.genres && (
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              mb="20px"
+              textAlign="left"
+              variant="h3"
+              fontWeight="600"
+            >
+              {movie.name}
+            </Typography>
+            <AddMovieButton />
+          </Box>
+          {movie?.type && (
             <Box
               sx={{
                 display: "flex",
@@ -88,10 +101,9 @@ const Movie = () => {
                 marginBottom: "20px",
               }}
             >
-              {movie.genres.map((genre, index) => (
+              {movie.type.map((genre, index) => (
                 <Chip
                   label={genre.name}
-                  // variant="outlined"
                   key={`${genre.id}-${index}`}
                   sx={{ margin: "0px 5px" }}
                   clickable
@@ -100,7 +112,7 @@ const Movie = () => {
             </Box>
           )}
           <Typography fontSize="20px" mt={5} textAlign="left" color="#fff">
-            {movie.overview}
+            {movie.description}
           </Typography>
 
           <Box
@@ -115,7 +127,7 @@ const Movie = () => {
               Release date:
             </Typography>
             <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
-              {movie.release_date}
+              {movie.releaseDate}
             </Typography>
           </Box>
 
@@ -124,7 +136,7 @@ const Movie = () => {
               Runtime:
             </Typography>
             <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
-              {`${movie.runtime} min`}
+              {`${movie.duration} min`}
             </Typography>
           </Box>
         </Box>
@@ -140,10 +152,10 @@ const Movie = () => {
         }}
       >
         <RatingDisplay
-          voteAverage={movie?.vote_average}
-          voteCount={movie?.vote_count}
+          voteAverage={movie?.voteAverage}
+          voteCount={movie?.voteCount}
         />
-        <RateButton title={movie?.title} />
+        <RateButton title={movie?.name} />
       </Box>
 
       {/* Hardcoded id for test purposes only */}
