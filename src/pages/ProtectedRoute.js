@@ -9,7 +9,7 @@ const ProtectedRoute = () => {
   return isAuthenticated ? (
     <Outlet />
   ) : (
-    <Navigate to="/IP-Movie-streaming-website/login" />
+    <Navigate to="/IP-Movie-streaming-website/landing" />
   );
 };
 
