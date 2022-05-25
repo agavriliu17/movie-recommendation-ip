@@ -15,15 +15,20 @@ export const getTopRated = async () => {
   return movieData;
 };
 
-export const getMoviesByGenre = async (genre) => {
+export const getMoviesByGenre = async (genre, page, size) => {
   const authToken = sessionStorage.getItem("isAuthenticated");
 
   const movieData = await axios
-    .get(`${BASE_URL}/movies/types?page=1&size=10&type=${genre}`, {
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    })
+    .get(
+      `${BASE_URL}/movies/types?page=${page ?? 1}&size=${
+        size ?? 10
+      }&type=${genre}`,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    )
     .then((res) => res.data);
 
   return movieData;

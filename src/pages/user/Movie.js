@@ -20,12 +20,14 @@ import { getMoviesById } from "../../resources/helpers/movieApiHelper";
 
 import { getTopRated } from "../../resources/helpers/movieApiHelper";
 import AddMovieButton from "../../components/AddMovieButton";
+import { useNavigate } from "react-router-dom";
 
 const Movie = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = React.useState({});
   const [topRatedData, setDataTop] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -48,6 +50,9 @@ const Movie = () => {
   }, [movieId]);
 
   const topRated = topRatedData.slice(0, 10);
+
+  const handleGenreSearch = (genre) =>
+    navigate(`/IP-Movie-streaming-website/search/${genre}`);
 
   return (
     <PageLayout>
@@ -110,6 +115,7 @@ const Movie = () => {
                   <Chip
                     label={genre.name}
                     key={`${genre.id}-${index}`}
+                    onClick={() => handleGenreSearch(genre.name)}
                     sx={{ margin: "0px 5px" }}
                     clickable
                   />

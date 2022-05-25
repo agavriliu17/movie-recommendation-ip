@@ -15,6 +15,7 @@ import Landing from "./pages/Landing";
 import Home from "./pages/user/Home";
 import Movie from "./pages/user/Movie";
 import NotFound from "./pages/NotFound";
+import SearchMovies from "./pages/user/SearchMovies";
 import AdminHome from "./pages/admin/AdminHome";
 import Settings from "./pages/Settings";
 import ResetMail from "./pages/authPages/resetMail";
@@ -47,6 +48,10 @@ const App = () => {
               <Route
                 path="/IP-Movie-streaming-website/settings"
                 element={<Settings />}
+              />
+              <Route
+                path="/IP-Movie-streaming-website/search/:genre"
+                element={<SearchMovies />}
               />
             </Route>
 

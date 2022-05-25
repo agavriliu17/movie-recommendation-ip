@@ -51,7 +51,7 @@ const useStyles = makeStyles({
 const Login = () => {
   const [input, setInput] = React.useState({ username: "", password: "" });
   const [error, setError] = React.useState({ username: "", password: "" });
-  const [loading, setLoading] = React.useState(false);
+  // const [loading, setLoading] = React.useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const { authenticateUser, isAuthenticated } = React.useContext(UserContext);
 

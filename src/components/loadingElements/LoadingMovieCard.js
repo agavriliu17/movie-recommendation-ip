@@ -1,21 +1,8 @@
 import React from "react";
-
-import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles({
-  mainCard: { marginLeft: "10px", marginRight: "10px" },
-});
 
 const LoadingMovieCard = () => {
-  const classes = useStyles();
-
-  return (
-    <Box className={classes.mainCard}>
-      <Skeleton variant="rectangular" width={250} height={300} />
-    </Box>
-  );
+  return <Skeleton variant="rectangular" width={266} height={400} />;
 };
 
 export default LoadingMovieCard;

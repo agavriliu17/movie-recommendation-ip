@@ -23,3 +23,5 @@ export const MOVIE_GENRES = {
   war: "WAR",
   western: "WESTERN",
 };
+
+export const SEARCH_LENGTH = 12;

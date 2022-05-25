@@ -11,7 +11,7 @@ export const validateEmail = (email) => {
 
 export const validatePassword = (password) => {
   const re =
-    /(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–/|{}\\:;'\-%`€"_.,?*~$^+=<>\]\[]).{6,}$/;
+    /(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–/|{}\\:;'\-%`€"_.,?*~$^+=<>\][]).{6,}$/;
   return re.test(password);
 };
 
@@ -56,29 +56,27 @@ export const registerUser = async (userInfo) => {
   }
 };
 
-export const sendMail=async(mailInfo) =>
-{
-  const res = await axios.post(`${BASE_URL}/reset-password/${mailInfo.email.replace("@","%40")}`, {
-    email: mailInfo.email,
-  });
+export const sendMail = async (mailInfo) => {
+  const res = await axios.post(
+    `${BASE_URL}/reset-password/${mailInfo.email.replace("@", "%40")}`,
+    {
+      email: mailInfo.email,
+    }
+  );
 
   if (res.status === 200) {
     return true;
   } else return res.status;
 };
 
-export const sendRequestReset=async(info) =>
-{
+export const sendRequestReset = async (info) => {
   const res = await axios.post(`${BASE_URL}/reset-password`, {
     confirmPassword: info.confirmPassword,
-    newPassword:info.password,
-    resetToken:info.token,
+    newPassword: info.password,
+    resetToken: info.token,
   });
   console.log(info.token);
   if (res.status === 200) {
     return true;
   } else return res.status;
-  
-}
-
-
+};
