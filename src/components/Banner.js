@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AddMovieButton from "./AddMovieButton";
 
 import { IMAGES_URL } from "../resources/constants";
@@ -13,7 +12,6 @@ import { useTheme } from "@mui/material";
 
 const Banner = ({ movie }) => {
   const theme = useTheme();
-
   const navigate = useNavigate();
 
   const goToMovie = () => {
@@ -81,8 +79,20 @@ const Banner = ({ movie }) => {
           <Button
             variant="contained"
             sx={{
+              height: "fit-content",
+              backgroundImage:
+                "linear-gradient(90deg, rgb(71, 16, 193), rgb(120, 87, 255) 92%, rgb(129, 155, 253) 100%)",
+              color: "#fff",
+              borderRadius: "25px",
+              backgroundColor: "transparent",
               textTransform: "none",
-              padding: "5px 25px",
+              padding: "5px 20px",
+
+              "&:hover": {
+                transition: "ease",
+                backgroundColor: "rgb(91,28,230)",
+                backgroundImage: "none",
+              },
             }}
             onClick={goToMovie}
           >
@@ -91,23 +101,6 @@ const Banner = ({ movie }) => {
               Play
             </Typography>
           </Button>
-          {/* <Button
-            variant="contained"
-            sx={{
-              textTransform: "none",
-              marginLeft: "15px",
-              backgroundColor: "rgba(158,158,158,0.6)",
-              padding: "5px 25px",
-              "&:hover": {
-                backgroundColor: "rgba(158,158,158,0.4)",
-              },
-            }}
-          >
-            <InfoOutlinedIcon sx={{ fontSize: "25px" }} />
-            <Typography fontSize="20px" ml="5px">
-              Learn more
-            </Typography>
-          </Button> */}
           <AddMovieButton />
         </Box>
       </Box>

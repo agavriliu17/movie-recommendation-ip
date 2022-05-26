@@ -3,7 +3,6 @@ import "react-multi-carousel/lib/styles.css";
 import Box from "@mui/material/Box";
 import Banner from "../../components/Banner";
 import Nav from "../../components/nav/Nav";
-import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
 import LoadingBanner from "../../components/loadingElements/LoadingBanner";
 import MoviesCarousel from "../../components/carousel/MoviesCarousel";
 import { makeStyles } from "@mui/styles";
@@ -96,77 +95,24 @@ const Home = () => {
       <Nav />
       {loading ? <LoadingBanner /> : <Banner movie={bannerMovie} />}
 
-      {loading ? (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            width: "100%",
-            marginTop: "25px",
-          }}
-        >
-          {[...Array(4)].map((el, ind) => (
-            <LoadingMovieCard key={`${ind}-top-rated`} />
-          ))}
-        </Box>
-      ) : (
-        <MoviesCarousel movieList={topRated} />
-      )}
+      <MoviesCarousel movieList={topRated} loading={loading} />
 
-      {loading ? (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            width: "100%",
-            justifyContent: "space-evenly",
-          }}
-        >
-          {[...Array(4)].map((el, ind) => (
-            <LoadingMovieCard key={`${ind}-horror`} />
-          ))}
-        </Box>
-      ) : (
-        <MoviesCarousel movieList={horrorMovies} genreTitle="Horror" />
-      )}
+      <MoviesCarousel
+        movieList={horrorMovies}
+        genreTitle={MOVIE_GENRES.horror}
+        loading={loading}
+      />
 
-      {loading ? (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            width: "100%",
-            justifyContent: "space-evenly",
-          }}
-        >
-          {[...Array(4)].map((el, ind) => (
-            <LoadingMovieCard key={`${ind}-action`} />
-          ))}
-        </Box>
-      ) : (
-        <MoviesCarousel movieList={actionMovies} genreTitle="Action" />
-      )}
-
-      {loading ? (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            width: "100%",
-          }}
-        >
-          {[...Array(4)].map((el, ind) => (
-            <LoadingMovieCard key={`${ind}-docs`} />
-          ))}
-        </Box>
-      ) : (
-        <MoviesCarousel
-          movieList={documentariesMovies}
-          genreTitle="Documentaries"
-        />
-      )}
+      <MoviesCarousel
+        movieList={actionMovies}
+        genreTitle={MOVIE_GENRES.action}
+        loading={loading}
+      />
+      <MoviesCarousel
+        movieList={documentariesMovies}
+        genreTitle={MOVIE_GENRES.documentary}
+        loading={loading}
+      />
     </Box>
   );
 };

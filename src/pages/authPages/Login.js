@@ -38,7 +38,6 @@ const useStyles = makeStyles({
   signInButton: {
     margin: "25px 0px !important",
     textTransform: "none !important",
-    width: "40%",
   },
   signUpContainer: {
     display: "flex",
@@ -51,7 +50,7 @@ const useStyles = makeStyles({
 const Login = () => {
   const [input, setInput] = React.useState({ username: "", password: "" });
   const [error, setError] = React.useState({ username: "", password: "" });
-  // const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const { authenticateUser, isAuthenticated } = React.useContext(UserContext);
 
@@ -77,11 +76,13 @@ const Login = () => {
         : "";
 
     if (usernameError === "" && passwordError === "") {
+      setLoading(true);
       try {
         const token = await loginUser(input);
         if (token) authenticateUser(token);
       } catch (e) {
         enqueueSnackbar(e.message, { variant: "error" });
+        setLoading(false);
       }
     } else setError({ username: usernameError, password: passwordError });
   };
@@ -153,6 +154,8 @@ const Login = () => {
         variant="contained"
         className={classes.signInButton}
         onClick={handleSignIn}
+        fullWidth
+        disabled={loading}
       >
         Sign in
       </Button>

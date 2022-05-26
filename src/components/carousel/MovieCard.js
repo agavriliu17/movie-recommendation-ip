@@ -18,6 +18,8 @@ const MovieCard = ({ movie }) => {
   const handleMouseEnter = () => setHover(true);
   const handleMouseLeave = () => setHover(false);
 
+  if (!movie?.posterPath) return null;
+
   return (
     <Box
       onClick={goToMovie}

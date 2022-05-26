@@ -27,7 +27,6 @@ const useStyles = makeStyles({
   signUpButton: {
     margin: "15px 0px !important",
     textTransform: "none !important",
-    width: "40%",
   },
   signInContainer: {
     display: "flex",
@@ -43,9 +42,7 @@ const useStyles = makeStyles({
 });
 
 const Register = () => {
-  const theme = useTheme();
-  const { enqueueSnackbar } = useSnackbar();
-
+  const [loading, setLoading] = React.useState(false);
   const [input, setInput] = React.useState({
     firstName: "",
     lastName: "",
@@ -62,6 +59,9 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const theme = useTheme();
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
   const handleChangeInput = (event, key) => {
@@ -103,6 +103,7 @@ const Register = () => {
       passwordError === "" &&
       confirmPasswordError === ""
     ) {
+      setLoading(true);
       try {
         setError({
           firstName: firstNameError,
@@ -113,9 +114,14 @@ const Register = () => {
           confirmPassword: confirmPasswordError,
         });
         const response = await registerUser(input);
-        if (response) navigate("/IP-Movie-streaming-website/login");
+        if (response) {
+          enqueueSnackbar("Account created successfully", {
+            variant: "success",
+          });
+          navigate("/IP-Movie-streaming-website/login");
+        }
       } catch (e) {
-        console.log(e);
+        setLoading(false);
         enqueueSnackbar(e.message, { variant: "error" });
       }
     } else
@@ -244,6 +250,8 @@ const Register = () => {
         variant="contained"
         className={classes.signUpButton}
         onClick={handleSignUp}
+        fullWidth
+        disabled={loading}
       >
         Sign up
       </Button>
