@@ -16,6 +16,7 @@ import {
   validateEmail,
   validatePassword,
 } from "../../resources/helpers/authHelper";
+import UserContext from "../../resources/context/UserContext";
 
 const useStyles = makeStyles({
   inputContainer: {
@@ -60,6 +61,7 @@ const Register = () => {
     confirmPassword: "",
   });
 
+  const { setLoginMessage } = React.useContext(UserContext);
   const theme = useTheme();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
@@ -115,9 +117,7 @@ const Register = () => {
         });
         const response = await registerUser(input);
         if (response) {
-          enqueueSnackbar("Account created successfully", {
-            variant: "success",
-          });
+          setLoginMessage("Account created successfully!");
           navigate("/IP-Movie-streaming-website/login");
         }
       } catch (e) {

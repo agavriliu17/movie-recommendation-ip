@@ -69,13 +69,13 @@ export const sendMail = async (mailInfo) => {
   } else return res.status;
 };
 
-export const sendRequestReset = async (info) => {
+export const sendRequestReset = async (info, token) => {
   const res = await axios.post(`${BASE_URL}/reset-password`, {
     confirmPassword: info.confirmPassword,
     newPassword: info.password,
-    resetToken: info.token,
+    resetToken: token,
   });
-  console.log(info.token);
+
   if (res.status === 200) {
     return true;
   } else return res.status;

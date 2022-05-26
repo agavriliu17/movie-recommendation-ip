@@ -10,6 +10,7 @@ import { useTheme } from "@mui/system";
 import { useSnackbar } from "notistack";
 
 import CustomCheckBox from "../../components/CustomCheckbox";
+import GoogleIcon from "@mui/icons-material/Google";
 import AuthLayout from "./AuthLayout";
 
 import UserContext from "../../resources/context/UserContext";
@@ -36,7 +37,7 @@ const useStyles = makeStyles({
     },
   },
   signInButton: {
-    margin: "25px 0px !important",
+    marginTop: "25px !important",
     textTransform: "none !important",
   },
   signUpContainer: {
@@ -52,14 +53,24 @@ const Login = () => {
   const [error, setError] = React.useState({ username: "", password: "" });
   const [loading, setLoading] = React.useState(false);
   const { enqueueSnackbar } = useSnackbar();
-  const { authenticateUser, isAuthenticated } = React.useContext(UserContext);
+  const { authenticateUser, isAuthenticated, loginMessage, setLoginMessage } =
+    React.useContext(UserContext);
 
   const theme = useTheme();
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
+    if (loginMessage) {
+      enqueueSnackbar(loginMessage, {
+        variant: "success",
+      });
+      setLoginMessage("");
+    }
+
     if (isAuthenticated) navigate("/IP-Movie-streaming-website/home");
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, navigate]);
 
   const handleChange = (event, key) => {
@@ -141,7 +152,7 @@ const Login = () => {
           disableElevation
           disableRipple
           className={classes.linkButton}
-          onClick={() => navigate("/IP-Movie-streaming-website/reset-pass")}
+          onClick={() => navigate("/IP-Movie-streaming-website/reset-mail")}
         >
           <Typography
             sx={{ textTransform: "none", color: theme.palette.text.primary }}
@@ -158,6 +169,27 @@ const Login = () => {
         disabled={loading}
       >
         Sign in
+      </Button>
+      <Button
+        variant="contained"
+        onClick={handleSignIn}
+        fullWidth
+        disabled={loading}
+        sx={{
+          marginTop: "20px !important",
+          marginBottom: "25px !important",
+          textTransform: "none !important",
+          backgroundColor: "#313131",
+          color: "#fff",
+          "&:hover": {
+            backgroundColor: "#404040",
+          },
+        }}
+      >
+        <GoogleIcon />
+        <Typography ml="10px" fontWeight={500}>
+          Sign in with Google
+        </Typography>
       </Button>
       <Box className={classes.signUpContainer}>
         <Typography color={theme.palette.text.primary}>

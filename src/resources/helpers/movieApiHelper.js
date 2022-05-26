@@ -72,7 +72,6 @@ export const getMyList = async (userId) => {
       },
     })
     .then((res) => res.data);
-  console.log(movieData);
 
   return movieData;
 };
@@ -88,7 +87,6 @@ export const getPredictions = async () => {
     })
     .then((res) => res.data);
 
-  console.log(movieData);
   if (movieData.length >= 3) {
     const moviePrediction = await axios({
       method: "post",
@@ -100,7 +98,6 @@ export const getPredictions = async () => {
       data: movieData,
     }).then((res) => res.data);
 
-    console.log(moviePrediction);
     return moviePrediction;
   } else {
     const genericPrediction = await axios
