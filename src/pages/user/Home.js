@@ -43,7 +43,7 @@ const useStyles = makeStyles({
 });
 
 const Home = () => {
-  const [data, setData] = React.useState([]);
+  // const [data, setData] = React.useState([]);
   const [topRatedData, setDataTop] = React.useState([]);
   const [horrorData, setDataHorror] = React.useState([]);
   const [actionData, setDataAction] = React.useState([]);
@@ -53,8 +53,10 @@ const Home = () => {
   React.useEffect(() => {
     (async function () {
       try {
-        const movieData = await apiHelper.getPredictions();
-        setData(movieData);
+        //TODO: Fix prediction
+        // const movieData = await apiHelper.getPredictions();
+        // setData(movieData);
+        // console.log(movieData);
 
         const topMovieData = await apiHelper.getTopRated();
         setDataTop(topMovieData);
@@ -83,7 +85,7 @@ const Home = () => {
     })();
   }, []);
 
-  const bannerMovie = data[Math.floor(Math.random() * data.length)];
+  // const bannerMovie = data[Math.floor(Math.random() * data.length)];
   const topRated = topRatedData.slice(0, 10);
   const horrorMovies = horrorData.slice(0, 10);
   const actionMovies = actionData.slice(0, 10);
@@ -93,7 +95,7 @@ const Home = () => {
   return (
     <Box className={classes.body}>
       <Nav />
-      {loading ? <LoadingBanner /> : <Banner movie={bannerMovie} />}
+      {loading ? <LoadingBanner /> : <Banner movie={topRated[0]} />}
 
       <MoviesCarousel movieList={topRated} loading={loading} />
 

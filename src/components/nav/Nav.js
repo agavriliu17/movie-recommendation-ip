@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AccountMenu from "./AccountMenu";
+import UserContext from "../../resources/context/UserContext";
 
 import { useNavigate } from "react-router-dom";
 
@@ -41,6 +42,7 @@ const Nav = () => {
   const [show, handleShow] = React.useState(false);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { userData } = React.useContext(UserContext);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -75,6 +77,7 @@ const Nav = () => {
     navigate(`/IP-Movie-streaming-website/${pageRoute}`);
   };
 
+  console.log(userData);
   return (
     <AppBar sx={show ? blackNavStyle : transparentNavStyle}>
       <Toolbar disableGutters>
@@ -155,11 +158,16 @@ const Nav = () => {
         </Box>
 
         <Box sx={{ flexGrow: 0, mr: "20px" }}>
-          <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-            </IconButton>
-          </Tooltip>
+          <Box
+            sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+          >
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar />
+              </IconButton>
+            </Tooltip>
+            <Typography ml="10px">{userData.username}</Typography>
+          </Box>
           <AccountMenu
             anchorEl={anchorElUser}
             handleClose={handleCloseUserMenu}

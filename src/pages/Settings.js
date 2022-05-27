@@ -18,6 +18,7 @@ import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+// import UserContext from "../resources/context/UserContext";
 
 import { useNavigate } from "react-router-dom";
 
@@ -47,6 +48,7 @@ TabPanel.propTypes = {
 };
 
 const Settings = () => {
+  // const { userData } = React.useContext(UserContext);
   const [value, setValue] = React.useState(0);
   const [state, setState] = React.useState({
     same: true,

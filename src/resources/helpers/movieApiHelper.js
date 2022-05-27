@@ -10,7 +10,7 @@ export const getTopRated = async () => {
         Authorization: `Bearer ${authToken}`,
       },
     })
-    .then((res) => res.data);
+    .then((res) => res.data.movies);
 
   return movieData;
 };
@@ -29,7 +29,7 @@ export const getMoviesByGenre = async (genre, page, size) => {
         },
       }
     )
-    .then((res) => res.data);
+    .then((res) => res.data.movies);
 
   return movieData;
 };

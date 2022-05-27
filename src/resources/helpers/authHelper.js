@@ -80,3 +80,20 @@ export const sendRequestReset = async (info, token) => {
     return true;
   } else return res.status;
 };
+
+export const getUserDetails = async () => {
+  const authToken = sessionStorage.getItem("isAuthenticated");
+
+  if (authToken) {
+    const userData = await axios
+      .get(`${BASE_URL}/users/jwt`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      })
+      .then((res) => res.data);
+
+    return userData;
+  }
+  return;
+};

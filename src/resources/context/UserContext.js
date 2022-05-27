@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import { getUserDetails } from "../helpers/authHelper";
 
 const UserContext = createContext();
 
@@ -7,6 +8,18 @@ export const UserContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     sessionStorage.getItem("isAuthenticated")
   );
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const data = await getUserDetails();
+        setUserData(data);
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, []);
 
   const authenticateUser = (token) => {
     setIsAuthenticated(token);
@@ -26,6 +39,7 @@ export const UserContextProvider = ({ children }) => {
         logoutUser,
         loginMessage,
         setLoginMessage,
+        userData,
       }}
     >
       {children}
