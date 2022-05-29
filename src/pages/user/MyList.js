@@ -32,11 +32,30 @@ const MyList = () => {
         My list
       </Typography>
       {!loading ? (
-        <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
-          {data[0].movies.map((movie, index) => (
-            <MovieListItem key={`${movie.title}-${index}`} movie={movie} />
-          ))}
-        </Box>
+        data[0] ? (
+          <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+            {data[0].movies.map((movie, index) => (
+              <MovieListItem key={`${movie.title}-${index}`} movie={movie} />
+            ))}
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          >
+            <Typography variant="h4">No movies here yet</Typography>
+            <Typography variant="h6" mt="10px">
+              You'll see here your favorite movies after you'll click the "Add
+              to Watchlist" button in movie page.
+            </Typography>
+          </Box>
+        )
       ) : (
         <LoadingMyList />
       )}

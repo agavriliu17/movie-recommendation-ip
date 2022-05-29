@@ -12,13 +12,13 @@ import MoviesCarousel from "../../components/carousel/MoviesCarousel";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { IMAGES_URL } from "../../resources/constants";
-import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
 import RateButton from "../../components/ratings/RateButton";
 import { getMoviesById } from "../../resources/helpers/movieApiHelper";
 
 import { getTopRated } from "../../resources/helpers/movieApiHelper";
 import AddMovieButton from "../../components/AddMovieButton";
 import { useNavigate } from "react-router-dom";
+import LoadingMovie from "../../components/loadingElements/LoadingMovie";
 
 const Movie = () => {
   const { movieId } = useParams();
@@ -41,6 +41,7 @@ const Movie = () => {
         setLoading(false);
       } catch (e) {
         console.error(e);
+        setLoading(false);
       }
     })();
 
@@ -54,103 +55,119 @@ const Movie = () => {
 
   return (
     <PageLayout>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          width: "100%",
-          marginTop: "10vh",
-        }}
-      >
-        <img
-          src={`${IMAGES_URL}${movie?.posterPath || movie?.backdropPath}`}
-          alt={movie.name}
-          style={{
-            display: "block",
-            maxWidth: "400px",
-            maxHeight: "600px",
-            width: "auto",
-            height: "auto",
-            borderRadius: "15px",
+      {loading ? (
+        <LoadingMovie />
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+            marginTop: "10vh",
           }}
-        />
-        {!loading && (
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              marginLeft: "20px",
+        >
+          <img
+            src={`${IMAGES_URL}${movie?.posterPath || movie?.backdropPath}`}
+            alt={movie.name}
+            style={{
+              display: "block",
+              maxWidth: "400px",
+              maxHeight: "600px",
+              width: "auto",
+              height: "auto",
+              borderRadius: "15px",
             }}
-          >
+          />
+          {!loading && (
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "baseline",
+                flexDirection: "column",
+                marginLeft: "20px",
               }}
             >
-              <Typography
-                mb="20px"
-                textAlign="left"
-                variant="h3"
-                fontWeight="600"
-              >
-                {movie.name}
-              </Typography>
-              <AddMovieButton />
-            </Box>
-            {movie?.type && (
               <Box
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  flexWrap: "wrap",
-                  marginBottom: "20px",
+                  justifyContent: "space-between",
+                  alignItems: "baseline",
                 }}
               >
-                {movie.type.map((genre, index) => (
-                  <Chip
-                    label={genre.name}
-                    key={`${genre.id}-${index}`}
-                    onClick={() => handleGenreSearch(genre.name)}
-                    sx={{ margin: "0px 5px" }}
-                    clickable
-                  />
-                ))}
+                <Typography
+                  mb="20px"
+                  textAlign="left"
+                  variant="h3"
+                  fontWeight="600"
+                >
+                  {movie.name}
+                </Typography>
+                <AddMovieButton />
               </Box>
-            )}
-            <Typography fontSize="20px" mt={5} textAlign="left" color="#fff">
-              {movie.description}
-            </Typography>
+              {movie?.type && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    marginBottom: "20px",
+                  }}
+                >
+                  {movie.type.map((genre, index) => (
+                    <Chip
+                      label={genre.name}
+                      key={`${genre.id}-${index}`}
+                      onClick={() => handleGenreSearch(genre.name)}
+                      sx={{ margin: "0px 5px" }}
+                      clickable
+                    />
+                  ))}
+                </Box>
+              )}
+              <Typography fontSize="20px" mt={5} textAlign="left" color="#fff">
+                {movie.description}
+              </Typography>
 
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                width: "100%",
-                marginTop: "10px",
-              }}
-            >
-              <Typography fontSize="15px" mt={1} textAlign="left" color="gray">
-                Release date:
-              </Typography>
-              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
-                {movie.releaseDate.slice(0, 10)}
-              </Typography>
-            </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "100%",
+                  marginTop: "10px",
+                }}
+              >
+                <Typography
+                  fontSize="15px"
+                  mt={1}
+                  textAlign="left"
+                  color="gray"
+                >
+                  Release date:
+                </Typography>
+                <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
+                  {movie.releaseDate.slice(0, 10)}
+                </Typography>
+              </Box>
 
-            <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
-              <Typography fontSize="15px" mt={1} textAlign="left" color="gray">
-                Runtime:
-              </Typography>
-              <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
-                {`${movie.duration} min`}
-              </Typography>
+              <Box
+                sx={{ display: "flex", flexDirection: "row", width: "100%" }}
+              >
+                <Typography
+                  fontSize="15px"
+                  mt={1}
+                  textAlign="left"
+                  color="gray"
+                >
+                  Runtime:
+                </Typography>
+                <Typography ml="20px" fontSize="15px" mt={1} textAlign="left">
+                  {`${movie.duration} min`}
+                </Typography>
+              </Box>
             </Box>
-          </Box>
-        )}
-      </Box>
+          )}
+        </Box>
+      )}
 
       <Box
         sx={{
@@ -198,26 +215,13 @@ const Movie = () => {
         </Box>
       )}
 
-      <Box sx={{ width: "100%", height: "500px", marginTop: "30px" }}>
-        {loading ? (
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            {[...Array(4)].map((el, ind) => (
-              <LoadingMovieCard key={ind} />
-            ))}
-          </Box>
-        ) : (
-          <MoviesCarousel
-            movieList={topRated}
-            genreTitle="Recommended"
-            contained
-          />
-        )}
+      <Box sx={{ width: "100%", marginTop: "30px" }}>
+        <MoviesCarousel
+          movieList={topRated}
+          loading={loading}
+          genreTitle="Recommended"
+          contained
+        />
       </Box>
 
       <Divider sx={{ marginTop: "5vh", width: "100%" }} />

@@ -4,20 +4,27 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import { useSnackbar } from "notistack";
+import LoadingComment from "../loadingElements/LoadingComment";
 import moment from "moment";
 
 import { getMovieComments } from "../../resources/helpers/commentsHelper";
 
 const Comments = ({ movieId, shouldRefresh }) => {
   const [comments, setComments] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
   const { enqueueSnackbar } = useSnackbar();
 
   React.useEffect(() => {
+    setLoading(true);
+
     (async function () {
       try {
         const data = await getMovieComments(movieId);
         setComments(data);
+
+        setLoading(false);
       } catch (e) {
+        setLoading(false);
         enqueueSnackbar("Could not fetch comments!", { variant: "error" });
       }
     })();
@@ -32,7 +39,10 @@ const Comments = ({ movieId, shouldRefresh }) => {
         flexDirection: "column",
       }}
     >
-      {comments.length > 0 &&
+      {loading ? (
+        <LoadingComment />
+      ) : (
+        comments.length > 0 &&
         comments
           .slice(0)
           .reverse()
@@ -71,7 +81,8 @@ const Comments = ({ movieId, shouldRefresh }) => {
                 <Typography color="#fff">{comment.content}</Typography>
               </Box>
             </Box>
-          ))}
+          ))
+      )}
     </Box>
   );
 };

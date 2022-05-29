@@ -49,7 +49,6 @@ export const registerUser = async (userInfo) => {
     username: userInfo.username,
   });
 
-  console.log(res);
   if (res.status === 201) {
     return true;
   } else {
@@ -115,7 +114,6 @@ export const updateUser = async (userInfo, id) => {
       Authorization: `Bearer ${authToken}`,
     },
   });
-  console.log(res);
 
   if (res.status === 200) {
     return true;
