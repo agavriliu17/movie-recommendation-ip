@@ -88,8 +88,7 @@ const MoviesCarousel = ({ movieList, genreTitle, contained, loading }) => {
   const navigate = useNavigate();
   const classes = useStyles();
 
-  const handleViewMore = () =>
-    navigate(`/IP-Movie-streaming-website/search/${genreTitle}`);
+  const handleViewMore = () => navigate(`/search/${genreTitle}`);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", width: "90%" }}>

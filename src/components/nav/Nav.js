@@ -76,7 +76,7 @@ const Nav = () => {
   };
 
   const goToMovie = (pageRoute) => {
-    navigate(`/IP-Movie-streaming-website/${pageRoute}`);
+    navigate(`/${pageRoute}`);
   };
 
   return (

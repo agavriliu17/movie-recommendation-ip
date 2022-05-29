@@ -37,7 +37,7 @@ const ChangePassword = () => {
 
     if (passwordError === "" && confirmPasswordError === "") {
       alert("Password has been successfully reset");
-      navigate("/IP-Movie-streaming-website/login");
+      navigate("/login");
     } else {
       setError({
         password: passwordError,

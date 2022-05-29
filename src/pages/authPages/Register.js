@@ -118,7 +118,7 @@ const Register = () => {
         const response = await registerUser(input);
         if (response) {
           setLoginMessage("Account created successfully!");
-          navigate("/IP-Movie-streaming-website/login");
+          navigate("/login");
         }
       } catch (e) {
         setLoading(false);
@@ -266,7 +266,7 @@ const Register = () => {
           disableElevation
           disableRipple
           className={classes.linkButton}
-          onClick={() => navigate("/IP-Movie-streaming-website/login")}
+          onClick={() => navigate("/login")}
         >
           <Typography
             sx={{ textTransform: "none", color: theme.palette.text.disabled }}

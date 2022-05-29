@@ -73,7 +73,7 @@ const ResetMail = () => {
         setLoading(true);
 
         const response = await sendMail(input);
-        if (response) navigate("/IP-Movie-streaming-website/reset-pass");
+        if (response) navigate("/reset-pass");
       } catch (e) {
         enqueueSnackbar(e.message, { variant: "error" });
         setLoading(false);
@@ -123,7 +123,7 @@ const ResetMail = () => {
           disableElevation
           disableRipple
           className={classes.linkButton}
-          onClick={() => navigate("/IP-Movie-streaming-website/login")}
+          onClick={() => navigate("/login")}
           disabled={loading}
         >
           <Typography

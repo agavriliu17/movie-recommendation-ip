@@ -68,7 +68,7 @@ const Login = () => {
       setLoginMessage("");
     }
 
-    if (isAuthenticated) navigate("/IP-Movie-streaming-website/home");
+    if (isAuthenticated) navigate("/home");
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, navigate]);
@@ -152,7 +152,7 @@ const Login = () => {
           disableElevation
           disableRipple
           className={classes.linkButton}
-          onClick={() => navigate("/IP-Movie-streaming-website/reset-mail")}
+          onClick={() => navigate("/reset-mail")}
         >
           <Typography
             sx={{ textTransform: "none", color: theme.palette.text.primary }}
@@ -201,7 +201,7 @@ const Login = () => {
           disableElevation
           disableRipple
           className={classes.linkButton}
-          onClick={() => navigate("/IP-Movie-streaming-website/register")}
+          onClick={() => navigate("/register")}
         >
           <Typography
             sx={{ textTransform: "none", color: theme.palette.text.disabled }}

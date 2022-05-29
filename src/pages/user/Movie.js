@@ -50,8 +50,7 @@ const Movie = () => {
 
   const topRated = topRatedData.slice(0, 10);
 
-  const handleGenreSearch = (genre) =>
-    navigate(`/IP-Movie-streaming-website/search/${genre}`);
+  const handleGenreSearch = (genre) => navigate(`/search/${genre}`);
 
   return (
     <PageLayout>

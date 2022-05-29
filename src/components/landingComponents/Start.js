@@ -102,7 +102,7 @@ const Start = () => {
                 transform: "skew(20deg)",
               },
             }}
-            onClick={() => navigate("/IP-Movie-streaming-website/Login")}
+            onClick={() => navigate("/Login")}
           >
             Login
           </Button>
@@ -119,7 +119,7 @@ const Start = () => {
               marginRight: "3%",
               marginTop: "5%",
             }}
-            onClick={() => navigate("/IP-Movie-streaming-website/Register")}
+            onClick={() => navigate("/register")}
           >
             Register
           </Button>

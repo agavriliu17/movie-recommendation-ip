@@ -57,7 +57,7 @@ const SearchBar = () => {
   const handleSearch = () => {
     if (input !== "") {
       setInput("");
-      navigate(`/IP-Movie-streaming-website/search/${input}`);
+      navigate(`/search/${input}`);
     }
   };
   const handleKeyPress = (e) => {

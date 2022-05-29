@@ -12,7 +12,7 @@ const MovieCard = ({ movie }) => {
   const navigate = useNavigate();
 
   const goToMovie = () => {
-    navigate(`/IP-Movie-streaming-website/watch/${movie.id}`);
+    navigate(`/watch/${movie.id}`);
   };
 
   const handleMouseEnter = () => setHover(true);

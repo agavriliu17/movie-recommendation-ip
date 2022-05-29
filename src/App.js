@@ -28,57 +28,20 @@ const App = () => {
       <SnackbarProvider maxSnack={3}>
         <BrowserRouter>
           <Routes>
-            <Route
-              exact
-              path="/IP-Movie-streaming-website/"
-              element={<ProtectedRoute />}
-            >
-              <Route
-                path="/IP-Movie-streaming-website/home"
-                element={<Home />}
-              />
-              <Route
-                path="/IP-Movie-streaming-website/watch/:movieId"
-                element={<Movie />}
-              />
-              <Route
-                path="/IP-Movie-streaming-website/admin/home"
-                element={<AdminHome />}
-              />
-              <Route
-                path="/IP-Movie-streaming-website/settings"
-                element={<Settings />}
-              />
-              <Route
-                path="/IP-Movie-streaming-website/search/:genre"
-                element={<SearchMovies />}
-              />
-              <Route
-                path="/IP-Movie-streaming-website/my_list"
-                element={<MyList />}
-              />
+            <Route exact path="/" element={<ProtectedRoute />}>
+              <Route path="/home" element={<Home />} />
+              <Route path="/watch/:movieId" element={<Movie />} />
+              <Route path="/admin/home" element={<AdminHome />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/search/:genre" element={<SearchMovies />} />
+              <Route path="/my_list" element={<MyList />} />
             </Route>
 
-            <Route
-              path="/IP-Movie-streaming-website/landing"
-              element={<Landing />}
-            />
-            <Route
-              path="/IP-Movie-streaming-website/login"
-              element={<Login />}
-            />
-            <Route
-              path="/IP-Movie-streaming-website/register"
-              element={<Register />}
-            />
-            <Route
-              path="/IP-Movie-streaming-website/reset-pass"
-              element={<ResetPassword />}
-            />
-            <Route
-              path="/IP-Movie-streaming-website/reset-mail"
-              element={<ResetMail />}
-            />
+            <Route path="/landing" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/reset-pass" element={<ResetPassword />} />
+            <Route path="/reset-mail" element={<ResetMail />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

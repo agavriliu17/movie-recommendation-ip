@@ -89,7 +89,7 @@ const ResetPassword = () => {
         const response = await sendRequestReset(input, token);
         if (response) {
           setLoginMessage("You've reset your password successfully!");
-          navigate("/IP-Movie-streaming-website/login");
+          navigate("/login");
         }
       } catch (e) {
         enqueueSnackbar(e.message, { variant: "error" });

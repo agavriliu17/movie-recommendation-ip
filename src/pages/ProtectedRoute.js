@@ -6,11 +6,7 @@ import UserContext from "../resources/context/UserContext";
 const ProtectedRoute = () => {
   const { isAuthenticated } = React.useContext(UserContext);
 
-  return isAuthenticated ? (
-    <Outlet />
-  ) : (
-    <Navigate to="/IP-Movie-streaming-website/landing" />
-  );
+  return isAuthenticated ? <Outlet /> : <Navigate to="/landing" />;
 };
 
 export default ProtectedRoute;
