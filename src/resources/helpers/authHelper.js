@@ -97,3 +97,27 @@ export const getUserDetails = async () => {
   }
   return;
 };
+
+export const updateUser = async (userInfo, id) => {
+  const authToken = sessionStorage.getItem("isAuthenticated");
+
+  const res = await axios({
+    method: "post",
+    url: `${BASE_URL}/users/${id}`,
+    data: {
+      email: userInfo.email,
+      firstname: userInfo.firstName,
+      lastname: userInfo.lastName,
+      username: userInfo.username,
+    },
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  });
+
+  if (res.status === 200) {
+    return true;
+  } else {
+    throw new Error("Something went wong");
+  }
+};
