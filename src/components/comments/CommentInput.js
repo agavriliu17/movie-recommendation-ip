@@ -4,10 +4,15 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import UserContext from "../../resources/context/UserContext";
+import { useSnackbar } from "notistack";
+import { postComment } from "../../resources/helpers/commentsHelper";
 
-const CommentInput = () => {
+const CommentInput = ({ movieId, handleRefresh }) => {
   const [value, setValue] = React.useState("");
   const [showButtons, setShowButtons] = React.useState(false);
+  const { userData } = React.useContext(UserContext);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -16,6 +21,15 @@ const CommentInput = () => {
   const handleComment = () => {
     setValue("");
     setShowButtons(false);
+    try {
+      handleRefresh((prev) => prev + 1);
+
+      postComment(value, movieId, userData.id);
+    } catch (e) {
+      enqueueSnackbar("Could not post comment!", {
+        variant: "error",
+      });
+    }
   };
 
   return (
@@ -28,7 +42,7 @@ const CommentInput = () => {
         margin: "25px 0px",
       }}
     >
-      <Avatar sx={{ marginRight: "15px" }}>R</Avatar>
+      <Avatar sx={{ marginRight: "15px" }} />
       <Box sx={{ display: "flex", width: "100%", flexDirection: "column" }}>
         <TextField
           multiline

@@ -77,7 +77,6 @@ const Nav = () => {
     navigate(`/IP-Movie-streaming-website/${pageRoute}`);
   };
 
-  console.log(userData);
   return (
     <AppBar sx={show ? blackNavStyle : transparentNavStyle}>
       <Toolbar disableGutters>

@@ -4,11 +4,9 @@ import PageLayout from "../PageLayout";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import ListComments from "../../components/ListComments";
 import RatingDisplay from "../../components/ratings/RatingDisplay";
-import CommentInput from "../../components/CommentInput";
 import Chip from "@mui/material/Chip";
-
+import Comments from "../../components/comments/Comments";
 import MoviesCarousel from "../../components/carousel/MoviesCarousel";
 
 import { useParams } from "react-router-dom";
@@ -223,20 +221,7 @@ const Movie = () => {
       </Box>
 
       <Divider sx={{ marginTop: "5vh", width: "100%" }} />
-
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-        }}
-      >
-        <Typography ml="20px" fontSize="25px" mt={5} textAlign="left">
-          Comments
-        </Typography>
-        <CommentInput />
-        <ListComments />
-      </Box>
+      <Comments movieId={movieId} />
     </PageLayout>
   );
 };
