@@ -80,26 +80,42 @@ const SearchMovies = () => {
           justifyContent: "center",
         }}
       >
-        {loading
-          ? [...Array(SEARCH_LENGTH)].map((el, ind) => (
-              <Box key={`${ind}-${genre}_`} sx={{ margin: "40px 30px" }}>
-                <LoadingMovieCard />
-              </Box>
-            ))
-          : genreMovies.length > 0 &&
-            genreMovies.map((movie, index) => (
-              <Box key={`${movie.id}-${index}`} sx={{ margin: "40px 30px" }}>
-                <MovieCard movie={movie} />
-              </Box>
-            ))}
+        {loading ? (
+          [...Array(SEARCH_LENGTH)].map((el, ind) => (
+            <Box key={`${ind}-${genre}_`} sx={{ margin: "40px 30px" }}>
+              <LoadingMovieCard />
+            </Box>
+          ))
+        ) : genreMovies.length > 0 ? (
+          genreMovies.map((movie, index) => (
+            <Box key={`${movie.id}-${index}`} sx={{ margin: "40px 30px" }}>
+              <MovieCard movie={movie} />
+            </Box>
+          ))
+        ) : (
+          <Box
+            sx={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Typography variant="h6">
+              Seems we haven't found any movies according to your search
+            </Typography>
+          </Box>
+        )}
       </Box>
-      <Pagination
-        count={pagesCount}
-        page={page}
-        onChange={handleChange}
-        size="large"
-        sx={{ marginBottom: "5vh" }}
-      />
+      {genreMovies.length > 0 && (
+        <Pagination
+          count={pagesCount}
+          page={page}
+          onChange={handleChange}
+          size="large"
+          sx={{ marginBottom: "5vh" }}
+        />
+      )}
     </PageLayout>
   );
 };

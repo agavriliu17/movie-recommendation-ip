@@ -12,6 +12,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AccountMenu from "./AccountMenu";
+import SearchBar from "./SearchBar";
+
 import UserContext from "../../resources/context/UserContext";
 
 import { useNavigate } from "react-router-dom";
@@ -160,8 +162,12 @@ const Nav = () => {
           <Box
             sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
           >
+            <SearchBar />
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton
+                onClick={handleOpenUserMenu}
+                sx={{ p: 0, marginLeft: "10px" }}
+              >
                 <Avatar />
               </IconButton>
             </Tooltip>

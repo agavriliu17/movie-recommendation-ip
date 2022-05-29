@@ -2,7 +2,7 @@ export const themeOptions = {
   palette: {
     mode: "dark",
     primary: {
-      main: "#482884",
+      main: "rgb(91,28,230)",
       light: "#48288470",
       contrastText: "#F9F871",
     },
