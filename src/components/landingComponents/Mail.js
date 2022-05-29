@@ -10,7 +10,6 @@ import backgroundImage from "../../resources/images/default_1920x1080.png";
 import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
 
 import axios from "axios";
-import { motion } from "framer-motion";
 
 export const COLORS = {
   primary: "#482884", // purple
@@ -71,18 +70,6 @@ const Mail = () => {
       }}
     >
       <Typography
-        component={motion.div}
-        initial={{
-          scale: 0.95,
-        }}
-        animate={{
-          scale: 1.05,
-        }}
-        transition={{
-          delay: 3,
-          duration: 2,
-          yoyo: Infinity,
-        }}
         sx={{
           fontFamily: "Trispace",
           color: "#F9F871",

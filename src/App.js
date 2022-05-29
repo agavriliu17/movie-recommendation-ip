@@ -9,6 +9,7 @@ import { SnackbarProvider } from "notistack";
 import Login from "./pages/authPages/Login";
 import Register from "./pages/authPages/Register";
 import ResetPassword from "./pages/authPages/ResetPassword";
+import ResetMail from "./pages/authPages/ResetMail";
 
 import MyList from "./pages/user/MyList";
 import Landing from "./pages/Landing";
@@ -18,7 +19,6 @@ import NotFound from "./pages/NotFound";
 import SearchMovies from "./pages/user/SearchMovies";
 import AdminHome from "./pages/admin/AdminHome";
 import Settings from "./pages/Settings";
-import ResetMail from "./pages/authPages/ResetMail";
 
 const App = () => {
   const theme = createTheme(themeOptions);
