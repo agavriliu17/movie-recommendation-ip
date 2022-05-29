@@ -1,4 +1,4 @@
-import { BASE_URL } from "../constants";
+import { BASE_URL, MY_LIST } from "../constants";
 import axios from "axios";
 
 export const getTopRated = async () => {
@@ -29,7 +29,7 @@ export const getMoviesByGenre = async (genre, page, size) => {
         },
       }
     )
-    .then((res) => res.data.movies);
+    .then((res) => res.data);
 
   return movieData;
 };
@@ -74,6 +74,25 @@ export const getMyList = async (userId) => {
     .then((res) => res.data);
 
   return movieData;
+};
+
+export const addToMyList = async (userId, movieId) => {
+  const authToken = sessionStorage.getItem("isAuthenticated");
+
+  const res = await axios.post(
+    `${BASE_URL}/movielists/add?lname=${MY_LIST}&mname=${movieId}&user_id=${userId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    }
+  );
+
+  if (res.status === 200) {
+    return true;
+  } else {
+    throw new Error("Something went wong");
+  }
 };
 
 export const getPredictions = async () => {

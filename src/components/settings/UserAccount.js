@@ -71,7 +71,7 @@ const UserAccount = ({ userInfo }) => {
           username: usernameError,
           confirmPassword: confirmPasswordError,
         });
-        const response = await updateUser(input);
+        const response = await updateUser(input, userInfo.id);
         if (response) {
           enqueueSnackbar("Account details updated successfully!", {
             variant: "success",

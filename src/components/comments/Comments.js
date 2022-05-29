@@ -9,7 +9,6 @@ import CommentInput from "./CommentInput";
 const Comments = ({ movieId }) => {
   const [refreshTrigger, setRefreshTrigger] = React.useState(true);
 
-  console.log(refreshTrigger);
   return (
     <Box
       sx={{

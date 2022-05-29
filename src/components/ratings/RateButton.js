@@ -5,18 +5,44 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Rating from "@mui/material/Rating";
+import UserContext from "../../resources/context/UserContext";
+import { updateRating } from "../../resources/helpers/ratingsHelper";
+
+import { getMovieRating } from "../../resources/helpers/ratingsHelper";
 
 import StarOutlineOutlinedIcon from "@mui/icons-material/StarOutlineOutlined";
+import StarIcon from "@mui/icons-material/Star";
 
-const RateButton = ({ title }) => {
+const RateButton = ({ title, movieId }) => {
   const [open, setOpen] = React.useState(false);
   const [rating, setRating] = React.useState(0);
+  const { userData } = React.useContext(UserContext);
+
+  React.useEffect(() => {
+    (async function () {
+      try {
+        if (userData.id && movieId) {
+          const data = await getMovieRating(movieId, userData.id);
+          setRating(data);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userData]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const updateRating = () => {
-    handleClose();
+  const handleUpdateRating = async () => {
+    try {
+      const res = await updateRating(movieId, userData.id, rating);
+
+      if (res) handleClose();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const removeRating = () => {
@@ -35,15 +61,41 @@ const RateButton = ({ title }) => {
       >
         Your rating:
       </Typography>
-      <Button
-        sx={{ height: "fit-content", textTransform: "none" }}
-        onClick={handleOpen}
-      >
-        <StarOutlineOutlinedIcon sx={{ fontSize: "45px" }} />
-        <Typography ml="5px" fontSize="25px">
-          Rate
-        </Typography>
-      </Button>
+      {rating === 0 ? (
+        <Button
+          sx={{ height: "fit-content", textTransform: "none" }}
+          onClick={handleOpen}
+        >
+          <StarOutlineOutlinedIcon sx={{ fontSize: "45px" }} />
+          <Typography ml="5px" fontSize="25px">
+            Rate
+          </Typography>
+        </Button>
+      ) : (
+        <Button
+          sx={{
+            height: "fit-content",
+            textTransform: "none",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "flex-start",
+          }}
+          onClick={handleOpen}
+        >
+          <StarIcon sx={{ fontSize: "45px", color: "#5799ef" }} />
+          <Typography
+            ml="5px"
+            fontSize="30px"
+            textAlign="left"
+            sx={{ color: "#5799ef" }}
+          >
+            {rating}
+          </Typography>
+          <Typography fontSize="22px" textAlign="left" color="#b1b1b1" ml="2px">
+            /10
+          </Typography>
+        </Button>
+      )}
       <Modal open={open} onClose={handleClose}>
         <Box
           sx={{
@@ -99,7 +151,7 @@ const RateButton = ({ title }) => {
                   backgroundColor: "#404040",
                 },
               }}
-              onClick={updateRating}
+              onClick={handleUpdateRating}
               variant="contained"
               fullWidth
             >

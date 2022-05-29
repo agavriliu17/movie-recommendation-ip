@@ -165,7 +165,7 @@ const Movie = () => {
           voteAverage={movie?.voteAverage}
           voteCount={movie?.voteCount}
         />
-        <RateButton title={movie?.name} />
+        <RateButton title={movie?.name} movieId={movieId} />
       </Box>
 
       {/* Hardcoded id for test purposes only */}

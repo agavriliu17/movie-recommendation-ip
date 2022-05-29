@@ -49,10 +49,11 @@ export const registerUser = async (userInfo) => {
     username: userInfo.username,
   });
 
-  if (res.status === 200) {
+  console.log(res);
+  if (res.status === 201) {
     return true;
   } else {
-    throw new Error("Something went wong");
+    throw new Error(res.message);
   }
 };
 
@@ -102,7 +103,7 @@ export const updateUser = async (userInfo, id) => {
   const authToken = sessionStorage.getItem("isAuthenticated");
 
   const res = await axios({
-    method: "post",
+    method: "put",
     url: `${BASE_URL}/users/${id}`,
     data: {
       email: userInfo.email,
@@ -110,6 +111,23 @@ export const updateUser = async (userInfo, id) => {
       lastname: userInfo.lastName,
       username: userInfo.username,
     },
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  });
+  console.log(res);
+
+  if (res.status === 200) {
+    return true;
+  } else {
+    throw new Error("Something went wong");
+  }
+};
+
+export const deleteUser = async (userId) => {
+  const authToken = sessionStorage.getItem("isAuthenticated");
+
+  const res = await axios.delete(`${BASE_URL}/users/${userId}`, {
     headers: {
       Authorization: `Bearer ${authToken}`,
     },

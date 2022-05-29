@@ -165,7 +165,9 @@ const Nav = () => {
                 <Avatar />
               </IconButton>
             </Tooltip>
-            <Typography ml="10px">{userData.username}</Typography>
+            {userData.username && (
+              <Typography ml="10px">{userData.username}</Typography>
+            )}
           </Box>
           <AccountMenu
             anchorEl={anchorElUser}

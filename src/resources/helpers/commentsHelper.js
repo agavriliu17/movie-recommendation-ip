@@ -13,7 +13,6 @@ export const getMovieComments = async (id) => {
     })
     .then((res) => res.data);
 
-  console.log(comments);
   return comments;
 };
 

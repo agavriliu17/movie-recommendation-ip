@@ -64,17 +64,17 @@ const Home = () => {
         const horrorMovieData = await apiHelper.getMoviesByGenre(
           MOVIE_GENRES.crime
         );
-        setDataHorror(horrorMovieData);
+        setDataHorror(horrorMovieData.movies);
 
         const actionMovieData = await apiHelper.getMoviesByGenre(
           MOVIE_GENRES.action
         );
-        setDataAction(actionMovieData);
+        setDataAction(actionMovieData.movies);
 
         const documentariesMovieData = await apiHelper.getMoviesByGenre(
           MOVIE_GENRES.documentary
         );
-        setDataDocumentaries(documentariesMovieData);
+        setDataDocumentaries(documentariesMovieData.movies);
 
         setLoading(false);
       } catch (e) {

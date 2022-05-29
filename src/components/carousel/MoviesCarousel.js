@@ -105,26 +105,28 @@ const MoviesCarousel = ({ movieList, genreTitle, contained, loading }) => {
           <Typography color="#F9F871" variant="h3">
             {capitalizeFirstLetter(genreTitle)}
           </Typography>
-          <Button
-            variant="contained"
-            sx={{
-              height: "fit-content",
-              backgroundImage:
-                "linear-gradient(90deg, rgb(71, 16, 193), rgb(120, 87, 255) 92%, rgb(129, 155, 253) 100%)",
-              color: "#fff",
-              borderRadius: "25px",
-              backgroundColor: "transparent",
-              textTransform: "none",
-              "&:hover": {
-                transition: "ease",
-                backgroundColor: "rgb(91,28,230)",
-                backgroundImage: "none",
-              },
-            }}
-            onClick={handleViewMore}
-          >
-            View more
-          </Button>
+          {genreTitle !== "Recommended" && (
+            <Button
+              variant="contained"
+              sx={{
+                height: "fit-content",
+                backgroundImage:
+                  "linear-gradient(90deg, rgb(71, 16, 193), rgb(120, 87, 255) 92%, rgb(129, 155, 253) 100%)",
+                color: "#fff",
+                borderRadius: "25px",
+                backgroundColor: "transparent",
+                textTransform: "none",
+                "&:hover": {
+                  transition: "ease",
+                  backgroundColor: "rgb(91,28,230)",
+                  backgroundImage: "none",
+                },
+              }}
+              onClick={handleViewMore}
+            >
+              View more
+            </Button>
+          )}
         </Box>
       )}
       <Carousel

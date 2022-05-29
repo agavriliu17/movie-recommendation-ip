@@ -18,6 +18,7 @@ const SearchMovies = () => {
   const [genreMovies, setGenreMovies] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [page, setPage] = React.useState(1);
+  const [pagesCount, setPagesCount] = React.useState(10);
 
   React.useEffect(() => {
     window.scrollTo({
@@ -38,8 +39,14 @@ const SearchMovies = () => {
           page,
           SEARCH_LENGTH
         );
-        setGenreMovies(searchedMovies);
+        setGenreMovies(searchedMovies.movies);
 
+        const count = searchedMovies.count;
+        if (count % SEARCH_LENGTH === 0) {
+          setPagesCount(count / SEARCH_LENGTH);
+        } else {
+          setPagesCount(Math.ceil(count / SEARCH_LENGTH));
+        }
         setLoading(false);
       } catch (e) {
         console.error(e);
@@ -87,7 +94,7 @@ const SearchMovies = () => {
             ))}
       </Box>
       <Pagination
-        count={10}
+        count={pagesCount}
         page={page}
         onChange={handleChange}
         size="large"

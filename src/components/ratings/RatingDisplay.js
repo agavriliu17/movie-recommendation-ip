@@ -29,7 +29,7 @@ const RatingDisplay = ({ voteAverage, voteCount }) => {
               color="#b1b1b1"
               ml="2px"
             >
-              {"/10"}
+              /10
             </Typography>
           </Box>
           <Typography
