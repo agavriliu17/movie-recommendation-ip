@@ -22,7 +22,7 @@
     }
     .row-title,
     .row-letter {
-      font-size: 28rem;
+      font-size: 16rem;
       font-weight: 500;
       position: relative;
       letter-spacing: -0.8rem;
@@ -30,10 +30,10 @@
       color: $yellow;
       white-space: nowrap;
       @media (max-width: $layout-breakpoint-small) {
-        font-size: 16rem;
+        font-size: 10rem;
       }
       @media (max-width: $layout-breakpoint-xsmall) {
-        font-size: 10rem;
+        font-size: 6rem;
       }
     }
     .row-col {
@@ -56,7 +56,7 @@
       .row-message {
         color: $white;
         font-weight: 500;
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         line-height: 2.6rem;
         width: 320px;
       }
@@ -102,6 +102,9 @@
   justify-content: center;
   img {
     width: 800px;
+    @media (max-width: $layout-breakpoint-xsmall) {
+      width: 400px;
+    }
     display: flex;
   }
   &.final {
@@ -109,6 +112,7 @@
     top: -128px;
     position: relative;
     width: 90%;
+    height: auto;
     margin: 0 auto;
     z-index: -100;
     @media (max-width: $layout-breakpoint-xsmall) {

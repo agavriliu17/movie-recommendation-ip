@@ -16,6 +16,7 @@ body.loading {
         left: 16%;
         bottom: 14%;
         @media (max-width: $layout-breakpoint-xsmall) {
+          width: 200px;
           left: 4%;
           bottom: 28%;
         }
@@ -25,6 +26,7 @@ body.loading {
         right: 12%;
         top: 8%;
         @media (max-width: $layout-breakpoint-xsmall) {
+          width: 150px;
           top: 16%;
           right: 4%;
         }
@@ -35,6 +37,7 @@ body.loading {
         right: 20%;
         bottom: 10%;
         @media (max-width: $layout-breakpoint-xsmall) {
+          max-width: 200px;
           right: 6%;
           bottom: 32%;
         }
@@ -44,6 +47,7 @@ body.loading {
         left: 14%;
         top: 12%;
         @media (max-width: $layout-breakpoint-xsmall) {
+          width: 140px;
           left: 6%;
           top: 18%;
         }

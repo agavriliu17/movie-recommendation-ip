@@ -7,7 +7,7 @@ import big_movie from "./images/big_movie.webp";
 import Header from "./components/Header";
 import Banner from "./components/Banner";
 import Loader from "./components/Loader";
-import Landing from "../../Landing";
+import About from "./components/About";
 
 function LandingPage() {
   const [loading, setLoading] = useState(true);
@@ -46,7 +46,7 @@ function LandingPage() {
           )}
         </AnimatePresence>
       </AnimateSharedLayout>
-      {!loading && <Landing />}
+      {!loading && <About />}
     </>
   );
 }
