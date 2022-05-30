@@ -44,8 +44,13 @@ const Nav = () => {
   const [show, handleShow] = React.useState(false);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [username, setUsername] = React.useState("");
   const { userData } = React.useContext(UserContext);
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    setUsername(userData?.username);
+  }, [userData]);
 
   React.useEffect(() => {
     window.addEventListener("scroll", transitionNavBar);
@@ -171,9 +176,7 @@ const Nav = () => {
                 <Avatar />
               </IconButton>
             </Tooltip>
-            {userData.username && (
-              <Typography ml="10px">{userData.username}</Typography>
-            )}
+            {username && <Typography ml="10px">{username}</Typography>}
           </Box>
           <AccountMenu
             anchorEl={anchorElUser}

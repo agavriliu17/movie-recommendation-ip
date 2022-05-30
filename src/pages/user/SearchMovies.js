@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 
 import { useParams } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 import { getMoviesByGenre } from "../../resources/helpers/movieApiHelper";
 import MovieCard from "../../components/carousel/MovieCard";
@@ -18,6 +19,7 @@ const SearchMovies = () => {
   const [genreMovies, setGenreMovies] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [page, setPage] = React.useState(1);
+  const { enqueueSnackbar } = useSnackbar();
   const [pagesCount, setPagesCount] = React.useState(10);
 
   React.useEffect(() => {
@@ -49,11 +51,12 @@ const SearchMovies = () => {
         }
         setLoading(false);
       } catch (e) {
-        console.error(e);
+        enqueueSnackbar("Failed to search", { variant: "error" });
 
         setLoading(false);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [genre, page]);
 
   const handleChange = (event, value) => {

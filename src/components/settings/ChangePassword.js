@@ -55,7 +55,7 @@ const ChangePassword = () => {
         padding: "2rem",
       }}
     >
-      <Typography align="left" variant="h4" mb="2rem">
+      <Typography align="left" variant="h4" mb="2rem" component={"span"}>
         Password
       </Typography>
       <Box sx={{ display: "flex", flexDirection: "column" }} autoComplete="off">

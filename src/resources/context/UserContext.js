@@ -19,7 +19,7 @@ export const UserContextProvider = ({ children }) => {
         console.error(e);
       }
     })();
-  }, []);
+  }, [isAuthenticated]);
 
   const authenticateUser = (token) => {
     setIsAuthenticated(token);

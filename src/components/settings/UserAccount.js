@@ -18,10 +18,10 @@ import { validateEmail, updateUser } from "../../resources/helpers/authHelper";
 const UserAccount = ({ userInfo }) => {
   const [loading, setLoading] = React.useState(false);
   const [input, setInput] = React.useState({
-    firstName: userInfo.firstname,
-    lastName: userInfo.lastname,
-    email: userInfo.email,
-    username: userInfo.username,
+    firstName: "",
+    lastName: "",
+    email: "",
+    username: "",
   });
   const [error, setError] = React.useState({
     firstName: "",
@@ -30,6 +30,16 @@ const UserAccount = ({ userInfo }) => {
     username: "",
   });
   const { enqueueSnackbar } = useSnackbar();
+
+  React.useEffect(() => {
+    if (userInfo)
+      setInput({
+        firstName: userInfo?.firstname,
+        lastName: userInfo?.lastname,
+        email: userInfo?.email,
+        username: userInfo?.username,
+      });
+  }, [userInfo]);
 
   const handleChangeInput = (event, key) => {
     setInput({ ...input, [key]: event.target.value });
@@ -100,7 +110,7 @@ const UserAccount = ({ userInfo }) => {
         padding: "2rem",
       }}
     >
-      <Typography align="left" variant="h4" mb="2rem">
+      <Typography component={"span"} align="left" variant="h4" mb="2rem">
         Account
       </Typography>
       <Stack
@@ -208,7 +218,13 @@ const UserAccount = ({ userInfo }) => {
             marginLeft: "10px",
           }}
         >
-          <Typography align="left" variant="h6" color="#fff" fontWeight="600">
+          <Typography
+            align="left"
+            variant="h6"
+            color="#fff"
+            fontWeight="600"
+            component={"span"}
+          >
             Linked Accounts
           </Typography>
           <Typography
@@ -216,6 +232,7 @@ const UserAccount = ({ userInfo }) => {
             fontSize="15px"
             color="#fff"
             fontWeight="400"
+            component={"span"}
           >
             We use this to let you sign in and populate your profile information
           </Typography>
@@ -241,6 +258,7 @@ const UserAccount = ({ userInfo }) => {
                 color="#fff"
                 fontWeight="400"
                 ml="10px"
+                component={"span"}
               >
                 Sign in with Google
               </Typography>
@@ -254,7 +272,13 @@ const UserAccount = ({ userInfo }) => {
           </Box>
           <Divider sx={{ margin: "20px 10px" }} />
 
-          <Typography align="left" variant="h6" color="#fff" fontWeight="600">
+          <Typography
+            align="left"
+            variant="h6"
+            color="#fff"
+            fontWeight="600"
+            component={"span"}
+          >
             Delete Account
           </Typography>
 
@@ -272,6 +296,7 @@ const UserAccount = ({ userInfo }) => {
               fontSize="15px"
               color="#fff"
               fontWeight="400"
+              component={"span"}
             >
               By deleting your account you will lose all your data
             </Typography>

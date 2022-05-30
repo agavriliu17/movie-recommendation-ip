@@ -37,7 +37,7 @@ const App = () => {
               <Route path="/my_list" element={<MyList />} />
             </Route>
 
-            <Route path="/landing" element={<Landing />} />
+            <Route index path="/landing" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/reset-pass" element={<ResetPassword />} />

@@ -3,6 +3,7 @@ import React from "react";
 import PageLayout from "../PageLayout";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useSnackbar } from "notistack";
 
 import MovieListItem from "../../components/MovieListItem";
 import LoadingMyList from "../../components/loadingElements/LoadingMyList";
@@ -11,6 +12,7 @@ import { getMyList } from "../../resources/helpers/movieApiHelper";
 const MyList = () => {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const { enqueueSnackbar } = useSnackbar();
 
   React.useEffect(() => {
     (async function () {
@@ -20,10 +22,13 @@ const MyList = () => {
 
         setLoading(false);
       } catch (e) {
-        console.error(e);
+        enqueueSnackbar("Failed to fetch your watchlist!", {
+          variant: "error",
+        });
         setLoading(false);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

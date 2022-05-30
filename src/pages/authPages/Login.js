@@ -90,7 +90,7 @@ const Login = () => {
       setLoading(true);
       try {
         const token = await loginUser(input);
-        if (token) authenticateUser(token);
+        if (token) await authenticateUser(token);
       } catch (e) {
         enqueueSnackbar(e.message, { variant: "error" });
         setLoading(false);

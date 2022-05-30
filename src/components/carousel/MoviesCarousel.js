@@ -137,7 +137,7 @@ const MoviesCarousel = ({ movieList, genreTitle, contained, loading }) => {
       >
         {movieList.map((movie, index) => {
           return loading ? (
-            <LoadingMovieCard />
+            <LoadingMovieCard key={`${index}-loading-movie-card`} />
           ) : (
             <MovieCard movie={movie} key={`${movie.id}-${index}`} />
           );

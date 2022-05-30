@@ -10,6 +10,7 @@ import Comments from "../../components/comments/Comments";
 import MoviesCarousel from "../../components/carousel/MoviesCarousel";
 
 import { useParams } from "react-router-dom";
+import { useSnackbar } from "notistack";
 import ReactPlayer from "react-player";
 import { IMAGES_URL } from "../../resources/constants";
 import RateButton from "../../components/ratings/RateButton";
@@ -25,6 +26,7 @@ const Movie = () => {
   const [movie, setMovie] = React.useState({});
   const [topRatedData, setDataTop] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -40,7 +42,7 @@ const Movie = () => {
 
         setLoading(false);
       } catch (e) {
-        console.error(e);
+        enqueueSnackbar("Failed to fetch movie details!", { variant: "error" });
         setLoading(false);
       }
     })();

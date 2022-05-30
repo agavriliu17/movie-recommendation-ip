@@ -34,10 +34,16 @@ const LanguagePreference = () => {
         padding: "2rem",
       }}
     >
-      <Typography align="left" variant="h4" mb="2rem">
+      <Typography align="left" variant="h4" mb="2rem" component={"span"}>
         Display Language
       </Typography>
-      <Typography ml="20px" mt="10px" fontSize="15px" color="#fff">
+      <Typography
+        ml="20px"
+        mt="10px"
+        fontSize="15px"
+        color="#fff"
+        component={"span"}
+      >
         Choose which language you want to use in the app.
       </Typography>
       <Box

@@ -7,6 +7,7 @@ import Modal from "@mui/material/Modal";
 import Rating from "@mui/material/Rating";
 import UserContext from "../../resources/context/UserContext";
 import { updateRating } from "../../resources/helpers/ratingsHelper";
+import { useSnackbar } from "notistack";
 
 import { getMovieRating } from "../../resources/helpers/ratingsHelper";
 
@@ -16,6 +17,7 @@ import StarIcon from "@mui/icons-material/Star";
 const RateButton = ({ title, movieId }) => {
   const [open, setOpen] = React.useState(false);
   const [rating, setRating] = React.useState(0);
+  const { enqueueSnackbar } = useSnackbar();
   const { userData } = React.useContext(UserContext);
 
   React.useEffect(() => {
@@ -26,7 +28,7 @@ const RateButton = ({ title, movieId }) => {
           setRating(data);
         }
       } catch (e) {
-        console.error(e);
+        enqueueSnackbar("Failed to fetch movie rating!", { variant: "error" });
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps

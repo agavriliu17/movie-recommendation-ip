@@ -6,6 +6,7 @@ import Nav from "../../components/nav/Nav";
 import LoadingBanner from "../../components/loadingElements/LoadingBanner";
 import MoviesCarousel from "../../components/carousel/MoviesCarousel";
 import { makeStyles } from "@mui/styles";
+import { useSnackbar } from "notistack";
 
 import { MOVIE_GENRES } from "../../resources/constants";
 import * as apiHelper from "../../resources/helpers/movieApiHelper";
@@ -49,6 +50,7 @@ const Home = () => {
   const [actionData, setDataAction] = React.useState([]);
   const [documentariesData, setDataDocumentaries] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const { enqueueSnackbar } = useSnackbar();
 
   React.useEffect(() => {
     (async function () {
@@ -78,11 +80,11 @@ const Home = () => {
 
         setLoading(false);
       } catch (e) {
-        console.error(e);
-
+        enqueueSnackbar("Failed to fetch movies!", { variant: "error" });
         setLoading(false);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // const bannerMovie = data[Math.floor(Math.random() * data.length)];
