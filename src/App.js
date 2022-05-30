@@ -12,13 +12,14 @@ import ResetPassword from "./pages/authPages/ResetPassword";
 import ResetMail from "./pages/authPages/ResetMail";
 
 import MyList from "./pages/user/MyList";
-import Landing from "./pages/Landing";
+// import Landing from "./pages/Landing";
 import Home from "./pages/user/Home";
 import Movie from "./pages/user/Movie";
 import NotFound from "./pages/NotFound";
 import SearchMovies from "./pages/user/SearchMovies";
 import AdminHome from "./pages/admin/AdminHome";
 import Settings from "./pages/Settings";
+import LandingPage from "./pages/user/landing/LandingPage";
 
 const App = () => {
   const theme = createTheme(themeOptions);
@@ -37,7 +38,7 @@ const App = () => {
               <Route path="/my_list" element={<MyList />} />
             </Route>
 
-            <Route index path="/landing" element={<Landing />} />
+            <Route index path="/landing" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/reset-pass" element={<ResetPassword />} />

@@ -7,7 +7,7 @@ import LandingNavbar from "../components/landingComponents/LandingNavbar";
 const Landing = () => {
   return (
     <Paper>
-      <LandingNavbar />
+      {/* <LandingNavbar /> */}
       <Start />
       <Mail />
       <Questions />

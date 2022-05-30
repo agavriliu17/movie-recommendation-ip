@@ -65,6 +65,10 @@ const Movie = () => {
             flexDirection: "row",
             width: "100%",
             marginTop: "10vh",
+            "@media screen and (max-width:1000px)": {
+              flexWrap: "wrap",
+              justifyContent: "center",
+            },
           }}
         >
           <img
