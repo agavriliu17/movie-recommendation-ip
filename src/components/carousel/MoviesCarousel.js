@@ -81,7 +81,7 @@ const useStyles = makeStyles({
   },
 });
 
-const capitalizeFirstLetter = (string) =>
+export const capitalizeFirstLetter = (string) =>
   string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 
 const MoviesCarousel = ({ movieList, genreTitle, contained, loading }) => {

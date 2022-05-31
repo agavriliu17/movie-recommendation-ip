@@ -18,13 +18,13 @@ const CommentInput = ({ movieId, handleRefresh }) => {
     setValue(event.target.value);
   };
 
-  const handleComment = () => {
+  const handleComment = async () => {
     setValue("");
     setShowButtons(false);
     try {
-      handleRefresh((prev) => prev + 1);
+      await postComment(value, movieId, userData.id);
 
-      postComment(value, movieId, userData.id);
+      handleRefresh((prev) => prev + 1);
     } catch (e) {
       enqueueSnackbar("Could not post comment!", {
         variant: "error",

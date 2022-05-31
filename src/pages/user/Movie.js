@@ -220,7 +220,14 @@ const Movie = () => {
         </Box>
       )}
 
-      <Box sx={{ width: "100%", marginTop: "30px" }}>
+      <Box
+        sx={{
+          width: "100%",
+          marginTop: "30px",
+          justifyContent: "center",
+          display: "flex",
+        }}
+      >
         <MoviesCarousel
           movieList={topRated}
           loading={loading}

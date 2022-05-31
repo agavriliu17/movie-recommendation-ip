@@ -5,6 +5,7 @@ import Banner from "../../components/Banner";
 import Nav from "../../components/nav/Nav";
 import LoadingBanner from "../../components/loadingElements/LoadingBanner";
 import MoviesCarousel from "../../components/carousel/MoviesCarousel";
+import UserContext from "../../resources/context/UserContext";
 import { makeStyles } from "@mui/styles";
 import { useSnackbar } from "notistack";
 
@@ -44,22 +45,34 @@ const useStyles = makeStyles({
 });
 
 const Home = () => {
-  // const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState([]);
   const [topRatedData, setDataTop] = React.useState([]);
   const [horrorData, setDataHorror] = React.useState([]);
   const [actionData, setDataAction] = React.useState([]);
   const [documentariesData, setDataDocumentaries] = React.useState([]);
+  const { userData } = React.useContext(UserContext);
   const [loading, setLoading] = React.useState(true);
   const { enqueueSnackbar } = useSnackbar();
 
   React.useEffect(() => {
     (async function () {
       try {
-        //TODO: Fix prediction
-        // const movieData = await apiHelper.getPredictions();
-        // setData(movieData);
-        // console.log(movieData);
+        if (userData) {
+          const movieData = await apiHelper.getPredictions(3);
+          setData(movieData.movies);
+          setLoading(false);
+        }
+      } catch (e) {
+        enqueueSnackbar("Failed to fetch movies!", { variant: "error" });
+        setLoading(false);
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userData]);
 
+  React.useEffect(() => {
+    (async function () {
+      try {
         const topMovieData = await apiHelper.getTopRated();
         setDataTop(topMovieData);
 
@@ -77,8 +90,6 @@ const Home = () => {
           MOVIE_GENRES.documentary
         );
         setDataDocumentaries(documentariesMovieData.movies);
-
-        setLoading(false);
       } catch (e) {
         enqueueSnackbar("Failed to fetch movies!", { variant: "error" });
         setLoading(false);
@@ -87,7 +98,7 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const bannerMovie = data[Math.floor(Math.random() * data.length)];
+  const bannerMovie = data[Math.floor(Math.random() * data.length)];
   const topRated = topRatedData.slice(0, 10);
   const horrorMovies = horrorData.slice(0, 10);
   const actionMovies = actionData.slice(0, 10);
@@ -97,7 +108,7 @@ const Home = () => {
   return (
     <Box className={classes.body}>
       <Nav />
-      {loading ? <LoadingBanner /> : <Banner movie={topRated[0]} />}
+      {loading ? <LoadingBanner /> : <Banner movie={bannerMovie} />}
 
       <MoviesCarousel movieList={topRated} loading={loading} />
 

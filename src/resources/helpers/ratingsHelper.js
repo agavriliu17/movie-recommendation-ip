@@ -11,7 +11,6 @@ export const getMovieRating = async (movieId, userId) => {
       },
     })
     .then((res) => res.data);
-
   return userRating;
 };
 
@@ -19,15 +18,17 @@ export const updateRating = async (movieId, userId, rating) => {
   const authToken = sessionStorage.getItem("isAuthenticated");
 
   const res = await axios({
-    method: "put",
+    method: "post",
     url: `${BASE_URL}/ratings`,
     data: { label: true, movieId: movieId, rating: rating, userId: userId },
     headers: {
       Authorization: `Bearer ${authToken}`,
+      "Access-Control-Allow-Origin": "*",
     },
   });
+  console.log(res);
 
-  if (res.status === 200) {
+  if (res.status === 201) {
     return true;
   } else {
     throw new Error(`${res.body}`);

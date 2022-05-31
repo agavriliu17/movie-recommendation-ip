@@ -25,7 +25,7 @@ const RateButton = ({ title, movieId }) => {
       try {
         if (userData.id && movieId) {
           const data = await getMovieRating(movieId, userData.id);
-          setRating(data);
+          setRating(data.rating);
         }
       } catch (e) {
         enqueueSnackbar("Failed to fetch movie rating!", { variant: "error" });

@@ -102,8 +102,8 @@ export const updateUser = async (userInfo, id) => {
   const authToken = sessionStorage.getItem("isAuthenticated");
 
   const res = await axios({
-    method: "put",
-    url: `${BASE_URL}/users/${id}`,
+    method: "post",
+    url: `${BASE_URL}/users/update/${id}`,
     data: {
       email: userInfo.email,
       firstname: userInfo.firstName,
@@ -112,10 +112,11 @@ export const updateUser = async (userInfo, id) => {
     },
     headers: {
       Authorization: `Bearer ${authToken}`,
+      "Access-Control-Allow-Origin": "*",
     },
   });
 
-  if (res.status === 200) {
+  if (res.status === 205) {
     return true;
   } else {
     throw new Error("Something went wong");

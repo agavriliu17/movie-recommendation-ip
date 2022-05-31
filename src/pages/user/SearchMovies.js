@@ -8,7 +8,10 @@ import Pagination from "@mui/material/Pagination";
 import { useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
-import { getMoviesByGenre } from "../../resources/helpers/movieApiHelper";
+import {
+  getMoviesByGenre,
+  getMoviesByName,
+} from "../../resources/helpers/movieApiHelper";
 import MovieCard from "../../components/carousel/MovieCard";
 import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
 import { MOVIE_GENRES, SEARCH_LENGTH } from "../../resources/constants";
@@ -36,11 +39,10 @@ const SearchMovies = () => {
           (gen) => gen.toUpperCase() === genre.toUpperCase()
         );
 
-        const searchedMovies = await getMoviesByGenre(
-          MOVIE_GENRES[reqGenre],
-          page,
-          SEARCH_LENGTH
-        );
+        const searchedMovies = reqGenre
+          ? await getMoviesByGenre(MOVIE_GENRES[reqGenre], page, SEARCH_LENGTH)
+          : await getMoviesByName(genre, page, SEARCH_LENGTH);
+        //TODO: Fix after backend implementation
         setGenreMovies(searchedMovies.movies);
 
         const count = searchedMovies.count;

@@ -43,45 +43,42 @@ const Comments = ({ movieId, shouldRefresh }) => {
         <LoadingComment />
       ) : (
         comments.length > 0 &&
-        comments
-          .slice(0)
-          .reverse()
-          .map((comment, index) => (
-            <Box
-              key={`${comment.id}-${index}`}
-              sx={{
-                marginBottom: "25px",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "flex-start",
-              }}
-            >
-              <Avatar sx={{ marginRight: "15px" }} />
-              <Box>
-                <Box
+        comments.map((comment, index) => (
+          <Box
+            key={`${comment.id}-${index}`}
+            sx={{
+              marginBottom: "25px",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "flex-start",
+            }}
+          >
+            <Avatar sx={{ marginRight: "15px" }} />
+            <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "baseline",
+                }}
+              >
+                <Typography
                   sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "baseline",
+                    marginRight: "8px",
+                    fontSize: "20px",
                   }}
                 >
-                  <Typography
-                    sx={{
-                      marginRight: "8px",
-                      fontSize: "20px",
-                    }}
-                  >
-                    {comment.userObj.username}
-                  </Typography>
-                  <Typography color="#b1b1b1">
-                    {moment(comment.date).fromNow()}
-                  </Typography>
-                </Box>
-
-                <Typography color="#fff">{comment.content}</Typography>
+                  {comment.userObj.username}
+                </Typography>
+                <Typography color="#b1b1b1">
+                  {moment(comment.date).fromNow()}
+                </Typography>
               </Box>
+
+              <Typography color="#fff">{comment.content}</Typography>
             </Box>
-          ))
+          </Box>
+        ))
       )}
     </Box>
   );

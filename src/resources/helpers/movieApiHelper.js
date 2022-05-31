@@ -48,17 +48,21 @@ export const getMoviesById = async (id) => {
   return movieData;
 };
 
-export const getMoviesByName = async (name) => {
+export const getMoviesByName = async (name, page, size) => {
   const authToken = sessionStorage.getItem("isAuthenticated");
 
   const movieData = await axios
-    .get(`${BASE_URL}/movies/names?name=${name}&page=1&size=10`, {
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    })
+    .get(
+      `${BASE_URL}/movies/names?name=${name}&page=${page - 1}&size=${size}`,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      }
+    )
     .then((res) => res.data);
 
+  console.log(movieData);
   return movieData;
 };
 
@@ -95,11 +99,11 @@ export const addToMyList = async (userId, movieId) => {
   }
 };
 
-export const getPredictions = async () => {
+export const getPredictions = async (userId) => {
   const authToken = sessionStorage.getItem("isAuthenticated");
 
   const movieData = await axios
-    .get(`${BASE_URL}/ratings/1`, {
+    .get(`${BASE_URL}/ratings/u${userId}`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
       },
@@ -127,6 +131,6 @@ export const getPredictions = async () => {
       })
       .then((res) => res.data);
 
-    console.log(genericPrediction, "generic");
+    return genericPrediction;
   }
 };
