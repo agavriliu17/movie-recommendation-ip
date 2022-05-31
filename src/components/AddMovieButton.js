@@ -4,11 +4,24 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import CheckIcon from "@mui/icons-material/Check";
+import { useSnackbar } from "notistack";
+import UserContext from "../resources/context/UserContext";
 
-const AddMovieButton = () => {
+import { addToMyList } from "../resources/helpers/movieApiHelper";
+
+const AddMovieButton = ({ movieId }) => {
   const [inWatchlist, setInWatchList] = React.useState(false);
+  const { userData } = React.useContext(UserContext);
+  const { enqueueSnackbar } = useSnackbar();
 
-  const handleWatchlist = () => setInWatchList(!inWatchlist);
+  const handleWatchlist = async () => {
+    try {
+      const res = await addToMyList(userData.id, movieId);
+      if (res) setInWatchList(!inWatchlist);
+    } catch (e) {
+      enqueueSnackbar("Failed to add to watchlist!", { variant: "error" });
+    }
+  };
 
   return (
     <Button

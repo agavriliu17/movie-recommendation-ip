@@ -62,29 +62,30 @@ export const getMoviesByName = async (name, page, size) => {
     )
     .then((res) => res.data);
 
-  console.log(movieData);
   return movieData;
 };
 
 export const getMyList = async (userId) => {
   const authToken = sessionStorage.getItem("isAuthenticated");
+  const id = userId;
+  if (id) {
+    const movieData = await axios
+      .get(`${BASE_URL}/movielists/list?lname=${MY_LIST}&userId=${userId}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      })
+      .then((res) => res.data);
 
-  const movieData = await axios
-    .get(`${BASE_URL}/movielists/user?user_id=${userId}`, {
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    })
-    .then((res) => res.data);
-
-  return movieData;
+    return movieData;
+  }
 };
 
 export const addToMyList = async (userId, movieId) => {
   const authToken = sessionStorage.getItem("isAuthenticated");
 
   const res = await axios.post(
-    `${BASE_URL}/movielists/add?lname=${MY_LIST}&mname=${movieId}&user_id=${userId}`,
+    `${BASE_URL}/movielists/add?lname=${MY_LIST}&movieId=${movieId}&userId=${userId}`,
     {
       headers: {
         Authorization: `Bearer ${authToken}`,
@@ -92,6 +93,7 @@ export const addToMyList = async (userId, movieId) => {
     }
   );
 
+  console.log(res);
   if (res.status === 200) {
     return true;
   } else {

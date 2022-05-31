@@ -107,7 +107,7 @@ const Movie = () => {
                 >
                   {movie.name}
                 </Typography>
-                <AddMovieButton />
+                <AddMovieButton movieId={movieId} />
               </Box>
               {movie?.type && (
                 <Box

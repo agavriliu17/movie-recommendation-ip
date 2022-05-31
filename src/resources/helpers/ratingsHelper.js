@@ -26,7 +26,6 @@ export const updateRating = async (movieId, userId, rating) => {
       "Access-Control-Allow-Origin": "*",
     },
   });
-  console.log(res);
 
   if (res.status === 201) {
     return true;

@@ -72,7 +72,7 @@ const Header = () => {
                 fontSize: "15px",
               },
             }}
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/register")}
           >
             Sign up
           </Button>

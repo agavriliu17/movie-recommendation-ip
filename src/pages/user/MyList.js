@@ -8,19 +8,23 @@ import { useSnackbar } from "notistack";
 import MovieListItem from "../../components/MovieListItem";
 import LoadingMyList from "../../components/loadingElements/LoadingMyList";
 import { getMyList } from "../../resources/helpers/movieApiHelper";
+import UserContext from "../../resources/context/UserContext";
 
 const MyList = () => {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const { userData } = React.useContext(UserContext);
   const { enqueueSnackbar } = useSnackbar();
 
   React.useEffect(() => {
     (async function () {
       try {
-        const movieData = await getMyList(3);
-        setData(movieData);
+        if (userData) {
+          const movieData = await getMyList(userData.id);
+          setData(movieData);
 
-        setLoading(false);
+          setLoading(false);
+        }
       } catch (e) {
         enqueueSnackbar("Failed to fetch your watchlist!", {
           variant: "error",
@@ -29,7 +33,7 @@ const MyList = () => {
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userData]);
 
   return (
     <PageLayout>

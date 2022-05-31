@@ -26,7 +26,7 @@ export const MOVIE_GENRES = {
 
 export const SEARCH_LENGTH = 12;
 
-export const MY_LIST = "myList";
+export const MY_LIST = "MyList";
 
 export const GODFATHER = {
   id: 858,
