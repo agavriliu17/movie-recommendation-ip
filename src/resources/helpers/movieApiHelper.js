@@ -85,7 +85,7 @@ export const addToMyList = async (userId, movieId) => {
   const authToken = sessionStorage.getItem("isAuthenticated");
 
   const res = await axios.post(
-    `${BASE_URL}/movielists/add?lname=${MY_LIST}&movieId=${movieId}&userId=${userId}`,
+    `${BASE_URL}/movielists/add?lname=${MY_LIST}&userId=${userId}&movieId=${movieId}`,
     {
       headers: {
         Authorization: `Bearer ${authToken}`,

@@ -41,9 +41,9 @@ const MyList = () => {
         My list
       </Typography>
       {!loading ? (
-        data[0] ? (
+        data ? (
           <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
-            {data[0].movies.map((movie, index) => (
+            {data.movies.map((movie, index) => (
               <MovieListItem key={`${movie.title}-${index}`} movie={movie} />
             ))}
           </Box>
