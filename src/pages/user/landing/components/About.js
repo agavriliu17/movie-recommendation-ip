@@ -27,7 +27,12 @@ const About = () => {
   };
 
   return (
-    <Container sx={{ display: "flex", flexDirection: "column" }}>
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Typography color="#fff" variant="h2" mb="30px">
         Discover movies you'll truly enjoy
       </Typography>

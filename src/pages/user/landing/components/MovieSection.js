@@ -4,6 +4,7 @@ import ShowcaseCard from "./ShowcaseCard";
 import Chip from "@mui/material/Chip";
 import RatingDisplay from "../../../../components/ratings/RatingDisplay";
 import Fade from "react-reveal/Fade";
+import Grid from "@mui/material/Grid";
 
 import Link from "@mui/material/Link";
 
@@ -14,23 +15,24 @@ const MovieSection = ({ movie, goToMovie }) => {
 
   return (
     <Fade>
-      <Box
+      <Grid
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          marginBottom: "10vh",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
+          marginBottom: "12vh",
         }}
+        container
+        spacing={8}
+        justifyContent="center"
+        alignContent="center"
       >
-        <Box
+        <Grid
           sx={{
             display: "flex",
             flexDirection: "column",
             marginRight: "20px",
-            maxWidth: "50%",
           }}
+          xs={12}
+          sm={6}
+          item
         >
           <Typography color="#F9F871" fontSize="25px" mt="10px">
             {movie.name}
@@ -77,6 +79,7 @@ const MovieSection = ({ movie, goToMovie }) => {
                 cursor: "pointer",
                 fontSize: "14px",
                 marginTop: "15px",
+                width: "fit-content",
               }}
               onClick={handleMovieClick}
             >
@@ -88,15 +91,24 @@ const MovieSection = ({ movie, goToMovie }) => {
                 cursor: "pointer",
                 fontSize: "14px",
                 marginTop: "10px",
+                width: "fit-content",
               }}
               onClick={handleMovieClick}
             >
               Leave a comment...
             </Link>
           </Box>
-        </Box>
-        <ShowcaseCard movie={movie} />
-      </Box>
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          sm={5}
+          sx={{ display: "flex", width: "100%", justifyContent: "center" }}
+        >
+          <ShowcaseCard movie={movie} />
+        </Grid>
+      </Grid>
     </Fade>
   );
 };
