@@ -63,7 +63,9 @@ const Home = () => {
           setLoading(false);
         }
       } catch (e) {
-        enqueueSnackbar("Failed to fetch movies!", { variant: "error" });
+        enqueueSnackbar("Failed to fetch recommendations!", {
+          variant: "error",
+        });
         setLoading(false);
       }
     })();

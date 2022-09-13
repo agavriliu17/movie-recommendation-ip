@@ -1,115 +1,79 @@
 import React from "react";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import ShowcaseCard from "./ShowcaseCard";
-import Chip from "@mui/material/Chip";
-import { GODFATHER } from "../../../../resources/constants";
-import RatingDisplay from "../../../../components/ratings/RatingDisplay";
+import {
+  GODFATHER,
+  DUMB_AND_DUMBER,
+  TAXI_DRIVER,
+} from "../../../../resources/constants";
+
+import MovieSection from "./MovieSection";
+import Fade from "react-reveal/Fade";
 import { useNavigate } from "react-router-dom";
 
-import Link from "@mui/material/Link";
-
-import Fade from "react-reveal/Fade";
-
 const About = () => {
+  const movies = [GODFATHER, DUMB_AND_DUMBER, TAXI_DRIVER];
+
   const navigate = useNavigate();
 
-  const goToMovie = () => {
-    navigate(`/login`);
+  const goToMovie = (id) => {
+    navigate(`/watch/${id}`);
+  };
+
+  const goToHome = () => {
+    navigate(`/home`);
   };
 
   return (
-    <Fade>
-      <Container>
+    <Container sx={{ display: "flex", flexDirection: "column" }}>
+      <Typography color="#fff" variant="h2" mb="30px">
+        Discover movies you'll truly enjoy
+      </Typography>
+      {movies.map((movie, index) => (
+        <MovieSection
+          movie={movie}
+          key={`${movie.id}-${index}`}
+          goToMovie={goToMovie}
+        />
+      ))}
+      <Fade>
         <Box
           sx={{
+            width: "100%",
             display: "flex",
-            flexDirection: "row",
+            justifyContent: "center",
             marginBottom: "10vh",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
           }}
         >
-          <Box
+          <Button
+            variant="contained"
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              marginRight: "20px",
-              maxWidth: "50%",
+              height: "fit-content",
+              backgroundImage:
+                "linear-gradient(90deg, rgb(71, 16, 193), rgb(120, 87, 255) 92%, rgb(129, 155, 253) 100%)",
+              color: "#fff",
+              borderRadius: "25px",
+              backgroundColor: "transparent",
+              textTransform: "none",
+              padding: "5px 20px",
+
+              "&:hover": {
+                transition: "ease",
+                backgroundColor: "rgb(91,28,230)",
+                backgroundImage: "none",
+              },
             }}
+            onClick={goToHome}
           >
-            <Typography color="#fff" fontSize="40px">
-              Discover movies you'll truly enjoy
+            <Typography fontSize="20px" ml="5px">
+              Discover more movies
             </Typography>
-            <Typography color="#F9F871" fontSize="25px" mt="10px">
-              The Godfather (1972)
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                marginBottom: "20px",
-              }}
-            >
-              {GODFATHER.type.map((genre, index) => (
-                <Chip
-                  label={genre.name}
-                  key={`${genre.id}-${index}`}
-                  size="small"
-                  sx={{
-                    margin: index === 0 ? "0px 5px 5px 0px" : "0px 5px",
-                    ".MuiChip-label": { fontSize: "14px" },
-                  }}
-                />
-              ))}
-            </Box>
-
-            <Typography color="#fff" fontSize="16px" mt="10px">
-              {GODFATHER.description}
-            </Typography>
-
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                marginTop: "30px",
-              }}
-            >
-              <RatingDisplay
-                voteAverage={GODFATHER.voteAverage}
-                voteCount={GODFATHER.voteCount}
-              />
-              <Link
-                sx={{
-                  color: "#fff",
-                  cursor: "pointer",
-                  fontSize: "14px",
-                  marginTop: "15px",
-                }}
-                onClick={goToMovie}
-              >
-                Seen it? Add your rating
-              </Link>
-              <Link
-                sx={{
-                  color: "#fff",
-                  cursor: "pointer",
-                  fontSize: "14px",
-                  marginTop: "10px",
-                }}
-                onClick={goToMovie}
-              >
-                Leave a comment...
-              </Link>
-            </Box>
-          </Box>
-          <ShowcaseCard movie={GODFATHER} />
+          </Button>
         </Box>
-      </Container>
-    </Fade>
+      </Fade>
+    </Container>
   );
 };
 
