@@ -73,8 +73,7 @@ const BannerRowTop = ({ title }) => {
         className="row-col"
       >
         <span className="row-message">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet,
-          exercitationem.
+          Never get bored again with our smart, AI powered movie suggestions.
         </span>
       </motion.div>
     </div>

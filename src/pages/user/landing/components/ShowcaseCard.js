@@ -36,8 +36,8 @@ const ShowcaseCard = ({ movie }) => {
         alt={movie.title}
         style={{
           display: "block",
-          maxWidth: "500px",
-          maxHeight: "600px",
+          maxWidth: "400px",
+          maxHeight: "500px",
           width: "auto",
           height: "auto",
           boxShadow: hover
