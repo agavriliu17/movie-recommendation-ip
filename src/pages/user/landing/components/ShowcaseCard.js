@@ -2,18 +2,12 @@ import React from "react";
 
 import { IMAGES_URL } from "../../../../resources/constants";
 import Box from "@mui/material/Box";
-import { useNavigate } from "react-router-dom";
 import { Img } from "react-image";
 import { motion } from "framer-motion";
 import LoadingMovieCard from "../../../../components/loadingElements/LoadingMovieCard";
 
-const ShowcaseCard = ({ movie }) => {
+const ShowcaseCard = ({ movie, goToMovie }) => {
   const [hover, setHover] = React.useState(false);
-  const navigate = useNavigate();
-
-  const goToMovie = () => {
-    navigate(`/login`);
-  };
 
   const handleMouseEnter = () => setHover(true);
   const handleMouseLeave = () => setHover(false);

@@ -15,6 +15,21 @@ export const getTopRated = async () => {
   return movieData;
 };
 
+// use this when the recommendations fail
+export const getBannerMovie = async () => {
+  const authToken = sessionStorage.getItem("isAuthenticated");
+
+  const movieData = await axios
+    .get(`${BASE_URL}/movies?page=1&size=40`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    })
+    .then((res) => res.data.movies);
+
+  return movieData;
+};
+
 export const getMoviesByGenre = async (genre, page, size) => {
   const authToken = sessionStorage.getItem("isAuthenticated");
 
@@ -93,7 +108,6 @@ export const addToMyList = async (userId, movieId) => {
     }
   );
 
-  console.log(res);
   if (res.status === 200) {
     return true;
   } else {

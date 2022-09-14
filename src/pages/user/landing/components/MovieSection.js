@@ -106,7 +106,7 @@ const MovieSection = ({ movie, goToMovie }) => {
           sm={5}
           sx={{ display: "flex", width: "100%", justifyContent: "center" }}
         >
-          <ShowcaseCard movie={movie} />
+          <ShowcaseCard movie={movie} goToMovie={handleMovieClick} />
         </Grid>
       </Grid>
     </Fade>

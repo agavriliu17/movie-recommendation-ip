@@ -33,11 +33,11 @@ const useStyles = makeStyles({
     outline: "inherit",
   },
   body: {
+    height: "100%",
     backgroundImage: `url(${backgroundImage})`,
     backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
     backgroundSize: "cover",
-    backgroundPosition: "center center",
+    backgroundPosition: "center",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -66,7 +66,17 @@ const Home = () => {
         enqueueSnackbar("Failed to fetch recommendations!", {
           variant: "error",
         });
-        setLoading(false);
+
+        try {
+          const movieData = await apiHelper.getBannerMovie();
+          setData(movieData);
+          setLoading(false);
+        } catch (e) {
+          enqueueSnackbar("Failed to fetch movies!", {
+            variant: "error",
+          });
+          setLoading(false);
+        }
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -12,14 +12,20 @@ import {
 import MovieSection from "./MovieSection";
 import Fade from "react-reveal/Fade";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../../../../resources/context/UserContext";
 
 const About = () => {
+  const { isAuthenticated } = React.useContext(UserContext);
   const movies = [GODFATHER, DUMB_AND_DUMBER, TAXI_DRIVER];
 
   const navigate = useNavigate();
 
   const goToMovie = (id) => {
-    navigate(`/watch/${id}`);
+    if (isAuthenticated) {
+      navigate(`/watch/${id}`);
+    } else {
+      navigate(`/login`);
+    }
   };
 
   const goToHome = () => {

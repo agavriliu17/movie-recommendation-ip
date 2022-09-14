@@ -102,7 +102,7 @@ const Movie = () => {
                 <Typography
                   mb="20px"
                   textAlign="left"
-                  variant="h3"
+                  variant="h4"
                   fontWeight="600"
                 >
                   {movie.name}
@@ -123,7 +123,10 @@ const Movie = () => {
                       label={genre.name}
                       key={`${genre.id}-${index}`}
                       onClick={() => handleGenreSearch(genre.name)}
-                      sx={{ margin: "0px 5px" }}
+                      sx={{
+                        margin: "0px 5px",
+                        ".MuiChip-label": { fontSize: "16px" },
+                      }}
                       clickable
                     />
                   ))}
@@ -191,7 +194,7 @@ const Movie = () => {
       </Box>
 
       {/* Hardcoded id for test purposes only */}
-      {movieId === "238" && (
+      {movieId === "858" && (
         <Box
           sx={{
             display: "flex",
@@ -206,7 +209,7 @@ const Movie = () => {
             mb="20px"
             mt="20px"
             textAlign="left"
-            variant="h3"
+            variant="h4"
             fontWeight="600"
           >
             Trailer

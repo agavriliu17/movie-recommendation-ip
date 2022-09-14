@@ -15,6 +15,7 @@ import AccountMenu from "./AccountMenu";
 import SearchBar from "./SearchBar";
 
 import UserContext from "../../resources/context/UserContext";
+import logo from "../../resources/images/app-logo.png";
 
 import { useNavigate } from "react-router-dom";
 
@@ -93,7 +94,11 @@ const Nav = () => {
           component="div"
           sx={{ mr: 2, display: { xs: "none", md: "flex" }, ml: "20px" }}
         >
-          LOGO
+          <img
+            src={logo}
+            alt="logo"
+            style={{ height: "40px", width: "100%" }}
+          ></img>
         </Typography>
 
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -138,9 +143,19 @@ const Nav = () => {
           variant="h6"
           noWrap
           component="div"
-          sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+          sx={{
+            flexGrow: 1,
+            display: { sm: "flex", md: "none", xs: "none" },
+            alignItems: "center",
+            color: "#fff",
+          }}
         >
-          LOGO
+          <img
+            src={logo}
+            alt="logo"
+            style={{ height: "40px", width: "40px", marginRight: "12px" }}
+          ></img>
+          CinePedia
         </Typography>
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
           {Object.keys(pages).map((page) => (
