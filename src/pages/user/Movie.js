@@ -194,7 +194,7 @@ const Movie = () => {
       </Box>
 
       {/* Hardcoded id for test purposes only */}
-      {movieId === "238" && (
+      {movieId === "858" && (
         <Box
           sx={{
             display: "flex",
@@ -209,7 +209,7 @@ const Movie = () => {
             mb="20px"
             mt="20px"
             textAlign="left"
-            variant="h3"
+            variant="h4"
             fontWeight="600"
           >
             Trailer
