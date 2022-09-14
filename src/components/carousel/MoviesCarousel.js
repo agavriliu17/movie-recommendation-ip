@@ -35,6 +35,7 @@ const carouselConfig = {
     breakpoint: { max: 1200, min: 800 },
     items: 3,
   },
+
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 2,
@@ -42,29 +43,17 @@ const carouselConfig = {
 };
 
 const containedConfig = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 8,
-  },
-  desktop_XL: {
-    breakpoint: { max: 3000, min: 2500 },
-    items: 5,
-  },
-  desktop_ML: {
-    breakpoint: { max: 2500, min: 2000 },
-    items: 4,
-  },
   desktop: {
-    breakpoint: { max: 2000, min: 1600 },
+    breakpoint: { max: 4000, min: 1600 },
     items: 3,
   },
   tablet: {
     breakpoint: { max: 1600, min: 1200 },
-    items: 2,
+    items: 3,
   },
   tablet_SM: {
     breakpoint: { max: 1200, min: 800 },
-    items: 2,
+    items: 3,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -78,6 +67,12 @@ const useStyles = makeStyles({
     height: "500px",
     zIndex: 0,
     width: "100%",
+    "@media screen and (max-width:900px)": {
+      height: "400px",
+    },
+    "@media screen and (max-width:500px)": {
+      height: "300px",
+    },
   },
 });
 
