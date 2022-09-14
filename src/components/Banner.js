@@ -63,7 +63,7 @@ const Banner = ({ movie }) => {
           }}
         >
           <Typography variant="h3" color="#F9F871">
-            {movie.name}
+            {movie?.name}
           </Typography>
           <Typography
             variant="h6"
@@ -72,7 +72,7 @@ const Banner = ({ movie }) => {
             backgroundColor={theme.palette.text.disabled}
             paddingLeft="10px"
           >
-            {movie.description}
+            {movie?.description}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", flexDirection: "row", marginTop: "20px" }}>

@@ -58,3 +58,70 @@ export const GODFATHER = {
   voteCount: 15968,
   deleted: false,
 };
+
+export const DUMB_AND_DUMBER = {
+  id: 231,
+  name: "Dumb and Dumber",
+  description:
+    'Lloyd and Harry are two men whose stupidity is really indescribable. When Mary, a beautiful woman, loses an important suitcase with money before she leaves for Aspen, the two friends (who have found the suitcase) decide to return it to her. After some "adventures" they finally get to Aspen where, using the lost money they live it up and fight for Mary\'s heart.',
+  actors: [],
+  type: [
+    {
+      id: 1,
+      name: "Adventure",
+      type: "ADVENTURE",
+    },
+    {
+      id: 4,
+      name: "Comedy",
+      type: "COMEDY",
+    },
+  ],
+  duration: 107,
+  director: null,
+  writer: null,
+  hasCaptions: false,
+  releaseDate: "1994-12-16T00:00:00.000+00:00",
+  imdbId: 109686,
+  posterPath: "/4LdpBXiCyGKkR8FGHgjKlphrfUc.jpg",
+  backdropPath: "/6ELocXlTnboUAxoevKIs9nhfiuS.jpg",
+  voteAverage: 6.6,
+  voteCount: 5027,
+  deleted: false,
+};
+
+export const TAXI_DRIVER = {
+  id: 111,
+  name: "Taxi Driver",
+  description:
+    "A mentally unstable Vietnam War veteran works as a night-time taxi driver in New York City where the perceived decadence and sleaze feed his urge for violent action, attempting to save a preadolescent prostitute in the process.",
+  actors: [],
+  type: [
+    {
+      id: 7,
+      name: "Drama",
+      type: "DRAMA",
+    },
+    {
+      id: 9,
+      name: "Crime",
+      type: "CRIME",
+    },
+    {
+      id: 10,
+      name: "Thriller",
+      type: "THRILLER",
+    },
+  ],
+  duration: 114,
+  director: null,
+  writer: null,
+  hasCaptions: false,
+  releaseDate: "1976-02-09T00:00:00.000+00:00",
+  imdbId: 75314,
+  posterPath: "/ekstpH614fwDX8DUln1a2Opz0N8.jpg",
+  backdropPath: "/fhejfyX20tyF0s65CIf27wOuH9G.jpg",
+  voteAverage: 8.2,
+  voteCount: 9361,
+  deleted: false,
+};
