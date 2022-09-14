@@ -31,9 +31,11 @@ const SearchInputs = () => {
   };
 
   const handleSearch = () => {
-    if (selectedTypes !== "") {
+    if (selectedTypes !== "" && input === "") {
       setInput("");
       navigate(`/search/${selectedTypes}`);
+    } else if (input !== "") {
+      navigate(`/search/${input}`);
     }
   };
 

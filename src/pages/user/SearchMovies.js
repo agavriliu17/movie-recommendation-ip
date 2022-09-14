@@ -16,6 +16,7 @@ import MovieCard from "../../components/carousel/MovieCard";
 import LoadingMovieCard from "../../components/loadingElements/LoadingMovieCard";
 import { MOVIE_GENRES, SEARCH_LENGTH } from "../../resources/constants";
 import SearchInputs from "../../components/SearchInputs";
+import { capitalizeFirstLetter } from "../../components/carousel/MoviesCarousel";
 
 const SearchMovies = () => {
   const { genre } = useParams();
@@ -75,12 +76,17 @@ const SearchMovies = () => {
       <Box sx={{ display: "flex", width: "100%", margin: "25px 0px" }}>
         <SearchInputs />
       </Box>
+      {genreMovies.length > 0 && (
+        <Typography fontSize="20px" mt="20px">
+          Showing results for "{capitalizeFirstLetter(genre)}":
+        </Typography>
+      )}
       <Box
         sx={{
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
-          marginTop: "10vh",
+          marginTop: "20px",
           width: "100%",
           justifyContent: "center",
         }}
@@ -118,7 +124,7 @@ const SearchMovies = () => {
           page={page}
           onChange={handleChange}
           size="large"
-          sx={{ marginBottom: "5vh" }}
+          sx={{ margin: "5vh" }}
         />
       )}
     </PageLayout>
