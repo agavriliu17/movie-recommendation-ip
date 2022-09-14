@@ -26,7 +26,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <SnackbarProvider maxSnack={3}>
+      <SnackbarProvider maxSnack={3} preventDuplicate>
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<ProtectedRoute />}>

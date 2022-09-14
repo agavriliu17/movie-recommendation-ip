@@ -66,7 +66,17 @@ const Home = () => {
         enqueueSnackbar("Failed to fetch recommendations!", {
           variant: "error",
         });
-        setLoading(false);
+
+        try {
+          const movieData = await apiHelper.getBannerMovie();
+          setData(movieData);
+          setLoading(false);
+        } catch (e) {
+          enqueueSnackbar("Failed to fetch movies!", {
+            variant: "error",
+          });
+          setLoading(false);
+        }
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
