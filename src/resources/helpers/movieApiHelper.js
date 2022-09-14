@@ -27,7 +27,6 @@ export const getBannerMovie = async () => {
     })
     .then((res) => res.data.movies);
 
-  console.log(movieData);
   return movieData;
 };
 
@@ -109,7 +108,6 @@ export const addToMyList = async (userId, movieId) => {
     }
   );
 
-  console.log(res);
   if (res.status === 200) {
     return true;
   } else {

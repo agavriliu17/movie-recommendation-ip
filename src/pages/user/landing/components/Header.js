@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
+import logo from "../../../../resources/images/app-logo.png";
+
 const Header = () => {
   const navigate = useNavigate();
 
@@ -20,7 +22,10 @@ const Header = () => {
       className="header"
     >
       <div className="header-inner">
-        <div className="logo">LOGO</div>
+        <div className="logo">
+          <img src={logo} alt="logo"></img>
+          CinePedia
+        </div>
         <Box
           sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
         >

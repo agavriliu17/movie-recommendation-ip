@@ -12,7 +12,6 @@ import ResetPassword from "./pages/authPages/ResetPassword";
 import ResetMail from "./pages/authPages/ResetMail";
 
 import MyList from "./pages/user/MyList";
-// import Landing from "./pages/Landing";
 import Home from "./pages/user/Home";
 import Movie from "./pages/user/Movie";
 import NotFound from "./pages/NotFound";
