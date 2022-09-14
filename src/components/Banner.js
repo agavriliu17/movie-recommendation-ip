@@ -62,7 +62,15 @@ const Banner = ({ movie }) => {
             width: { xs: "80%", sm: "80%", md: "50%", lg: "50%" },
           }}
         >
-          <Typography variant="h3" color="#F9F871">
+          <Typography
+            variant="h3"
+            color="#F9F871"
+            sx={{
+              "@media screen and (max-width:550px)": {
+                fontSize: "30spx",
+              },
+            }}
+          >
             {movie?.name}
           </Typography>
           <Typography
@@ -71,6 +79,11 @@ const Banner = ({ movie }) => {
             color="#10091D"
             backgroundColor={theme.palette.text.disabled}
             paddingLeft="10px"
+            sx={{
+              "@media screen and (max-width:550px)": {
+                fontSize: "12px",
+              },
+            }}
           >
             {movie?.description}
           </Typography>

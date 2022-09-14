@@ -10,6 +10,7 @@ const PageLayout = ({ children }) => {
   return (
     <Paper
       sx={{
+        height: "100%",
         width: "100%",
         minHeight: "100vh",
         borderRadius: "0px",
@@ -17,7 +18,8 @@ const PageLayout = ({ children }) => {
         display: "flex",
         backgroundImage: `url(${backgroundImage})`,
         backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <Nav />

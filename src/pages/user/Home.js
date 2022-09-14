@@ -33,11 +33,11 @@ const useStyles = makeStyles({
     outline: "inherit",
   },
   body: {
+    height: "100%",
     backgroundImage: `url(${backgroundImage})`,
     backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
     backgroundSize: "cover",
-    backgroundPosition: "center center",
+    backgroundPosition: "center",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

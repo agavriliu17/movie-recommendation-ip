@@ -96,7 +96,15 @@ const MoviesCarousel = ({ movieList, genreTitle, contained, loading }) => {
             alignItems: "center",
           }}
         >
-          <Typography color="#F9F871" variant="h3">
+          <Typography
+            color="#F9F871"
+            variant="h3"
+            sx={{
+              "@media screen and (max-width:400px)": {
+                fontSize: "30px",
+              },
+            }}
+          >
             {capitalizeFirstLetter(genreTitle)}
           </Typography>
           {genreTitle !== "Recommended" && (

@@ -138,7 +138,7 @@ const Nav = () => {
           variant="h6"
           noWrap
           component="div"
-          sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+          sx={{ flexGrow: 1, display: { sm: "flex", md: "none", xs: "none" } }}
         >
           LOGO
         </Typography>
